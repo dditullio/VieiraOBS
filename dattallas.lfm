@@ -1,0 +1,363 @@
+inherited dmTallas: TdmTallas
+  Height = 277
+  HorizontalOffset = 545
+  VerticalOffset = 203
+  Width = 272
+  inherited zspNuevoId: TZStoredProc
+    Connection = dmGeneral.zcDB
+    left = 16
+  end
+  object zqTallas: TZQuery[1]
+    Connection = dmGeneral.zcDB
+    OnCalcFields = zqTallasCalcFields
+    CachedUpdates = True
+    OnNewRecord = zqTallasNewRecord
+    SQL.Strings = (
+      'SELECT *'
+      'FROM muestras_talla'
+      'WHERE idmuestras_talla=:id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 16
+    top = 64
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object zqTallasidmuestras_talla: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_talla'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqTallasidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqTallasidlance: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idlance'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqTallasfecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqTallashora: TTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      OnSetText = zqTallashoraSetText
+      DisplayFormat = 'hh:mm'
+    end
+    object zqTallasbanda: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqTallascod_tipo_muestra: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cod_tipo_muestra'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 4
+    end
+    object zqTallaspeso_total: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_total'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqTallascomentarios: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqTallasEncabezado: TStringField
+      DisplayWidth = 50
+      FieldKind = fkCalculated
+      FieldName = 'Encabezado'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object zqTallasDscBanda: TStringField
+      DisplayWidth = 180
+      FieldKind = fkLookup
+      FieldName = 'descripcion'
+      Index = 10
+      KeyFields = 'banda'
+      LookupCache = False
+      LookupDataSet = zqBandas
+      LookupKeyFields = 'banda'
+      LookupResultField = 'descripcion'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqTallasDscTipoMuestra: TStringField
+      DisplayWidth = 60
+      FieldKind = fkLookup
+      FieldName = 'tipo_muestra'
+      Index = 11
+      KeyFields = 'cod_tipo_muestra'
+      LookupCache = False
+      LookupDataSet = zqTiposMuestra
+      LookupKeyFields = 'cod_tipo_muestra'
+      LookupResultField = 'tipo_muestra'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+  end
+  object zqDetalleTallas: TZQuery[2]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqDetalleTallasBeforeOpen
+    OnCalcFields = zqDetalleTallasCalcFields
+    CachedUpdates = True
+    OnApplyUpdateError = zqDetalleTallasApplyUpdateError
+    BeforeApplyUpdates = zqDetalleTallasBeforeApplyUpdates
+    BeforePost = zqDetalleTallasBeforePost
+    OnNewRecord = zqDetalleTallasNewRecord
+    SQL.Strings = (
+      'SELECT * '
+      'FROM detalle_muestras_talla'
+      'WHERE idmuestras_talla=:idmuestras_talla'
+      'ORDER BY talla'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmuestras_talla'
+        ParamType = ptUnknown
+      end>
+    left = 16
+    top = 116
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmuestras_talla'
+        ParamType = ptUnknown
+      end>
+    object zqDetalleTallasiddetalle_muestras_talla: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'iddetalle_muestras_talla'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDetalleTallasidmuestras_talla: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_talla'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDetalleTallastalla: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'talla'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDetalleTallasnro_ejemplares: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_ejemplares'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      OnValidate = zqDetalleTallasnro_ejemplaresValidate
+    end
+    object zqDetalleTallasEncabezado: TStringField
+      DisplayWidth = 50
+      FieldKind = fkCalculated
+      FieldName = 'Encabezado'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+  end
+  object zqTiposMuestra: TZQuery[3]
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SELECT *'
+      'FROM tipos_muestra'
+      'ORDER BY orden'
+    )
+    Params = <>
+    left = 16
+    top = 168
+    object zqTiposMuestracod_tipo_muestra: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cod_tipo_muestra'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 4
+    end
+    object zqTiposMuestratipo_muestra: TStringField
+      DisplayWidth = 60
+      FieldKind = fkData
+      FieldName = 'tipo_muestra'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 60
+    end
+    object zqTiposMuestradescripcion: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'descripcion'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqTiposMuestraorden: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'orden'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+  end
+  object zqBandas: TZQuery[4]
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SELECT *'
+      'FROM bandas'
+      'order by orden'
+    )
+    Params = <>
+    left = 16
+    top = 220
+    object zqBandasbanda: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqBandasdescripcion: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'descripcion'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+  end
+  object dsBandas: TDataSource[5]
+    DataSet = zqBandas
+    left = 92
+    top = 220
+  end
+  object dsTallas: TDataSource[6]
+    DataSet = zqTallas
+    left = 92
+    top = 64
+  end
+  object dsDetalleTallas: TDataSource[7]
+    DataSet = zqDetalleTallas
+    left = 92
+    top = 116
+  end
+  object dsTiposMuestra: TDataSource[8]
+    DataSet = zqTiposMuestra
+    left = 92
+    top = 168
+  end
+end

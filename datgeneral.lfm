@@ -1,0 +1,431 @@
+object dmGeneral: TdmGeneral
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 264
+  HorizontalOffset = 511
+  VerticalOffset = 157
+  Width = 405
+  object dsMareas: TDataSource
+    DataSet = zqMareas
+    left = 176
+    top = 16
+  end
+  object zcDB: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    Properties.Strings = (
+      'AutoEncodeStrings='
+    )
+    HostName = 'localhost'
+    Port = 0
+    Database = 'vieira'
+    User = 'root'
+    Password = 'root'
+    Protocol = 'mysql-5'
+    LibraryLocation = 'D:\Desarrollo\Lazarus\Vieira\libmysql.dll'
+    left = 16
+    top = 16
+  end
+  object zqMareas: TZQuery
+    Connection = zcDB
+    AfterScroll = zqMareasAfterScroll
+    CachedUpdates = True
+    AfterApplyUpdates = zqMareasAfterApplyUpdates
+    SQL.Strings = (
+      'SELECT *'
+      'FROM'
+      '  v_mareas'
+      'ORDER BY '
+      ' anio_marea desc, nro_marea_inidep desc'
+    )
+    Params = <>
+    left = 88
+    top = 16
+    object zqMareasidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqMareasMarea: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Marea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 378
+    end
+    object zqMareasnro_marea_inidep: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_marea_inidep'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareasanio_marea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'anio_marea'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareasmarea_buque: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'marea_buque'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqMareasidbuque: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idbuque'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareasBuque: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'Buque'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqMareascapitan: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'capitan'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqMareasoficial: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'oficial'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqMareasfecha_inicio: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_inicio'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object zqMareasfecha_zarpada: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_zarpada'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object zqMareasfecha_arribo: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_arribo'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object zqMareasfecha_finalizacion: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_finalizacion'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object zqMareasdias_pesca: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'dias_pesca'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareascant_lances: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_lances'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareascant_muestras_coccion: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_muestras_coccion'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareascant_muestras_rinde: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_muestras_rinde'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareascant_muestras_talla: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_muestras_talla'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareascant_muestras_bycatch: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_muestras_bycatch'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareascant_muestras_danio: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_muestras_danio'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareascant_muestras_ecologicas: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_muestras_ecologicas'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object zqMareaActiva: TZQuery
+    Connection = zcDB
+    BeforeOpen = zqMareaActivaBeforeOpen
+    SQL.Strings = (
+      'SELECT idmarea, buque, marea_buque, anio_marea, nro_marea_inidep, Marea, capitan, observador, puerto_registro, factor_calc_captura, fecha_zarpada, fecha_arribo'
+      'FROM v_mareas'
+      'WHERE idmarea=:idmarea'
+    )
+    Params = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 72
+    ParamData = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
+    object zqMareaActivaidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqMareaActivabuque: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'buque'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqMareaActivamarea_buque: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'marea_buque'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqMareaActivaMarea: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Marea'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 378
+    end
+    object zqMareaActivacapitan: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'capitan'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqMareaActivaobservador: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'observador'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqMareaActivafactor_calc_captura: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'factor_calc_captura'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMareaActivapuerto_registro: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'puerto_registro'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqMareaActivafecha_zarpada: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_zarpada'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object zqMareaActivafecha_arribo: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_arribo'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object zqMareaActivaanio_marea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'anio_marea'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqMareaActivanro_marea_inidep: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_marea_inidep'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+  end
+  object dsMareaActiva: TDataSource
+    DataSet = zqMareaActiva
+    left = 176
+    top = 72
+  end
+  object acDmGeneral: TActionList
+    left = 175
+    top = 132
+    object acEstablecerActiva: TAction
+      Caption = 'Establecer como activa'
+      OnExecute = acEstablecerActivaExecute
+    end
+  end
+  object sqlmLog: TZSQLMonitor
+    Active = True
+    AutoSave = True
+    MaxTraceCount = 100
+    left = 16
+    top = 76
+  end
+end

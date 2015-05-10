@@ -1,0 +1,879 @@
+inherited fmRindes: TfmRindes
+  Left = 352
+  Height = 462
+  Top = 154
+  Width = 653
+  Caption = 'Rindes'
+  ClientHeight = 462
+  ClientWidth = 653
+  OnShow = FormShow
+  inherited paBase: TPanel
+    Height = 462
+    Width = 653
+    ClientHeight = 462
+    ClientWidth = 653
+    inherited paContenido: TPanel
+      Height = 444
+      Width = 653
+      ClientHeight = 444
+      ClientWidth = 653
+      inherited paLista: TPanel
+        Height = 444
+        Width = 651
+        ClientHeight = 444
+        ClientWidth = 651
+        inherited paBuscador: TPanel
+          Width = 651
+          ClientWidth = 651
+          inherited laBuscar: TLabel
+            Height = 15
+            Width = 35
+          end
+          inherited edBuscar: TEdit
+            Left = 122
+            Height = 23
+            Width = 494
+          end
+          inherited bbBuscar: TBitBtn
+            Left = 617
+          end
+          object dtFecha: TDateTimePicker[3]
+            Left = 5
+            Height = 23
+            Top = 19
+            Width = 105
+            ShowCheckBox = True
+            CenturyFrom = 1941
+            MaxDate = 2958465
+            MinDate = -53780
+            TabOrder = 2
+            TabStop = False
+            TrailingSeparator = False
+            TextForNullDate = ' '
+            LeadingZeros = True
+            Kind = dtkDate
+            TimeFormat = tf24
+            TimeDisplay = tdHMS
+            DateMode = dmComboBox
+            Date = 41858
+            Time = 0.767097766205552
+            UseDefaultSeparators = True
+            HideDateTimeParts = []
+            MonthNames = 'Long'
+            OnChange = dtFechaChange
+            OnCheckBoxChange = dtFechaCheckBoxChange
+          end
+        end
+        inherited paGrilla: TPanel
+          Height = 194
+          Width = 641
+          ClientHeight = 194
+          ClientWidth = 641
+          inherited bbEliminar: TBitBtn
+            Left = 374
+            Top = 163
+          end
+          inherited bbAgregar: TBitBtn
+            Left = 463
+            Top = 163
+          end
+          inherited bbEditar: TBitBtn
+            Left = 552
+            Top = 163
+          end
+          inherited dbgLista: TRxDBGrid
+            Height = 163
+            Width = 641
+            Columns = <            
+              item
+                Alignment = taCenter
+                MinSize = 120
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Muestra|Fecha'
+                Title.Orientation = toHorizontal
+                Width = 80
+                FieldName = 'fecha'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Muestra|Hora'
+                Title.Orientation = toHorizontal
+                Width = 50
+                FieldName = 'hora'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Muestra|Lance'
+                Title.Orientation = toHorizontal
+                Width = 50
+                FieldName = 'nrolance'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Muestra|Banda'
+                Title.Orientation = toHorizontal
+                Width = 50
+                FieldName = 'banda'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Peso|Comercial'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'peso_comercial'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Peso|No comercial'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'peso_no_comercial'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Peso|Acompañante'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'peso_fauna_acomp'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Peso|Total'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'peso_total'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Rinde|Total'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'rinde_total'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Rinde|Comercial'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'rinde_comercial'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                Title.Alignment = taCenter
+                Title.Caption = 'Comentarios'
+                Title.Orientation = toHorizontal
+                Width = 0
+                FieldName = 'comentarios'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end>
+            OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+            DataSource = dsRindes
+          end
+        end
+        object paResumen: TPanel[2]
+          Left = 0
+          Height = 196
+          Top = 248
+          Width = 651
+          Align = alBottom
+          BevelOuter = bvNone
+          ClientHeight = 196
+          ClientWidth = 651
+          TabOrder = 2
+          object dbgLista1: TRxDBGrid
+            Left = 0
+            Height = 168
+            Top = 24
+            Width = 557
+            TitleButtons = False
+            AutoSort = True
+            Columns = <            
+              item
+                Alignment = taCenter
+                Title.Alignment = taCenter
+                Title.Caption = 'Hora'
+                Title.Orientation = toHorizontal
+                Width = 74
+                FieldName = 'hora'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+              end            
+              item
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Peso|ByCatch'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'peso_bycatch'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+              end            
+              item
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Peso|V. total'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'peso_vieira'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+              end            
+              item
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Peso|V. comercial'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'peso_mayor_55'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+              end            
+              item
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Rinde|Total'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'rinde_total'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+              end            
+              item
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Rinde|Comercial'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'rinde_comercial'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+              end>
+            KeyStrokes = <            
+              item
+                Command = rxgcShowFindDlg
+                ShortCut = 16454
+                Enabled = True
+              end            
+              item
+                Command = rxgcShowColumnsDlg
+                ShortCut = 16471
+                Enabled = True
+              end            
+              item
+                Command = rxgcShowFilterDlg
+                ShortCut = 16468
+                Enabled = True
+              end            
+              item
+                Command = rxgcShowSortDlg
+                ShortCut = 16467
+                Enabled = True
+              end            
+              item
+                Command = rxgcShowQuickFilter
+                ShortCut = 16465
+                Enabled = True
+              end            
+              item
+                Command = rxgcHideQuickFilter
+                ShortCut = 16456
+                Enabled = True
+              end            
+              item
+                Command = rxgcSelectAll
+                ShortCut = 16449
+                Enabled = True
+              end            
+              item
+                Command = rxgcDeSelectAll
+                ShortCut = 16429
+                Enabled = True
+              end            
+              item
+                Command = rxgcInvertSelection
+                ShortCut = 16426
+                Enabled = True
+              end            
+              item
+                Command = rxgcOptimizeColumnsWidth
+                ShortCut = 16427
+                Enabled = True
+              end            
+              item
+                Command = rxgcCopyCellValue
+                ShortCut = 16451
+                Enabled = True
+              end>
+            OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+            Anchors = [akTop, akLeft, akBottom]
+            AutoAdvance = aaNone
+            AutoFillColumns = True
+            AutoEdit = False
+            Color = clWindow
+            DrawFullLine = False
+            FocusColor = clRed
+            SelectedColor = clHighlight
+            GridLineStyle = psSolid
+            DataSource = dsResumen
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+            ParentColor = False
+            TabOrder = 0
+          end
+          object dbtDscResumen: TDBText
+            Left = 55
+            Height = 15
+            Top = 4
+            Width = 86
+            DataField = 'DscResumen'
+            DataSource = dsRindes
+            ParentColor = False
+          end
+          object Label1: TLabel
+            Left = 6
+            Height = 15
+            Top = 4
+            Width = 49
+            Caption = 'Resumen'
+            ParentColor = False
+          end
+        end
+      end
+      inherited paDetalles: TPanel
+        Left = 651
+        Height = 444
+        Width = 2
+      end
+    end
+    inherited paComando: TPanel
+      Width = 653
+      ClientWidth = 653
+      inherited sbCerrar: TSpeedButton
+        Left = 635
+        Flat = False
+      end
+    end
+  end
+  inherited alComando: TActionList
+    top = 225
+  end
+  inherited ilComando: TImageList
+    top = 225
+  end
+  inherited zcgLista: TZControladorGrilla
+    ControlEdicion = fmEditarRindes.zcePrincipal
+    ZDataset = zqRindes
+    top = 225
+  end
+  object zqRindes: TZQuery[4]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqRindesBeforeOpen
+    AfterOpen = zqRindesAfterOpen
+    AfterScroll = zqRindesAfterScroll
+    OnCalcFields = zqRindesCalcFields
+    SQL.Strings = (
+      'SELECT *'
+      'FROM v_muestras_rinde'
+      'WHERE idmarea=:idmarea'
+      'AND (:fecha IS NULL'
+      'OR :fecha = '''''
+      'OR fecha=:fecha)'
+      ' AND ('
+      ':__FILTRO__ IS NULL OR'
+      ':__FILTRO__ = '''''
+      'OR date_format(fecha,''%d/%m/%Y'') LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR hora LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR comentarios LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR CONCAT(nrolance,'' '',banda) LIKE CONCAT(''%'',:__FILTRO__,''%''))'
+      'ORDER BY fecha asc ,MAKETIME(HOUR(hora),MINUTE(hora),0) asc, banda desc'
+      ''
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftString
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    left = 120
+    top = 225
+    ParamData = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftString
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    object zqRindesidmuestras_rinde: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_rinde'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Visible = False
+    end
+    object zqRindesidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Visible = False
+    end
+    object zqRindesfecha: TDateField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object zqRindeshora: TTimeField
+      DisplayLabel = 'Hora'
+      DisplayWidth = 5
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'hh:mm'
+    end
+    object zqRindesnrolance: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nrolance'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqRindesbanda: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqRindeslance_banda: TBytesField
+      DisplayLabel = 'Lance'
+      DisplayWidth = 5
+      FieldKind = fkData
+      FieldName = 'lance_banda'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 42
+    end
+    object zqRindespeso_comercial: TFloatField
+      DisplayLabel = 'Kg. comercial'
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_comercial'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqRindespeso_no_comercial: TFloatField
+      DisplayLabel = 'Kg. no comercial'
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_no_comercial'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqRindespeso_fauna_acomp: TFloatField
+      DisplayLabel = 'Kg. acompañante'
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_fauna_acomp'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqRindespeso_total: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_total'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 13
+    end
+    object zqRindesrinde_total: TFloatField
+      DisplayLabel = 'Rinde total'
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_total'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00 %'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqRindesrinde_comercial: TFloatField
+      DisplayLabel = 'Rinde comercial'
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_comercial'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00 %'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqRindescomentarios: TStringField
+      DisplayLabel = 'Comentarios'
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqRindesDscResumen: TStringField
+      DisplayWidth = 100
+      FieldKind = fkCalculated
+      FieldName = 'DscResumen'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+  end
+  object dsRindes: TDataSource[5]
+    DataSet = zqRindes
+    left = 160
+    top = 225
+  end
+  object zqResumen: TZQuery[6]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqResumenBeforeOpen
+    SQL.Strings = (
+      'SELECT *'
+      'FROM v_resumen_rindes'
+      'WHERE idmarea=:idmarea'
+      'AND fecha=:fecha'
+      'ORDER BY fecha, hora'
+    )
+    Params = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end>
+    left = 196
+    top = 225
+    ParamData = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end>
+    object zqResumenidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqResumenfecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object zqResumenhora: TTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'hh:mm'
+    end
+    object zqResumenpeso_bycatch: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_bycatch'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 33
+    end
+    object zqResumenpeso_vieira: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_vieira'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 34
+    end
+    object zqResumenpeso_mayor_55: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_mayor_55'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 33
+    end
+    object zqResumenrinde_total: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_total'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      DisplayFormat = '0.00 %'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqResumenrinde_comercial: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_comercial'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      DisplayFormat = '0.00 %'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+  end
+  object dsResumen: TDataSource[7]
+    DataSet = zqResumen
+    left = 236
+    top = 225
+  end
+end

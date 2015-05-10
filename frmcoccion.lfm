@@ -1,0 +1,461 @@
+inherited fmCoccion: TfmCoccion
+  Left = 345
+  Height = 300
+  Width = 838
+  Caption = 'Cocción'
+  ClientHeight = 300
+  ClientWidth = 838
+  OnShow = FormShow
+  inherited paBase: TPanel
+    Height = 300
+    Width = 838
+    ClientHeight = 300
+    ClientWidth = 838
+    inherited paContenido: TPanel
+      Height = 282
+      Width = 838
+      ClientHeight = 282
+      ClientWidth = 838
+      inherited paLista: TPanel
+        Height = 282
+        Width = 837
+        ClientHeight = 282
+        ClientWidth = 837
+        inherited paBuscador: TPanel
+          Width = 837
+          ClientWidth = 837
+          inherited edBuscar: TEdit
+            Left = 124
+            Width = 678
+          end
+          inherited bbBuscar: TBitBtn
+            Left = 803
+          end
+          object dtFecha: TDateTimePicker[3]
+            Left = 5
+            Height = 25
+            Top = 18
+            Width = 115
+            ShowCheckBox = True
+            CenturyFrom = 1941
+            MaxDate = 2958465
+            MinDate = -53780
+            TabOrder = 2
+            TabStop = False
+            TrailingSeparator = False
+            TextForNullDate = ' '
+            LeadingZeros = True
+            Kind = dtkDate
+            TimeFormat = tf24
+            TimeDisplay = tdHMS
+            DateMode = dmComboBox
+            Date = 41858
+            Time = 0.767097766205552
+            UseDefaultSeparators = True
+            HideDateTimeParts = []
+            MonthNames = 'Long'
+            OnChange = dtFechaChange
+            OnCheckBoxChange = dtFechaCheckBoxChange
+          end
+        end
+        inherited paGrilla: TPanel
+          Height = 228
+          Width = 827
+          ClientHeight = 228
+          ClientWidth = 827
+          inherited bbEliminar: TBitBtn
+            Left = 560
+            Top = 197
+          end
+          inherited bbAgregar: TBitBtn
+            Left = 649
+            Top = 197
+          end
+          inherited bbEditar: TBitBtn
+            Left = 738
+            Top = 197
+          end
+          inherited dbgLista: TRxDBGrid
+            Height = 197
+            Width = 827
+            Columns = <            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Muestra|Fecha'
+                Title.Orientation = toHorizontal
+                Width = 80
+                FieldName = 'fecha'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Muestra|Hora'
+                Title.Orientation = toHorizontal
+                Width = 50
+                FieldName = 'hora'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Muestra|Lance'
+                Title.Orientation = toHorizontal
+                Width = 70
+                FieldName = 'lance_banda'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Antes del proceso|Vivos'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'antes_vivos'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Antes del proceso|Valvas vacías'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'antes_valvas_vacias'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Después del proceso|Valvas vacías'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'despues_valvas_vacias'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Después del proceso|Carnes'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'despues_carnes'
+                Footer.Value = 'Promedio:'
+                Footer.ValueType = fvtStaticText
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Pérdida'
+                Title.Orientation = toHorizontal
+                Width = 90
+                FieldName = 'perdida'
+                Footer.Alignment = taRightJustify
+                Footer.DisplayFormat = '0.00 %'
+                Footer.FieldName = 'perdida'
+                Footer.ValueType = fvtAvg
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                Title.Alignment = taCenter
+                Title.Caption = 'Comentarios'
+                Title.Orientation = toHorizontal
+                Width = 144
+                FieldName = 'comentarios'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end>
+            FooterOptions.Color = clBtnFace
+            FooterOptions.RowCount = 1
+            OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+            FooterColor = clBtnFace
+            FooterRowCount = 1
+            DataSource = dsCoccion
+          end
+        end
+      end
+      inherited paDetalles: TPanel
+        Left = 837
+        Height = 282
+        Width = 1
+        Visible = True
+      end
+    end
+    inherited paComando: TPanel
+      Width = 838
+      ClientWidth = 838
+      inherited sbCerrar: TSpeedButton
+        Left = 820
+        Flat = False
+      end
+    end
+  end
+  inherited zcgLista: TZControladorGrilla
+    ControlEdicion = fmEditarCoccion.zcePrincipal
+    ZDataset = zqCoccion
+  end
+  object zqCoccion: TZQuery[4]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqCoccionBeforeOpen
+    OnCalcFields = zqCoccionCalcFields
+    SQL.Strings = (
+      'SELECT *'
+      'FROM v_muestras_coccion'
+      'WHERE idmarea=:idmarea '
+      'AND (:fecha IS NULL'
+      'OR :fecha = '''''
+      'OR fecha=:fecha)'
+      'AND ('
+      ':__FILTRO__ IS NULL OR'
+      ':__FILTRO__ = '''''
+      'OR date_format(fecha,''%d/%m/%Y'') LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR hora LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR comentarios LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR CONCAT(nrolance,'' '',banda) LIKE CONCAT(''%'',:__FILTRO__,''%''))'
+      'ORDER BY fecha asc , hora asc, banda desc'
+    )
+    Params = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftDateTime
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    left = 128
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftDateTime
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    object zqCoccionidmuestras_coccion: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_coccion'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqCoccionidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqCoccionfecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object zqCoccionhora: TTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'hh:mm'
+    end
+    object zqCoccionnrolance: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nrolance'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCoccionbanda: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqCoccionlance_banda: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lance_banda'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 42
+    end
+    object zqCoccionantes_valvas_vacias: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'antes_valvas_vacias'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCoccionantes_vivos: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'antes_vivos'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCocciondespues_valvas_vacias: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'despues_valvas_vacias'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCocciondespues_carnes: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'despues_carnes'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqCoccionperdida: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'perdida'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00 %'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 23
+    end
+    object zqCoccioncomentarios: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+  end
+  object dsCoccion: TDataSource[5]
+    DataSet = zqCoccion
+    left = 160
+    top = 240
+  end
+end

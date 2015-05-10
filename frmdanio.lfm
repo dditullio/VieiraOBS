@@ -1,0 +1,628 @@
+inherited fmDanio: TfmDanio
+  Left = 348
+  Height = 367
+  Width = 887
+  Caption = 'Daño valvar'
+  ClientHeight = 367
+  ClientWidth = 887
+  inherited paBase: TPanel
+    Height = 367
+    Width = 887
+    ClientHeight = 367
+    ClientWidth = 887
+    inherited paContenido: TPanel
+      Height = 349
+      Width = 887
+      ClientHeight = 349
+      ClientWidth = 887
+      inherited paLista: TPanel
+        Height = 349
+        Width = 277
+        Align = alLeft
+        ClientHeight = 349
+        ClientWidth = 277
+        inherited paBuscador: TPanel
+          Width = 277
+          ClientWidth = 277
+          inherited edBuscar: TEdit
+            Width = 237
+          end
+          inherited bbBuscar: TBitBtn
+            Left = 243
+          end
+        end
+        inherited paGrilla: TPanel
+          Height = 295
+          Width = 267
+          ClientHeight = 295
+          ClientWidth = 267
+          inherited bbEliminar: TBitBtn
+            Left = 0
+            Top = 264
+          end
+          inherited bbAgregar: TBitBtn
+            Left = 89
+            Top = 264
+          end
+          inherited bbEditar: TBitBtn
+            Left = 178
+            Top = 264
+          end
+          inherited dbgLista: TRxDBGrid
+            Height = 264
+            Width = 267
+            Columns = <            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Fecha'
+                Title.Orientation = toHorizontal
+                Width = 80
+                FieldName = 'fecha'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Hora'
+                Title.Orientation = toHorizontal
+                Width = 50
+                FieldName = 'hora'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Lance'
+                Title.Orientation = toHorizontal
+                Width = 104
+                FieldName = 'lance_banda'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end>
+            OptionsRx = [rdgDblClickOptimizeColWidth, rdgAllowSortForm, rdgCaseInsensitiveSort]
+            DataSource = dsDanio
+          end
+        end
+      end
+      inherited paDetalles: TPanel
+        Left = 277
+        Height = 349
+        Width = 610
+        Align = alClient
+        ClientHeight = 349
+        ClientWidth = 610
+        Visible = True
+        object dbgDetalleDanio: TRxDBGrid[0]
+          Left = 0
+          Height = 181
+          Top = 49
+          Width = 606
+          TitleButtons = False
+          AutoSort = True
+          Columns = <          
+            item
+              Alignment = taCenter
+              SizePriority = 0
+              Title.Alignment = taCenter
+              Title.Caption = 'Daño'
+              Title.Orientation = toHorizontal
+              Width = 40
+              FieldName = 'tipo_danio'
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Caption = 'Antes del proceso (Captura)|1 a 20'
+              Title.Orientation = toHorizontal
+              Width = 65
+              FieldName = '01_20_antes'
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Caption = 'Antes del proceso (Captura)|21 a 40'
+              Title.Orientation = toHorizontal
+              Width = 65
+              FieldName = '21_40_antes'
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Caption = 'Antes del proceso (Captura)|41 a 54'
+              Title.Orientation = toHorizontal
+              Width = 65
+              FieldName = '41_54_antes'
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Caption = 'Antes del proceso (Captura)|Mas de 54'
+              Title.Orientation = toHorizontal
+              Width = 65
+              FieldName = 'mas_54_antes'
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end          
+            item
+              SizePriority = 0
+              Title.Alignment = taCenter
+              Title.Caption = ' '
+              Title.Orientation = toHorizontal
+              Width = 10
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Caption = 'Después del proceso (Descarte)|1 a 20'
+              Title.Orientation = toHorizontal
+              Width = 65
+              FieldName = '01_20_despues'
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Caption = 'Después del proceso (Descarte)|21 a 40'
+              Title.Orientation = toHorizontal
+              Width = 65
+              FieldName = '21_40_despues'
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Caption = 'Después del proceso (Descarte)|41 a 54'
+              Title.Orientation = toHorizontal
+              Width = 65
+              FieldName = '41_54_despues'
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end          
+            item
+              Alignment = taCenter
+              Title.Alignment = taCenter
+              Title.Caption = 'Después del proceso (Descarte)|Mas de 54'
+              Title.Orientation = toHorizontal
+              Width = 68
+              FieldName = 'mas_54_despues'
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Todos)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              EditButtons = <>
+            end>
+          KeyStrokes = <          
+            item
+              Command = rxgcShowFindDlg
+              ShortCut = 16454
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowColumnsDlg
+              ShortCut = 16471
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowFilterDlg
+              ShortCut = 16468
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowSortDlg
+              ShortCut = 16467
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowQuickFilter
+              ShortCut = 16465
+              Enabled = True
+            end          
+            item
+              Command = rxgcHideQuickFilter
+              ShortCut = 16456
+              Enabled = True
+            end          
+            item
+              Command = rxgcSelectAll
+              ShortCut = 16449
+              Enabled = True
+            end          
+            item
+              Command = rxgcDeSelectAll
+              ShortCut = 16429
+              Enabled = True
+            end          
+            item
+              Command = rxgcInvertSelection
+              ShortCut = 16426
+              Enabled = True
+            end          
+            item
+              Command = rxgcOptimizeColumnsWidth
+              ShortCut = 16427
+              Enabled = True
+            end          
+            item
+              Command = rxgcCopyCellValue
+              ShortCut = 16451
+              Enabled = True
+            end>
+          OptionsRx = [rdgDblClickOptimizeColWidth, rdgAllowSortForm, rdgCaseInsensitiveSort]
+          Anchors = [akTop, akLeft, akRight]
+          AutoAdvance = aaNone
+          AutoFillColumns = True
+          AutoEdit = False
+          Color = clWindow
+          DrawFullLine = False
+          FocusColor = clRed
+          SelectedColor = clHighlight
+          GridLineStyle = psSolid
+          DataSource = dsDetalleDanio
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+          ParentColor = False
+          TabOrder = 0
+        end
+        object Label1: TLabel[1]
+          Left = 3
+          Height = 17
+          Top = 238
+          Width = 74
+          Caption = 'Comentarios'
+          ParentColor = False
+        end
+        object DBMemo1: TDBMemo[2]
+          Left = 3
+          Height = 76
+          Top = 259
+          Width = 602
+          Anchors = [akTop, akLeft, akRight]
+          DataField = 'comentarios'
+          DataSource = dsDanio
+          ReadOnly = True
+          TabOrder = 1
+        end
+        object Panel1: TPanel[3]
+          Left = 3
+          Height = 36
+          Top = 10
+          Width = 602
+          Anchors = [akTop, akLeft, akRight]
+          Caption = 'Detalle de la muestra de daño valvar'
+          ParentColor = False
+          TabOrder = 2
+        end
+      end
+    end
+    inherited paComando: TPanel
+      Width = 887
+      ClientWidth = 887
+      inherited sbCerrar: TSpeedButton
+        Left = 869
+        Flat = False
+      end
+    end
+  end
+  inherited zcgLista: TZControladorGrilla
+    ControlEdicion = fmEditarDanio.zcePrincipal
+    ZDataset = zqDanio
+  end
+  object zqDanio: TZQuery[4]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqDanioBeforeOpen
+    AfterScroll = zqDanioAfterScroll
+    SQL.Strings = (
+      'SELECT *'
+      'FROM v_muestras_danio'
+      'WHERE idmarea=:idmarea AND ('
+      ':__FILTRO__ IS NULL OR'
+      ':__FILTRO__ = '''''
+      'OR date_format(fecha,''%d/%m/%Y'') LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR hora LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR comentarios LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR CONCAT(nrolance,'' '',banda) LIKE CONCAT(''%'',:__FILTRO__,''%''))'
+      'ORDER BY fecha, hora'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    left = 128
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    object zqDanioidmuestras_danio: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_danio'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDanioidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDaniofecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDaniohora: TTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'hh:mm'
+    end
+    object zqDanionrolance: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nrolance'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDaniobanda: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqDaniolance_banda: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lance_banda'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 42
+    end
+    object zqDaniocomentarios: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+  end
+  object dsDanio: TDataSource[5]
+    DataSet = zqDanio
+    left = 164
+    top = 240
+  end
+  object zqDetalleDanio: TZQuery[6]
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SELECT *'
+      'FROM v_muestras_danio_completa'
+      'WHERE idmuestras_danio=:idmuestras_danio'
+      'ORDER BY orden_tipo'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmuestras_danio'
+        ParamType = ptUnknown
+      end>
+    left = 204
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmuestras_danio'
+        ParamType = ptUnknown
+      end>
+    object zqDetalleDanioidmuestras_danio: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_danio'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDetalleDaniotipo_danio: TStringField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'tipo_danio'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 8
+    end
+    object zqDetalleDanioLongintField01_20_antes: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = '01_20_antes'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetalleDanioLongintField21_40_antes: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = '21_40_antes'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetalleDanioLongintField41_54_antes: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = '41_54_antes'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetalleDaniomas_54_antes: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'mas_54_antes'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetalleDanioLongintField01_20_despues: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = '01_20_despues'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetalleDanioLongintField21_40_despues: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = '21_40_despues'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetalleDanioLongintField41_54_despues: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = '41_54_despues'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetalleDaniomas_54_despues: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'mas_54_despues'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsDetalleDanio: TDataSource[7]
+    DataSet = zqDetalleDanio
+    left = 240
+    top = 240
+  end
+end

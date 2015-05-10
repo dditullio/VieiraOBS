@@ -1,0 +1,109 @@
+inherited fmEditarDetalleTallas: TfmEditarDetalleTallas
+  Left = 517
+  Height = 129
+  Top = 221
+  Width = 195
+  Caption = 'Detalle de muestra de tallas'
+  ClientHeight = 129
+  ClientWidth = 195
+  OnShow = FormShow
+  inherited paEncabezadoBase: TPanel
+    Width = 195
+    ClientWidth = 195
+    inherited paAccion: TPanel
+      Left = 92
+      Width = 102
+      ClientWidth = 102
+    end
+    inherited DividerBevel1: TDividerBevel
+      Left = 75
+    end
+    inherited paEncabezado: TPanel
+      Width = 74
+      ClientWidth = 74
+      inherited dbtEncabezado: TDBText
+        Width = 234
+        DataField = 'Encabezado'
+        DataSource = dmTallas.dsDetalleTallas
+      end
+    end
+  end
+  inherited paPrincipal: TPanel
+    Height = 59
+    Width = 195
+    ClientHeight = 59
+    ClientWidth = 195
+    object Label1: TLabel[0]
+      Left = 8
+      Height = 17
+      Top = 6
+      Width = 27
+      Caption = 'Talla'
+      ParentColor = False
+    end
+    object dbedTalla: TDBEdit[1]
+      Left = 8
+      Height = 25
+      Top = 26
+      Width = 88
+      DataField = 'talla'
+      DataSource = dmTallas.dsDetalleTallas
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 0
+    end
+    object dbedNroEjemp: TDBEdit[2]
+      Left = 100
+      Height = 25
+      Top = 26
+      Width = 88
+      DataField = 'nro_ejemplares'
+      DataSource = dmTallas.dsDetalleTallas
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 1
+      OnEnter = dbedNroEjempEnter
+    end
+    object Label2: TLabel[3]
+      Left = 100
+      Height = 17
+      Top = 6
+      Width = 84
+      Caption = 'Nº ejemplares'
+      ParentColor = False
+    end
+  end
+  inherited paControles: TPanel
+    Top = 93
+    Width = 195
+    ClientWidth = 195
+    inherited bbCancelar: TBitBtn
+      Left = 13
+      Height = 24
+    end
+    inherited bbAceptar: TBitBtn
+      Left = 101
+      Height = 24
+    end
+  end
+  inherited dsPrincipal: TDataSource
+    left = 108
+    top = 52
+  end
+  inherited zqPrincipal: TZQuery
+    left = 56
+    top = 52
+  end
+  inherited zcePrincipal: TZControladorEdicion
+    AltaContinua = True
+    ControlInicial = dbedTalla
+    EsSubform = True
+    left = 148
+    top = 52
+  end
+  inherited zdgPrincipal: TZDatasetGroup
+    DatasetMaestro = dmTallas.zqDetalleTallas
+    left = 8
+    top = 52
+  end
+end

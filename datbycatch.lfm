@@ -1,0 +1,410 @@
+inherited dmByCatch: TdmByCatch
+  Height = 296
+  HorizontalOffset = 561
+  VerticalOffset = 251
+  Width = 311
+  inherited zspNuevoId: TZStoredProc
+    Connection = dmGeneral.zcDB
+    left = 244
+    top = 12
+  end
+  object dsByCatch: TDataSource[1]
+    DataSet = zqByCatch
+    left = 136
+    top = 12
+  end
+  object dsDetByCatch: TDataSource[2]
+    DataSet = zqDetByCatch
+    left = 136
+    top = 72
+  end
+  object dsCompByCatch: TDataSource[3]
+    DataSet = zqCompByCatch
+    left = 136
+    top = 128
+  end
+  object zqByCatch: TZQuery[4]
+    Connection = dmGeneral.zcDB
+    OnCalcFields = zqByCatchCalcFields
+    CachedUpdates = True
+    OnNewRecord = zqByCatchNewRecord
+    SQL.Strings = (
+      'SELECT *'
+      'FROM muestras_bycatch'
+      'WHERE idmuestras_bycatch=:Id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'Id'
+        ParamType = ptUnknown
+      end>
+    left = 36
+    top = 12
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'Id'
+        ParamType = ptUnknown
+      end>
+    object zqByCatchidmuestras_bycatch: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_bycatch'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqByCatchidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqByCatchfecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqByCatchhora: TTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      OnSetText = zqByCatchhoraSetText
+      DisplayFormat = 'hh:mm'
+    end
+    object zqByCatchbanda: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqByCatchpeces: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'peces'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqByCatchcomentarios: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqByCatchEncabezado: TStringField
+      DisplayWidth = 30
+      FieldKind = fkCalculated
+      FieldName = 'Encabezado'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object zqByCatchDscBanda: TStringField
+      DisplayWidth = 180
+      FieldKind = fkLookup
+      FieldName = 'descripcion'
+      Index = 8
+      KeyFields = 'banda'
+      LookupCache = False
+      LookupDataSet = zqBandas
+      LookupKeyFields = 'banda'
+      LookupResultField = 'descripcion'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+  end
+  object zqDetByCatch: TZQuery[5]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqDetByCatchBeforeOpen
+    UpdateObject = zupDetByCatch
+    CachedUpdates = True
+    OnNewRecord = zqDetByCatchNewRecord
+    SQL.Strings = (
+      'select '
+      '    dmbc.iddetalle_muestras_bycatch AS iddetalle_muestras_bycatch,'
+      '    dmbc.idmuestras_bycatch AS idmuestras_bycatch,'
+      '    dmbc.idcomponentes_bycatch AS idcomponentes_bycatch,'
+      '    if((cbc.registra_numero = 1),'
+      '        dmbc.numero,'
+      '        NULL) AS numero,'
+      '    dmbc.peso AS peso,'
+      '    dmbc.comentarios AS comentarios'
+      'from'
+      '    (detalle_muestras_bycatch dmbc'
+      '    join componentes_bycatch cbc)'
+      'where dmbc.idmuestras_bycatch=:idmuestras_bycatch'
+      '    and (cbc.idcomponentes_bycatch = dmbc.idcomponentes_bycatch)'
+      'order by cbc.orden'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmuestras_bycatch'
+        ParamType = ptUnknown
+      end>
+    left = 31
+    top = 76
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmuestras_bycatch'
+        ParamType = ptUnknown
+      end>
+    object zqDetByCatchiddetalle_muestras_bycatch: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'iddetalle_muestras_bycatch'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetByCatchidmuestras_bycatch: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_bycatch'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetByCatchidcomponentes_bycatch: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idcomponentes_bycatch'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      OnValidate = zqDetByCatchidcomponentes_bycatchValidate
+    end
+    object zqDetByCatchnumero: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'numero'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetByCatchpeso: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqDetByCatchcomentarios: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqDetByCatchEspecie: TStringField
+      DisplayWidth = 180
+      FieldKind = fkLookup
+      FieldName = 'Nombre'
+      Index = 6
+      KeyFields = 'idcomponentes_bycatch'
+      LookupCache = False
+      LookupDataSet = zqCompByCatch
+      LookupKeyFields = 'idcomponentes_bycatch'
+      LookupResultField = 'Nombre'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqDetByCatchRegistraPeso: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkLookup
+      FieldName = 'registra_peso'
+      Index = 7
+      KeyFields = 'idcomponentes_bycatch'
+      LookupCache = False
+      LookupDataSet = zqCompByCatch
+      LookupKeyFields = 'idcomponentes_bycatch'
+      LookupResultField = 'registra_peso'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDetByCatchRegistraNumero: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkLookup
+      FieldName = 'registra_numero'
+      Index = 8
+      KeyFields = 'idcomponentes_bycatch'
+      LookupCache = False
+      LookupDataSet = zqCompByCatch
+      LookupKeyFields = 'idcomponentes_bycatch'
+      LookupResultField = 'registra_numero'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object zqCompByCatch: TZQuery[6]
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SELECT *'
+      'FROM componentes_bycatch'
+      'ORDER BY orden'
+    )
+    Params = <>
+    left = 32
+    top = 132
+  end
+  object zupDetByCatch: TZUpdateSQL[7]
+    DeleteSQL.Strings = (
+      'DELETE FROM detalle_muestras_bycatch'
+      'WHERE iddetalle_muestras_bycatch=:OLD_iddetalle_muestras_bycatch;'
+      ''
+      ''
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO detalle_muestras_bycatch'#10'(iddetalle_muestras_bycatch,'#10'idmuestras_bycatch,'#10'idcomponentes_bycatch,'#10'numero,'#10'peso,'#10'comentarios)'#10'VALUES'#10'(:iddetalle_muestras_bycatch,'#10':idmuestras_bycatch,'#10':idcomponentes_bycatch,'#10':numero,'#10':peso,'#10':comentarios);'#10
+    )
+    ModifySQL.Strings = (
+      'UPDATE detalle_muestras_bycatch'
+      'SET'
+      'iddetalle_muestras_bycatch = :iddetalle_muestras_bycatch,'
+      'idmuestras_bycatch = :idmuestras_bycatch,'
+      'idcomponentes_bycatch = :idcomponentes_bycatch,'
+      'numero = :numero,'
+      'peso = :peso,'
+      'comentarios = :comentarios'
+      'WHERE iddetalle_muestras_bycatch = :OLD_iddetalle_muestras_bycatch'
+    )
+    UseSequenceFieldForRefreshSQL = False
+    left = 244
+    top = 72
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'iddetalle_muestras_bycatch'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'idmuestras_bycatch'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'idcomponentes_bycatch'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'numero'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'peso'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'comentarios'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_iddetalle_muestras_bycatch'
+        ParamType = ptUnknown
+      end>
+  end
+  object zqBandas: TZQuery[8]
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SELECT *'
+      'FROM bandas'
+      'WHERE banda <> ''E+B'''
+      'order by orden'
+    )
+    Params = <>
+    left = 32
+    top = 192
+    object zqBandasbanda: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqBandasdescripcion: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'descripcion'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+  end
+  object dsBandas: TDataSource[9]
+    DataSet = zqBandas
+    left = 136
+    top = 192
+  end
+end

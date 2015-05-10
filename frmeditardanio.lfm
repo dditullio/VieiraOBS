@@ -1,0 +1,1317 @@
+inherited fmEditarDanio: TfmEditarDanio
+  Width = 652
+  Caption = 'Daño valvar'
+  ClientWidth = 652
+  inherited paEncabezadoBase: TPanel
+    Width = 652
+    ClientWidth = 652
+    inherited paAccion: TPanel
+      Left = 537
+    end
+    inherited DividerBevel1: TDividerBevel
+      Left = 522
+      Width = 15
+    end
+    inherited paEncabezado: TPanel
+      Width = 521
+      ClientWidth = 521
+      inherited dbtEncabezado: TDBText
+        Width = 681
+        DataField = 'Encabezado'
+        DataSource = dsPrincipal
+      end
+    end
+  end
+  inherited paPrincipal: TPanel
+    Width = 652
+    ClientWidth = 652
+    object Label3: TLabel[0]
+      Left = 160
+      Height = 15
+      Top = 6
+      Width = 33
+      Caption = 'Banda'
+      ParentColor = False
+    end
+    object dblkBanda: TDBLookupComboBox[1]
+      Left = 160
+      Height = 23
+      Top = 26
+      Width = 164
+      DataField = 'banda'
+      DataSource = dsPrincipal
+      KeyField = 'banda'
+      ListField = 'descripcion'
+      ListFieldIndex = 0
+      ListSource = dsBandas
+      LookupCache = False
+      OnExit = dblkBandaExit
+      TabOrder = 1
+    end
+    object dbmComentarios: TDBMemo[2]
+      Left = 8
+      Height = 84
+      Top = 262
+      Width = 636
+      DataField = 'comentarios'
+      DataSource = dsPrincipal
+      ScrollBars = ssAutoVertical
+      TabOrder = 4
+    end
+    object Label7: TLabel[3]
+      Left = 8
+      Height = 15
+      Top = 242
+      Width = 68
+      Caption = 'Comentarios'
+      ParentColor = False
+    end
+    object GroupBox1: TGroupBox[4]
+      Left = 28
+      Height = 201
+      Top = 58
+      Width = 304
+      Caption = 'Antes del proceso (Captura)'
+      ClientHeight = 183
+      ClientWidth = 300
+      TabOrder = 2
+      object Panel1: TPanel
+        Left = 6
+        Height = 22
+        Top = 4
+        Width = 72
+        Caption = '1 a 20'
+        ParentColor = False
+        TabOrder = 0
+      end
+      object Panel2: TPanel
+        Left = 78
+        Height = 22
+        Top = 4
+        Width = 72
+        Caption = '21 a 40'
+        ParentColor = False
+        TabOrder = 1
+      end
+      object Panel3: TPanel
+        Left = 150
+        Height = 22
+        Top = 4
+        Width = 72
+        Caption = '41 a 54'
+        ParentColor = False
+        TabOrder = 2
+      end
+      object Panel4: TPanel
+        Left = 222
+        Height = 22
+        Top = 4
+        Width = 72
+        Caption = 'Más de 54'
+        ParentColor = False
+        TabOrder = 3
+      end
+      object dbed_SD_0120_A: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 28
+        Width = 72
+        DataField = 'cant_ejemp_sd_01_20_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 4
+      end
+      object dbed_SD_2140_A: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 28
+        Width = 72
+        DataField = 'cant_ejemp_sd_21_40_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 5
+      end
+      object dbed_SD_4154_A: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 28
+        Width = 72
+        DataField = 'cant_ejemp_sd_41_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 6
+      end
+      object dbed_SD_MAS54_A: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 28
+        Width = 72
+        DataField = 'cant_ejemp_sd_mas_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 7
+      end
+      object dbed_DA_0120_A: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 56
+        Width = 72
+        DataField = 'cant_ejemp_da_01_20_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 8
+      end
+      object dbed_DA_2140_A: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 56
+        Width = 72
+        DataField = 'cant_ejemp_da_21_40_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 9
+      end
+      object dbed_DA_4154_A: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 56
+        Width = 72
+        DataField = 'cant_ejemp_da_41_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 10
+      end
+      object dbed_DA_MAS54_A: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 56
+        Width = 72
+        DataField = 'cant_ejemp_da_mas_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 11
+      end
+      object dbed_DB_0120_A: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 84
+        Width = 72
+        DataField = 'cant_ejemp_db_01_20_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 12
+      end
+      object dbed_DC_0120_A: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 112
+        Width = 72
+        DataField = 'cant_ejemp_dc_01_20_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 16
+      end
+      object dbed_DB_2140_A: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 84
+        Width = 72
+        DataField = 'cant_ejemp_db_21_40_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 13
+      end
+      object dbed_DC_2140_A: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 112
+        Width = 72
+        DataField = 'cant_ejemp_dc_21_40_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 17
+      end
+      object dbed_DB_4154_A: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 84
+        Width = 72
+        DataField = 'cant_ejemp_db_41_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 14
+      end
+      object dbed_DC_4154_A: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 112
+        Width = 72
+        DataField = 'cant_ejemp_dc_41_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 18
+      end
+      object dbed_DB_MAS54_A: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 84
+        Width = 72
+        DataField = 'cant_ejemp_db_mas_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 15
+      end
+      object dbed_DC_MAS54_A: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 112
+        Width = 72
+        DataField = 'cant_ejemp_dc_mas_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 19
+      end
+      object dbed_DD_0120_A: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 140
+        Width = 72
+        DataField = 'cant_ejemp_dd_01_20_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 20
+      end
+      object dbed_DD_2140_A: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 140
+        Width = 72
+        DataField = 'cant_ejemp_dd_21_40_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 21
+      end
+      object dbed_DD_4154_A: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 140
+        Width = 72
+        DataField = 'cant_ejemp_dd_41_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 22
+      end
+      object dbed_DD_MAS54_A: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 140
+        Width = 72
+        DataField = 'cant_ejemp_dd_mas_54_antes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 23
+      end
+    end
+    object Label4: TLabel[5]
+      Left = 8
+      Height = 15
+      Top = 106
+      Width = 16
+      Caption = 'SD'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label5: TLabel[6]
+      Left = 12
+      Height = 15
+      Top = 134
+      Width = 8
+      Caption = 'A'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label6: TLabel[7]
+      Left = 12
+      Height = 15
+      Top = 162
+      Width = 8
+      Caption = 'B'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label8: TLabel[8]
+      Left = 12
+      Height = 15
+      Top = 190
+      Width = 7
+      Caption = 'C'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label9: TLabel[9]
+      Left = 13
+      Height = 15
+      Top = 218
+      Width = 9
+      Caption = 'D'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object GroupBox2: TGroupBox[10]
+      Left = 340
+      Height = 201
+      Top = 58
+      Width = 304
+      Caption = 'Después del proceso (Descarte)'
+      ClientHeight = 183
+      ClientWidth = 300
+      TabOrder = 3
+      object Panel5: TPanel
+        Left = 6
+        Height = 22
+        Top = 4
+        Width = 72
+        Caption = '1 a 20'
+        ParentColor = False
+        TabOrder = 0
+      end
+      object Panel6: TPanel
+        Left = 78
+        Height = 22
+        Top = 4
+        Width = 72
+        Caption = '21 a 40'
+        ParentColor = False
+        TabOrder = 1
+      end
+      object Panel7: TPanel
+        Left = 150
+        Height = 22
+        Top = 4
+        Width = 72
+        Caption = '41 a 54'
+        ParentColor = False
+        TabOrder = 2
+      end
+      object Panel8: TPanel
+        Left = 222
+        Height = 22
+        Top = 4
+        Width = 72
+        Caption = 'Más de 54'
+        ParentColor = False
+        TabOrder = 3
+      end
+      object dbed_SD_0120_D: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 28
+        Width = 72
+        DataField = 'cant_ejemp_sd_01_20_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 4
+      end
+      object dbed_SD_2140_D: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 28
+        Width = 72
+        DataField = 'cant_ejemp_sd_21_40_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 5
+      end
+      object dbed_SD_4154_D: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 28
+        Width = 72
+        DataField = 'cant_ejemp_sd_41_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 6
+      end
+      object dbed_SD_MAS54_D: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 28
+        Width = 72
+        DataField = 'cant_ejemp_sd_mas_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 7
+      end
+      object dbed_DA_0120_D: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 56
+        Width = 72
+        DataField = 'cant_ejemp_da_01_20_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 8
+      end
+      object dbed_DA_2140_D: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 56
+        Width = 72
+        DataField = 'cant_ejemp_da_21_40_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 9
+      end
+      object dbed_DA_4154_D: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 56
+        Width = 72
+        DataField = 'cant_ejemp_da_41_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 10
+      end
+      object dbed_DA_MAS54_D: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 56
+        Width = 72
+        DataField = 'cant_ejemp_da_mas_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 11
+      end
+      object dbed_DB_0120_D: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 84
+        Width = 72
+        DataField = 'cant_ejemp_db_01_20_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 12
+      end
+      object dbed_DC_0120_D: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 112
+        Width = 72
+        DataField = 'cant_ejemp_dc_01_20_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 16
+      end
+      object dbed_DB_2140_D: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 84
+        Width = 72
+        DataField = 'cant_ejemp_db_21_40_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 13
+      end
+      object dbed_DC_2140_D: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 112
+        Width = 72
+        DataField = 'cant_ejemp_dc_21_40_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 17
+      end
+      object dbed_DB_4154_D: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 84
+        Width = 72
+        DataField = 'cant_ejemp_db_41_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 14
+      end
+      object dbed_DC_4154_D: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 112
+        Width = 72
+        DataField = 'cant_ejemp_dc_41_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 18
+      end
+      object dbed_DB_MAS54_D: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 84
+        Width = 72
+        DataField = 'cant_ejemp_db_mas_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 15
+      end
+      object dbed_DC_MAS54_D: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 112
+        Width = 72
+        DataField = 'cant_ejemp_dc_mas_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 19
+      end
+      object dbed_DD_0120_D: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 140
+        Width = 72
+        DataField = 'cant_ejemp_dd_01_20_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 20
+      end
+      object dbed_DD_2140_D: TDBEdit
+        Left = 78
+        Height = 23
+        Top = 140
+        Width = 72
+        DataField = 'cant_ejemp_dd_21_40_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 21
+      end
+      object dbed_DD_4154_D: TDBEdit
+        Left = 150
+        Height = 23
+        Top = 140
+        Width = 72
+        DataField = 'cant_ejemp_dd_41_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 22
+      end
+      object dbed_DD_MAS54_D: TDBEdit
+        Left = 222
+        Height = 23
+        Top = 140
+        Width = 72
+        DataField = 'cant_ejemp_dd_mas_54_despues'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 23
+      end
+    end
+    object paFechaHora: TPanel[11]
+      Left = 5
+      Height = 50
+      Top = 7
+      Width = 152
+      BevelOuter = bvNone
+      ClientHeight = 50
+      ClientWidth = 152
+      TabOrder = 0
+      OnExit = paFechaHoraExit
+      object Label1: TLabel
+        Left = 4
+        Height = 15
+        Top = 0
+        Width = 31
+        Caption = 'Fecha'
+        ParentColor = False
+      end
+      object dbdtFecha: TDBDateTimePicker
+        Left = 4
+        Height = 23
+        Top = 19
+        Width = 83
+        DataField = 'fecha'
+        DataSource = dsPrincipal
+        ReadOnly = False
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 0
+        TrailingSeparator = False
+        TextForNullDate = ' '
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnEnter = dbdtFechaEnter
+      end
+      object Label2: TLabel
+        Left = 95
+        Height = 15
+        Top = 0
+        Width = 26
+        Caption = 'Hora'
+        ParentColor = False
+      end
+      object dbdtHora: TDtDBTimeEdit
+        Left = 95
+        Height = 23
+        Top = 19
+        Width = 54
+        CustomEditMask = True
+        DataField = 'hora'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        EditMask = '00:00;1;_'
+        MaxLength = 5
+        TabOrder = 1
+        OnExit = dbdtHoraExit
+      end
+    end
+  end
+  inherited paControles: TPanel
+    Width = 652
+    ClientWidth = 652
+    inherited bbCancelar: TBitBtn
+      Left = 470
+      Height = 24
+    end
+    inherited bbAceptar: TBitBtn
+      Left = 558
+      Height = 24
+    end
+  end
+  inherited zqPrincipal: TZQuery
+    Connection = dmGeneral.zcDB
+    OnCalcFields = zqPrincipalCalcFields
+    OnNewRecord = zqPrincipalNewRecord
+    SQL.Strings = (
+      'SELECT *'
+      'FROM muestras_danio'
+      'WHERE idmuestras_danio=:Id'
+    )
+    object zqPrincipalidmuestras_danio: TLongintField[0]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_danio'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalidmarea: TLongintField[1]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalfecha: TDateField[2]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalhora: TTimeField[3]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      OnSetText = zqPrincipalhoraSetText
+      OnValidate = zqPrincipalhoraValidate
+      DisplayFormat = 'hh:mm'
+    end
+    object zqPrincipalbanda: TStringField[4]
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqPrincipalcant_ejemp_sd_01_20_antes: TLongintField[5]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_sd_01_20_antes'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_sd_21_40_antes: TLongintField[6]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_sd_21_40_antes'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_sd_41_54_antes: TLongintField[7]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_sd_41_54_antes'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_sd_mas_54_antes: TLongintField[8]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_sd_mas_54_antes'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_sd_01_20_despues: TLongintField[9]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_sd_01_20_despues'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_sd_21_40_despues: TLongintField[10]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_sd_21_40_despues'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_sd_41_54_despues: TLongintField[11]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_sd_41_54_despues'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_sd_mas_54_despues: TLongintField[12]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_sd_mas_54_despues'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_da_01_20_antes: TLongintField[13]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_da_01_20_antes'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_da_21_40_antes: TLongintField[14]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_da_21_40_antes'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_da_41_54_antes: TLongintField[15]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_da_41_54_antes'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_da_mas_54_antes: TLongintField[16]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_da_mas_54_antes'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_da_01_20_despues: TLongintField[17]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_da_01_20_despues'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_da_21_40_despues: TLongintField[18]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_da_21_40_despues'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_da_41_54_despues: TLongintField[19]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_da_41_54_despues'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_da_mas_54_despues: TLongintField[20]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_da_mas_54_despues'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_db_01_20_antes: TLongintField[21]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_db_01_20_antes'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_db_21_40_antes: TLongintField[22]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_db_21_40_antes'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_db_41_54_antes: TLongintField[23]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_db_41_54_antes'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_db_mas_54_antes: TLongintField[24]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_db_mas_54_antes'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_db_01_20_despues: TLongintField[25]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_db_01_20_despues'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_db_21_40_despues: TLongintField[26]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_db_21_40_despues'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_db_41_54_despues: TLongintField[27]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_db_41_54_despues'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_db_mas_54_despues: TLongintField[28]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_db_mas_54_despues'
+      Index = 28
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dc_01_20_antes: TLongintField[29]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dc_01_20_antes'
+      Index = 29
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dc_21_40_antes: TLongintField[30]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dc_21_40_antes'
+      Index = 30
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dc_41_54_antes: TLongintField[31]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dc_41_54_antes'
+      Index = 31
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dc_mas_54_antes: TLongintField[32]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dc_mas_54_antes'
+      Index = 32
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dc_01_20_despues: TLongintField[33]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dc_01_20_despues'
+      Index = 33
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dc_21_40_despues: TLongintField[34]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dc_21_40_despues'
+      Index = 34
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dc_41_54_despues: TLongintField[35]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dc_41_54_despues'
+      Index = 35
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dc_mas_54_despues: TLongintField[36]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dc_mas_54_despues'
+      Index = 36
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dd_01_20_antes: TLongintField[37]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dd_01_20_antes'
+      Index = 37
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dd_21_40_antes: TLongintField[38]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dd_21_40_antes'
+      Index = 38
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dd_41_54_antes: TLongintField[39]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dd_41_54_antes'
+      Index = 39
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dd_mas_54_antes: TLongintField[40]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dd_mas_54_antes'
+      Index = 40
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dd_01_20_despues: TLongintField[41]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dd_01_20_despues'
+      Index = 41
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dd_21_40_despues: TLongintField[42]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dd_21_40_despues'
+      Index = 42
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dd_41_54_despues: TLongintField[43]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dd_41_54_despues'
+      Index = 43
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcant_ejemp_dd_mas_54_despues: TLongintField[44]
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cant_ejemp_dd_mas_54_despues'
+      Index = 44
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcomentarios: TStringField[45]
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 45
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqPrincipalDscBanda: TStringField[46]
+      DisplayWidth = 180
+      FieldKind = fkLookup
+      FieldName = 'descripcion'
+      Index = 46
+      KeyFields = 'banda'
+      LookupCache = False
+      LookupDataSet = zqBandas
+      LookupKeyFields = 'banda'
+      LookupResultField = 'descripcion'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqPrincipalEncabezado: TStringField[47]
+      DisplayWidth = 80
+      FieldKind = fkCalculated
+      FieldName = 'Encabezado'
+      Index = 47
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+  end
+  inherited zcePrincipal: TZControladorEdicion
+    ControlInicial = dbdtHora
+  end
+  inherited zdgPrincipal: TZDatasetGroup
+    DatasetsComplementarios = <    
+      item
+        Dataset = zqBandas
+      end>
+  end
+  object zqBandas: TZQuery[8]
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SELECT *'
+      'FROM bandas'
+      'order by orden'
+    )
+    Params = <>
+    left = 80
+    top = 300
+    object zqBandasbanda: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqBandasdescripcion: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'descripcion'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+  end
+  object dsBandas: TDataSource[9]
+    DataSet = zqBandas
+    left = 156
+    top = 300
+  end
+end

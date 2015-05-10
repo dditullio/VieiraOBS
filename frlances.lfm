@@ -1,0 +1,906 @@
+inherited fLances: TfLances
+  Height = 481
+  Width = 626
+  ClientHeight = 481
+  ClientWidth = 626
+  DesignLeft = 402
+  DesignTop = 145
+  inherited paBase: TPanel
+    Height = 481
+    Width = 626
+    ClientHeight = 481
+    ClientWidth = 626
+    inherited paContenido: TPanel
+      Height = 433
+      Width = 624
+      ClientHeight = 433
+      ClientWidth = 624
+      object edBuscarLance: TEdit[0]
+        Left = 7
+        Height = 25
+        Top = 7
+        Width = 583
+        Anchors = [akTop, akLeft, akRight]
+        TabOrder = 1
+      end
+      object bbBuscarLance: TBitBtn[1]
+        Left = 591
+        Height = 25
+        Top = 7
+        Width = 25
+        Anchors = [akTop, akRight]
+        Glyph.Data = {
+          46050000424D4605000000000000360000002800000012000000120000000100
+          2000000000001005000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000000000FF01001DA5A10845
+          CBEB040E91480000000000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000000000000000FF01001A
+          ADA80A76FBFF32B4FFFF368AD8F0000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          FF010018B5A80A76FBFF32B4FFFF57E1FDFF1A40BC9B00000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000FF010013BBA40B74FAFF32B4FFFF57E4FEFF204BC9A9000000000000
+          0000000000000000000000000000000000005C5C5C3A777777BC7F7F7FE57878
+          78E45F5F5FB13434342C0B0B924689BBDCFF48C5F6FF56E0FDFF183DCBA80000
+          FF0100000000000000000000000000000000494949077B7B7BC7B0AFAEFFD9CF
+          C1FFE8D8C6FFE3D3C2FFBBB2A6FF858584FF747475FAC0C0C0FFA7D3E5FF193D
+          D5AB0000FF010000000000000000000000000000000000000001808080D3D6D0
+          C8FFFDE5CCFFFFEEDAFFFFEEDAFFFFEEDBFFFFEFDBFFF1DAC1FF94908DFF8989
+          8BFB0303A1490000FF0100000000000000000000000000000000000000005D5D
+          5D5DCFCBC8FFFEE2C4FFFFEAD2FFFFE9D0FFFFE9CFFFFFE9D0FFFFEAD2FFFFEB
+          D5FFF0D3B5FF7C7B7BFF08080820000000000000000000000000000000000000
+          000000000000919191DEF6DCC2FFFFE7CBFFFFE5C7FFFFE1C1FFFFE0BFFFFFE1
+          C0FFFFE4C6FFFFE7CBFFFFE8CEFFA49481FF373737AB00000000000000000000
+          0000000000000000000000000000ABABABF8FCD4B0FFFFDCB6FFFFD6ACFFFFD2
+          A4FFFFD1A2FFFFD2A4FFFFD6ABFFFFDBB5FFFFE3C4FFCEAD8FFF535353DF0000
+          00000000000000000000000000000000000000000000AFAFAFFAFCC9A0FFFFCF
+          9DFFFFCB96FFFFCD9BFFFFCE9DFFFFCD9BFFFFCB96FFFFCE9CFFFFD7ACFFD1A7
+          87FF555555E70000000000000000000000000000000000000000000000009C9C
+          9CE7F8C4A1FFFFCE9DFFFFD3A7FFFFD7AEFFFFD8B1FFFFD7AEFFFFD4A8FFFFCF
+          9EFFFFCA97FFAE8C75FF404040C0000000000000000000000000000000000000
+          0000000000006C6C6C7DE5D7CFFFFDC498FFFFDCB8FFFFE0C1FFFFE2C4FFFFE0
+          C1FFFFDCB9FFFFD6ADFFF6B080FF8C8885FF0D0D0D3C00000000000000000000
+          000000000000000000000000000040404004989898EBE9C1ADFFFCC7A4FFFFE9
+          D3FFFFEBD7FFFFE9D3FFFFE4C8FFF7B58EFFA78D81FF4E4E4ECA000000000000
+          00000000000000000000000000000000000000000000000000004A4A4A189797
+          97EBD6C3BDFFE5A48BFFEEA187FFEA9F83FFCF9077FFA79C98FF5D5D5DD41A1A
+          1A0A000000000000000000000000000000000000000000000000000000000000
+          0000000000004040400470707079979797E7A5A5A5FB9D9D9DFA7D7D7DDE4A4A
+          4A5A000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000
+        }
+        TabOrder = 2
+      end
+      object dbgLances: TDBGrid[2]
+        Left = 7
+        Height = 368
+        Top = 31
+        Width = 608
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        AutoEdit = False
+        AutoFillColumns = True
+        Color = clWindow
+        Columns = <        
+          item
+            Title.Caption = 'Lance'
+            Width = 95
+            FieldName = 'nro_lance'
+          end        
+          item
+            Title.Caption = 'Fecha'
+            Width = 95
+            FieldName = 'fecha'
+          end        
+          item
+            Title.Caption = 'Hora'
+            Width = 95
+            FieldName = 'hora'
+          end        
+          item
+            Title.Caption = 'Latitud'
+            Width = 95
+            FieldName = 'latitud_ini'
+          end        
+          item
+            Title.Caption = 'Longitud'
+            Width = 95
+            FieldName = 'longitud_ini'
+          end        
+          item
+            Title.Caption = 'Duración'
+            Width = 100
+            FieldName = 'minutos_arrastre'
+          end>
+        DataSource = dsLances
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        TabOrder = 0
+        TabStop = False
+      end
+      object bbEditarLance: TBitBtn[3]
+        Left = 529
+        Height = 26
+        Top = 407
+        Width = 86
+        Anchors = [akRight, akBottom]
+        Caption = '&Editar'
+        Glyph.Data = {
+          76060000424D7606000000000000360000002800000014000000140000000100
+          2000000000004006000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000140000
+          0017000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000007111619A4070809F50000000A0000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000003070A4E151B20DF57646CFC1E2125DF0000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000000000001D111619C13341
+          4BF395B0C5FF6B7680FC1013155F000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000314195B18242BF1647E92FF94B1C6FFB8CDDCFF303538F0000000090000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000070723021C28EE4D8CAEFF8CACC3FFB3CA
+          DAFFB7C3CCFF25282BD000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000000000000000000E0116
+          1FE60E8FC7FF55C0F0FF98C3DCFFC8D6E1FF787F83FD1113135C000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000601141BD90979ACFE42C0F7FF7DD4FAFFA2E0FBFF5FB2
+          D7FF1D2B32E60000000700000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000001011219B506597EFB2BB8
+          F6FF6DCEF9FF9BDEFBFF57C6F6FF1E3C49EB0006062D00000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000102112087043F5BF91AB3F6FF5BC9F8FF8BD9FAFF6BCEF9FF295568F0091A
+          2058000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000091253032840FB0FAAEEFF49C3F8FF7BD3
+          FAFF81D5FAFF377C98F50F21288B000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000000000000000002A021C
+          2FF60A9CDCFF36BCF7FF6ACDF9FF88D8FAFF4199C1FD12242DBD000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000150C1C28F00889C2FF24B6F6FF59C8F8FF85D7FAFF4AAC
+          D8FF132936E20000000600000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000004222C35E23F4A4EFF48A4
+          CDFF49C2F8FF78D2F9FF53BEEBFF172D3EF20000001600000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000272B32B131383CFF858D91FFC4CACDFFA4D3E6FF67C8F4FF224459F90911
+          1A3C000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000030C561E263BF77C8487FFBBC2C4FFDEE3
+          E5FFACB3B5FF35454CFF0C25366D000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000060108
+          22E2042CBCFF556DBEFFDDE3EBFFB3BABCFF52575AFF192835B7000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000004010720E00C31B7FF2D4FCBFF5A74D1FF5F69
+          7CFE191E26D50000000100000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000006
+          0C2B0F1429E05266AFFE677AC0FF070C20D20000000800000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000C050B209D040A22AF0000
+          0017000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        TabOrder = 3
+      end
+      object bbAgregarLance: TBitBtn[4]
+        Left = 443
+        Height = 26
+        Top = 407
+        Width = 86
+        Anchors = [akRight, akBottom]
+        Caption = '&Agregar'
+        Glyph.Data = {
+          76060000424D7606000000000000360000002800000014000000140000000100
+          2000000000004006000064000000640000000000000000000000000000000000
+          000000000000000000000000000000000000000000000B7515180F7314330F73
+          14330F7314330F7314331371131B000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000018881FC84AAE4FFF72BF75FF98D19BFFBFE2C1FF8BC48EE40000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000001A8C1FD149B14EFF72C2
+          75FF98D39BFFBCE2BEFF97CC9BEC000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000014891AD03DAC42FF62BC66FF83CA86FF9ED5A0FF82C185E80000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000000F8815CF29A32FFF4AB1
+          4FFF67BE6AFF7BC67FFF68B56CE4000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000F8815CF119917FF2EA533FF46AF4AFF57B75BFF4DA852E00000
+          0000000000000000000000000000000000000000000000000000000000000080
+          00040F780F110F780F110F780F110F780F110F780F110E8A15CF0F9815FF0F98
+          15FF23A028FF30A835FF319E35DC0F780F110F780F110F780F110F780F110F78
+          0F110080000400000000000000000D8713AE0E9014E60E9013E60E9013E60E90
+          13E60E9014E60F9515F60F9815FF0F9815FF0E9914FF0E9F13FF0E9F13F80C99
+          13E60C9D12E60CA111E60CA510E60BA90EE60C9211A60000000000000000128F
+          18C235A83AFF32A737FF1C9E22FF0F9815FF0F9815FF0F9815FF0F9815FF0E99
+          14FF0E9E13FF0DA412FF0CAA11FF0BAF10FF0BB40FFF0ABA0DFF09C00CFF08C5
+          0BFF0BA10FB9000000000000000059B35DD1AADBACFFA4D8A6FF9ED5A0FF88CC
+          8BFF5DBA61FF33A738FF0F9815FF0E9E13FF0DA412FF0CA911FF0BAE10FF0BB4
+          0FFF0ABA0EFF09BF0CFF08C50BFF08CB0AFF0BA40EB9000000000000000064B9
+          67D4B3DEB5FFADDCAFFFA7D9A9FFA1D7A3FF9AD49DFF94D197FF7FCC82FF47B9
+          4BFF11AA16FF0BAE10FF0BB40FFF0AB90EFF09BF0CFF08C50BFF08CA0AFF07CF
+          09FF0BA70EB900000000000000006BBE6ED5BBE2BDFFB6DFB7FFB0DDB2FFA9DA
+          ABFFA4D8A6FF9DD79FFF97D799FF90D792FF7ED480FF31BF35FF0AB90EFF09BF
+          0DFF08C40BFF08C90AFF07CF09FF06D508FF0AAA0EB9000000000000000061BA
+          63D0C5E6C6FFBEE3C0FFB8E1BAFFB2DEB4FFACDDAEFFA6DDA8FF9FDDA1FF99DD
+          9BFF92DD94FF8BDD8DFF39CB3CFF09C30CFF08C90AFF07CF09FF06D408FF05DA
+          07FF0AA90DB500000000000000000F98134348B24A954AB44B9548B24A9547B5
+          479442B3449382CE84EBA7E1A9FFA1E1A3FF9AE29CFF94E296FF74D076ED0A97
+          10820A970E820C9510820C9710820C9610830D8F123900000000000000000000
+          000000000000000000000000000000000000000000007ECF7EE3B1E6B2FFA9E6
+          ABFFA3E6A5FF9DE79EFF7ED380E8000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000082D283E4B9EABAFFB3EBB4FFACEAADFFA6EBA7FF81D783E90000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000087D789E5C2EEC2FFBBEE
+          BCFFB4EEB5FFAEEFAFFF86DA88EA000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000008CD98DE6CBF2CCFFC4F2C5FFBEF2BFFFB7F2B8FF8CDD8DEB0000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000006ECF6FDDB8EEB9FFB2EE
+          B3FFAEEEAEFFA7EFA8FF76D377E3000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000089E082208A5085D08A5085D08A20B5D089F0B5D07940D260000
+          0000000000000000000000000000000000000000000000000000
+        }
+        TabOrder = 4
+      end
+      object bbEliminarLance: TBitBtn[5]
+        Left = 353
+        Height = 26
+        Top = 407
+        Width = 86
+        Anchors = [akRight, akBottom]
+        Caption = '&Eliminar'
+        Glyph.Data = {
+          76060000424D7606000000000000360000002800000014000000140000000100
+          2000000000004006000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000001000000015000000150000001500000015000000150000
+          0015000000150000001500000015000000150000001500000015000000150000
+          00140000000400000000000000000000800A00008C9900008BC600008AC70000
+          8AC700008AC700008AC700008AC700008AC700008AC700008AC700008AC70000
+          8AC700008AC700008AC700008AC2000068730000002300000000000000000002
+          929B484CDEFE4349EAFF1F26E6FF020AE2FF0008E2FF0008E2FF0008E2FF0008
+          E2FF0008E2FF0008E2FF0008E2FF0008E2FF0008E2FF0008E2FF0008E1FF0003
+          A4EB00003D47000000000000000005099DC36C75F2FF666FF2FF5F68F1FF4E58
+          F0FF2936EDFF0817EAFF000FE9FF000FE9FF000FE9FF000FE9FF000FE9FF000F
+          E9FF000FE9FF000FE9FF000FE9FF000BCEFF000063710000000000000000050A
+          A0C37884F7FF717EF7FF6A77F6FF6371F6FF5C6BF5FF5463F5FF3A4CF3FF1D31
+          F2FF071DF0FF0017F0FF0017F0FF0017F0FF0017F0FF0017F0FF0017F0FF0011
+          D3FF00026E680000000000000000020698A46F7DF0FF7C8BFBFF7585FBFF6E7F
+          FAFF6779FAFF6073FAFF5A6DFAFF5266FAFF4B60F9FF3C53F9FF2740F8FF1833
+          F8FF0E2AF7FF0623F7FF011FF7FF000CB3EA0000802800000000000000000000
+          800C02089AA10C14A1C40C14A1C40A12A0C40A12A0C40911A0C40911A0C40810
+          A0C30810A0C3070EA0C3070EA0C3050D9EC3050D9EC3040C9EC303099BC10005
+          995F000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        TabOrder = 5
+      end
+    end
+    inherited dbComandos: TDividerBevel
+      Top = 434
+      Width = 624
+    end
+    inherited paComando: TPanel
+      Top = 451
+      Width = 624
+      ClientWidth = 624
+      inherited bbCerrar: TBitBtn
+        Left = 526
+      end
+    end
+  end
+  object qgLances: TSQLQueryGroup[4]
+    QueryMaestro = sqLances
+    NombreIdMaestro = 'Id'
+    QuerysComplementarios = <    
+      item
+        SQLQuery = dmLances.sqLances
+      end    
+      item
+        SQLQuery = dmLances.sqMuestras
+      end    
+      item
+        SQLQuery = dmLances.sqProduccion
+      end    
+      item
+        SQLQuery = dmLances.sqClasificacion
+      end>
+    left = 124
+    top = 408
+  end
+  object cgLances: TControladorGrilla[5]
+    BotonAgregar = bbAgregarLance
+    BotonEditar = bbEditarLance
+    BotonEliminar = bbEliminarLance
+    BotonBuscar = bbBuscarLance
+    Buscador = edBuscarLance
+    CampoIdPadre = dmGeneral.qMareasidMarea
+    ControlEdicion = fmEditarLance.cePrincipal
+    Grilla = dbgLances
+    SQLQuery = sqLances
+    left = 84
+    top = 408
+  end
+  object sqLances: TSQLQuery[6]
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'idlance'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'mareas_idmarea'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'nro_lance'
+        DataType = ftString
+        Precision = -1
+        Size = 4
+      end    
+      item
+        Name = 'fecha'
+        DataType = ftDate
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'hora'
+        DataType = ftString
+        Precision = -1
+        Size = 5
+      end    
+      item
+        Name = 'latitud_ini'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'longitud_ini'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'latitud_fin'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'longitud_fin'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'rumbo'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'profundidad'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'cable_estribor'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'cable_babor'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'minutos_arrastre'
+        DataType = ftBCD
+        Precision = -1
+        Size = 1
+      end    
+      item
+        Name = 'velocidad'
+        DataType = ftBCD
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'captura_estribor'
+        DataType = ftBCD
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'captura_babor'
+        DataType = ftBCD
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'comentarios'
+        DataType = ftString
+        Precision = -1
+        Size = 256
+      end    
+      item
+        Name = 'temperatura_superficie'
+        DataType = ftBCD
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'temperatura_aire'
+        DataType = ftBCD
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'temperatura_fondo'
+        DataType = ftBCD
+        Precision = -1
+        Size = 2
+      end    
+      item
+        Name = 'mar_beaufort'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'nudos_viento'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'direccion_viento'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'largo_relinga_inferior'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'mallero_copo_mm'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'tipos_malla_tipo_malla'
+        DataType = ftString
+        Precision = -1
+        Size = 45
+      end>
+    BeforeOpen = sqLancesBeforeOpen
+    Database = dmGeneral.DB
+    Transaction = dmGeneral.trGeneral
+    SQL.Strings = (
+      'SELECT idlance,'
+      '    mareas_idmarea,'
+      '    lpad(nro_lance,4,''0'') as nro_lance,'
+      '    fecha,'
+      '    date_format(hora, ''%h:%i'') AS hora,'
+      '    latitud_ini,'
+      '    longitud_ini,'
+      '    latitud_fin,'
+      '    longitud_fin,'
+      '    rumbo,'
+      '    profundidad,'
+      '    cable_estribor,'
+      '    cable_babor,'
+      '    minutos_arrastre,'
+      '    velocidad,'
+      '    captura_estribor,'
+      '    captura_babor,'
+      '    comentarios,'
+      '    temperatura_superficie,'
+      '    temperatura_aire,'
+      '    temperatura_fondo,'
+      '    mar_beaufort,'
+      '    nudos_viento,'
+      '    direccion_viento,'
+      '    largo_relinga_inferior,'
+      '    mallero_copo_mm,'
+      '    tipos_malla_tipo_malla'
+      'FROM'
+      '    vieira.lances'
+      'WHERE'
+      '  mareas_idmarea = :mareas_idmarea  AND'
+      '(:__FILTRO__ IS NULL OR'
+      ':__FILTRO__ = '''' OR'
+      'lpad(nro_lance,4,''0'') LIKE CONCAT (''%'', :__FILTRO__, ''%'') OR'
+      'comentarios LIKE CONCAT (''%'', :__FILTRO__, ''%'') OR'
+      'latitud_ini LIKE CONCAT (''%'', :__FILTRO__, ''%'') OR'
+      'longitud_fin LIKE CONCAT (''%'', :__FILTRO__, ''%'') OR'
+      'minutos_arrastre LIKE CONCAT (''%'', :__FILTRO__, ''%'') OR'
+      'DATE_FORMAT(fecha, ''%d/%m/%Y'') LIKE CONCAT (''%'', :__FILTRO__, ''%'') OR'
+      'DATE_FORMAT(hora, ''%h:%i'') LIKE CONCAT (''%'', :__FILTRO__, ''%''))'
+      'order by nro_lance'
+    )
+    Params = <    
+      item
+        DataType = ftLargeint
+        Name = 'mareas_idmarea'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = '__FILTRO__'
+        ParamType = ptInput
+      end>
+    left = 14
+    top = 408
+    object sqLancesidlance: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idlance'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object sqLancesmareas_idmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'mareas_idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object sqLancesnro_lance: TStringField
+      Alignment = taCenter
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'nro_lance'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object sqLancesfecha: TDateField
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object sqLanceshora: TStringField
+      Alignment = taCenter
+      DisplayWidth = 5
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 5
+    end
+    object sqLanceslatitud_ini: TLongintField
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'latitud_ini'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = '00º 00'',''00´'
+    end
+    object sqLanceslongitud_ini: TLongintField
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'longitud_ini'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = '00º 00'',''00´'
+    end
+    object sqLanceslatitud_fin: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'latitud_fin'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLanceslongitud_fin: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'longitud_fin'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLancesrumbo: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rumbo'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLancesprofundidad: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'profundidad'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLancescable_estribor: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cable_estribor'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLancescable_babor: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cable_babor'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLancesminutos_arrastre: TBCDField
+      Alignment = taCenter
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_arrastre'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = -1
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 1
+    end
+    object sqLancesvelocidad: TBCDField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'velocidad'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = -1
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object sqLancescaptura_estribor: TBCDField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'captura_estribor'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = -1
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object sqLancescaptura_babor: TBCDField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'captura_babor'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = -1
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object sqLancescomentarios: TStringField
+      DisplayWidth = 256
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 256
+    end
+    object sqLancestemperatura_superficie: TBCDField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'temperatura_superficie'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = -1
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object sqLancestemperatura_aire: TBCDField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'temperatura_aire'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = -1
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object sqLancestemperatura_fondo: TBCDField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'temperatura_fondo'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = -1
+      Currency = False
+      MaxValue = 0
+      MinValue = 0
+      Size = 2
+    end
+    object sqLancesmar_beaufort: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'mar_beaufort'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLancesnudos_viento: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nudos_viento'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLancesdireccion_viento: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'direccion_viento'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLanceslargo_relinga_inferior: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'largo_relinga_inferior'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLancesmallero_copo_mm: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'mallero_copo_mm'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object sqLancestipos_malla_tipo_malla: TStringField
+      DisplayWidth = 45
+      FieldKind = fkData
+      FieldName = 'tipos_malla_tipo_malla'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 45
+    end
+  end
+  object dsLances: TDataSource[7]
+    DataSet = sqLances
+    left = 40
+    top = 408
+  end
+end

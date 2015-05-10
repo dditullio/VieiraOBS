@@ -1,0 +1,430 @@
+inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
+  Height = 253
+  Width = 301
+  Caption = 'SENASA'
+  ClientHeight = 253
+  ClientWidth = 301
+  OnCreate = FormCreate
+  inherited paEncabezadoBase: TPanel
+    Width = 301
+    ClientWidth = 301
+    inherited paAccion: TPanel
+      Left = 186
+    end
+    inherited DividerBevel1: TDividerBevel
+      Left = 171
+      Width = 15
+    end
+    inherited paEncabezado: TPanel
+      Width = 170
+      ClientWidth = 170
+      inherited dbtEncabezado: TDBText
+        Width = 330
+        DataField = 'Encabezado'
+        DataSource = dsPrincipal
+      end
+    end
+  end
+  inherited paPrincipal: TPanel
+    Height = 183
+    Width = 301
+    ClientHeight = 183
+    ClientWidth = 301
+    object paFechaHora: TPanel[0]
+      Left = 5
+      Height = 50
+      Top = 7
+      Width = 162
+      BevelOuter = bvNone
+      ClientHeight = 50
+      ClientWidth = 162
+      TabOrder = 0
+      OnExit = paFechaHoraExit
+      object Label1: TLabel
+        Left = 4
+        Height = 15
+        Top = 0
+        Width = 31
+        Caption = 'Fecha'
+        ParentColor = False
+      end
+      object dbdtFecha: TDBDateTimePicker
+        Left = 4
+        Height = 23
+        Top = 19
+        Width = 83
+        DataField = 'fecha'
+        DataSource = dsPrincipal
+        ReadOnly = False
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 0
+        TrailingSeparator = False
+        TextForNullDate = ' '
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnEnter = dbdtFechaEnter
+      end
+      object Label2: TLabel
+        Left = 95
+        Height = 15
+        Top = 0
+        Width = 26
+        Caption = 'Hora'
+        ParentColor = False
+      end
+      object dbdtHora: TDtDBTimeEdit
+        Left = 95
+        Height = 23
+        Top = 19
+        Width = 54
+        CustomEditMask = True
+        DataField = 'hora'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        EditMask = '00:00;1;_'
+        MaxLength = 5
+        TabOrder = 1
+      end
+    end
+    object Label3: TLabel[1]
+      Left = 8
+      Height = 15
+      Top = 62
+      Width = 37
+      Caption = 'Latitud'
+      ParentColor = False
+    end
+    object Label4: TLabel[2]
+      Left = 112
+      Height = 15
+      Top = 62
+      Width = 48
+      Caption = 'Longitud'
+      ParentColor = False
+    end
+    object Label5: TLabel[3]
+      Left = 176
+      Height = 15
+      Top = 6
+      Width = 60
+      Caption = 'Nº Muestra'
+      ParentColor = False
+    end
+    object dbedNroMuestra: TDBEdit[4]
+      Left = 176
+      Height = 23
+      Top = 26
+      Width = 109
+      DataField = 'nro_muestra'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 1
+    end
+    object Label6: TLabel[5]
+      Left = 8
+      Height = 15
+      Top = 126
+      Width = 28
+      Caption = 'CM 1'
+      ParentColor = False
+    end
+    object dbedCM1: TDBEdit[6]
+      Left = 8
+      Height = 23
+      Top = 146
+      Width = 64
+      DataField = 'contramuestra1'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 4
+    end
+    object Label7: TLabel[7]
+      Left = 80
+      Height = 15
+      Top = 126
+      Width = 28
+      Caption = 'CM 2'
+      ParentColor = False
+    end
+    object dbedCM2: TDBEdit[8]
+      Left = 80
+      Height = 23
+      Top = 146
+      Width = 64
+      DataField = 'contramuestra2'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 5
+    end
+    object Label8: TLabel[9]
+      Left = 152
+      Height = 15
+      Top = 126
+      Width = 51
+      Caption = 'Lab. MDP'
+      ParentColor = False
+    end
+    object dbedLabMDP: TDBEdit[10]
+      Left = 152
+      Height = 23
+      Top = 146
+      Width = 64
+      DataField = 'lab_mdp'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 6
+    end
+    object Label9: TLabel[11]
+      Left = 224
+      Height = 15
+      Top = 126
+      Width = 56
+      Caption = 'Lab. Bs.As.'
+      ParentColor = False
+    end
+    object dbedLabBsAs: TDBEdit[12]
+      Left = 224
+      Height = 23
+      Top = 146
+      Width = 64
+      DataField = 'lab_bsas'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 7
+    end
+    object dbedLatitud: TDtDBCoordEdit[13]
+      Left = 8
+      Height = 23
+      Top = 82
+      Width = 96
+      CustomEditMask = True
+      DataField = 'latitud'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      EditMask = '0000'
+      MaxLength = 4
+      TabOrder = 2
+      CoordKind = ckLatitude
+    end
+    object dbedLongitud: TDtDBCoordEdit[14]
+      Left = 112
+      Height = 23
+      Top = 82
+      Width = 96
+      CustomEditMask = True
+      DataField = 'longitud'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      EditMask = '0000'
+      MaxLength = 4
+      TabOrder = 3
+      CoordKind = ckLatitude
+    end
+  end
+  inherited paControles: TPanel
+    Top = 217
+    Width = 301
+    ClientWidth = 301
+    inherited bbCancelar: TBitBtn
+      Left = 119
+      Height = 24
+    end
+    inherited bbAceptar: TBitBtn
+      Left = 207
+      Height = 24
+    end
+  end
+  inherited dsPrincipal: TDataSource
+    left = 140
+    top = 136
+  end
+  inherited zqPrincipal: TZQuery
+    Connection = dmGeneral.zcDB
+    OnCalcFields = zqPrincipalCalcFields
+    OnNewRecord = zqPrincipalNewRecord
+    SQL.Strings = (
+      'SELECT *'
+      'FROM muestras_senasa_callos'
+      'WHERE idmuestras_senasa_callos=:Id'
+    )
+    left = 64
+    top = 136
+    object zqPrincipalidmuestras_senasa_callos: TLongintField[0]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_senasa_callos'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalidmarea: TLongintField[1]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalnro_muestra: TLongintField[2]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_muestra'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalfecha: TDateField[3]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalhora: TTimeField[4]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      OnSetText = zqPrincipalhoraSetText
+      DisplayFormat = 'hh:mm'
+    end
+    object zqPrincipallatitud: TFloatField[5]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'latitud'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = '00º00´'
+      EditFormat = '0000'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqPrincipalcuadrante_latitud: TStringField[6]
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_latitud'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 4
+    end
+    object zqPrincipallongitud: TFloatField[7]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'longitud'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = '00º00´'
+      EditFormat = '0000'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqPrincipalcuadrante_longitud: TStringField[8]
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_longitud'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 4
+    end
+    object zqPrincipallab_mdp: TLongintField[9]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lab_mdp'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalcontramuestra1: TLongintField[10]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'contramuestra1'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalcontramuestra2: TLongintField[11]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'contramuestra2'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipallab_bsas: TLongintField[12]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lab_bsas'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalEncabezado: TStringField[13]
+      DisplayWidth = 100
+      FieldKind = fkCalculated
+      FieldName = 'Encabezado'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+  end
+  inherited zcePrincipal: TZControladorEdicion
+    ControlInicial = dbdtHora
+    left = 208
+    top = 136
+  end
+  inherited zdgPrincipal: TZDatasetGroup
+    left = 16
+    top = 136
+  end
+end

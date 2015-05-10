@@ -1,0 +1,330 @@
+inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
+  Caption = 'Muestras biológicas'
+  inherited paBase: TPanel
+    inherited paContenido: TPanel
+      inherited paLista: TPanel
+        Width = 452
+        ClientWidth = 452
+        inherited paBuscador: TPanel
+          Width = 452
+          ClientWidth = 452
+          inherited edBuscar: TEdit
+            Width = 412
+          end
+          inherited bbBuscar: TBitBtn
+            Left = 418
+          end
+        end
+        inherited paGrilla: TPanel
+          Width = 442
+          ClientWidth = 442
+          inherited bbEliminar: TBitBtn
+            Left = 175
+          end
+          inherited bbAgregar: TBitBtn
+            Left = 264
+          end
+          inherited bbEditar: TBitBtn
+            Left = 353
+          end
+          inherited dbgLista: TRxDBGrid
+            Width = 442
+            Columns = <            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Fecha'
+                Title.Orientation = toHorizontal
+                Width = 80
+                FieldName = 'fecha'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Hora'
+                Title.Orientation = toHorizontal
+                Width = 50
+                FieldName = 'hora'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Latitud'
+                Title.Orientation = toHorizontal
+                Width = 100
+                FieldName = 'str_latitud'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Longitud'
+                Title.Orientation = toHorizontal
+                Width = 100
+                FieldName = 'str_longitud'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Nº caja'
+                Title.Orientation = toHorizontal
+                Width = 55
+                FieldName = 'nro_caja'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                Title.Alignment = taCenter
+                Title.Caption = 'Contenido'
+                Title.Orientation = toHorizontal
+                Width = 24
+                FieldName = 'contenido'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end>
+            DataSource = dsMuestrasBiologicas
+          end
+        end
+      end
+      inherited paDetalles: TPanel
+        Left = 452
+        Width = 0
+      end
+    end
+    inherited paComando: TPanel
+      inherited sbCerrar: TSpeedButton
+        Flat = False
+      end
+    end
+  end
+  inherited zcgLista: TZControladorGrilla
+    ControlEdicion = fmEditarMuestrasBiologicas.zcePrincipal
+    ZDataset = zqMuestrasBiologicas
+  end
+  object zqMuestrasBiologicas: TZQuery[4]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqMuestrasBiologicasBeforeOpen
+    OnCalcFields = zqMuestrasBiologicasCalcFields
+    SQL.Strings = (
+      'SELECT *'
+      'FROM v_muestras_biologicas'
+      'WHERE idmarea=:idmarea AND ('
+      ':__FILTRO__ IS NULL OR'
+      ':__FILTRO__ = '''''
+      'OR date_format(fecha,''%d/%m/%Y'') LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR hora LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR contenido LIKE CONCAT(''%'',:__FILTRO__,''%''))'
+      'ORDER BY fecha, hora'
+      ''
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftString
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    left = 144
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftLargeint
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftString
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    object zqMuestrasBiologicasidmuestras_biologicas: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_biologicas'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqMuestrasBiologicasidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqMuestrasBiologicasfecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqMuestrasBiologicashora: TTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'hh:mm'
+    end
+    object zqMuestrasBiologicasLatitud: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Latitud'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqMuestrasBiologicascuadrante_latitud: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_latitud'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqMuestrasBiologicaslongitud: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'longitud'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqMuestrasBiologicascuadrante_longitud: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_longitud'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqMuestrasBiologicasnro_caja: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_caja'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasBiologicascontenido: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'contenido'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqMuestrasBiologicasstr_latitud: TStringField
+      DisplayWidth = 30
+      FieldKind = fkCalculated
+      FieldName = 'str_latitud'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object zqMuestrasBiologicasstr_longitud: TStringField
+      DisplayWidth = 30
+      FieldKind = fkCalculated
+      FieldName = 'str_longitud'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+  end
+  object dsMuestrasBiologicas: TDataSource[5]
+    DataSet = zqMuestrasBiologicas
+    left = 196
+    top = 240
+  end
+end

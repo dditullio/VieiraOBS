@@ -1,0 +1,562 @@
+inherited fmEditarMarea: TfmEditarMarea
+  Left = 552
+  Height = 393
+  Top = 167
+  Width = 395
+  ActiveControl = dbedAnio
+  Caption = 'Marea'
+  ClientHeight = 393
+  ClientWidth = 395
+  OnClose = FormClose
+  inherited paEncabezadoBase: TPanel
+    Width = 395
+    ClientWidth = 395
+    inherited paAccion: TPanel
+      Left = 280
+    end
+    inherited DividerBevel1: TDividerBevel
+      Left = 263
+    end
+    inherited paEncabezado: TPanel
+      Width = 262
+      ClientWidth = 262
+      inherited dbtEncabezado: TDBText
+        Width = 422
+        AutoSize = True
+        DataField = 'DscMarea'
+        DataSource = dsPrincipal
+      end
+    end
+  end
+  inherited paPrincipal: TPanel
+    Height = 323
+    Width = 395
+    ClientHeight = 323
+    ClientWidth = 395
+    object GroupBox1: TGroupBox[0]
+      Left = 1
+      Height = 72
+      Top = 1
+      Width = 393
+      Align = alTop
+      Caption = 'Identificación'
+      ClientHeight = 54
+      ClientWidth = 389
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 62
+        Height = 17
+        Top = 8
+        Width = 101
+        Caption = 'Marea del buque'
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 182
+        Height = 17
+        Top = 8
+        Width = 81
+        Caption = 'Marea INIDEP'
+        ParentColor = False
+      end
+      object dbedMareaBuque: TDBEdit
+        Left = 62
+        Height = 25
+        Top = 24
+        Width = 112
+        DataField = 'marea_buque'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object dbedMareaInidep: TDBEdit
+        Left = 182
+        Height = 25
+        Top = 24
+        Width = 112
+        DataField = 'nro_marea_inidep'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 2
+      end
+      object Label3: TLabel
+        Left = 6
+        Height = 17
+        Top = 8
+        Width = 23
+        Caption = 'Año'
+        ParentColor = False
+      end
+      object dbedAnio: TDBEdit
+        Left = 6
+        Height = 25
+        Top = 24
+        Width = 51
+        DataField = 'anio_marea'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+    end
+    object GroupBox2: TGroupBox[1]
+      Left = 1
+      Height = 249
+      Top = 73
+      Width = 393
+      Align = alClient
+      Caption = 'Datos del viaje'
+      ClientHeight = 231
+      ClientWidth = 389
+      TabOrder = 1
+      object Label4: TLabel
+        Left = 6
+        Height = 17
+        Top = 8
+        Width = 36
+        Caption = 'Buque'
+        ParentColor = False
+      end
+      object dblkBuque: TDBLookupComboBox
+        Left = 6
+        Height = 25
+        Top = 24
+        Width = 184
+        DataField = 'Buque'
+        DataSource = dsPrincipal
+        ListFieldIndex = 0
+        LookupCache = False
+        TabOrder = 0
+      end
+      object Label5: TLabel
+        Left = 6
+        Height = 17
+        Top = 56
+        Width = 44
+        Caption = 'Capitán'
+        ParentColor = False
+      end
+      object dbedCapitan: TDBEdit
+        Left = 6
+        Height = 25
+        Top = 72
+        Width = 184
+        DataField = 'capitan'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 2
+      end
+      object Label6: TLabel
+        Left = 197
+        Height = 17
+        Top = 56
+        Width = 36
+        Caption = 'Oficial'
+        ParentColor = False
+      end
+      object dbedOficial: TDBEdit
+        Left = 197
+        Height = 25
+        Top = 72
+        Width = 184
+        DataField = 'oficial'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 3
+      end
+      object Label7: TLabel
+        Left = 6
+        Height = 17
+        Top = 109
+        Width = 116
+        Caption = 'Inicio real de marea'
+        ParentColor = False
+      end
+      object Label8: TLabel
+        Left = 6
+        Height = 17
+        Top = 157
+        Width = 49
+        Caption = 'Zarpada'
+        ParentColor = False
+      end
+      object Label9: TLabel
+        Left = 197
+        Height = 17
+        Top = 109
+        Width = 91
+        Caption = 'Arribo a puerto'
+        ParentColor = False
+      end
+      object Label10: TLabel
+        Left = 197
+        Height = 17
+        Top = 157
+        Width = 102
+        Caption = 'Fin real de marea'
+        ParentColor = False
+      end
+      object dbdtInicio: TDBDateTimePicker
+        Left = 6
+        Height = 25
+        Top = 125
+        Width = 91
+        DataField = 'fecha_inicio'
+        DataSource = dsPrincipal
+        ReadOnly = False
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 4
+        TrailingSeparator = False
+        TextForNullDate = ' '
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnEnter = dbdtInicioEnter
+      end
+      object dbdtZarpada: TDBDateTimePicker
+        Left = 6
+        Height = 25
+        Top = 173
+        Width = 91
+        DataField = 'fecha_zarpada'
+        DataSource = dsPrincipal
+        ReadOnly = False
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 5
+        TrailingSeparator = False
+        TextForNullDate = ' '
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnEnter = dbdtZarpadaEnter
+      end
+      object dbdtArribo: TDBDateTimePicker
+        Left = 197
+        Height = 25
+        Top = 125
+        Width = 91
+        DataField = 'fecha_arribo'
+        DataSource = dsPrincipal
+        ReadOnly = False
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 6
+        TrailingSeparator = False
+        TextForNullDate = ' '
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnEnter = dbdtArriboEnter
+      end
+      object dbdtFinalizacion: TDBDateTimePicker
+        Left = 197
+        Height = 25
+        Top = 173
+        Width = 91
+        DataField = 'fecha_finalizacion'
+        DataSource = dsPrincipal
+        ReadOnly = False
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 7
+        TrailingSeparator = False
+        TextForNullDate = ' '
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnEnter = dbdtFinalizacionEnter
+      end
+      object Label11: TLabel
+        Left = 197
+        Height = 17
+        Top = 8
+        Width = 70
+        Caption = 'Observador'
+        ParentColor = False
+      end
+      object dbedObservador: TDBEdit
+        Left = 197
+        Height = 25
+        Top = 24
+        Width = 184
+        DataField = 'observador'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+    end
+  end
+  inherited paControles: TPanel
+    Top = 357
+    Width = 395
+    ClientWidth = 395
+    inherited bbCancelar: TBitBtn
+      Left = 213
+      Height = 24
+    end
+    inherited bbAceptar: TBitBtn
+      Left = 301
+      Height = 24
+    end
+  end
+  inherited dsPrincipal: TDataSource
+    left = 296
+    top = 104
+  end
+  inherited zqPrincipal: TZQuery
+    Connection = dmGeneral.zcDB
+    OnCalcFields = zqPrincipalCalcFields
+    OnNewRecord = zqPrincipalNewRecord
+    SQL.Strings = (
+      'Select'
+      '  mareas.idmarea,'
+      '  mareas.nro_marea_inidep,'
+      '  mareas.anio_marea,'
+      '  mareas.marea_buque,'
+      '  mareas.idbuque,'
+      '  mareas.capitan,'
+      '  mareas.oficial,'
+      '  mareas.observador,'
+      '  mareas.fecha_inicio,'
+      '  mareas.fecha_zarpada,'
+      '  mareas.fecha_arribo,'
+      '  mareas.fecha_finalizacion'
+      'From'
+      '  mareas'
+      'WHERE idmarea=:Id'
+    )
+    left = 352
+    top = 160
+    object zqPrincipalidmarea: TLongintField[0]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalnro_marea_inidep: TLongintField[1]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_marea_inidep'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalanio_marea: TLongintField[2]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'anio_marea'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalmarea_buque: TStringField[3]
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'marea_buque'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqPrincipalidbuque: TLongintField[4]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idbuque'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalcapitan: TStringField[5]
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'capitan'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqPrincipaloficial: TStringField[6]
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'oficial'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqPrincipalobservador: TStringField[7]
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'observador'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqPrincipalfecha_inicio: TDateField[8]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_inicio'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalfecha_zarpada: TDateField[9]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_zarpada'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalfecha_arribo: TDateField[10]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_arribo'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalfecha_finalizacion: TDateField[11]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha_finalizacion'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalNombreBuque: TStringField[12]
+      DisplayWidth = 180
+      FieldKind = fkLookup
+      FieldName = 'Buque'
+      Index = 12
+      KeyFields = 'idbuque'
+      LookupCache = False
+      LookupDataSet = zqBuques
+      LookupKeyFields = 'idbuque'
+      LookupResultField = 'nombre'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqPrincipalDscMarea: TStringField[13]
+      DisplayWidth = 150
+      FieldKind = fkCalculated
+      FieldName = 'DscMarea'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+  end
+  inherited zcePrincipal: TZControladorEdicion
+    ControlInicial = dbedAnio
+    left = 352
+    top = 216
+  end
+  inherited zdgPrincipal: TZDatasetGroup
+    DatasetsComplementarios = <    
+      item
+        Dataset = zqBuques
+      end>
+    left = 352
+    top = 104
+  end
+  object zqBuques: TZQuery[8]
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SELECT * '
+      'FROM buques'
+      'ORDER BY nombre'
+    )
+    Params = <>
+    left = 352
+    top = 48
+    object zqBuquesidbuque: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idbuque'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqBuquesnombre: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'nombre'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+  end
+  object dsBuques: TDataSource[9]
+    DataSet = zqBuques
+    left = 296
+    top = 48
+  end
+end

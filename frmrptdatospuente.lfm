@@ -1,0 +1,1786 @@
+object FmRptDatosPuente: TFmRptDatosPuente
+  Left = 65
+  Height = 235
+  Top = 169
+  Width = 1323
+  Caption = 'FmRptDatosPuente'
+  ClientHeight = 235
+  ClientWidth = 1323
+  LCLVersion = '1.3'
+  object rlrDatosPuente: TRLReport
+    Left = 0
+    Height = 816
+    Top = 0
+    Width = 1344
+    DataSource = dsDatosPuente
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Times New Roman'
+    FriendlyName = 'DatosPuente'
+    PageSetup.PaperSize = fpLegal
+    PageSetup.Orientation = poLandscape
+    PreviewOptions.ShowModal = True
+    PrintEmpty = False
+    RealBounds.Left = 0
+    RealBounds.Top = 0
+    RealBounds.Width = 0
+    RealBounds.Height = 0
+    Title = 'Datos de puente'
+    object RLBand1: TRLBand
+      Left = 38
+      Height = 68
+      Top = 38
+      Width = 1268
+      BandType = btHeader
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = False
+      Borders.DrawRight = False
+      Borders.DrawBottom = True
+      RealBounds.Left = 0
+      RealBounds.Top = 0
+      RealBounds.Width = 0
+      RealBounds.Height = 0
+      object RLImage1: TRLImage
+        Left = 2
+        Height = 25
+        Top = 2
+        Width = 25
+        Picture.Data = {
+          1754506F727461626C654E6574776F726B477261706869635006000089504E47
+          0D0A1A0A0000000D4948445200000019000000190806000000C4E98563000000
+          06624B474400FF00FF00FFA0BDA793000000097048597300000B1300000B1301
+          009A9C180000000774494D4507DE081F01160B5662DD9F0000001D6954587443
+          6F6D6D656E7400000000004372656174656420776974682047494D50642E6507
+          000005B44944415448C785555D48136C147EF6676E5A8A5368695BCC7EC694E6
+          4FBF66DE549A6096B2064517EA4530338A8A284811BA68E1224DA1D2BB02AD24
+          D2214286A20995C9A4C0B4144C97A66B9331669ADBDCF35D08FBBE7DCEEF7BE0
+          BD78CF39CF795ECEFBBEE708481261100804E0F178D0D3D383D6D6560C0E0E62
+          6262021289042B2B2B50A954C8C8C8C0E9D3A771F4E8516CDAB4092291282447
+          73733306060620082732353585969616D4D6D662656505999999989E9E86DBED
+          4655551548626C6C0C56AB155FBE7C01495CBA740967CF9E855AAD0EE63973E6
+          0C7A7B7B01FE0B168B85A9A9A994CBE534994CFCF6ED1B5B5A5AF8F1E3476EDC
+          B891EFDFBF0F891F1E1E664D4D0DE3E3E3A9D168D8DADA1AF4E5E5E5313D3D9D
+          21227575758C8C8CE4F1E3C769B3D982F6EEEE6E2E2E2E52A954D26C36331C66
+          6666585050408944C2FAFA7AFAFD7E6AB55A969595FD2D62B1582893C9585A5A
+          1A36C9D2D2124F9C38C1F3E7CF331008703D949696322A2A8AE5E5E58C8D8DA5
+          C5625915999898A056AB65666626ED763BE7E6E6D62C97CBC58A8A0A9E3A758A
+          0B0B0BFC2F1415151100E57239171717290680C9C9498C8C8CE0C68D1BE8EFEF
+          C7BFDF422010404A4A0A040201040201FE0F57AF5EC5AB57AF90979707914804
+          31498C8F8F43A3D1E0DDBB77B873E74E58A2DFEF87C7E381542A85582C5E57C0
+          E7F3A1BABA1A00D0D1D101B7DB0D615F5F1F2A2B2B613018303A3A8A23478E84
+          257BBD5E8C8C8C202929091B366C585744AFD76368680826930932990C6D6D6D
+          80D168A456ABA5CFE7E38B172F2893C998919141BBDD1E5267A7D3C9E8E8683E
+          7DFA34EC3D381C0E1E3C789052A994CF9F3F2749EEDBB78F050505C4CE9D3B59
+          5454140C7EFDFA35351A0D63636369369BF9F5EB577ABD5EDEBD7B975BB76EE5
+          F4F47430767979996363636C6868605C5C1CB76FDFCECECECEA0BFA4A4840A85
+          82629BCD86E2E262000049E4E6E6A2A7A7078D8D8D78F0E001EAEAEA90939383
+          EEEE6EC4C7C7A3A7A7077FFEFCC1DCDC1CC6C7C7D1D7D707AFD70BA3D108A3D1
+          88C4C4449084402040727232EC763B20914878FFFEFDB02570B95CACAEAE2680
+          E01208048C888808EE6FDEBC49A7D319966F369B299148089148C45BB76EAD09
+          B05AADDCBF7F3F01502814323B3B9B172E5CE0C58B17191717C7C4C4448A4422
+          02605A5A1ADFBE7DBB26C7952B57560FA4542A79EEDCB990D39797971300F7EC
+          D9C367CF9E8510DBDBDB191919C9C9C949BADD6EBE7CF992870E1D2200969595
+          717E7E3E189B9F9FCFB4B43442AFD7333D3D3DD8EC76EFDECD84840436353585
+          2DC1B56BD7B877EF5ECECECEB2B1B131687FF2E409B76CD9C21D3B76F0F3E7CF
+          9C9F9FA75AADE6E5CB9789B6B636464545F1F1E3C74C4D4DA54EA7E3F0F07058
+          018FC7C3C2C242565454D0EBF5F2F7EFDF21FED1D15166646450A3D1F0F6EDDB
+          1408041C1A1A225C2E17150A05854221954A25A7A6A6D6ED494EA79339393934
+          994CEBC6FCFAF58BC9C9C93C7CF8303B3B3BE9F7FB298E8E8E467979392A2B2B
+          515F5F0FA552B9EE6F2689402080848404747474C0E17084ED65B9B9B978F8F0
+          214C26D36AEFF2F97C78F3E60D00E0D1A347C8CECE465C5C5C5811A150888888
+          08D86C361416160240508424C462317EFEFC89DADA5A64656561DBB66DABC44F
+          9F3E512412D16834322626867ABD9E0E87236C29FC7E3F4B4A4A585C5CCCE5E5
+          E535FED9D959E6E7E7532E97736060206847555515552A157FFCF8C1FEFE7ECA
+          64326AB55AF6F6F68615BA77EF5E704EFC135D5D5DDCB56B17A5522907070743
+          7CC8CBCBE381030742C6A84EA723001A0C8690314C921F3E7C604C4C0CDBDBDB
+          4992DFBF7FA7C1602000EA74BA358D9524A156ABA9D7EBD7386A6A6AB879F3E6
+          20F9FAF5EB6C6A6A62737333939393A95028563F1A40954AC5BABABA755F9C20
+          3D3D9D5959596868685873D10B0B0BB0582CE8EAEA82D56AC5CCCC0C96969620
+          97CB919494849494141C3B760C274F9E84542A5DF755FE05569B8B65DF544286
+          0000000049454E44AE426082
+        }
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+        Stretch = True
+      end
+      object RLLabel1: TRLLabel
+        Left = 34
+        Height = 34
+        Top = -2
+        Width = 76
+        Caption = 'INIDEP'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -27
+        Font.Name = 'Impact'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel2: TRLLabel
+        Left = 2
+        Height = 15
+        Top = 34
+        Width = 112
+        Caption = 'PLANILLA PUENTE'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel3: TRLLabel
+        Left = 2
+        Height = 15
+        Top = 50
+        Width = 96
+        Caption = 'BARCO/MAREA:'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText23: TRLDBText
+        Left = 110
+        Height = 14
+        Top = 50
+        Width = 304
+        AutoSize = False
+        DataField = 'Marea'
+        DataSource = dmGeneral.dsMareaActiva
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText24: TRLDBText
+        Left = 482
+        Height = 14
+        Top = 50
+        Width = 268
+        AutoSize = False
+        DataField = 'capitan'
+        DataSource = dmGeneral.dsMareaActiva
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText25: TRLDBText
+        Left = 822
+        Height = 14
+        Top = 50
+        Width = 44
+        AutoSize = False
+        DataField = 'largo_relinga_inferior'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText26: TRLDBText
+        Left = 966
+        Height = 14
+        Top = 50
+        Width = 296
+        AutoSize = False
+        DataField = 'observador'
+        DataSource = dmGeneral.dsMareaActiva
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel4: TRLLabel
+        Left = 418
+        Height = 15
+        Top = 50
+        Width = 60
+        Caption = 'CAPITÁN:'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel5: TRLLabel
+        Left = 870
+        Height = 15
+        Top = 50
+        Width = 87
+        Caption = 'OBSERVADOR:'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel6: TRLLabel
+        Left = 754
+        Height = 15
+        Top = 50
+        Width = 59
+        Caption = 'RELINGA:'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Height = 39
+      Top = 106
+      Width = 1268
+      BandType = btColumnHeader
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = True
+      Borders.DrawTop = False
+      Borders.DrawRight = True
+      Borders.DrawBottom = True
+      RealBounds.Left = 0
+      RealBounds.Top = 0
+      RealBounds.Width = 0
+      RealBounds.Height = 0
+      object RLLabel7: TRLLabel
+        Left = 1
+        Height = 19
+        Top = 18
+        Width = 62
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Fecha'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel8: TRLLabel
+        Left = 62
+        Height = 19
+        Top = 18
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Hora'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel9: TRLLabel
+        Left = 106
+        Height = 19
+        Top = 18
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Lance'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel10: TRLLabel
+        Left = 150
+        Height = 19
+        Top = 18
+        Width = 60
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Lat. inic.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel11: TRLLabel
+        Left = 210
+        Height = 19
+        Top = 18
+        Width = 60
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Lon. inic.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel12: TRLLabel
+        Left = 270
+        Height = 19
+        Top = 18
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Rumbo'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel13: TRLLabel
+        Left = 314
+        Height = 19
+        Top = 18
+        Width = 36
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = False
+        Borders.DrawBottom = False
+        Caption = 'Prof.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel14: TRLLabel
+        Left = 350
+        Height = 19
+        Top = 18
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Est.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel15: TRLLabel
+        Left = 394
+        Height = 19
+        Top = 18
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Bab.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel16: TRLLabel
+        Left = 350
+        Height = 18
+        Top = 0
+        Width = 88
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = False
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Cable filado'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel17: TRLLabel
+        Left = 438
+        Height = 18
+        Top = 19
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Arrast.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel18: TRLLabel
+        Left = 438
+        Height = 18
+        Top = 0
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Tpo.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel19: TRLLabel
+        Left = 542
+        Height = 19
+        Top = 18
+        Width = 60
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = False
+        Borders.DrawBottom = False
+        Caption = 'Lon. final'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel20: TRLLabel
+        Left = 482
+        Height = 19
+        Top = 18
+        Width = 60
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Lat. final'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel24: TRLLabel
+        Left = 602
+        Height = 18
+        Top = 0
+        Width = 104
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = False
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Captura (% bolsa)'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel21: TRLLabel
+        Left = 654
+        Height = 19
+        Top = 18
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Babor'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel22: TRLLabel
+        Left = 602
+        Height = 19
+        Top = 18
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Estribor'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel23: TRLLabel
+        Left = 706
+        Height = 19
+        Top = 18
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = False
+        Borders.DrawBottom = False
+        Caption = 'Veloc.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel25: TRLLabel
+        Left = 750
+        Height = 19
+        Top = 18
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Estribor'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel26: TRLLabel
+        Left = 802
+        Height = 19
+        Top = 18
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Babor'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel27: TRLLabel
+        Left = 750
+        Height = 18
+        Top = 0
+        Width = 104
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = False
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Rinde vieira tot.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel28: TRLLabel
+        Left = 854
+        Height = 18
+        Top = 0
+        Width = 104
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Rinde vieira com.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel29: TRLLabel
+        Left = 854
+        Height = 19
+        Top = 18
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Estribor'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel30: TRLLabel
+        Left = 906
+        Height = 19
+        Top = 18
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Babor'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel31: TRLLabel
+        Left = 1150
+        Height = 18
+        Top = 19
+        Width = 32
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = False
+        Caption = ' '
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel32: TRLLabel
+        Left = 1182
+        Height = 18
+        Top = 0
+        Width = 84
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = False
+        Caption = 'Viento'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel33: TRLLabel
+        Left = 1182
+        Height = 19
+        Top = 18
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = True
+        Borders.DrawRight = True
+        Borders.DrawBottom = False
+        Caption = 'Direcc.'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel34: TRLLabel
+        Left = 1226
+        Height = 19
+        Top = 18
+        Width = 40
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = False
+        Borders.DrawBottom = False
+        Caption = 'Nudos'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel36: TRLLabel
+        Left = 958
+        Height = 19
+        Top = 18
+        Width = 192
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = True
+        Borders.DrawRight = False
+        Borders.DrawBottom = False
+        Caption = 'Comentarios'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel37: TRLLabel
+        Left = 1150
+        Height = 19
+        Top = 0
+        Width = 32
+        Alignment = taCenter
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = True
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = False
+        Caption = 'Mar'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Height = 18
+      Top = 145
+      Width = 1268
+      RealBounds.Left = 0
+      RealBounds.Top = 0
+      RealBounds.Width = 0
+      RealBounds.Height = 18
+      object RLDBText2: TRLDBText
+        Left = 62
+        Height = 18
+        Top = 0
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'hora'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText1: TRLDBText
+        Left = 1
+        Height = 18
+        Top = 0
+        Width = 62
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'fecha'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText3: TRLDBText
+        Left = 106
+        Height = 18
+        Top = 0
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'nro_lance'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText4: TRLDBText
+        Left = 150
+        Height = 18
+        Top = 0
+        Width = 60
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'latitud_ini_fmt'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText5: TRLDBText
+        Left = 210
+        Height = 18
+        Top = 0
+        Width = 60
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'longitud_ini_fmt'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText6: TRLDBText
+        Left = 270
+        Height = 18
+        Top = 0
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'rumbo'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText7: TRLDBText
+        Left = 314
+        Height = 18
+        Top = 0
+        Width = 36
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'profundidad'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText8: TRLDBText
+        Left = 350
+        Height = 18
+        Top = 0
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'cable_estribor'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText9: TRLDBText
+        Left = 394
+        Height = 18
+        Top = 0
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'cable_babor'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText10: TRLDBText
+        Left = 438
+        Height = 18
+        Top = 0
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'minutos_arrastre'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText11: TRLDBText
+        Left = 482
+        Height = 18
+        Top = 0
+        Width = 60
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'latitud_fin_fmt'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText12: TRLDBText
+        Left = 542
+        Height = 18
+        Top = 0
+        Width = 60
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'longitud_fin_fmt'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText13: TRLDBText
+        Left = 602
+        Height = 18
+        Top = 0
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'CapturaEstribor'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText14: TRLDBText
+        Left = 654
+        Height = 18
+        Top = 0
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'CapturaBabor'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText15: TRLDBText
+        Left = 706
+        Height = 18
+        Top = 0
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'velocidad'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText16: TRLDBText
+        Left = 750
+        Height = 18
+        Top = 0
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'rinde_total_E'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText17: TRLDBText
+        Left = 802
+        Height = 18
+        Top = 0
+        Width = 54
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'rinde_total_B'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText18: TRLDBText
+        Left = 854
+        Height = 18
+        Top = 0
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'rinde_comercial_E'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText19: TRLDBText
+        Left = 906
+        Height = 18
+        Top = 0
+        Width = 52
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'rinde_comercial_B'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText20: TRLDBText
+        Left = 1150
+        Height = 18
+        Top = 0
+        Width = 32
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'cod_estado_mar'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText21: TRLDBText
+        Left = 1182
+        Height = 18
+        Top = 0
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'direccion_viento'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText22: TRLDBText
+        Left = 1226
+        Height = 18
+        Top = 0
+        Width = 40
+        Alignment = taCenter
+        AutoSize = False
+        DataField = 'nudos_viento'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBMemo1: TRLDBMemo
+        Left = 958
+        Height = 15
+        Top = 0
+        Width = 192
+        DataField = 'comentarios'
+        DataSource = dsDatosPuente
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+    end
+    object RLBand4: TRLBand
+      Left = 38
+      Height = 23
+      Top = 163
+      Width = 1268
+      BandType = btFooter
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = True
+      Borders.DrawRight = False
+      Borders.DrawBottom = False
+      RealBounds.Left = 0
+      RealBounds.Top = 0
+      RealBounds.Width = 0
+      RealBounds.Height = 0
+      object RLLabel35: TRLLabel
+        Left = 1198
+        Height = 16
+        Top = 1
+        Width = 44
+        Alignment = taCenter
+        AutoSize = False
+        Caption = 'Página'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Book Antiqua'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 1242
+        Height = 16
+        Top = 1
+        Width = 24
+        Alignment = taRightJustify
+        AutoSize = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Book Antiqua'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Info = itPageNumber
+        ParentFont = False
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+    end
+    object RLBand5: TRLBand
+      Left = 38
+      Height = 2
+      Top = 186
+      Width = 1268
+      BandType = btFooter
+      RealBounds.Left = 0
+      RealBounds.Top = 0
+      RealBounds.Width = 0
+      RealBounds.Height = 0
+    end
+  end
+  object zqDatosPuente: TZQuery
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqDatosPuenteBeforeOpen
+    OnCalcFields = zqDatosPuenteCalcFields
+    SQL.Strings = (
+      'select *'
+      'from v_lances_simple'
+      'where idmarea=:idmarea'
+      'ORDER BY nro_lance'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
+    left = 8
+    top = 64
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
+    object zqDatosPuenteidlance: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idlance'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDatosPuenteidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDatosPuentenro_lance: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_lance'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqDatosPuentefecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'dd/mm/yy'
+    end
+    object zqDatosPuentehora: TTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'hh:mm'
+    end
+    object zqDatosPuentegrados_latitud_ini: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'grados_latitud_ini'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDatosPuenteminutos_latitud_ini: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_latitud_ini'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object zqDatosPuentecuadrante_latitud_ini: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_latitud_ini'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqDatosPuentegrados_longitud_ini: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'grados_longitud_ini'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDatosPuenteminutos_longitud_ini: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_longitud_ini'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object zqDatosPuentecuadrante_longitud_ini: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_longitud_ini'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqDatosPuentegrados_latitud_fin: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'grados_latitud_fin'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDatosPuenteminutos_latitud_fin: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_latitud_fin'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object zqDatosPuentecuadrante_latitud_fin: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_latitud_fin'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqDatosPuentegrados_longitud_fin: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'grados_longitud_fin'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDatosPuenteminutos_longitud_fin: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_longitud_fin'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object zqDatosPuentecuadrante_longitud_fin: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_longitud_fin'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqDatosPuentelatitud_ini: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'latitud_ini'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 64
+    end
+    object zqDatosPuentelongitud_ini: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'longitud_ini'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 64
+    end
+    object zqDatosPuentelatitud_fin: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'latitud_fin'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 64
+    end
+    object zqDatosPuentelongitud_fin: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'longitud_fin'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 64
+    end
+    object zqDatosPuentelatitud_ini_fmt: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'latitud_ini_fmt'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object zqDatosPuentelongitud_ini_fmt: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'longitud_ini_fmt'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object zqDatosPuentelatitud_fin_fmt: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'latitud_fin_fmt'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object zqDatosPuentelongitud_fin_fmt: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'longitud_fin_fmt'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object zqDatosPuenterumbo: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rumbo'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '000º'
+    end
+    object zqDatosPuenteprofundidad: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'profundidad'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0 m'
+    end
+    object zqDatosPuentecable_estribor: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cable_estribor'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0 m'
+    end
+    object zqDatosPuentecable_babor: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cable_babor'
+      Index = 28
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0 m'
+    end
+    object zqDatosPuenteminutos_arrastre: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_arrastre'
+      Index = 29
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.#´'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 6
+    end
+    object zqDatosPuentecaptura_estribor: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'captura_estribor'
+      Index = 30
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 6
+    end
+    object zqDatosPuentecaptura_babor: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'captura_babor'
+      Index = 31
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 6
+    end
+    object zqDatosPuentevelocidad: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'velocidad'
+      Index = 32
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.0 n'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqDatosPuenterinde_total_E: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_total_E'
+      Index = 33
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00%'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqDatosPuenterinde_total_B: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_total_B'
+      Index = 34
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00%'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqDatosPuenterinde_comercial_E: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_comercial_E'
+      Index = 35
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00%'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqDatosPuenterinde_comercial_B: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_comercial_B'
+      Index = 36
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00%'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqDatosPuentecomentarios: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 37
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqDatosPuentetemperatura_superficie: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'temperatura_superficie'
+      Index = 38
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqDatosPuentetemperatura_aire: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'temperatura_aire'
+      Index = 39
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqDatosPuentetemperatura_fondo: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'temperatura_fondo'
+      Index = 40
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqDatosPuentecod_estado_mar: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cod_estado_mar'
+      Index = 41
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0 bf'
+    end
+    object zqDatosPuentenudos_viento: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nudos_viento'
+      Index = 42
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.# n'
+    end
+    object zqDatosPuentedireccion_viento: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'direccion_viento'
+      Index = 43
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '000º'
+    end
+    object zqDatosPuentelargo_relinga_inferior: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'largo_relinga_inferior'
+      Index = 44
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0 m'
+    end
+    object zqDatosPuentemallero_copo_mm: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'mallero_copo_mm'
+      Index = 45
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqDatosPuentetipo_malla: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'tipo_malla'
+      Index = 46
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqDatosPuenteCapturaEstribor: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'CapturaEstribor'
+      Index = 47
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0%'
+    end
+    object zqDatosPuenteCapturaBabor: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'CapturaBabor'
+      Index = 48
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0%'
+    end
+  end
+  object dsDatosPuente: TDataSource
+    DataSet = zqDatosPuente
+    left = 124
+    top = 8
+  end
+end

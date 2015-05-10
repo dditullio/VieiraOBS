@@ -1,0 +1,454 @@
+inherited fmEditarMuestrasBiologicas: TfmEditarMuestrasBiologicas
+  Height = 313
+  Width = 319
+  Caption = 'Muestras biológicas'
+  ClientHeight = 313
+  ClientWidth = 319
+  OnShow = FormShow
+  inherited paEncabezadoBase: TPanel
+    Width = 319
+    ClientWidth = 319
+    inherited paAccion: TPanel
+      Left = 204
+    end
+    inherited DividerBevel1: TDividerBevel
+      Left = 189
+      Width = 15
+    end
+    inherited paEncabezado: TPanel
+      Width = 188
+      ClientWidth = 188
+      inherited dbtEncabezado: TDBText
+        Width = 348
+        DataField = 'contenido'
+        DataSource = dsPrincipal
+      end
+    end
+  end
+  inherited paPrincipal: TPanel
+    Height = 243
+    Width = 319
+    ClientHeight = 243
+    ClientWidth = 319
+    object Label3: TLabel[0]
+      Left = 112
+      Height = 15
+      Top = 62
+      Width = 37
+      Caption = 'Latitud'
+      ParentColor = False
+    end
+    object Label4: TLabel[1]
+      Left = 216
+      Height = 15
+      Top = 62
+      Width = 48
+      Caption = 'Longitud'
+      ParentColor = False
+    end
+    object Label5: TLabel[2]
+      Left = 8
+      Height = 15
+      Top = 62
+      Width = 54
+      Caption = 'Nº de caja'
+      ParentColor = False
+    end
+    object dbedCaja: TDBEdit[3]
+      Left = 8
+      Height = 23
+      Top = 82
+      Width = 96
+      DataField = 'nro_caja'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 2
+    end
+    object Label6: TLabel[4]
+      Left = 8
+      Height = 15
+      Top = 114
+      Width = 108
+      Caption = 'Contenido de la caja'
+      ParentColor = False
+    end
+    object dbmContenido: TDBMemo[5]
+      Left = 8
+      Height = 90
+      Top = 134
+      Width = 304
+      DataField = 'contenido'
+      DataSource = dsPrincipal
+      TabOrder = 5
+    end
+    object paFechaHora: TPanel[6]
+      Left = 5
+      Height = 50
+      Top = 7
+      Width = 162
+      BevelOuter = bvNone
+      ClientHeight = 50
+      ClientWidth = 162
+      TabOrder = 0
+      OnExit = paFechaHoraExit
+      object Label1: TLabel
+        Left = 4
+        Height = 15
+        Top = 0
+        Width = 31
+        Caption = 'Fecha'
+        ParentColor = False
+      end
+      object dbdtFecha: TDBDateTimePicker
+        Left = 4
+        Height = 23
+        Top = 19
+        Width = 83
+        DataField = 'fecha'
+        DataSource = dsPrincipal
+        ReadOnly = False
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 0
+        TrailingSeparator = False
+        TextForNullDate = ' '
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnEnter = dbdtFechaEnter
+      end
+      object Label2: TLabel
+        Left = 95
+        Height = 15
+        Top = 0
+        Width = 26
+        Caption = 'Hora'
+        ParentColor = False
+      end
+      object dbdtHora: TDtDBTimeEdit
+        Left = 95
+        Height = 23
+        Hint = 'Hora en la que se tomó la muestra o se preparó y numeró la caja'
+        Top = 19
+        Width = 54
+        CustomEditMask = True
+        DataField = 'hora'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        EditMask = '00:00;1;_'
+        MaxLength = 5
+        TabOrder = 1
+      end
+    end
+    object Label7: TLabel[7]
+      Left = 176
+      Height = 15
+      Top = 6
+      Width = 24
+      Caption = 'Tipo'
+      ParentColor = False
+    end
+    object dblkTipo: TDBLookupComboBox[8]
+      Left = 176
+      Height = 23
+      Top = 26
+      Width = 136
+      AutoComplete = True
+      DataField = 'descripcion'
+      DataSource = dsPrincipal
+      KeyField = 'banda'
+      ListField = 'descripcion'
+      ListFieldIndex = 0
+      LookupCache = False
+      OnExit = dblkTipoExit
+      TabOrder = 1
+    end
+    object dbedLatitud: TDtDBCoordEdit[9]
+      Left = 112
+      Height = 23
+      Top = 82
+      Width = 96
+      CustomEditMask = True
+      DataField = 'Latitud'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      EditMask = '0000.00'
+      MaxLength = 7
+      TabOrder = 3
+      CoordKind = ckLatitude
+    end
+    object dbedLongitud: TDtDBCoordEdit[10]
+      Left = 216
+      Height = 23
+      Top = 82
+      Width = 96
+      CustomEditMask = True
+      DataField = 'longitud'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      EditMask = '0000.00'
+      MaxLength = 7
+      TabOrder = 4
+      CoordKind = ckLatitude
+    end
+  end
+  inherited paControles: TPanel
+    Top = 277
+    Width = 319
+    ClientWidth = 319
+    inherited bbCancelar: TBitBtn
+      Left = 137
+      Height = 24
+    end
+    inherited bbAceptar: TBitBtn
+      Left = 225
+      Height = 24
+    end
+  end
+  inherited dsPrincipal: TDataSource
+    left = 136
+    top = 172
+  end
+  inherited zqPrincipal: TZQuery
+    Connection = dmGeneral.zcDB
+    OnNewRecord = zqPrincipalNewRecord
+    SQL.Strings = (
+      'SELECT *'
+      'FROM muestras_biologicas'
+      'WHERE idmuestras_biologicas=:Id'
+    )
+    left = 60
+    top = 172
+    object zqPrincipalidmuestras_biologicas: TLongintField[0]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_biologicas'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalidmarea: TLongintField[1]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalidtipos_muestras_biol: TLongintField[2]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idtipos_muestras_biol'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalidlance: TLongintField[3]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idlance'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalfecha: TDateField[4]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalhora: TTimeField[5]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      OnSetText = zqPrincipalhoraSetText
+      DisplayFormat = 'hh:mm'
+    end
+    object zqPrincipalLatitud: TFloatField[6]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Latitud'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = '00º00.00´'
+      EditFormat = '00º 00.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqPrincipalcuadrante_latitud: TStringField[7]
+      Alignment = taRightJustify
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_latitud'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqPrincipallongitud: TFloatField[8]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'longitud'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = '00º00.00´'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqPrincipalcuadrante_longitud: TStringField[9]
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_longitud'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqPrincipalnro_caja: TLongintField[10]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_caja'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalcontenido: TStringField[11]
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'contenido'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 1024
+    end
+    object zqPrincipaltipo_muestra: TStringField[12]
+      DisplayWidth = 180
+      FieldKind = fkLookup
+      FieldName = 'descripcion'
+      Index = 12
+      KeyFields = 'idtipos_muestras_biol'
+      LookupCache = False
+      LookupDataSet = zqTiposMuestra
+      LookupKeyFields = 'idtipos_muestras_biol'
+      LookupResultField = 'descripcion'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqPrincipalrequiere_posicion: TSmallintField[13]
+      DisplayWidth = 10
+      FieldKind = fkLookup
+      FieldName = 'requiere_posicion'
+      Index = 13
+      KeyFields = 'idtipos_muestras_biol'
+      LookupCache = False
+      LookupDataSet = zqTiposMuestra
+      LookupKeyFields = 'idtipos_muestras_biol'
+      LookupResultField = 'requiere_posicion'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  inherited zcePrincipal: TZControladorEdicion
+    ControlInicial = dbdtHora
+    left = 204
+    top = 172
+  end
+  inherited zdgPrincipal: TZDatasetGroup
+    DatasetsComplementarios = <    
+      item
+        Dataset = zqTiposMuestra
+      end>
+    left = 12
+    top = 172
+  end
+  object zqTiposMuestra: TZQuery[8]
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SELECT *'
+      'FROM tipos_muestras_biol'
+      'ORDER BY descripcion'
+    )
+    Params = <>
+    left = 12
+    top = 232
+    object zqTiposMuestraidtipos_muestras_biol: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idtipos_muestras_biol'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqTiposMuestradescripcion: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'descripcion'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 180
+    end
+    object zqTiposMuestrarequiere_posicion: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'requiere_posicion'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+  end
+  object dsTiposMuestra: TDataSource[9]
+    DataSet = zqTiposMuestra
+    left = 88
+    top = 232
+  end
+end

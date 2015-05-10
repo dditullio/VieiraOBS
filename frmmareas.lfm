@@ -1,0 +1,271 @@
+inherited fmMareas: TfmMareas
+  Left = 467
+  Height = 335
+  Top = 183
+  Width = 610
+  Caption = 'Mareas'
+  ClientHeight = 335
+  ClientWidth = 610
+  Constraints.MinWidth = 610
+  inherited paBase: TPanel
+    Height = 335
+    Width = 610
+    ClientHeight = 335
+    ClientWidth = 610
+    inherited paContenido: TPanel
+      Height = 317
+      Width = 610
+      ClientHeight = 317
+      ClientWidth = 610
+      inherited paLista: TPanel
+        Height = 317
+        Width = 455
+        ClientHeight = 317
+        ClientWidth = 455
+        inherited paBuscador: TPanel
+          Width = 455
+          ClientWidth = 455
+          Visible = False
+          inherited laBuscar: TLabel
+            Top = 3
+            FocusControl = edBuscar
+          end
+          inherited edBuscar: TEdit
+            Width = 415
+          end
+          inherited bbBuscar: TBitBtn
+            Left = 421
+          end
+        end
+        inherited paGrilla: TPanel
+          Height = 263
+          Width = 445
+          ClientHeight = 263
+          ClientWidth = 445
+          inherited bbEliminar: TBitBtn
+            Left = 178
+            Top = 232
+          end
+          inherited bbAgregar: TBitBtn
+            Left = 267
+            Top = 232
+          end
+          inherited bbEditar: TBitBtn
+            Left = 356
+            Top = 232
+          end
+          inherited dbgLista: TRxDBGrid
+            Height = 232
+            Width = 445
+            Columns = <            
+              item
+                PickList.Strings = (                )
+                Title.Alignment = taCenter
+                Title.Caption = 'Marea'
+                Title.Orientation = toHorizontal
+                Width = 172
+                FieldName = 'Marea'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Zarpada'
+                Title.Orientation = toHorizontal
+                Width = 120
+                FieldName = 'fecha_zarpada'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Arribo a puerto'
+                Title.Orientation = toHorizontal
+                Width = 120
+                FieldName = 'fecha_arribo'
+                KeyList.Strings = (                )
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                EditButtons = <>
+              end>
+            DataSource = dmGeneral.dsMareas
+          end
+          object bbEstablecerActiva: TBitBtn[4]
+            AnchorSideRight.Control = bbEliminar
+            Left = 0
+            Height = 28
+            Top = 232
+            Width = 178
+            Action = dmGeneral.acEstablecerActiva
+            Anchors = [akRight, akBottom]
+            Glyph.Data = {
+              C6070000424DC607000000000000360000002800000016000000160000000100
+              2000000000009007000064000000640000000000000000000000000000009285
+              4AD5604C00FF635000FF635000FF634F00FF624F00FF624F00FF624F00FF624E
+              00FF624E00FF624E00FF624E00FF624F00FF624F00FF634F00FF635000FF6350
+              00FF604C00FF9D905AD7000000000000000000000000634F00FF9D7E09FF9876
+              00FF9D7B00FFA38103FFA88509FFAC8A0DFFB19011FFB49413FFB69716FFB797
+              17FFB39314FFB08D0FFFAB880BFFA78509FFA38105FF9F7D01FFA07F0BFF6350
+              00FF000000000000000000000000614E00FF937100FFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9ABCA8FFD6E7E2FFFFFF
+              FFFFEBEEF8FFDCDFE9FFCDD0DAFFC4C9DCFF9B7900FF604E00FF000000000000
+              0000000000005B4900FF947200FFFFFFFFFFF0F0F0FFF2F2F2FFF3F3F3FFF4F4
+              F4FFF7F6F7FFF6F7F6FF4D7A4AFF298D59FF184E1DFFC4D5C3FFF8F7F8FFF3F2
+              F2FFF7F7F7FFCDD0DAFF9A7800FF5B4900FF0000000000000000000000005544
+              00FF957300FFFFFFFFFFF0F0F0FFF7F8F8FFF8F8F9FFFAFAFBFFF9F9F9FF5481
+              51FF248047FF12E860FF25D06DFF1A4F1AFFC5D3C4FFF6F5F6FFF1F1F1FFDEE1
+              EAFF9B7900FF554300FF0000000000000000000000004F3F00FF977500FFFFFF
+              FFFFF6F6F6FFB1B0A9FFC5C3BEFFC5C4BFFF416F3CFF227D40FF11D055FF10CF
+              51FF0ECD4FFF22BC60FF185317FF8D9A86FFFBF9FBFFEDEFF9FF9B7900FF5040
+              00FF0000000000000000000000004B3C00FF987600FFFFFFFFFFF5F5F6FFC3C2
+              BDFFFFFFFFFF649363FF1D7935FF0BB446FF0BB744FF0ABA45FF09BA44FF09B6
+              42FF1FAA53FF195A17FFD0DCD0FFFFFFFFFF9B7900FF4E3D00FF000000000000
+              000000000000483900FF997700FFFFFFFFFFF6F5F6FFC5C3BFFF6A9769FF2480
+              34FF46BC67FF40BD61FF3DBF61FF44BF6DFF45C56BFF3BBB61FF31B057FF38A4
+              5DFF1C671DFFE2EEEEFF9C7A00FF4D3D00FF0000000000000000000000004738
+              00FF997700FFFFFFFFFFF5F4F5FF4C7947FF227F2DFF50B468FF4FB566FF4FBA
+              67FF51BB6FFF1F611FFF3F9755FF50C06AFF4EBA67FF4FB565FF6FB97FFF2173
+              2AFF8B7807FF503E00FF000000000000000000000000483900FF997800FFFFFF
+              FFFFB1C3B1FF2D8733FF60B270FF5FB56DFF60B970FF62BC75FF29742BFFAFC6
+              AFFF4A8248FF4BA059FF63BF75FF60B870FF5CB269FF6AB376FF166405FF4B41
+              00FF0000000000550000000000004B3A00FF997700FFFFFFFFFFDCE1DCFF1469
+              13FF61B06AFF70BD79FF72BF7DFF2A7D2BFFB2C7B2FFFFFFFFFFF6F7F5FF4481
+              43FF54A95EFF75C17EFF70BC78FF6EB776FF65AE6DFF0C5A00FF004400170000
+              0000000000004F3E00FF997700FFFFFFFFFFF6F5F7FFA1AA9CFF1E781DFF8BC8
+              90FF248325FFACC3ACFFFFFFFFFFFDFDFDFFFEFEFEFFF3F5F3FF3F833EFF5DAE
+              61FF85C88AFF81C283FF81C083FF61AC63FF006000DC00400019000000005442
+              00FF987700FFFFFFFFFFF2F2F3FFC3C1BCFFD3DFD4FF6BA06BFFADC4ACFFFFFF
+              FFFFFCFCFCFFFCFCFCFFFBFBFBFFFDFDFEFFF1F3F1FF2F7B2FFF66B667FF96D3
+              97FF92CE92FF96D096FF69B669FF1A711ABA00000000594600FF977600FFFFFF
+              FFFFF2F2F2FFC0C0B9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFF
+              FFFFFEFFFFFFFEFEFFFFFFFFFFFFBCBFB7FF328432FF70C070FFAAE6AAFFB0E8
+              B0FE45AA45FF0E650E9B000000005D4900FF967500FFFFFFFFFFF1F1F2FFAEAD
+              A5FFBFBFB9FFBFBFB9FFC0C0BAFFC1C0BBFFC1C1BBFFC2C1BCFFC2C1BCFFC2C1
+              BCFFC2C3BCFFB4B2ABFFE8EBE8FF277F27FF83D083FF5AB95CFF005B00B30048
+              000500000000604C00FF967400FFFFFFFFFFECECECFFF7F8F8FFF8F8F8FFF9F9
+              F9FFF9F9FAFFFAFAFAFFFAFAFBFFFBFBFBFFFBFBFCFFFBFBFCFFFCFDFDFFFCFC
+              FDFFF3F2F3FFF0F5F4FF3E7415FF44691DFF000000000000000000000000624E
+              00FF947300FFFFFFFFFFEFEFEFFFB5B5B5FFB9B9B9FFB9B9B9FFB9B9B9FFB9B9
+              B9FFB9B9B9FFB9B9B9FFB9B9B9FFB9B9B9FFB9B9B9FFB4B4B4FFF4F4F4FFFFFF
+              FFFF987400FF6F5700FF000000000000000000000000634F00FF947300FFFFFF
+              FFFFFFFFFFFF949595FF9C9C9CFF9C9C9CFF9C9C9CFF9C9C9CFF9C9C9CFF9C9C
+              9CFF9C9C9CFF9C9C9CFF9C9C9CFF949595FFFFFFFFFFFFFFFFFF947400FF6F59
+              00FF000000000000000000000000655100EE9C7C0BFE937400FF947000FFCDD1
+              DFFFCBCCCFFFD6D6D6FFD5D5D5FFD5D5D5FFD5D5D5FFD5D5D5FFD5D5D5FFD6D6
+              D6FFCBCCCFFFCDD1DEFF967200FF957500FF9C7D0DFE715B00EE000000000000
+              0000564800006D570032886D00EEB28F04FFD1AC1DFFE5D17EFFEEDFA4FF5B5B
+              5DFE636363FF636363FF636363FF636363FF646463FF5D5D60FEEEE0ACFFEAD7
+              8EFFD6B433FFBF9A07FF957700EE79600032615100000000000000000000CDA3
+              00000000000000000000000000000000000000000000A7A7A6FFB7B7B7FFBEBE
+              BEFFBEBEBEFFBEBEBEFFB5B5B6FFACACADFF0000000000000000000000000000
+              000000000000D2AC000000000000000000000000000000000000000000000000
+              0000000000000000000000000000D8D7D6FFC1C0BCFCB1AFAAFCB1AFAAFCB1AF
+              AAFCC2C1BDFCDDDEDDFF00000000000000000000000000000000000000000000
+              00000000000000000000
+            }
+            TabOrder = 4
+          end
+        end
+      end
+      inherited paDetalles: TPanel
+        Left = 455
+        Height = 317
+        ClientHeight = 317
+        object Label1: TLabel[0]
+          Left = 3
+          Height = 17
+          Top = 50
+          Width = 47
+          Caption = 'Capitán:'
+          ParentColor = False
+        end
+        object dbedCapitan: TDBEdit[1]
+          Left = 3
+          Height = 25
+          Top = 68
+          Width = 144
+          DataField = 'capitan'
+          DataSource = dmGeneral.dsMareas
+          ReadOnly = True
+          CharCase = ecNormal
+          Color = clBtnFace
+          MaxLength = 0
+          TabOrder = 1
+        end
+        object Label2: TLabel[2]
+          Left = 3
+          Height = 17
+          Top = 98
+          Width = 39
+          Caption = 'Oficial:'
+          ParentColor = False
+        end
+        object dbedOficial: TDBEdit[3]
+          Left = 3
+          Height = 25
+          Top = 116
+          Width = 144
+          DataField = 'oficial'
+          DataSource = dmGeneral.dsMareas
+          ReadOnly = True
+          CharCase = ecNormal
+          Color = clBtnFace
+          MaxLength = 0
+          TabOrder = 2
+        end
+        object Label3: TLabel[4]
+          Left = 3
+          Height = 17
+          Top = 0
+          Width = 39
+          Caption = 'Buque:'
+          ParentColor = False
+        end
+        object dbedBuque: TDBEdit[5]
+          Left = 3
+          Height = 25
+          Top = 18
+          Width = 144
+          DataField = 'Buque'
+          DataSource = dmGeneral.dsMareas
+          ReadOnly = True
+          CharCase = ecNormal
+          Color = clBtnFace
+          MaxLength = 0
+          TabOrder = 0
+        end
+      end
+    end
+    inherited paComando: TPanel
+      Width = 610
+      ClientWidth = 610
+      inherited sbCerrar: TSpeedButton
+        Left = 592
+        Flat = False
+      end
+    end
+  end
+  inherited zcgLista: TZControladorGrilla
+    BotonBuscar = nil
+    Buscador = nil
+    ControlEdicion = fmEditarMarea.zcePrincipal
+    ZDataset = dmGeneral.zqMareas
+  end
+end

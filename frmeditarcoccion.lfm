@@ -1,0 +1,429 @@
+inherited fmEditarCoccion: TfmEditarCoccion
+  Width = 359
+  Caption = 'Cocción'
+  ClientWidth = 359
+  inherited paEncabezadoBase: TPanel
+    Width = 359
+    ClientWidth = 359
+    inherited paAccion: TPanel
+      Left = 244
+    end
+    inherited DividerBevel1: TDividerBevel
+      Left = 229
+      Width = 15
+    end
+    inherited paEncabezado: TPanel
+      Width = 228
+      ClientWidth = 228
+      inherited dbtEncabezado: TDBText
+        Width = 388
+        DataField = 'Encabezado'
+        DataSource = dsPrincipal
+      end
+    end
+  end
+  inherited paPrincipal: TPanel
+    Width = 359
+    ClientWidth = 359
+    object Label3: TLabel[0]
+      Left = 160
+      Height = 15
+      Top = 6
+      Width = 33
+      Caption = 'Banda'
+      ParentColor = False
+    end
+    object dblkBanda: TDBLookupComboBox[1]
+      Left = 160
+      Height = 23
+      Top = 26
+      Width = 190
+      DataField = 'banda'
+      DataSource = dsPrincipal
+      KeyField = 'banda'
+      ListField = 'descripcion'
+      ListFieldIndex = 0
+      ListSource = dsBandas
+      LookupCache = False
+      TabOrder = 1
+    end
+    object Label7: TLabel[2]
+      Left = 8
+      Height = 15
+      Top = 198
+      Width = 68
+      Caption = 'Comentarios'
+      ParentColor = False
+    end
+    object dbmComentarios: TDBMemo[3]
+      Left = 8
+      Height = 110
+      Top = 218
+      Width = 343
+      DataField = 'comentarios'
+      DataSource = dsPrincipal
+      ScrollBars = ssAutoVertical
+      TabOrder = 4
+    end
+    object gbAntes: TGroupBox[4]
+      Left = 8
+      Height = 132
+      Top = 62
+      Width = 168
+      Caption = 'Antes del proceso'
+      ClientHeight = 114
+      ClientWidth = 164
+      TabOrder = 2
+      object Label4: TLabel
+        Left = 6
+        Height = 15
+        Top = 8
+        Width = 114
+        Caption = 'Pares de valvas vacías'
+        ParentColor = False
+      end
+      object dbedAntesValvas: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 28
+        Width = 152
+        DataField = 'antes_valvas_vacias'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object Label5: TLabel
+        Left = 6
+        Height = 15
+        Top = 64
+        Width = 87
+        Caption = 'Ejemplares vivos'
+        ParentColor = False
+      end
+      object dbedAntesVivos: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 84
+        Width = 152
+        DataField = 'antes_vivos'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+    end
+    object gbDespues: TGroupBox[5]
+      Left = 183
+      Height = 132
+      Top = 62
+      Width = 168
+      Caption = 'Después del proceso'
+      ClientHeight = 114
+      ClientWidth = 164
+      TabOrder = 3
+      object Label6: TLabel
+        Left = 6
+        Height = 15
+        Top = 8
+        Width = 79
+        Caption = 'Pares de valvas'
+        ParentColor = False
+      end
+      object dbedDespuesValvas: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 28
+        Width = 152
+        DataField = 'despues_valvas_vacias'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object Label8: TLabel
+        Left = 6
+        Height = 15
+        Top = 64
+        Width = 36
+        Caption = 'Carnes'
+        ParentColor = False
+      end
+      object dbedDespuesCarnes: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 84
+        Width = 152
+        DataField = 'despues_carnes'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+    end
+    object paFechaHora: TPanel[6]
+      Left = 5
+      Height = 50
+      Top = 7
+      Width = 152
+      BevelOuter = bvNone
+      ClientHeight = 50
+      ClientWidth = 152
+      TabOrder = 0
+      OnExit = paFechaHoraExit
+      object Label1: TLabel
+        Left = 4
+        Height = 15
+        Top = 0
+        Width = 31
+        Caption = 'Fecha'
+        ParentColor = False
+      end
+      object dbdtFecha: TDBDateTimePicker
+        Left = 4
+        Height = 23
+        Top = 19
+        Width = 83
+        DataField = 'fecha'
+        DataSource = dsPrincipal
+        ReadOnly = False
+        CenturyFrom = 1941
+        MaxDate = 2958465
+        MinDate = -53780
+        TabOrder = 0
+        TrailingSeparator = False
+        TextForNullDate = ' '
+        LeadingZeros = True
+        Kind = dtkDate
+        TimeFormat = tf24
+        TimeDisplay = tdHMS
+        DateMode = dmComboBox
+        UseDefaultSeparators = True
+        HideDateTimeParts = []
+        MonthNames = 'Long'
+        OnEnter = dbdtFechaEnter
+      end
+      object Label2: TLabel
+        Left = 95
+        Height = 15
+        Top = 0
+        Width = 26
+        Caption = 'Hora'
+        ParentColor = False
+      end
+      object dbdtHora: TDtDBTimeEdit
+        Left = 95
+        Height = 23
+        Top = 19
+        Width = 54
+        CustomEditMask = True
+        DataField = 'hora'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        EditMask = '00:00;1;_'
+        MaxLength = 5
+        TabOrder = 1
+      end
+    end
+  end
+  inherited paControles: TPanel
+    Width = 359
+    ClientWidth = 359
+    inherited bbCancelar: TBitBtn
+      Left = 177
+      Height = 24
+    end
+    inherited bbAceptar: TBitBtn
+      Left = 265
+      Height = 24
+    end
+  end
+  inherited zqPrincipal: TZQuery
+    Connection = dmGeneral.zcDB
+    OnCalcFields = zqPrincipalCalcFields
+    OnNewRecord = zqPrincipalNewRecord
+    SQL.Strings = (
+      'SELECT *'
+      'FROM muestras_coccion'
+      'WHERE idmuestras_coccion=:Id'
+    )
+    object zqPrincipalidmuestras_coccion: TLongintField[0]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestras_coccion'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalidmarea: TLongintField[1]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalfecha: TDateField[2]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalhora: TTimeField[3]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      OnSetText = zqPrincipalhoraSetText
+      DisplayFormat = 'hh:mm'
+    end
+    object zqPrincipalbanda: TStringField[4]
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqPrincipalantes_valvas_vacias: TLongintField[5]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'antes_valvas_vacias'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalantes_vivos: TLongintField[6]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'antes_vivos'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipaldespues_valvas_vacias: TLongintField[7]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'despues_valvas_vacias'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipaldespues_carnes: TLongintField[8]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'despues_carnes'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcomentarios: TStringField[9]
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqPrincipalEncabezado: TStringField[10]
+      DisplayWidth = 30
+      FieldKind = fkCalculated
+      FieldName = 'Encabezado'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object zqPrincipalDscBanda: TStringField[11]
+      DisplayWidth = 180
+      FieldKind = fkLookup
+      FieldName = 'descripcion'
+      Index = 11
+      KeyFields = 'banda'
+      LookupCache = False
+      LookupDataSet = zqBandas
+      LookupKeyFields = 'banda'
+      LookupResultField = 'descripcion'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+  end
+  inherited zcePrincipal: TZControladorEdicion
+    ControlInicial = dbdtHora
+    OnInitRecord = zcePrincipalInitRecord
+  end
+  inherited zdgPrincipal: TZDatasetGroup
+    DatasetsComplementarios = <    
+      item
+        Dataset = zqBandas
+      end>
+  end
+  object zqBandas: TZQuery[8]
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SELECT *'
+      'FROM bandas'
+      'order by orden'
+    )
+    Params = <>
+    left = 80
+    top = 312
+    object zqBandasbanda: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'banda'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 12
+    end
+    object zqBandasdescripcion: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'descripcion'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+  end
+  object dsBandas: TDataSource[9]
+    DataSet = zqBandas
+    left = 156
+    top = 312
+  end
+end

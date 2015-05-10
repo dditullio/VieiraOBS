@@ -1,0 +1,34 @@
+object DmBase: TDmBase
+  OldCreateOrder = False
+  Height = 192
+  HorizontalOffset = 335
+  VerticalOffset = 150
+  Width = 272
+  object zspNuevoId: TZStoredProc
+    Params = <    
+      item
+        DataType = ftString
+        Name = 'p_nombre_tabla'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'p_id'
+        ParamType = ptOutput
+      end>
+    StoredProcName = 'sp_nuevo_id'
+    left = 24
+    top = 8
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'p_nombre_tabla'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'p_id'
+        ParamType = ptOutput
+      end>
+  end
+end

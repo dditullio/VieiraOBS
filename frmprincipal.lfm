@@ -40992,6 +40992,7 @@ object fmPrincipal: TfmPrincipal
       Enabled = False
       ImageIndex = 5
       OnExecute = acCoccionExecute
+      Visible = False
     end
     object acMuestrasBiologicas: TAction
       Caption = 'Muestras biológicas'

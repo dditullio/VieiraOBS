@@ -117,10 +117,9 @@ inherited fmInformes: TfmInformes
               Top = 36
               Width = 202
               Caption = 'Muestras de cocción'
-              Checked = True
               OnChange = ckPlanillasChange
-              State = cbChecked
               TabOrder = 2
+              Visible = False
             end
             object cbTallas: TCheckBox
               Left = 210

@@ -752,6 +752,7 @@ inherited fmEditarLances: TfmEditarLances
                 CharCase = ecNormal
                 MaxLength = 0
                 TabOrder = 7
+                TabStop = False
               end
               object Label33: TLabel
                 Left = 289
@@ -772,6 +773,7 @@ inherited fmEditarLances: TfmEditarLances
                 CharCase = ecNormal
                 MaxLength = 0
                 TabOrder = 8
+                TabStop = False
               end
               object dbedMinutosLatIni1: TDBEdit
                 Left = 206

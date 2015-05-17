@@ -101,7 +101,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmrindes"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="92"/>
         <CursorPos X="20" Y="102"/>
         <UsageCount Value="50"/>
@@ -264,17 +264,20 @@
         <ComponentName Value="fmEditarLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <UnitName Value="frmeditarlances"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="1179"/>
-        <CursorPos Y="1188"/>
+        <CursorPos X="35" Y="1192"/>
         <UsageCount Value="50"/>
-        <Bookmarks Count="5">
-          <Item0 Y="1282" ID="1"/>
-          <Item1 X="4" Y="1254" ID="2"/>
-          <Item2 Y="1216" ID="3"/>
-          <Item3 Y="1185" ID="4"/>
-          <Item4 Y="393" ID="5"/>
+        <Bookmarks Count="4">
+          <Item0 X="4" Y="1254" ID="2"/>
+          <Item1 Y="1216" ID="3"/>
+          <Item2 Y="1185" ID="4"/>
+          <Item3 Y="393" ID="5"/>
         </Bookmarks>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit26>
       <Unit27>
         <Filename Value="frmlances.pas"/>
@@ -297,7 +300,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frminformes"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="330"/>
         <CursorPos X="40" Y="344"/>

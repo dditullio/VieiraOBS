@@ -527,9 +527,9 @@ var
 begin
   if not (dsPrincipal.State in [dsInsert, dsEdit]) then
     dsPrincipal.Edit;
-  dbmComentarios.Text := dbmComentarios.Text + 'Estribor: ';
-  FControlesEdicion.SetFocus('Comentarios');
   dbm := (FControlesEdicion.GetControl('Comentarios') as TDBMemo);
+  dbm.Text := dbm.Text + 'Estribor: ';
+  FControlesEdicion.SetFocus('Comentarios');
   if dbm <> nil then
     dbm.SelStart := 500;
 end;
@@ -540,9 +540,9 @@ var
 begin
   if not (dsPrincipal.State in [dsInsert, dsEdit]) then
     dsPrincipal.Edit;
-  dbmComentarios.Text := dbmComentarios.Text + 'Babor: ';
-  FControlesEdicion.SetFocus('Comentarios');
   dbm := (FControlesEdicion.GetControl('Comentarios') as TDBMemo);
+  dbm.Text := dbm.Text + 'Babor: ';
+  FControlesEdicion.SetFocus('Comentarios');
   if dbm <> nil then
     dbm.SelStart := 500;
 end;
@@ -553,9 +553,9 @@ var
 begin
   if not (dsPrincipal.State in [dsInsert, dsEdit]) then
     dsPrincipal.Edit;
-  dbmComentarios.Text := dbmComentarios.Text + zqAntLancecomentarios.Value;
-  FControlesEdicion.SetFocus('Comentarios');
   dbm := (FControlesEdicion.GetControl('Comentarios') as TDBMemo);
+  dbm.Text := dbm.Text + zqAntLancecomentarios.Value;
+  FControlesEdicion.SetFocus('Comentarios');
   if dbm <> nil then
     dbm.SelStart := 500;
 end;

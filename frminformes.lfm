@@ -357,25 +357,27 @@ inherited fmInformes: TfmInformes
           end
           object gbResumen: TGroupBox
             Left = 420
-            Height = 448
+            Height = 383
             Top = 12
             Width = 392
             Caption = 'Resumen de la marea'
-            ClientHeight = 430
+            ClientHeight = 365
             ClientWidth = 388
             TabOrder = 6
+            OnClick = gbResumenClick
             object sgResumen: TStringGrid
               Left = 6
-              Height = 416
+              Height = 357
               Top = 8
               Width = 376
               AutoEdit = False
               AutoFillColumns = True
+              BorderStyle = bsNone
               ColCount = 2
               Columns = <              
                 item
                   Title.Caption = 'Item'
-                  Width = 292
+                  Width = 296
                 end              
                 item
                   Alignment = taCenter
@@ -385,14 +387,14 @@ inherited fmInformes: TfmInformes
                 end>
               FixedCols = 0
               FixedRows = 0
-              RowCount = 17
+              RowCount = 16
               TabOrder = 0
               ColWidths = (
-                292
+                296
                 80
               )
               Cells = (
-                17
+                16
                 0
                 0
                 'Fecha de zarpada'
@@ -434,15 +436,12 @@ inherited fmInformes: TfmInformes
                 'Nº de muestras de rinde'
                 0
                 13
-                'Nº de muestras de cocción'
-                0
-                14
                 'Nº de muestras de fauna acompañante'
                 0
-                15
+                14
                 'Nº de muestras de daño valvar'
                 0
-                16
+                15
                 'Nº de muestras de raya'
               )
             end
@@ -1483,7 +1482,7 @@ inherited fmInformes: TfmInformes
         ParamType = ptUnknown
       end>
     left = 664
-    top = 360
+    top = 390
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1670,8 +1669,8 @@ inherited fmInformes: TfmInformes
     CloseDataSource = True
     DataSet = zqSenasaEntera
     OpenDataSource = False
-    left = 624
-    top = 364
+    left = 625
+    top = 390
   end
   object frrDatosPuente: TfrReport[17]
     Dataset = frDBDatosPuente
@@ -1702,8 +1701,8 @@ inherited fmInformes: TfmInformes
         Name = 'idmarea'
         ParamType = ptUnknown
       end>
-    left = 736
-    top = 360
+    left = 730
+    top = 390
     ParamData = <    
       item
         DataType = ftUnknown
@@ -2266,7 +2265,7 @@ inherited fmInformes: TfmInformes
     DataSet = zqInfDatosPuente
     OpenDataSource = False
     left = 736
-    top = 420
+    top = 435
   end
   object zqInfMuestrasBiol: TZQuery[20]
     Connection = dmGeneral.zcDB

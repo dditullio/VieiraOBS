@@ -205,6 +205,7 @@ type
     procedure dedCarpetaPlanillasChange(Sender: TObject);
     procedure dedCarpetaPlanillasExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure gbResumenClick(Sender: TObject);
     procedure zqByCatchBeforeOpen(DataSet: TDataSet);
     procedure zqCoccionBeforeOpen(DataSet: TDataSet);
     procedure zqDanioBeforeOpen(DataSet: TDataSet);
@@ -394,12 +395,18 @@ begin
       sgResumen.Cells[1,10]:=FieldByName('cant_muestras_talla_d').AsString;
       sgResumen.Cells[1,11]:=FieldByName('cant_muestras_talla_total').AsString;
       sgResumen.Cells[1,12]:=FieldByName('cant_muestras_rinde').AsString;
-      sgResumen.Cells[1,13]:=FieldByName('cant_muestras_coccion').AsString;
-      sgResumen.Cells[1,14]:=FieldByName('cant_muestras_bycatch').AsString;
-      sgResumen.Cells[1,15]:=FieldByName('cant_muestras_danio').AsString;
-      sgResumen.Cells[1,16]:=FieldByName('cant_muestras_raya').AsString;
+      //Esto se saca porque ya no se realizan muestras de cocción
+      //sgResumen.Cells[1,13]:=FieldByName('cant_muestras_coccion').AsString;
+      sgResumen.Cells[1,13]:=FieldByName('cant_muestras_bycatch').AsString;
+      sgResumen.Cells[1,14]:=FieldByName('cant_muestras_danio').AsString;
+      sgResumen.Cells[1,15]:=FieldByName('cant_muestras_raya').AsString;
     end;
   end;
+end;
+
+procedure TfmInformes.gbResumenClick(Sender: TObject);
+begin
+
 end;
 
 procedure TfmInformes.zqByCatchBeforeOpen(DataSet: TDataSet);

@@ -41,7 +41,7 @@ uses
   Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, DBCtrls, Buttons, DBGrids,
   ComCtrls, frmzedicionbase, ZDataset, zcontroladoredicion, zdatasetgroup,
   SQLQueryGroup, DtDBTimeEdit, DB, datGeneral, funciones, dateutils,
-  LSExpression, LSConsts, LCLType, Math;
+  LSExpression, LSConsts, LSConfig, LCLType, Math;
 
 type
 
@@ -338,6 +338,7 @@ type
     procedure paFechaHoraExit(Sender: TObject);
     procedure pcFormatosChange(Sender: TObject);
     procedure pcLancesChange(Sender: TObject);
+    procedure zcePrincipalInitRecord(Sender: TObject);
     procedure zcePrincipalValidateForm(Sender: TObject; var ValidacionOK: boolean);
     procedure zqAntLanceBeforeOpen(DataSet: TDataSet);
     procedure zqPrincipalAfterOpen(DataSet: TDataSet);
@@ -962,6 +963,7 @@ end;
 procedure TfmEditarLances.pcFormatosChange(Sender: TObject);
 begin
   FControlesEdicion.ActiveIndex := pcFormatos.TabIndex;
+  LSSaveConfig(['formato_planilla_puente'],[pcFormatos.TabIndex]);
   FControlesEdicion.SetFocus('Hora');
   //Seteo el control predeterminado en el controlador
   if pcFormatos.TabIndex = 0 then
@@ -977,6 +979,18 @@ begin
     if dbedTempSuperf.CanFocus then
       dbedTempSuperf.SetFocus;
   end;
+end;
+
+procedure TfmEditarLances.zcePrincipalInitRecord(Sender: TObject);
+var
+  formato:String;
+begin
+  LSLoadConfig(['formato_planilla_puente'],[formato],[@formato]);
+  if formato='' then
+    pcFormatos.PageIndex:=0
+  else
+    pcFormatos.PageIndex:=StrToInt(formato);
+
 end;
 
 procedure TfmEditarLances.zcePrincipalValidateForm(Sender: TObject;

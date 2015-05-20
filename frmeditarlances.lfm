@@ -2291,6 +2291,7 @@ inherited fmEditarLances: TfmEditarLances
   end
   inherited zcePrincipal: TZControladorEdicion
     AltaContinua = True
+    OnInitRecord = zcePrincipalInitRecord
     left = 212
   end
   inherited zdgPrincipal: TZDatasetGroup

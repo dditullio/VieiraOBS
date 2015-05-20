@@ -22,7 +22,6 @@ object dmGeneral: TdmGeneral
     User = 'root'
     Password = 'root'
     Protocol = 'mysql-5'
-    LibraryLocation = 'D:\Desarrollo\Lazarus\Vieira\libmysql.dll'
     left = 16
     top = 16
   end

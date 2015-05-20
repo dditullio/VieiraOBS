@@ -23,9 +23,6 @@
         <TopLine Value="149"/>
         <CursorPos X="14" Y="158"/>
         <UsageCount Value="50"/>
-        <Bookmarks Count="1">
-          <Item0 Y="257" ID="1"/>
-        </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -44,6 +41,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="datGeneral"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="126"/>
         <CursorPos Y="142"/>
@@ -265,16 +263,16 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmeditarlances"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="537"/>
-        <CursorPos X="18" Y="544"/>
+        <TopLine Value="979"/>
+        <CursorPos X="45" Y="992"/>
         <UsageCount Value="50"/>
-        <Bookmarks Count="4">
-          <Item0 X="4" Y="1254" ID="2"/>
-          <Item1 Y="1216" ID="3"/>
-          <Item2 Y="1185" ID="4"/>
-          <Item3 Y="393" ID="5"/>
+        <Bookmarks Count="5">
+          <Item0 Y="1230" ID="3"/>
+          <Item1 Y="1199" ID="4"/>
+          <Item2 Y="394" ID="5"/>
+          <Item3 X="18" Y="988" ID="1"/>
+          <Item4 X="41" Y="966" ID="2"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -301,8 +299,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frminformes"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="406"/>
-        <CursorPos X="3" Y="409"/>
+        <TopLine Value="361"/>
+        <CursorPos X="34" Y="373"/>
         <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -456,128 +454,128 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="423" Column="3" TopLine="419"/>
+        <Caret Line="420" Column="3" TopLine="416"/>
       </Position1>
       <Position2>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="422" Column="3" TopLine="418"/>
+        <Caret Line="419" Column="3" TopLine="415"/>
       </Position2>
       <Position3>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="421" Column="3" TopLine="417"/>
+        <Caret Line="420" Column="3" TopLine="416"/>
       </Position3>
       <Position4>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="420" Column="3" TopLine="416"/>
+        <Caret Line="332" Column="31" TopLine="323"/>
       </Position4>
       <Position5>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="419" Column="3" TopLine="415"/>
+        <Caret Line="333" Column="31" TopLine="324"/>
       </Position5>
       <Position6>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="420" Column="3" TopLine="416"/>
+        <Caret Line="18" Column="47" TopLine="9"/>
       </Position6>
       <Position7>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="419" Column="3" TopLine="415"/>
+        <Caret Line="331" Column="33" TopLine="316"/>
       </Position7>
       <Position8>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="420" Column="3" TopLine="416"/>
+        <Caret Line="332" Column="33" TopLine="317"/>
       </Position8>
       <Position9>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="332" Column="31" TopLine="323"/>
+        <Caret Line="331" Column="33" TopLine="316"/>
       </Position9>
       <Position10>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="333" Column="31" TopLine="324"/>
+        <Caret Line="417" Column="3" TopLine="412"/>
       </Position10>
       <Position11>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="18" Column="47" TopLine="9"/>
+        <Caret Line="411" Column="3" TopLine="411"/>
       </Position11>
       <Position12>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="331" Column="33" TopLine="316"/>
+        <Caret Line="19" TopLine="9"/>
       </Position12>
       <Position13>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="332" Column="33" TopLine="317"/>
+        <Caret Line="13" Column="49" TopLine="9"/>
       </Position13>
       <Position14>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="331" Column="33" TopLine="316"/>
+        <Caret Line="321" TopLine="308"/>
       </Position14>
       <Position15>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="417" Column="3" TopLine="412"/>
+        <Caret Line="338" TopLine="330"/>
       </Position15>
       <Position16>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="411" Column="3" TopLine="411"/>
+        <Caret Line="345" Column="40" TopLine="331"/>
       </Position16>
       <Position17>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="19" TopLine="9"/>
+        <Caret Line="344" Column="40" TopLine="330"/>
       </Position17>
       <Position18>
         <Filename Value="frminformes.pas"/>
-        <Caret Line="13" Column="49" TopLine="9"/>
+        <Caret Line="401" Column="58" TopLine="390"/>
       </Position18>
       <Position19>
-        <Filename Value="frminformes.pas"/>
-        <Caret Line="321" TopLine="308"/>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="1182" Column="9" TopLine="1179"/>
       </Position19>
       <Position20>
-        <Filename Value="frminformes.pas"/>
-        <Caret Line="338" TopLine="330"/>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="528" Column="3" TopLine="524"/>
       </Position20>
       <Position21>
-        <Filename Value="frminformes.pas"/>
-        <Caret Line="345" Column="40" TopLine="331"/>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="63" Column="14" TopLine="54"/>
       </Position21>
       <Position22>
-        <Filename Value="frminformes.pas"/>
-        <Caret Line="344" Column="40" TopLine="330"/>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="427" Column="3" TopLine="423"/>
       </Position22>
       <Position23>
-        <Filename Value="frminformes.pas"/>
-        <Caret Line="401" Column="58" TopLine="390"/>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="964" TopLine="961"/>
       </Position23>
       <Position24>
         <Filename Value="frmeditarlances.pas"/>
-        <Caret Line="1182" Column="9" TopLine="1179"/>
+        <Caret Line="530" Column="42" TopLine="524"/>
       </Position24>
       <Position25>
         <Filename Value="frmeditarlances.pas"/>
-        <Caret Line="528" Column="3" TopLine="524"/>
+        <Caret Line="557" Column="18" TopLine="550"/>
       </Position25>
       <Position26>
-        <Filename Value="frmeditarlances.pas"/>
-        <Caret Line="63" Column="14" TopLine="54"/>
+        <Filename Value="frminformes.pas"/>
+        <Caret Line="15" Column="53" TopLine="205"/>
       </Position26>
       <Position27>
         <Filename Value="frmeditarlances.pas"/>
-        <Caret Line="427" Column="3" TopLine="423"/>
+        <Caret Line="44" Column="35" TopLine="43"/>
       </Position27>
       <Position28>
         <Filename Value="frmeditarlances.pas"/>
-        <Caret Line="964" TopLine="961"/>
+        <Caret Line="966" Column="64" TopLine="963"/>
       </Position28>
       <Position29>
         <Filename Value="frmeditarlances.pas"/>
-        <Caret Line="530" Column="42" TopLine="524"/>
+        <Caret Line="988" Column="18" TopLine="984"/>
       </Position29>
       <Position30>
         <Filename Value="frmeditarlances.pas"/>
-        <Caret Line="557" Column="18" TopLine="550"/>
+        <Caret Line="966" Column="41" TopLine="963"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="7">
+    <BreakPoints Count="6">
       <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
@@ -604,14 +602,14 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="frmeditarlances.pas"/>
-        <Line Value="1285"/>
+        <Line Value="1299"/>
       </Item4>
       <Item5>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="frmeditarlances.pas"/>
-        <Line Value="1252"/>
+        <Line Value="1266"/>
       </Item5>
       <Item6>
         <Kind Value="bpkSource"/>
@@ -620,13 +618,6 @@
         <Source Value="frminformes.pas"/>
         <Line Value="621"/>
       </Item6>
-      <Item7>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="frmeditarlances.pas"/>
-        <Line Value="964"/>
-      </Item7>
     </BreakPoints>
   </Debugging>
 </CONFIG>

@@ -24,8 +24,13 @@ inherited fmLances: TfmLances
         inherited paBuscador: TPanel
           Width = 872
           ClientWidth = 872
+          inherited laBuscar: TLabel
+            Height = 15
+            Width = 35
+          end
           inherited edBuscar: TEdit
             Left = 124
+            Height = 23
             Width = 713
           end
           inherited bbBuscar: TBitBtn
@@ -33,9 +38,9 @@ inherited fmLances: TfmLances
           end
           object dtFecha: TDateTimePicker[3]
             Left = 5
-            Height = 25
+            Height = 23
             Top = 19
-            Width = 115
+            Width = 105
             ShowCheckBox = True
             CenturyFrom = 1941
             MaxDate = 2958465
@@ -90,15 +95,15 @@ inherited fmLances: TfmLances
                 Width = 75
                 FieldName = 'fecha'
                 DisplayFormat = 'dd/mm/yyyy'
-                Footer.Value = 'Nº lances:'
-                Footer.ValueType = fvtStaticText
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                Footer.Value = 'Nº lances:'
+                Footer.ValueType = fvtStaticText
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -110,15 +115,16 @@ inherited fmLances: TfmLances
                 Width = 40
                 FieldName = 'hora'
                 DisplayFormat = 'hh:mm'
-                Footer.FieldName = 'nro_lance'
-                Footer.ValueType = fvtCount
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                Footer.Alignment = taCenter
+                Footer.FieldName = 'nro_lance'
+                Footer.ValueType = fvtCount
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -129,13 +135,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 40
                 FieldName = 'nro_lance'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -146,13 +152,15 @@ inherited fmLances: TfmLances
                 Width = 65
                 FieldName = 'latitud_ini_fmt'
                 DisplayFormat = '00º 00.00'''
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                Footer.Value = 'Hs. Pesca:'
+                Footer.ValueType = fvtStaticText
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -163,13 +171,17 @@ inherited fmLances: TfmLances
                 Width = 65
                 FieldName = 'longitud_ini_fmt'
                 DisplayFormat = '00º 00.00'''
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                Footer.Alignment = taCenter
+                Footer.DisplayFormat = '###0.00'
+                Footer.FieldName = 'HorasPesca'
+                Footer.ValueType = fvtSum
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -181,13 +193,13 @@ inherited fmLances: TfmLances
                 Width = 30
                 FieldName = 'rumbo'
                 DisplayFormat = '000'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -198,13 +210,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 30
                 FieldName = 'profundidad'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -215,13 +227,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 30
                 FieldName = 'cable_estribor'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -232,13 +244,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 30
                 FieldName = 'cable_babor'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -249,13 +261,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 30
                 FieldName = 'minutos_arrastre'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -266,13 +278,13 @@ inherited fmLances: TfmLances
                 Width = 65
                 FieldName = 'latitud_fin_fmt'
                 DisplayFormat = '00º 00.00'''
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -283,13 +295,13 @@ inherited fmLances: TfmLances
                 Width = 65
                 FieldName = 'longitud_fin_fmt'
                 DisplayFormat = '00º 00.00'''
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -300,13 +312,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 35
                 FieldName = 'captura_estribor'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -317,13 +329,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 35
                 FieldName = 'captura_babor'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -334,13 +346,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 35
                 FieldName = 'velocidad'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -351,13 +363,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 55
                 FieldName = 'rinde_total_E'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -368,13 +380,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 55
                 FieldName = 'rinde_total_B'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -385,13 +397,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 55
                 FieldName = 'rinde_comercial_E'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -402,13 +414,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 55
                 FieldName = 'rinde_comercial_B'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -417,13 +429,13 @@ inherited fmLances: TfmLances
                 Title.Orientation = toHorizontal
                 Width = 0
                 FieldName = 'comentarios'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end>
             FooterOptions.Active = True
             FooterOptions.Color = clBtnFace
@@ -1160,6 +1172,18 @@ inherited fmLances: TfmLances
       FieldKind = fkCalculated
       FieldName = 'LongFin'
       Index = 52
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object zqLancesHorasPesca: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'HorasPesca'
+      Index = 53
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

@@ -35,6 +35,7 @@ type
     zqLancesgrados_longitud_fin: TLongintField;
     zqLancesgrados_longitud_ini: TLongintField;
     zqLanceshora: TTimeField;
+    zqLancesHorasPesca: TFloatField;
     zqLancesidlance: TLongintField;
     zqLancesidmarea: TLongintField;
     zqLanceslargo_relinga_inferior: TLongintField;
@@ -119,6 +120,10 @@ begin
   begin
     zqLancesVelocidadNecesaria.Value :=
       zqLancesDistancia.Value * 60 / zqLancesminutos_arrastre.Value;
+  end;
+  if not zqLancesminutos_arrastre.IsNull then
+  begin
+    zqLancesHorasPesca.Value:=zqLancesminutos_arrastre.Value/60;
   end;
 end;
 

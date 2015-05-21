@@ -1069,10 +1069,15 @@ begin
     100 + zqPrincipalminutos_latitud_fin.Value;
   zqPrincipalLongFin.Value := zqPrincipalgrados_longitud_fin.Value *
     100 + zqPrincipalminutos_longitud_fin.Value;
-  if (zqPrincipalminutos_latitud_ini.Value > 0) and
-    (zqPrincipalminutos_longitud_ini.Value > 0) and
-    (zqPrincipalminutos_latitud_fin.Value > 0) and
-    (zqPrincipalminutos_longitud_fin.Value > 0) then
+//Verifico por no nulo, ya que cero puede ser un valor válido
+  //if (zqPrincipalminutos_latitud_ini.Value > 0) and
+  //  (zqPrincipalminutos_longitud_ini.Value > 0) and
+  //  (zqPrincipalminutos_latitud_fin.Value > 0) and
+  //  (zqPrincipalminutos_longitud_fin.Value > 0) then
+  if (not zqPrincipalminutos_latitud_ini.IsNull) and
+      (not zqPrincipalminutos_longitud_ini.IsNull) and
+      (not zqPrincipalminutos_latitud_fin.IsNull) and
+      (not zqPrincipalminutos_longitud_fin.IsNull) then
   begin
     zqPrincipalDistanciaMillas.Value :=
       DistanciaEnMillas(zqPrincipalLatIni.Value, zqPrincipalLongIni.Value,

@@ -1,21 +1,50 @@
 inherited fmMuestrasRayas: TfmMuestrasRayas
+  Left = 497
+  Top = 165
+  Width = 621
   Caption = 'Muestras de rayas'
+  ClientWidth = 621
   inherited paBase: TPanel
+    Width = 621
+    ClientWidth = 621
     inherited paContenido: TPanel
+      Width = 621
+      ClientWidth = 621
       inherited paLista: TPanel
+        Width = 466
+        ClientWidth = 466
         inherited paBuscador: TPanel
+          Width = 466
+          ClientWidth = 466
           inherited laBuscar: TLabel
             Height = 15
             Width = 35
           end
           inherited edBuscar: TEdit
             Height = 23
+            Width = 426
+          end
+          inherited bbBuscar: TBitBtn
+            Left = 432
           end
         end
         inherited paGrilla: TPanel
+          Width = 456
+          ClientWidth = 456
+          inherited bbEliminar: TBitBtn
+            Left = 189
+          end
+          inherited bbAgregar: TBitBtn
+            Left = 278
+          end
+          inherited bbEditar: TBitBtn
+            Left = 367
+          end
           inherited dbgLista: TRxDBGrid
+            Width = 456
             Columns = <            
               item
+                Alignment = taCenter
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
@@ -32,6 +61,7 @@ inherited fmMuestrasRayas: TfmMuestrasRayas
                 KeyList.Strings = (                )
               end            
               item
+                Alignment = taCenter
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
@@ -48,6 +78,7 @@ inherited fmMuestrasRayas: TfmMuestrasRayas
                 KeyList.Strings = (                )
               end            
               item
+                Alignment = taCenter
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
@@ -64,11 +95,64 @@ inherited fmMuestrasRayas: TfmMuestrasRayas
                 KeyList.Strings = (                )
               end            
               item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Latitud'
+                Title.Orientation = toHorizontal
+                Width = 65
+                FieldName = 'latitud_fin_fmt'
+                DisplayFormat = '00º 00.00'''
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Longitud'
+                Title.Orientation = toHorizontal
+                Width = 65
+                FieldName = 'longitud_fin_fmt'
+                DisplayFormat = '00º 00.00'''
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Prof.'
+                Title.Orientation = toHorizontal
+                Width = 30
+                FieldName = 'profundidad'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
                 PickList.Strings = (                )
                 Title.Alignment = taCenter
                 Title.Caption = 'Comentarios'
                 Title.Orientation = toHorizontal
-                Width = 74
+                Width = 83
                 FieldName = 'comentarios'
                 EditButtons = <>
                 Filter.DropDownRows = 0
@@ -82,25 +166,30 @@ inherited fmMuestrasRayas: TfmMuestrasRayas
           end
         end
       end
+      inherited paDetalles: TPanel
+        Left = 466
+      end
     end
     inherited paComando: TPanel
+      Width = 621
+      ClientWidth = 621
       inherited sbCerrar: TSpeedButton
+        Left = 603
         Flat = False
       end
     end
   end
   inherited zcgLista: TZControladorGrilla
+    ControlEdicion = fmEditarRayas.zcePrincipal
     ZDataset = zqMuestrasRayas
   end
   object zqMuestrasRayas: TZQuery[4]
     Connection = dmGeneral.zcDB
+    BeforeOpen = zqMuestrasRayasBeforeOpen
     SQL.Strings = (
       'SELECT *'
       'FROM v_muestras_rayas'
       'WHERE idmarea=:idmarea'
-      'AND (:fecha IS NULL'
-      'OR :fecha = '''''
-      'OR fecha=:fecha)'
       ' AND ('
       ':__FILTRO__ IS NULL OR'
       ':__FILTRO__ = '''''
@@ -120,11 +209,6 @@ inherited fmMuestrasRayas: TfmMuestrasRayas
       end    
       item
         DataType = ftUnknown
-        Name = 'fecha'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
         Name = '__FILTRO__'
         ParamType = ptUnknown
       end>
@@ -134,11 +218,6 @@ inherited fmMuestrasRayas: TfmMuestrasRayas
       item
         DataType = ftUnknown
         Name = 'idmarea'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = 'fecha'
         ParamType = ptUnknown
       end    
       item
@@ -195,6 +274,7 @@ inherited fmMuestrasRayas: TfmMuestrasRayas
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
+      DisplayFormat = 'dd/mm/yyyy'
     end
     object zqMuestrasRayashora: TTimeField
       DisplayWidth = 10
@@ -205,6 +285,7 @@ inherited fmMuestrasRayas: TfmMuestrasRayas
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
+      DisplayFormat = 'hh:mm'
     end
     object zqMuestrasRayasnro_dipturus: TLongintField
       DisplayWidth = 10
@@ -336,6 +417,60 @@ inherited fmMuestrasRayas: TfmMuestrasRayas
       ReadOnly = False
       Required = False
       Size = 1024
+    end
+    object zqMuestrasRayaslatitud_fin: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'latitud_fin'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 64
+    end
+    object zqMuestrasRayaslongitud_fin: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'longitud_fin'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 64
+    end
+    object zqMuestrasRayasprofundidad: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'profundidad'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslatitud_fin_fmt: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'latitud_fin_fmt'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 80
+    end
+    object zqMuestrasRayaslongitud_fin_fmt: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'longitud_fin_fmt'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 80
     end
   end
   object dsMuestrasRayas: TDataSource[5]

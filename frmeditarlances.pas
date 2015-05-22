@@ -985,6 +985,7 @@ procedure TfmEditarLances.zcePrincipalInitRecord(Sender: TObject);
 var
   formato:String;
 begin
+  pcLances.PageIndex:=0;
   LSLoadConfig(['formato_planilla_puente'],[formato],[@formato]);
   if formato='' then
     pcFormatos.PageIndex:=0

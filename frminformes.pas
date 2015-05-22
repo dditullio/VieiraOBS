@@ -58,6 +58,7 @@ type
     sgResumen: TStringGrid;
     tsLances: TTabSheet;
     zqByCatch: TZQuery;
+    zqRaya: TZQuery;
     zqInfDatosPuente: TZQuery;
     zqInfDatosPuentecable_babor: TLongintField;
     zqInfDatosPuentecable_estribor: TLongintField;
@@ -214,6 +215,7 @@ type
     procedure zqInfDatosPuenteBeforeOpen(DataSet: TDataSet);
     procedure zqInfDatosPuenteCalcFields(DataSet: TDataSet);
     procedure zqInfMuestrasBiolBeforeOpen(DataSet: TDataSet);
+    procedure zqRayaBeforeOpen(DataSet: TDataSet);
     procedure zqResumenBeforeOpen(DataSet: TDataSet);
     procedure zqRindesBeforeOpen(DataSet: TDataSet);
     procedure zqSenasaCallosBeforeOpen(DataSet: TDataSet);
@@ -230,6 +232,7 @@ type
     procedure GenerarDanioXLS;
     procedure GenerarByCatchXLS;
     procedure GenerarByCatch2XLS;
+    procedure GenerarRayaXLS;
 
     procedure GenerarRindesODF;
   public
@@ -282,6 +285,8 @@ begin
         GenerarByCatchXLS;
         //GenerarByCatch2XLS;
       end;
+      if cbRaya.Checked then
+        GenerarRayaXLS;
       gen_ok:=True;
     end;
 {     else if odf<>Null then
@@ -342,7 +347,7 @@ procedure TfmInformes.ckPlanillasChange(Sender: TObject);
 begin
   acGuardarPlanillas.Enabled :=
     (cbDatosPuente.Checked or cbRindes.Checked or cbCoccion.Checked or
-    cbTallas.Checked or cbDanio.Checked or cbByCatch.Checked);
+    cbTallas.Checked or cbDanio.Checked or cbByCatch.Checked or cbRaya.Checked);
 end;
 
 procedure TfmInformes.dedCarpetaPlanillasAcceptDirectory(Sender: TObject;
@@ -450,6 +455,11 @@ end;
 procedure TfmInformes.zqInfMuestrasBiolBeforeOpen(DataSet: TDataSet);
 begin
   zqInfMuestrasBiol.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+end;
+
+procedure TfmInformes.zqRayaBeforeOpen(DataSet: TDataSet);
+begin
+  zqRaya.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
 end;
 
 procedure TfmInformes.zqResumenBeforeOpen(DataSet: TDataSet);
@@ -1297,6 +1307,113 @@ begin
     xls := Unassigned;
     xlp.Quit;
     xlp := Unassigned;
+  end;
+end;
+
+procedure TfmInformes.GenerarRayaXLS;
+var
+  xls: olevariant;
+  archivo_origen, archivo_destino, tmp: WideString;
+  fila, columna: integer;
+begin
+  //Primero verifico que el objeto se pueda crear
+  try
+    xls := CreateOleObject('Excel.Application');
+  except
+    MessageDlg('No se puede abrir la aplicación Microsoft Office Excel, o la misma no está instalada', mtError, [mbClose], 0);
+    Exit;
+  end;
+  //Pongo el resto dentro de un Try para si o si finalizar le Excel al terminar
+  try
+    archivo_origen := ExtractFilePath(Application.ExeName) +
+      'PlanillasExcel' + DirectorySeparator + 'Rayas.xls';
+    archivo_destino := dedCarpetaPlanillas.Directory +
+      DirectorySeparator + 'Rayas.xls';
+    if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+    begin
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
+      archivo_destino:=UTF8Decode(archivo_destino);
+      xls.Workbooks.Open(archivo_destino);
+      xls.ActiveWorkBook.Sheets('planilla para completar').Activate;
+
+      //Pongo los datos de la marea
+      tmp := UTF8Decode(dmGeneral.zqMareaActivabuque.AsString);
+      xls.Cells[2, 2] := tmp;
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaMarea.AsString);
+      xls.Cells[4, 2] := tmp;
+
+      //Abro la planilla de datos puente (si no está abierta) para obtener
+      //el N° de lances (RecordCount)
+      zqDatosPuente.Open;
+
+      with zqRaya do
+      begin
+        Close;
+        Open;
+        First;
+
+        //Pongo datos de lances y muestras
+        xls.Cells[2, 10] := zqDatosPuente.RecordCount;
+        xls.Cells[4, 10] := zqRaya.RecordCount;
+
+        //Configuro la barra de progreso
+        pbProceso.Max := RecordCount;
+        pbProceso.Position := 0;
+        laProceso.Caption:='Procesando muestras de rayas';
+        pbProceso.Visible := True;
+        Fila := 9;//Arranco en la fila 9 porque antes están los títulos
+        while not EOF do
+        begin
+          tmp := UTF8Decode(FieldByName('nrolance').AsString);
+          xls.Cells[fila, 1] := tmp;
+          xls.Cells[fila, 2] := FieldByName('fecha').AsDateTime;
+          if not FieldByName('latitud_fin').IsNull then
+             xls.Cells[fila, 3] := FieldByName('latitud_fin').AsFloat*100;
+          if not FieldByName('longitud_fin').IsNull then
+             xls.Cells[fila, 4] := FieldByName('longitud_fin').AsFloat*100;
+          if not FieldByName('profundidad').IsNull then
+             xls.Cells[fila, 5] := FieldByName('profundidad').AsInteger;
+          if not FieldByName('nro_dipturus').IsNull then
+             xls.Cells[fila, 6] := FieldByName('nro_dipturus').AsInteger;
+          if not FieldByName('nro_bathyraja').IsNull then
+             xls.Cells[fila, 7] := FieldByName('nro_bathyraja').AsInteger;
+          if not FieldByName('nro_psammobatis').IsNull then
+             xls.Cells[fila, 8] := FieldByName('nro_psammobatis').AsInteger;
+          if not FieldByName('nro_amblyraja').IsNull then
+             xls.Cells[fila, 9] := FieldByName('nro_amblyraja').AsInteger;
+
+          if not FieldByName('lt_max_dipturus').IsNull then
+             xls.Cells[fila, 10] := FieldByName('lt_max_dipturus').AsInteger;
+          if not FieldByName('lt_min_dipturus').IsNull then
+             xls.Cells[fila, 11] := FieldByName('lt_min_dipturus').AsInteger;
+          if not FieldByName('lt_max_bathyraja').IsNull then
+             xls.Cells[fila, 12] := FieldByName('lt_max_bathyraja').AsInteger;
+          if not FieldByName('lt_min_bathyraja').IsNull then
+             xls.Cells[fila, 13] := FieldByName('lt_min_bathyraja').AsInteger;
+          if not FieldByName('lt_max_psammobatis').IsNull then
+             xls.Cells[fila, 14] := FieldByName('lt_max_psammobatis').AsInteger;
+          if not FieldByName('lt_min_psammobatis').IsNull then
+             xls.Cells[fila, 15] := FieldByName('lt_min_psammobatis').AsInteger;
+          if not FieldByName('lt_max_amblyraja').IsNull then
+             xls.Cells[fila, 16] := FieldByName('lt_max_amblyraja').AsInteger;
+          if not FieldByName('lt_min_amblyraja').IsNull then
+             xls.Cells[fila, 17] := FieldByName('lt_min_amblyraja').AsInteger;
+
+          tmp := UTF8Decode(FieldByName('comentarios').AsString);
+          xls.Cells[fila, 18] := tmp;
+          pbProceso.Position := RecNo;
+          Application.ProcessMessages;
+          Next;
+          Inc(fila);
+        end;
+        xls.ActiveWorkBook.Save;
+      end;
+    end;
+  finally
+    laProceso.Caption:='';
+    pbProceso.Visible := False;
+    xls.Quit;
+    xls := Unassigned;
   end;
 end;
 

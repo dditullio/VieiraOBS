@@ -160,9 +160,10 @@ inherited fmInformes: TfmInformes
               Top = 91
               Width = 202
               Caption = 'Muestras de raya'
+              Checked = True
               OnChange = ckPlanillasChange
+              State = cbChecked
               TabOrder = 6
-              Visible = False
             end
           end
           object dedCarpetaPlanillas: TDirectoryEdit
@@ -2535,5 +2536,29 @@ inherited fmInformes: TfmInformes
     DataSet = zqResumen
     left = 72
     top = 432
+  end
+  object zqRaya: TZQuery[25]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqRayaBeforeOpen
+    SQL.Strings = (
+      'select *'
+      'from v_muestras_rayas'
+      'where idmarea=:idmarea'
+      'ORDER BY fecha asc ,MAKETIME(HOUR(hora),MINUTE(hora),0) asc'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
+    left = 288
+    top = 355
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
   end
 end

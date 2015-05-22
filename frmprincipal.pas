@@ -239,23 +239,23 @@ begin
   ActivarForm(fmMareas, imageindex);
 end;
 
-//procedure TfmPrincipal.acRayasExecute(Sender: TObject);
-//var
-//  imageindex: integer=-1;
-//begin
-//  if not Assigned(fmMuestrasRayas) then
-//    fmMuestrasRayas:=TfmMuestrasRayas.Create(Self);
-//  if (sender is taction) then
-//    imageindex:=(sender as taction).ImageIndex;
-//  ActivarForm(fmMuestrasRayas, imageindex);
-//end;
-
 procedure TfmPrincipal.acRayasExecute(Sender: TObject);
 var
   imageindex: integer=-1;
 begin
-     MessageDlg('Esta función aún no está implementada. Disculpe las molestias.', mtError, [mbClose], 0);
+  if not Assigned(fmMuestrasRayas) then
+    fmMuestrasRayas:=TfmMuestrasRayas.Create(Self);
+  if (sender is taction) then
+    imageindex:=(sender as taction).ImageIndex;
+  ActivarForm(fmMuestrasRayas, imageindex);
 end;
+
+//procedure TfmPrincipal.acRayasExecute(Sender: TObject);
+//var
+//  imageindex: integer=-1;
+//begin
+//     MessageDlg('Esta función aún no está implementada. Disculpe las molestias.', mtError, [mbClose], 0);
+//end;
 
 procedure TfmPrincipal.ActivarForm(F: TfmBase; ImageIndex:integer=-1);
 var

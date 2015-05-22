@@ -16,7 +16,7 @@ uses
   frmtallas, dattallas, frmeditartallas, frmeditardetalletallas,
   frmeditarlances, frmlances, funciones, frmInformes, frmmuestrassenasa,
   frmrptdatospuente, frmeditarsenasacallos, lr_pdfexport, frmeditarsenasaentera,
-  frmSplashScreenForm, UHojaCalc, frmmuestrasrayas;
+  frmSplashScreenForm, UHojaCalc, frmmuestrasrayas, frmeditarrayas;
 
 {$R *.res}
 
@@ -45,6 +45,7 @@ begin
   Application.CreateForm(TfmEditarSenasaCallos, fmEditarSenasaCallos);
   Application.CreateForm(TFmEditarSenasaEntera, FmEditarSenasaEntera);
   Application.CreateForm(TfmInformes, fmInformes);
+  Application.CreateForm(TfmEditarRayas, fmEditarRayas);
   Application.Run;
 end.
 

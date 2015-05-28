@@ -900,14 +900,17 @@ begin
         IncMinute(zqAntLancefecha.AsDateTime + zqAntLancehora.AsDateTime,
         zqAntLanceminutos_arrastre.AsInteger), zqPrincipalfecha.AsDateTime +
         zqPrincipalhora.AsDateTime);
+
       velocidad_entre_lances :=
         dist_entre_lances * 60 / minutos_entre_lances;
-      //Si la velocidad calculada entre lances es mayor a 15 nudos, hay un error en los datos
-      if velocidad_entre_lances > 15 then
+      //Si la velocidad calculada entre lances es mayor a 17 nudos, hay un error en los datos
+      if velocidad_entre_lances > 17 then
       begin
-        MessageDlg(
-          'El tiempo entre el fin del lance anterior y el inicio del actual no concuerda con la distancia entre ambos lances. El buque debería haber recorrido ' + FormatFloat('0.00', dist_entre_lances) + ' millas en ' + FormatFloat('0', minutos_entre_lances) + ' minutos, a una velocidad de ' + FormatFloat('0.0', velocidad_entre_lances) + ' nudos, lo cual no es posible. Verifique la hora y las posiciones del lance actual y del anterior.', mtError, [mbOK], 0);
-        FControlesEdicion.SetFocus('MinutosLatIni');
+        if MessageDlg('Advertencia',
+          'El tiempo entre el fin del lance anterior y el inicio del actual no concuerda con la distancia entre ambos lances. El buque debería haber recorrido ' + FormatFloat('0.00', dist_entre_lances) + ' millas en ' + FormatFloat('0', minutos_entre_lances) + ' minutos, a una velocidad de ' + FormatFloat('0.0', velocidad_entre_lances) + ' nudos, lo cual no es posible. Verifique la hora y las posiciones del lance actual y del anterior. ¿Desea continuar igualmente con este error?', mtError, mbYesNo, 0, mbNo) = mrNo then
+        begin
+             FControlesEdicion.SetFocus('MinutosLatIni');
+        end;
       end;
     end;
   end;

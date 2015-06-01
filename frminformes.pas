@@ -15,7 +15,7 @@ uses
   Controls, Graphics, Dialogs, ExtCtrls, Buttons, ActnList, ComCtrls, StdCtrls,
   EditBtn, IniPropStorage, Grids, frmbase, ZDataset, windirs, DB, datGeneral,
   comobj, variants, frmrptdatospuente,
-  funciones, LSConfig, UHojaCalc, LR_DSet;
+  funciones, LSConfig, UHojaCalc, LR_DSet, lr_e_pdf;
 
 type
 
@@ -27,9 +27,9 @@ type
     acImprimirSenasa: TAction;
     acImprimirMuestrasBiol: TAction;
     bbGuardar: TBitBtn;
-    bbImprimirDatosPuente: TBitBtn;
-    bbMuestrasSenasa: TBitBtn;
-    bbMuestrasSenasa1: TBitBtn;
+    cbDatosPuentePDF: TCheckBox;
+    cbSenasaPDF: TCheckBox;
+    cbMuestrasBiolPDF: TCheckBox;
     cbRaya: TCheckBox;
     cbReemplazar: TCheckBox;
     cbDatosPuente: TCheckBox;
@@ -47,8 +47,8 @@ type
     frrDatosPuente: TfrReport;
     frrMuestrasBiol: TfrReport;
     frrSenasa: TfrReport;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
+    gbPlanillasExcel: TGroupBox;
+    gbPlanillasPDF: TGroupBox;
     gbResumen: TGroupBox;
     Label1: TLabel;
     laProceso: TLabel;
@@ -206,6 +206,10 @@ type
     procedure dedCarpetaPlanillasChange(Sender: TObject);
     procedure dedCarpetaPlanillasExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure frrDatosPuenteProgress(n: Integer);
+    procedure frrMuestrasBiolProgress(n: Integer);
+    procedure frrPDFProgress(n: Integer);
+    procedure frrSenasaProgress(n: Integer);
     procedure gbResumenClick(Sender: TObject);
     procedure zqByCatchBeforeOpen(DataSet: TDataSet);
     procedure zqCoccionBeforeOpen(DataSet: TDataSet);
@@ -233,6 +237,10 @@ type
     procedure GenerarByCatchXLS;
     procedure GenerarByCatch2XLS;
     procedure GenerarRayaXLS;
+
+    procedure GenerarDatosPuentePDF;
+    procedure GenerarSenasaPDF;
+    procedure GenerarMuestrasBiolPDF;
 
     procedure GenerarRindesODF;
   public
@@ -286,28 +294,29 @@ begin
         //GenerarByCatch2XLS;
       end;
       if cbRaya.Checked then
-        GenerarRayaXLS;
-      gen_ok:=True;
-    end;
-{     else if odf<>Null then
-    begin
-      if cbDatosPuente.Checked then
-        GenerarDatosPuenteODF;
-      if cbRindes.Checked then
-        GenerarRindesODF;
-      if cbCoccion.Checked then
-        GenerarCoccionODF;
-      if cbTallas.Checked then
-        GenerarTallasODF;
-      if cbDanio.Checked then
-        GenerarDanioODF;
-      if cbByCatch.Checked then
       begin
-        GenerarByCatchODF;
-        //GenerarByCatch2ODF; Formato nuevo, por ahora no se usa
+        GenerarRayaXLS;
       end;
+
+      if cbDatosPuentePDF.Checked then
+      begin
+        GenerarDatosPuentePDF;
+      end;
+      if cbSenasaPDF.Checked then
+      begin
+        GenerarSenasaPDF;
+      end;
+      if cbMuestrasBiolPDF.Checked then
+      begin
+        GenerarMuestrasBiolPDF;
+      end;
+
       gen_ok:=True;
-    end;}
+
+
+    end;
+
+
     if gen_ok and (MessageDlg('Las planillas han sido guaradas en la carpeta indicada. ¿Desea abrir la carpeta para ver los archivos?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       {$IFDEF MSWINDOWS}
@@ -347,7 +356,8 @@ procedure TfmInformes.ckPlanillasChange(Sender: TObject);
 begin
   acGuardarPlanillas.Enabled :=
     (cbDatosPuente.Checked or cbRindes.Checked or cbCoccion.Checked or
-    cbTallas.Checked or cbDanio.Checked or cbByCatch.Checked or cbRaya.Checked);
+    cbTallas.Checked or cbDanio.Checked or cbByCatch.Checked or cbRaya.Checked
+    or cbDatosPuentePDF.Checked or cbSenasaPDF.Checked or cbMuestrasBiolPDF.Checked);
 end;
 
 procedure TfmInformes.dedCarpetaPlanillasAcceptDirectory(Sender: TObject;
@@ -407,6 +417,28 @@ begin
       sgResumen.Cells[1,15]:=FieldByName('cant_muestras_raya').AsString;
     end;
   end;
+end;
+
+procedure TfmInformes.frrDatosPuenteProgress(n: Integer);
+begin
+  pbProceso.Position:=zqInfDatosPuente.RecNo;
+  Application.ProcessMessages;
+end;
+
+procedure TfmInformes.frrMuestrasBiolProgress(n: Integer);
+begin
+  pbProceso.Position:=zqInfMuestrasBiol.RecNo;
+  Application.ProcessMessages;
+end;
+
+procedure TfmInformes.frrPDFProgress(n: Integer);
+begin
+end;
+
+procedure TfmInformes.frrSenasaProgress(n: Integer);
+begin
+  pbProceso.Position:=zqSenasaEntera.RecNo;
+  Application.ProcessMessages;
 end;
 
 procedure TfmInformes.gbResumenClick(Sender: TObject);
@@ -1414,6 +1446,71 @@ begin
     pbProceso.Visible := False;
     xls.Quit;
     xls := Unassigned;
+  end;
+end;
+
+procedure TfmInformes.GenerarDatosPuentePDF;
+var
+  archivo_destino: string;
+begin
+  archivo_destino := dedCarpetaPlanillas.Directory +
+    DirectorySeparator + 'Datos puente.pdf';
+  if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+  begin
+    laProceso.Caption:='Generando datos de puente en PDF';
+    zqInfDatosPuente.Close;
+    zqInfDatosPuente.Open;
+    if zqInfDatosPuente.RecordCount>0 then
+    begin
+      pbProceso.Max:=zqInfDatosPuente.RecordCount;
+      frrDatosPuente.PrepareReport;
+      frrDatosPuente.ExportTo(TfrTNPDFExportFilter, archivo_destino);
+    end;
+    laProceso.Caption:='';
+  end;
+end;
+
+procedure TfmInformes.GenerarSenasaPDF;
+var
+  archivo_destino: string;
+begin
+  archivo_destino := dedCarpetaPlanillas.Directory +
+    DirectorySeparator + 'Muestras SENASA.pdf';
+  if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+  begin
+    pbProceso.Max:=zqSenasaEntera.RecordCount;
+    laProceso.Caption:='Generando planillas de SENASA';
+    zqSenasaCallos.Close;
+    zqSenasaCallos.Open;
+    zqSenasaEntera.Close;
+    zqSenasaEntera.Open;
+    if (zqSenasaCallos.RecordCount>0) or (zqSenasaEntera.RecordCount>0) then
+    begin
+      frrSenasa.PrepareReport;
+      frrSenasa.ExportTo(TfrTNPDFExportFilter, archivo_destino);
+    end;
+    laProceso.Caption:='';
+  end;
+end;
+
+procedure TfmInformes.GenerarMuestrasBiolPDF;
+var
+  archivo_destino: string;
+begin
+  archivo_destino := dedCarpetaPlanillas.Directory +
+    DirectorySeparator + 'Muestras biológicas.pdf';
+  if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+  begin
+    pbProceso.Max:=zqInfMuestrasBiol.RecordCount;
+    laProceso.Caption:='Generando planilla de muestras biológicas';
+    zqInfMuestrasBiol.Close;
+    zqInfMuestrasBiol.Open;
+    if zqInfMuestrasBiol.RecordCount>0 then
+    begin
+      frrMuestrasBiol.PrepareReport;
+      frrMuestrasBiol.ExportTo(TfrTNPDFExportFilter, archivo_destino);
+    end;
+    laProceso.Caption:='';
   end;
 end;
 

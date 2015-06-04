@@ -1478,12 +1478,13 @@ begin
     DirectorySeparator + 'Muestras SENASA.pdf';
   if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
   begin
-    pbProceso.Max:=zqSenasaEntera.RecordCount;
-    laProceso.Caption:='Generando planillas de SENASA';
     zqSenasaCallos.Close;
     zqSenasaCallos.Open;
     zqSenasaEntera.Close;
     zqSenasaEntera.Open;
+
+    pbProceso.Max:=zqSenasaEntera.RecordCount;
+    laProceso.Caption:='Generando planillas de SENASA';
     if (zqSenasaCallos.RecordCount>0) or (zqSenasaEntera.RecordCount>0) then
     begin
       frrSenasa.PrepareReport;
@@ -1501,10 +1502,11 @@ begin
     DirectorySeparator + 'Muestras biológicas.pdf';
   if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
   begin
-    pbProceso.Max:=zqInfMuestrasBiol.RecordCount;
-    laProceso.Caption:='Generando planilla de muestras biológicas';
     zqInfMuestrasBiol.Close;
     zqInfMuestrasBiol.Open;
+
+    pbProceso.Max:=zqInfMuestrasBiol.RecordCount;
+    laProceso.Caption:='Generando planilla de muestras biológicas';
     if zqInfMuestrasBiol.RecordCount>0 then
     begin
       frrMuestrasBiol.PrepareReport;

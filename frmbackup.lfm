@@ -1,0 +1,581 @@
+object fmBackup: TfmBackup
+  Left = 239
+  Height = 377
+  Top = 116
+  Width = 416
+  BorderStyle = bsDialog
+  Caption = 'Copia de seguridad'
+  ClientHeight = 377
+  ClientWidth = 416
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '1.3'
+  object paProceso: TPanel
+    Left = 0
+    Height = 50
+    Top = 327
+    Width = 416
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 50
+    ClientWidth = 416
+    TabOrder = 0
+    Visible = False
+    object Label3: TLabel
+      Left = 7
+      Height = 15
+      Top = 5
+      Width = 71
+      Caption = 'Procesando...'
+      ParentColor = False
+    end
+    object pbProceso: TProgressBar
+      Left = 7
+      Height = 20
+      Top = 24
+      Width = 385
+      Style = pbstMarquee
+      TabOrder = 0
+    end
+  end
+  object pcBackup: TPageControl
+    Left = 0
+    Height = 262
+    Top = 65
+    Width = 416
+    ActivePage = tsRestaurar
+    Align = alClient
+    TabIndex = 1
+    TabOrder = 1
+    object tsBackup: TTabSheet
+      Caption = 'Realizar copia de seguridad'
+      ClientHeight = 234
+      ClientWidth = 408
+      object gbDestino: TGroupBox
+        Left = 5
+        Height = 55
+        Top = 5
+        Width = 398
+        Align = alTop
+        BorderSpacing.Around = 5
+        Caption = 'Destino del archivo'
+        ClientHeight = 37
+        ClientWidth = 394
+        TabOrder = 0
+        object dedCarpetaArchivo: TDirectoryEdit
+          Left = 5
+          Height = 23
+          Top = 6
+          Width = 305
+          OnAcceptDirectory = dedCarpetaArchivoAcceptDirectory
+          ShowHidden = False
+          ButtonWidth = 23
+          NumGlyphs = 1
+          MaxLength = 0
+          TabOrder = 0
+          OnChange = dedCarpetaArchivoChange
+          OnExit = dedCarpetaArchivoExit
+        end
+        object bbGuardar: TBitBtn
+          Left = 315
+          Height = 25
+          Top = 4
+          Width = 79
+          Action = acBackup
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF001F1F
+            252F1D1D1FEC1C1B1EFF757575FF787878FF787878FF787878FF787878FF7878
+            78FF787878FF1A191BFF19191BFF1D1C1FFF1F1F21EFFFFFFF00FFFFFF002222
+            24ED2A2A2DFF323135FF8B8A8BFF29282BFF201F21FF909090FF909090FF9090
+            90FF909090FF343336FF201F21FF4E4D51FF212023FFFFFFFF00FFFFFF002524
+            26FF39383BFF39383BFF999999FF323134FF262528FF9F9F9FFF9F9F9FFF9F9F
+            9FFF9F9F9FFF3F3E41FF252426FF58575AFF252426FFFFFFFF00FFFFFF002A29
+            2BFF403F42FF403F42FFA7A7A7FF3D3C3FFF333335FFAEAEAEFFAEAEAEFFAEAE
+            AEFFAEAEAEFF414042FF272728FF444346FF2A292BFFFFFFFF00FFFFFF002E2D
+            30FF464549FF464549FFCDCDCDFFD6D6D6FFD5D5D6FFD5D5D5FFD6D6D6FFD6D6
+            D6FFD3D3D3FF272629FF242326FF464549FF2E2D30FFFFFFFF00FFFFFF003130
+            32FF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A
+            4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF313032FFFFFFFF00FFFFFF003333
+            35FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E
+            51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF333335FFFFFFFF00FFFFFF003635
+            37FF535254FFE8DED4FFE8DDD0FFE8DDD0FFE8DDD0FFE7DCD0FFE7DCCFFFE7DB
+            CFFFE6DBCEFFE6DACDFFE6DACFFF535254FF363537FFFFFFFF00FFFFFF003837
+            39FF565557FFF1EAE2FFB8A28BFFB8A28BFFB8A28BFFB8A28BFFB7A18AFFB7A1
+            8AFFB7A08AFFB6A089FFEDE5DCFF565557FF383739FFFFFFFF00FFFFFF003B3A
+            3BFF5A595BFFF7F3EEFFF7F3EFFFF7F3EFFFF7F3EFFFF7F3EEFFF6F2EEFFF6F1
+            EDFFF5F0EBFFF4EFE9FFF3EDE7FF5A595BFF3B3A3BFFFFFFFF00FFFFFF003D3C
+            3DFF5D5C5EFFFDFCFBFFFBF9F8FFFBF9F9FFFBF9F8FFFBF9F8FFFAF8F7FFFAF7
+            F5FFF9F6F4FFF8F4F2FFF9F6F2FF5D5C5EFF3D3C3DFFFFFFFF00FFFFFF003F3E
+            40FF616062FFFDFAF9FFCFB69CFFCFB69CFFCFB69CFFCFB69CFFCFB69DFFCFB7
+            9DFFD0B79EFFD0B89FFFFEFDFDFF616062FF3F3E40FFFFFFFF00FFFFFF004140
+            42FF59595AFFFAF4F1FFFAF4F0FFFAF4F0FFFAF4F0FFFAF4F1FFFAF5F2FFFBF6
+            F3FFFCF8F5FFFCF9F7FFFDFBF9FF646365FF414042FFFFFFFF00FFFFFF004B4B
+            4CEF444344FFB9B4B3FFB9B4B3FFB9B4B3FFB9B4B3FFB9B6B4FFBBB6B4FFBCB8
+            B6FFBCB9B7FFBCB9B8FFBCB9B9FF444344FF4B4B4CEFFFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+          }
+          TabOrder = 1
+        end
+      end
+      object GroupBox1: TGroupBox
+        Left = 5
+        Height = 164
+        Top = 65
+        Width = 398
+        Align = alClient
+        BorderSpacing.Around = 5
+        Caption = 'Opciones adicionales'
+        ClientHeight = 146
+        ClientWidth = 394
+        TabOrder = 1
+        object ckCopiaTXT: TCheckBox
+          Left = 20
+          Height = 19
+          Top = 70
+          Width = 300
+          Caption = 'Incluir copia de datos en formato de texto delimitado'
+          Checked = True
+          State = cbChecked
+          TabOrder = 2
+        end
+        object Label2: TLabel
+          Left = 5
+          Height = 15
+          Top = 10
+          Width = 387
+          Alignment = taCenter
+          AutoSize = False
+          Caption = '>>> La copia de seguridad de almacenará en formato SQL <<<'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object ckEstructura: TCheckBox
+          Left = 180
+          Height = 19
+          Top = 40
+          Width = 200
+          Caption = 'Incluir estructura de base de datos'
+          Checked = True
+          State = cbChecked
+          TabOrder = 1
+        end
+        object ckDatos: TCheckBox
+          Left = 20
+          Height = 19
+          Top = 40
+          Width = 85
+          Caption = 'Incluir datos'
+          Checked = True
+          OnChange = ckDatosChange
+          State = cbChecked
+          TabOrder = 0
+        end
+      end
+    end
+    object tsRestaurar: TTabSheet
+      Caption = 'Restaurar copia de seguridad'
+      ClientHeight = 234
+      ClientWidth = 408
+      object gbDestino1: TGroupBox
+        Left = 5
+        Height = 55
+        Top = 5
+        Width = 398
+        Align = alTop
+        BorderSpacing.Around = 5
+        Caption = 'Archivo de copia de seguridad'
+        ClientHeight = 37
+        ClientWidth = 394
+        TabOrder = 0
+        object edArchivoSQL: TEdit
+          Left = 5
+          Height = 23
+          Top = 5
+          Width = 355
+          ReadOnly = True
+          TabOrder = 0
+        end
+        object sbRestaurar: TSpeedButton
+          Left = 365
+          Height = 22
+          Top = 6
+          Width = 23
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000381800413313
+            007A3314007B3213007C3213007D3113007E3113007F30120081301200813112
+            007F3113007E3213007D3213007C3314007B3313007A3D1B0042A6754AB9DDA8
+            81FFD8A37DFFD8A47EFFD8A37CFFD9A378FFD9A37CFFD9A47EFFD9A47EFFD9A3
+            7EFFD9A379FFD8A37AFFD8A47EFFD8A37EFFE0A981FF805F45AFAD7F58FFDFAD
+            87FFDAA984FFDAA985FFDAA986FFDAA985FFDAA984FFDAA984FFDAA985FFDAA9
+            86FFDAA985FFDAA983FFDAA985FFDAA984FFE3B08AFF816450FF9B6739FFB476
+            40FFB0743FFFB0743FFFB0743FFFB0743FFFB07440FFB0743FFFB07440FFB074
+            3FFFB0743FFFB0743FFFB0743FFFB0743FFFB97A43FF664427FFAA7A51FFE0AE
+            8AFFDBA983FFDBA983FFDBA986FFDBA983FFDBA987FFDBA985FFDBA984FFDBA9
+            83FFDBA986FFDBA983FFDBA986FFDAA984FFE4B189FF7C5F4AFFA97950FFDCA9
+            83FFD6A37CFFD6A37DFFD6A37DFFD6A37EFFD6A37EFFD8A681FFD8A780FFD8A7
+            80FFD8A780FFD8A782FFD8A781FFD8A781FFE1AE87FF7B5F49FF9F764FFFFBE0
+            BCFFEACCA7FFE9CBA6FFEACCA6FFEBCEA8FFEACEAAFFDAAB85FFD7A682FFD7A6
+            80FFD7A67FFFD7A682FFD7A680FFD7A680FFE1AD87FF785D48FF5B3918FF451E
+            00FFEAE8E8FFD5D1CEFFD6D2D0FFC3BBB5FFBEA287FFEBCDA7FFEACDA8FFEBCD
+            A9FFEBCDA8FFEBCDA8FFEBCDA8FFEBCEAAFFFCE0BCFFCBB193BA644122FF5E34
+            11FFFFFFFFFFF8F8F8FFFAFAFBFFFAF9FAFFE5E1DFFFD8D3CFFFD6D2CEFFD5CF
+            CCFFD1CDC9FFCEC8C6FFCAC4C1FFE5E2E0FF311400FF000000006A4625FF6D43
+            21FFFFFFFFFFF7F7F7FFF8F8F8FFF9F9FAFFFAFBFBFFF9F9FAFFEBEBEBFFB8B8
+            B8FFB3B3B4FFACACADFFB0B0B2FFF0F2F4FF4A2A0EFF00000000714B2BFF7A52
+            2FFFFFFFFFFFF7F7F8FFF9F9F9FFF9F9F9FFF8F8F8FFF5F5F5FFA0A0A1FFFFFF
+            FFFFFFFFFFFFFFFFFFFFFAFCFFFF795D46FF734B2AFF000000007A522FFF875E
+            3EFFFFFFFFFFF7F7F8FFF9F9F9FFF9F9F9FFF7F7F7FFF2F2F2FF9A9A9AFFFFFF
+            FFFFEFEFF1FFDBDDE1FF6D4F37FFCD9468FF7B5230FF0000000092643DFF906A
+            4AFFFFFFFFFFF8F8F8FFF8F8F8FFF9F9F9FFF6F6F6FFEEEEEFFFA0A0A0FFFFFF
+            FFFFDEE1E4FF77614EFFD7A278FFE1A97CFFAD7649FF00000000A7734AFF9B72
+            51FFFFFFFFFFF6F6F6FFF8F8F8FFF8F8F9FFF4F4F5FFEBEBEBFFC4C4C4FEFEFF
+            FFFF6A513BFFB87E51FFBC8354FFBB8154FFC28758D500000000B57F54C9764C
+            28FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE7E7E8FF292A
+            2A960000000000000000000000000000000000000000B57F5400000000000000
+            0003000000490000004B0000004B0000004B0000004B0000004B0000003D0909
+            0908000000000000000000000000000000000000000000000000
+          }
+          OnClick = sbRestaurarClick
+        end
+      end
+      object Panel1: TPanel
+        Left = 0
+        Height = 34
+        Top = 200
+        Width = 408
+        Align = alBottom
+        BevelOuter = bvNone
+        ClientHeight = 34
+        ClientWidth = 408
+        TabOrder = 1
+        object bbGuardar1: TBitBtn
+          Left = 110
+          Height = 26
+          Top = 5
+          Width = 189
+          Action = acRestaurar
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF001F1F
+            252F1D1D1FEC1C1B1EFF757575FF787878FF787878FF787878FF787878FF7878
+            78FF787878FF1A191BFF19191BFF1D1C1FFF1F1F21EFFFFFFF00FFFFFF002222
+            24ED2A2A2DFF323135FF8B8A8BFF29282BFF201F21FF909090FF909090FF9090
+            90FF909090FF343336FF201F21FF4E4D51FF212023FFFFFFFF00FFFFFF002524
+            26FF39383BFF39383BFF999999FF323134FF262528FF9F9F9FFF9F9F9FFF9F9F
+            9FFF9F9F9FFF3F3E41FF252426FF58575AFF252426FFFFFFFF00FFFFFF002A29
+            2BFF403F42FF403F42FFA7A7A7FF3D3C3FFF333335FFAEAEAEFFAEAEAEFFAEAE
+            AEFFAEAEAEFF414042FF272728FF444346FF2A292BFFFFFFFF00FFFFFF002E2D
+            30FF464549FF464549FFCDCDCDFFD6D6D6FFD5D5D6FFD5D5D5FFD6D6D6FFD6D6
+            D6FFD3D3D3FF272629FF242326FF464549FF2E2D30FFFFFFFF00FFFFFF003130
+            32FF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A
+            4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF313032FFFFFFFF00FFFFFF003333
+            35FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E
+            51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF333335FFFFFFFF00FFFFFF003635
+            37FF535254FFE8DED4FFE8DDD0FFE8DDD0FFE8DDD0FFE7DCD0FFE7DCCFFFE7DB
+            CFFFE6DBCEFFE6DACDFFE6DACFFF535254FF363537FFFFFFFF00FFFFFF003837
+            39FF565557FFF1EAE2FFB8A28BFFB8A28BFFB8A28BFFB8A28BFFB7A18AFFB7A1
+            8AFFB7A08AFFB6A089FFEDE5DCFF565557FF383739FFFFFFFF00FFFFFF003B3A
+            3BFF5A595BFFF7F3EEFFF7F3EFFFF7F3EFFFF7F3EFFFF7F3EEFFF6F2EEFFF6F1
+            EDFFF5F0EBFFF4EFE9FFF3EDE7FF5A595BFF3B3A3BFFFFFFFF00FFFFFF003D3C
+            3DFF5D5C5EFFFDFCFBFFFBF9F8FFFBF9F9FFFBF9F8FFFBF9F8FFFAF8F7FFFAF7
+            F5FFF9F6F4FFF8F4F2FFF9F6F2FF5D5C5EFF3D3C3DFFFFFFFF00FFFFFF003F3E
+            40FF616062FFFDFAF9FFCFB69CFFCFB69CFFCFB69CFFCFB69CFFCFB69DFFCFB7
+            9DFFD0B79EFFD0B89FFFFEFDFDFF616062FF3F3E40FFFFFFFF00FFFFFF004140
+            42FF59595AFFFAF4F1FFFAF4F0FFFAF4F0FFFAF4F0FFFAF4F1FFFAF5F2FFFBF6
+            F3FFFCF8F5FFFCF9F7FFFDFBF9FF646365FF414042FFFFFFFF00FFFFFF004B4B
+            4CEF444344FFB9B4B3FFB9B4B3FFB9B4B3FFB9B4B3FFB9B6B4FFBBB6B4FFBCB8
+            B6FFBCB9B7FFBCB9B8FFBCB9B9FF444344FF4B4B4CEFFFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+          }
+          TabOrder = 0
+        end
+      end
+      object Label4: TLabel
+        Left = 5
+        Height = 15
+        Top = 65
+        Width = 398
+        Align = alTop
+        BorderSpacing.Around = 5
+        Caption = 'Vista preliminar del archivo:'
+        ParentColor = False
+      end
+      object paMensajeEspera: TPanel
+        Left = 0
+        Height = 115
+        Top = 85
+        Width = 408
+        Align = alClient
+        BevelOuter = bvNone
+        Caption = 'Restaurando base de datos. Espere unos minutos por favor...'
+        ClientHeight = 115
+        ClientWidth = 408
+        Color = clBtnFace
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 2
+        object meSQL: TMemo
+          Left = 5
+          Height = 105
+          Top = 5
+          Width = 398
+          Align = alClient
+          BorderSpacing.Around = 5
+          Font.Height = -12
+          Font.Name = 'Courier New'
+          ParentFont = False
+          ReadOnly = True
+          ScrollBars = ssAutoBoth
+          TabOrder = 0
+          WordWrap = False
+        end
+      end
+    end
+  end
+  object paEncabezado: TPanel
+    Left = 0
+    Height = 65
+    Top = 0
+    Width = 416
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 65
+    ClientWidth = 416
+    TabOrder = 2
+    object Label1: TLabel
+      Left = 80
+      Height = 50
+      Top = 5
+      Width = 245
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'Copia de seguridad completa de la base de datos'
+      Font.Height = -16
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      WordWrap = True
+    end
+  end
+  object alBackup: TActionList
+    left = 380
+    top = 15
+    object acBackup: TAction
+      Caption = 'Guardar'
+      OnExecute = acBackupExecute
+    end
+    object acRestaurar: TAction
+      Caption = 'Restaurar copia de seguridad'
+      OnExecute = acRestaurarExecute
+    end
+  end
+  object azBackup: TAbZipper
+    AutoSave = True
+    DOSMode = False
+    StoreOptions = [soStripDrive, soStripPath, soRemoveDots]
+    left = 5
+    top = 15
+  end
+  object prBackup: TProcessUTF8
+    Active = False
+    Options = [poNoConsole]
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoNone
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    left = 45
+    top = 15
+  end
+  object zqTablasYVistas: TZQuery
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SHOW FULL TABLES'
+      'WHERE table_type = :tipo'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'tipo'
+        ParamType = ptUnknown
+      end>
+    left = 80
+    top = 15
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'tipo'
+        ParamType = ptUnknown
+      end>
+  end
+  object zqCampos: TZQuery
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      ''
+    )
+    Params = <>
+    left = 160
+    top = 15
+  end
+  object zqGetCreate: TZQuery
+    Connection = dmGeneral.zcDB
+    Params = <>
+    left = 195
+    top = 15
+  end
+  object zqDatosTabla: TZQuery
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      ''
+    )
+    Params = <>
+    left = 245
+    top = 15
+  end
+  object zqRutinas: TZQuery
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqRutinasBeforeOpen
+    SQL.Strings = (
+      'SELECT '
+      '    routine_name, routine_type, routine_definition'
+      'FROM'
+      '    information_schema.routines'
+      'WHERE'
+      '    routine_schema = :db'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'db'
+        ParamType = ptUnknown
+      end>
+    left = 280
+    top = 15
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'db'
+        ParamType = ptUnknown
+      end>
+    object zqRutinasroutine_name: TStringField
+      DisplayWidth = 256
+      FieldKind = fkData
+      FieldName = 'routine_name'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 256
+    end
+    object zqRutinasroutine_type: TStringField
+      DisplayWidth = 36
+      FieldKind = fkData
+      FieldName = 'routine_type'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 36
+    end
+    object zqRutinasroutine_definition: TMemoField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'routine_definition'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      BlobType = ftMemo
+      Transliterate = False
+    end
+  end
+  object zqDefRutina: TZQuery
+    Connection = dmGeneral.zcDB
+    Params = <>
+    left = 315
+    top = 15
+  end
+  object odRestaurar: TOpenDialog
+    Title = 'Abrir un archivo de copia de seguridad'
+    Options = [ofFileMustExist, ofEnableSizing, ofViewDetail]
+    left = 15
+    top = 15
+  end
+  object auzBackup: TAbUnZipper
+    left = 5
+    top = 45
+  end
+  object scRestaurar: TSQLScript
+    DataBase = conRestaurar
+    Transaction = trRestaurar
+    Directives.Strings = (
+      'SET TERM'
+      'COMMIT WORK'
+      'COMMIT RETAIN'
+      'COMMIT'
+      '#IFDEF'
+      '#IFNDEF'
+      '#ELSE'
+      '#ENDIF'
+      '#DEFINE'
+      '#UNDEF'
+      '#UNDEFINE'
+    )
+    Terminator = ';'
+    CommentsinSQL = True
+    UseSetTerm = True
+    UseCommit = True
+    UseDefines = True
+    left = 145
+    top = 255
+  end
+  object trRestaurar: TSQLTransaction
+    Active = False
+    Database = conRestaurar
+    left = 90
+    top = 255
+  end
+  object conRestaurar: TMySQL55Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    left = 20
+    top = 255
+  end
+  object zqTriggers: TZQuery
+    Connection = dmGeneral.zcDB
+    SQL.Strings = (
+      'SHOW TRIGGERS'
+    )
+    Params = <>
+    left = 120
+    top = 15
+  end
+  object dblRestaurar: TSQLDBLibraryLoader
+    Enabled = False
+    ConnectionType = 'MySQL 5.5'
+    LibraryName = 'libmysql.dll'
+    left = 200
+    top = 255
+  end
+end

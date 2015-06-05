@@ -8,15 +8,16 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   sysutils, Forms, lazcontrols, datetimectrls, pl_zeosdbo, pl_rx,
-  tachartlazaruspkg, pl_fortesreport, frmPrincipal, frLances, datGeneral,
-  frmbase, frmlistabase, frmmareas, frmzedicionbase, DefaultTranslator,
-  frmEditarMarea, frmrindes, frmeditarrindes, frmcoccion, frmeditarcoccion,
-  frmmuestrasbiologicas, frmeditarmuestrasbiologicas, frmdanio, frmeditardanio,
-  frmbycatch, datbycatch, frmeditarbycatch, datBase, frmeditardetallebycatch,
-  frmtallas, dattallas, frmeditartallas, frmeditardetalletallas,
-  frmeditarlances, frmlances, funciones, frmInformes, frmmuestrassenasa,
-  frmrptdatospuente, frmeditarsenasacallos, lr_pdfexport, frmeditarsenasaentera,
-  frmSplashScreenForm, UHojaCalc, frmmuestrasrayas, frmeditarrayas;
+  tachartlazaruspkg, pl_fortesreport, pl_abbrevia, pl_exsystem, frmPrincipal,
+  frLances, datGeneral, frmbase, frmlistabase, frmmareas, frmzedicionbase,
+  DefaultTranslator, frmEditarMarea, frmrindes, frmeditarrindes, frmcoccion,
+  frmeditarcoccion, frmmuestrasbiologicas, frmeditarmuestrasbiologicas,
+  frmdanio, frmeditardanio, frmbycatch, datbycatch, frmeditarbycatch, datBase,
+  frmeditardetallebycatch, frmtallas, dattallas, frmeditartallas,
+  frmeditardetalletallas, frmeditarlances, frmlances, funciones, frmInformes,
+  frmmuestrassenasa, frmrptdatospuente, frmeditarsenasacallos, lr_pdfexport,
+  frmeditarsenasaentera, frmSplashScreenForm, UHojaCalc, frmmuestrasrayas,
+  frmeditarrayas, frmbackup;
 
 {$R *.res}
 
@@ -33,7 +34,7 @@ begin
   Application.CreateForm(TfmEditarDanio, fmEditarDanio);
   Application.CreateForm(TfmEditarMarea, fmEditarMarea);
   Application.CreateForm(TfmEditarMuestrasBiologicas, fmEditarMuestrasBiologicas
-    );
+      );
   Application.CreateForm(TfmEditarRindes, fmEditarRindes);
   Application.CreateForm(TdmByCatch, dmByCatch);
   Application.CreateForm(TfmEditarByCatch, fmEditarByCatch);

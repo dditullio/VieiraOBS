@@ -1,0 +1,697 @@
+-- ---------------------------------------------
+-- Tablas y datos de la base de datos "vieira"
+-- Generado desde la aplicación "Vieira OBS"
+-- Fecha y hora de resguardo: 05/06/2015 01:08
+-- ---------------------------------------------
+
+-- -----------------------------------------------------
+-- Esquema vieira
+-- -----------------------------------------------------
+
+CREATE SCHEMA IF NOT EXISTS `vieira` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci ;
+
+USE `vieira` ;
+
+
+SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;
+SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS ;
+SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION ;
+SET NAMES utf8 ;
+SET @OLD_TIME_ZONE=@@TIME_ZONE ;
+SET TIME_ZONE='+00:00' ;
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 ;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 ;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' ;
+SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 ;
+
+
+
+-- ------------------ --
+-- Tablas del sistema --
+-- ------------------ --
+
+--
+-- Estructura de la tabla `bandas`
+--
+
+DROP TABLE IF EXISTS `bandas`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `bandas` (
+  `banda` varchar(3) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `orden` int(11) NOT NULL,
+  PRIMARY KEY (`banda`),
+  UNIQUE KEY `orden_UNIQUE` (`orden`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `buques`
+--
+
+DROP TABLE IF EXISTS `buques`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `buques` (
+  `idbuque` int(11) NOT NULL,
+  `nombre` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `factor_calc_captura` int(11) DEFAULT NULL,
+  `puerto_registro` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idbuque`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `componentes_bycatch`
+--
+
+DROP TABLE IF EXISTS `componentes_bycatch`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `componentes_bycatch` (
+  `idcomponentes_bycatch` int(11) NOT NULL,
+  `Nombre` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `Descripcion` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `registra_numero` tinyint(1) NOT NULL,
+  `registra_peso` tinyint(1) NOT NULL,
+  `orden` int(11) NOT NULL,
+  PRIMARY KEY (`idcomponentes_bycatch`),
+  UNIQUE KEY `Nombre_UNIQUE` (`Nombre`),
+  UNIQUE KEY `orden_UNIQUE` (`orden`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `cuadrantes_geograficos`
+--
+
+DROP TABLE IF EXISTS `cuadrantes_geograficos`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `cuadrantes_geograficos` (
+  `Codigo` varchar(1) COLLATE utf8_spanish_ci NOT NULL,
+  `Cuadrante` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `Es_Latitud` tinyint(1) NOT NULL,
+  `Es_Longitud` tinyint(1) NOT NULL,
+  `Predeterminado` tinyint(1) NOT NULL,
+  PRIMARY KEY (`Codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `detalle_muestras_bycatch`
+--
+
+DROP TABLE IF EXISTS `detalle_muestras_bycatch`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `detalle_muestras_bycatch` (
+  `iddetalle_muestras_bycatch` int(11) NOT NULL,
+  `idmuestras_bycatch` int(11) NOT NULL,
+  `idcomponentes_bycatch` int(11) NOT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `peso` decimal(9,3) DEFAULT NULL,
+  `comentarios` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`iddetalle_muestras_bycatch`),
+  KEY `fk_detalle_muestras_bycatch_componentes_bycatch1_idx` (`idcomponentes_bycatch`),
+  KEY `fk_detalle_muestras_bycatch_muestras_bycatch1_idx` (`idmuestras_bycatch`),
+  CONSTRAINT `fk_detalle_muestras_bycatch_componentes_bycatch1` FOREIGN KEY (`idcomponentes_bycatch`) REFERENCES `componentes_bycatch` (`idcomponentes_bycatch`),
+  CONSTRAINT `fk_detalle_muestras_bycatch_muestras_bycatch1` FOREIGN KEY (`idmuestras_bycatch`) REFERENCES `muestras_bycatch` (`idmuestras_bycatch`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `detalle_muestras_talla`
+--
+
+DROP TABLE IF EXISTS `detalle_muestras_talla`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `detalle_muestras_talla` (
+  `iddetalle_muestras_talla` int(11) NOT NULL,
+  `idmuestras_talla` int(11) NOT NULL,
+  `talla` int(11) NOT NULL,
+  `nro_ejemplares` int(11) NOT NULL,
+  PRIMARY KEY (`iddetalle_muestras_talla`),
+  UNIQUE KEY `talla_UNIQUE` (`idmuestras_talla`,`talla`),
+  KEY `fk_detalle_muestras_talla_muestras_talla1_idx` (`idmuestras_talla`),
+  CONSTRAINT `fk_detalle_muestras_talla_muestras_talla1` FOREIGN KEY (`idmuestras_talla`) REFERENCES `muestras_talla` (`idmuestras_talla`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `estados_mar`
+--
+
+DROP TABLE IF EXISTS `estados_mar`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `estados_mar` (
+  `cod_estado_mar` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` varchar(500) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `viento_min_nudos` int(11) DEFAULT NULL,
+  `viento_max_nudos` int(11) DEFAULT NULL,
+  `altura_media_olas` decimal(5,2) DEFAULT NULL,
+  `altura_max_olas` decimal(5,2) DEFAULT NULL,
+  `simbolo` blob,
+  PRIMARY KEY (`cod_estado_mar`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `generador_ids`
+--
+
+DROP TABLE IF EXISTS `generador_ids`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `generador_ids` (
+  `Tabla` varchar(64) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Esta tabla es utilizada por un generador de claves primarias (Ids). Reemplaza en cierto modo al autoincrement, sólo que en este caso el valor se obtiene antes, al iniciar la edicion del nuevo registro en el cliente mediante el llamado a la función nuevo_id(nombre_tabla). Cada vez que se llama genera un nuevo Id correlativo para la tabla indicada y lo devuelve al cliente. Si el Id luego no es utilizado, se pierde, por lo cual no se asegura la correlatividad de Ids para la tabla dada (pueden quedar "huecos"), aunque eso no es un problema, ya que los Ids no son visibles al usuario y sólo se usan como clave primaria y para relacionar tablas. Con esta función se resuelve el problema de obtener el last_insert_id() en inserts múltiples',
+  `Ultimo_id_generado` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Tabla`),
+  UNIQUE KEY `Tabla_UNIQUE` (`Tabla`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `lances`
+--
+
+DROP TABLE IF EXISTS `lances`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `lances` (
+  `idlance` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `nro_lance` int(11) NOT NULL COMMENT '	',
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `grados_latitud_ini` int(11) DEFAULT NULL,
+  `minutos_latitud_ini` decimal(8,2) NOT NULL,
+  `cuadrante_latitud_ini` varchar(1) COLLATE utf8_spanish_ci DEFAULT 'S',
+  `grados_longitud_ini` int(11) DEFAULT NULL,
+  `minutos_longitud_ini` decimal(8,2) NOT NULL,
+  `cuadrante_longitud_ini` varchar(1) COLLATE utf8_spanish_ci DEFAULT 'O',
+  `grados_latitud_fin` int(11) DEFAULT NULL,
+  `minutos_latitud_fin` decimal(8,2) DEFAULT NULL,
+  `cuadrante_latitud_fin` varchar(1) COLLATE utf8_spanish_ci DEFAULT 'S',
+  `grados_longitud_fin` int(11) DEFAULT NULL,
+  `minutos_longitud_fin` decimal(8,2) DEFAULT NULL,
+  `cuadrante_longitud_fin` varchar(1) COLLATE utf8_spanish_ci DEFAULT 'O',
+  `rumbo` int(11) DEFAULT NULL,
+  `profundidad` int(11) DEFAULT NULL,
+  `cable_estribor` int(11) DEFAULT NULL,
+  `cable_babor` int(11) DEFAULT NULL,
+  `minutos_arrastre` decimal(4,1) DEFAULT NULL,
+  `velocidad` decimal(5,2) DEFAULT NULL,
+  `captura_estribor` decimal(4,2) DEFAULT NULL,
+  `captura_babor` decimal(4,2) DEFAULT NULL,
+  `captura_estribor_buque` varchar(5) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `captura_babor_buque` varchar(5) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `comentarios` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `temperatura_superficie` decimal(5,2) DEFAULT NULL,
+  `temperatura_aire` decimal(5,2) DEFAULT NULL,
+  `temperatura_fondo` decimal(5,2) DEFAULT NULL,
+  `cod_estado_mar` int(11) DEFAULT NULL,
+  `nudos_viento` int(11) DEFAULT NULL,
+  `direccion_viento` int(11) DEFAULT NULL,
+  `largo_relinga_inferior` int(11) NOT NULL,
+  `mallero_copo_mm` int(11) NOT NULL,
+  `tipo_malla` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`idlance`),
+  UNIQUE KEY `idx_marea_fecha_hora` (`idmarea`,`fecha`,`hora`),
+  UNIQUE KEY `nro_lance_UNIQUE` (`idmarea`,`nro_lance`),
+  KEY `fk_lances_tipos_malla1_idx` (`tipo_malla`),
+  KEY `fk_lances_mareas1_idx` (`idmarea`),
+  KEY `idx_marea_fecha_lance` (`idmarea`,`fecha`,`nro_lance`),
+  KEY `idx_marea_lance` (`idmarea`,`idlance`),
+  KEY `fk_lances_estados_mar1_idx` (`cod_estado_mar`),
+  CONSTRAINT `fk_lances_estados_mar1` FOREIGN KEY (`cod_estado_mar`) REFERENCES `estados_mar` (`cod_estado_mar`),
+  CONSTRAINT `fk_lances_mareas` FOREIGN KEY (`idmarea`) REFERENCES `mareas` (`idmarea`),
+  CONSTRAINT `fk_lances_tipos_malla1` FOREIGN KEY (`tipo_malla`) REFERENCES `tipos_malla` (`tipo_malla`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `mareas`
+--
+
+DROP TABLE IF EXISTS `mareas`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `mareas` (
+  `idmarea` int(11) NOT NULL,
+  `nro_marea_inidep` int(11) NOT NULL,
+  `anio_marea` int(11) NOT NULL,
+  `marea_buque` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idbuque` int(11) NOT NULL,
+  `capitan` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `oficial` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `observador` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fecha_inicio` date DEFAULT NULL,
+  `fecha_zarpada` date DEFAULT NULL,
+  `fecha_arribo` date DEFAULT NULL,
+  `fecha_finalizacion` date DEFAULT NULL,
+  PRIMARY KEY (`idmarea`),
+  KEY `fk_mareas_buques_idx` (`idbuque`),
+  CONSTRAINT `fk_mareas_buques` FOREIGN KEY (`idbuque`) REFERENCES `buques` (`idbuque`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `muestras_biologicas`
+--
+
+DROP TABLE IF EXISTS `muestras_biologicas`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `muestras_biologicas` (
+  `idmuestras_biologicas` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `idtipos_muestras_biol` int(11) NOT NULL,
+  `idlance` int(11) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `latitud` decimal(10,4) DEFAULT NULL,
+  `cuadrante_latitud` varchar(1) COLLATE utf8_spanish_ci DEFAULT 'S',
+  `longitud` decimal(10,4) DEFAULT NULL,
+  `cuadrante_longitud` varchar(1) COLLATE utf8_spanish_ci DEFAULT 'O',
+  `nro_caja` int(11) DEFAULT NULL,
+  `contenido` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idmuestras_biologicas`),
+  KEY `fk_muestras_biologicas_cuadrantes_geograficos1_idx` (`cuadrante_latitud`),
+  KEY `fk_muestras_biologicas_cuadrantes_geograficos2_idx` (`cuadrante_longitud`),
+  KEY `fk_muestras_biologicas_mareas1_idx` (`idmarea`),
+  KEY `fk_muestras_biologicas_lances1_idx` (`idlance`),
+  KEY `fk_muestras_biologicas_tipos_muestras_biol1_idx` (`idtipos_muestras_biol`),
+  CONSTRAINT `fk_muestras_biologicas_cuadrantes_geograficos1` FOREIGN KEY (`cuadrante_latitud`) REFERENCES `cuadrantes_geograficos` (`Codigo`),
+  CONSTRAINT `fk_muestras_biologicas_cuadrantes_geograficos2` FOREIGN KEY (`cuadrante_longitud`) REFERENCES `cuadrantes_geograficos` (`Codigo`),
+  CONSTRAINT `fk_muestras_biologicas_lances1` FOREIGN KEY (`idlance`) REFERENCES `lances` (`idlance`) ON DELETE SET NULL,
+  CONSTRAINT `fk_muestras_biologicas_mareas1` FOREIGN KEY (`idmarea`) REFERENCES `mareas` (`idmarea`),
+  CONSTRAINT `fk_muestras_biologicas_tipos_muestras_biol1` FOREIGN KEY (`idtipos_muestras_biol`) REFERENCES `tipos_muestras_biol` (`idtipos_muestras_biol`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `muestras_bycatch`
+--
+
+DROP TABLE IF EXISTS `muestras_bycatch`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `muestras_bycatch` (
+  `idmuestras_bycatch` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `idlance` int(11) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `banda` varchar(3) COLLATE utf8_spanish_ci NOT NULL,
+  `peces` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `comentarios` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idmuestras_bycatch`),
+  KEY `fk_muestras_bycatch_mareas1_idx` (`idmarea`),
+  KEY `fk_muestras_bycatch_bandas1_idx` (`banda`),
+  KEY `fk_muestras_bycatch_lances1_idx` (`idlance`),
+  CONSTRAINT `fk_muestras_bycatch_bandas1` FOREIGN KEY (`banda`) REFERENCES `bandas` (`banda`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_muestras_bycatch_lances1` FOREIGN KEY (`idlance`) REFERENCES `lances` (`idlance`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `muestras_coccion`
+--
+
+DROP TABLE IF EXISTS `muestras_coccion`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `muestras_coccion` (
+  `idmuestras_coccion` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `idlance` int(11) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `banda` varchar(3) COLLATE utf8_spanish_ci NOT NULL,
+  `antes_valvas_vacias` int(11) DEFAULT NULL,
+  `antes_vivos` int(11) DEFAULT NULL,
+  `despues_valvas_vacias` int(11) DEFAULT NULL,
+  `despues_carnes` int(11) DEFAULT NULL,
+  `comentarios` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idmuestras_coccion`),
+  KEY `fk_muestras_coccion_mareas1_idx` (`idmarea`),
+  KEY `fk_muestras_coccion_bandas1_idx` (`banda`),
+  KEY `fk_muestras_coccion_lances1_idx` (`idlance`),
+  CONSTRAINT `fk_muestras_coccion_bandas1` FOREIGN KEY (`banda`) REFERENCES `bandas` (`banda`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_muestras_coccion_lances1` FOREIGN KEY (`idlance`) REFERENCES `lances` (`idlance`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `muestras_danio`
+--
+
+DROP TABLE IF EXISTS `muestras_danio`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `muestras_danio` (
+  `idmuestras_danio` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `idlance` int(11) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `banda` varchar(3) COLLATE utf8_spanish_ci NOT NULL,
+  `cant_ejemp_sd_01_20_antes` int(11) DEFAULT '0',
+  `cant_ejemp_sd_21_40_antes` int(11) DEFAULT '0',
+  `cant_ejemp_sd_41_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_sd_mas_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_sd_01_20_despues` int(11) DEFAULT '0',
+  `cant_ejemp_sd_21_40_despues` int(11) DEFAULT '0',
+  `cant_ejemp_sd_41_54_despues` int(11) DEFAULT '0',
+  `cant_ejemp_sd_mas_54_despues` int(11) DEFAULT '0',
+  `cant_ejemp_da_01_20_antes` int(11) DEFAULT '0',
+  `cant_ejemp_da_21_40_antes` int(11) DEFAULT '0',
+  `cant_ejemp_da_41_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_da_mas_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_da_01_20_despues` int(11) DEFAULT '0',
+  `cant_ejemp_da_21_40_despues` int(11) DEFAULT '0',
+  `cant_ejemp_da_41_54_despues` int(11) DEFAULT '0',
+  `cant_ejemp_da_mas_54_despues` int(11) DEFAULT '0',
+  `cant_ejemp_db_01_20_antes` int(11) DEFAULT '0',
+  `cant_ejemp_db_21_40_antes` int(11) DEFAULT '0',
+  `cant_ejemp_db_41_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_db_mas_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_db_01_20_despues` int(11) DEFAULT '0',
+  `cant_ejemp_db_21_40_despues` int(11) DEFAULT '0',
+  `cant_ejemp_db_41_54_despues` int(11) DEFAULT '0',
+  `cant_ejemp_db_mas_54_despues` int(11) DEFAULT '0',
+  `cant_ejemp_dc_01_20_antes` int(11) DEFAULT '0',
+  `cant_ejemp_dc_21_40_antes` int(11) DEFAULT '0',
+  `cant_ejemp_dc_41_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_dc_mas_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_dc_01_20_despues` int(11) DEFAULT '0',
+  `cant_ejemp_dc_21_40_despues` int(11) DEFAULT '0',
+  `cant_ejemp_dc_41_54_despues` int(11) DEFAULT '0',
+  `cant_ejemp_dc_mas_54_despues` int(11) DEFAULT '0',
+  `cant_ejemp_dd_01_20_antes` int(11) DEFAULT '0',
+  `cant_ejemp_dd_21_40_antes` int(11) DEFAULT '0',
+  `cant_ejemp_dd_41_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_dd_mas_54_antes` int(11) DEFAULT '0',
+  `cant_ejemp_dd_01_20_despues` int(11) DEFAULT '0',
+  `cant_ejemp_dd_21_40_despues` int(11) DEFAULT '0',
+  `cant_ejemp_dd_41_54_despues` int(11) DEFAULT '0',
+  `cant_ejemp_dd_mas_54_despues` int(11) DEFAULT '0',
+  `comentarios` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idmuestras_danio`),
+  KEY `fk_muestras_danio_mareas1_idx` (`idmarea`),
+  KEY `fk_muestras_danio_lances1_idx` (`idlance`),
+  CONSTRAINT `fk_muestras_danio_lances1` FOREIGN KEY (`idlance`) REFERENCES `lances` (`idlance`) ON DELETE CASCADE,
+  CONSTRAINT `fk_muestras_danio_mareas1` FOREIGN KEY (`idmarea`) REFERENCES `mareas` (`idmarea`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `muestras_rayas`
+--
+
+DROP TABLE IF EXISTS `muestras_rayas`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `muestras_rayas` (
+  `idmuestra_rayas` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `idlance` int(11) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `nro_dipturus` int(11) DEFAULT NULL,
+  `nro_bathyraja` int(11) DEFAULT NULL,
+  `nro_psammobatis` int(11) DEFAULT NULL,
+  `nro_amblyraja` int(11) DEFAULT NULL,
+  `lt_max_dipturus` int(11) DEFAULT NULL,
+  `lt_min_dipturus` int(11) DEFAULT NULL,
+  `lt_max_bathyraja` int(11) DEFAULT NULL,
+  `lt_min_bathyraja` int(11) DEFAULT NULL,
+  `lt_max_psammobatis` int(11) DEFAULT NULL,
+  `lt_min_psammobatis` int(11) DEFAULT NULL,
+  `lt_max_amblyraja` int(11) DEFAULT NULL,
+  `lt_min_amblyraja` int(11) DEFAULT NULL,
+  `comentarios` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idmuestra_rayas`),
+  KEY `fk_muestras_rayas_lances1_idx` (`idlance`),
+  KEY `fk_muestras_rayas_mareas1_idx` (`idmarea`),
+  CONSTRAINT `fk_muestras_rayas_lances1` FOREIGN KEY (`idlance`) REFERENCES `lances` (`idlance`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_muestras_rayas_mareas1` FOREIGN KEY (`idmarea`) REFERENCES `mareas` (`idmarea`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `muestras_rinde`
+--
+
+DROP TABLE IF EXISTS `muestras_rinde`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `muestras_rinde` (
+  `idmuestras_rinde` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `idlance` int(11) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `banda` varchar(3) COLLATE utf8_spanish_ci NOT NULL,
+  `peso_comercial` decimal(9,3) DEFAULT NULL,
+  `peso_no_comercial` decimal(9,3) DEFAULT NULL,
+  `peso_fauna_acomp` decimal(9,3) DEFAULT NULL,
+  `comentarios` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idmuestras_rinde`),
+  KEY `fk_muestras_rinde_mareas1_idx` (`idmarea`),
+  KEY `fk_muestras_rinde_bandas1_idx` (`banda`),
+  KEY `fk_muestras_rinde_lances1_idx` (`idlance`),
+  CONSTRAINT `fk_muestras_rinde_bandas1` FOREIGN KEY (`banda`) REFERENCES `bandas` (`banda`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_muestras_rinde_lances1` FOREIGN KEY (`idlance`) REFERENCES `lances` (`idlance`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `muestras_senasa_callos`
+--
+
+DROP TABLE IF EXISTS `muestras_senasa_callos`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `muestras_senasa_callos` (
+  `idmuestras_senasa_callos` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `nro_muestra` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `latitud` decimal(10,4) NOT NULL,
+  `cuadrante_latitud` varchar(1) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'S',
+  `longitud` decimal(10,4) NOT NULL,
+  `cuadrante_longitud` varchar(1) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'O',
+  `contramuestra1` int(11) NOT NULL,
+  `contramuestra2` int(11) NOT NULL,
+  `lab_mdp` int(11) NOT NULL,
+  `lab_bsas` int(11) NOT NULL,
+  PRIMARY KEY (`idmuestras_senasa_callos`),
+  UNIQUE KEY `idmarea_nro_muestra_UNIQUE` (`idmarea`,`nro_muestra`),
+  KEY `fk_muestras_senasa_callos_mareas1_idx` (`idmarea`),
+  KEY `fk_muestras_senasa_callos_cuadrantes_geograficos1_idx` (`cuadrante_latitud`),
+  KEY `fk_muestras_senasa_callos_cuadrantes_geograficos2_idx` (`cuadrante_longitud`),
+  CONSTRAINT `fk_muestras_senasa_callos_cuadrantes_geograficos1` FOREIGN KEY (`cuadrante_latitud`) REFERENCES `cuadrantes_geograficos` (`Codigo`),
+  CONSTRAINT `fk_muestras_senasa_callos_cuadrantes_geograficos2` FOREIGN KEY (`cuadrante_longitud`) REFERENCES `cuadrantes_geograficos` (`Codigo`),
+  CONSTRAINT `fk_muestras_senasa_callos_mareas1` FOREIGN KEY (`idmarea`) REFERENCES `mareas` (`idmarea`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `muestras_senasa_entera`
+--
+
+DROP TABLE IF EXISTS `muestras_senasa_entera`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `muestras_senasa_entera` (
+  `idmuestras_senasa_entera` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `nro_muestra` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `latitud` decimal(10,4) NOT NULL,
+  `cuadrante_latitud` varchar(1) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'S',
+  `longitud` decimal(10,4) NOT NULL,
+  `cuadrante_longitud` varchar(1) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'O',
+  `profundidad` int(11) DEFAULT NULL,
+  `temp_superficie` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`idmuestras_senasa_entera`),
+  UNIQUE KEY `idmarea_nro_muestra_UNIQUE` (`idmarea`,`nro_muestra`),
+  KEY `fk_muestras_senasa_entera_mareas1_idx` (`idmarea`),
+  KEY `fk_muestras_senasa_entera_cuadrantes_geograficos1_idx` (`cuadrante_latitud`),
+  KEY `fk_muestras_senasa_entera_cuadrantes_geograficos2_idx` (`cuadrante_longitud`),
+  CONSTRAINT `fk_muestras_senasa_entera_cuadrantes_geograficos1` FOREIGN KEY (`cuadrante_latitud`) REFERENCES `cuadrantes_geograficos` (`Codigo`),
+  CONSTRAINT `fk_muestras_senasa_entera_cuadrantes_geograficos2` FOREIGN KEY (`cuadrante_longitud`) REFERENCES `cuadrantes_geograficos` (`Codigo`),
+  CONSTRAINT `fk_muestras_senasa_entera_mareas1` FOREIGN KEY (`idmarea`) REFERENCES `mareas` (`idmarea`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `muestras_talla`
+--
+
+DROP TABLE IF EXISTS `muestras_talla`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `muestras_talla` (
+  `idmuestras_talla` int(11) NOT NULL,
+  `idmarea` int(11) NOT NULL,
+  `idlance` int(11) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `banda` varchar(3) COLLATE utf8_spanish_ci NOT NULL,
+  `cod_tipo_muestra` varchar(1) COLLATE utf8_spanish_ci NOT NULL,
+  `peso_total` decimal(9,3) DEFAULT NULL COMMENT 'Peso total de la muestra. Sólo en caso de que no se haya realizado rinde',
+  `comentarios` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idmuestras_talla`),
+  KEY `fk_muestras_talla_mareas1_idx` (`idmarea`),
+  KEY `fk_muestras_talla_bandas1_idx` (`banda`),
+  KEY `fk_muestras_talla_tipos_muestra1_idx` (`cod_tipo_muestra`),
+  KEY `fk_muestras_talla_lances1_idx` (`idlance`),
+  CONSTRAINT `fk_muestras_talla_bandas1` FOREIGN KEY (`banda`) REFERENCES `bandas` (`banda`),
+  CONSTRAINT `fk_muestras_talla_lances1` FOREIGN KEY (`idlance`) REFERENCES `lances` (`idlance`) ON DELETE SET NULL,
+  CONSTRAINT `fk_muestras_talla_tipos_muestra1` FOREIGN KEY (`cod_tipo_muestra`) REFERENCES `tipos_muestra` (`cod_tipo_muestra`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `poligonos_zonas_pesca_vieira`
+--
+
+DROP TABLE IF EXISTS `poligonos_zonas_pesca_vieira`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `poligonos_zonas_pesca_vieira` (
+  `idpoligonos_zonas_pesca_vieira` int(11) NOT NULL,
+  `idzonas_pesca_vieira` int(11) NOT NULL,
+  `denominacion` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `habilitado_para_pesca` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`idpoligonos_zonas_pesca_vieira`),
+  KEY `fk_poligonos_zonas_pesca_vieira_zonas_pesca_vieira1_idx` (`idzonas_pesca_vieira`),
+  CONSTRAINT `fk_poligonos_zonas_pesca_vieira_zonas_pesca_vieira1` FOREIGN KEY (`idzonas_pesca_vieira`) REFERENCES `zonas_pesca_vieira` (`idzonas_pesca_vieira`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `puntos_poligonos_zonas_pesca_vieira`
+--
+
+DROP TABLE IF EXISTS `puntos_poligonos_zonas_pesca_vieira`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `puntos_poligonos_zonas_pesca_vieira` (
+  `idpuntos_poligonos_zonas_pesca_vieira` int(11) NOT NULL,
+  `idpoligonos_zonas_pesca_vieira` int(11) NOT NULL,
+  `latitud` decimal(10,4) NOT NULL,
+  `longitud` decimal(10,4) NOT NULL,
+  PRIMARY KEY (`idpuntos_poligonos_zonas_pesca_vieira`),
+  KEY `fk_puntos_poligonos_zonas_pesca_vieira_poligonos_zonas_pesc_idx` (`idpoligonos_zonas_pesca_vieira`),
+  CONSTRAINT `fk_puntos_poligonos_zonas_pesca_vieira_poligonos_zonas_pesca_1` FOREIGN KEY (`idpoligonos_zonas_pesca_vieira`) REFERENCES `poligonos_zonas_pesca_vieira` (`idpoligonos_zonas_pesca_vieira`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `tallas`
+--
+
+DROP TABLE IF EXISTS `tallas`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `tallas` (
+  `talla` int(11) NOT NULL,
+  PRIMARY KEY (`talla`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `tipos_malla`
+--
+
+DROP TABLE IF EXISTS `tipos_malla`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `tipos_malla` (
+  `tipo_malla` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `orden` int(11) NOT NULL,
+  PRIMARY KEY (`tipo_malla`),
+  UNIQUE KEY `orden_UNIQUE` (`orden`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `tipos_muestra`
+--
+
+DROP TABLE IF EXISTS `tipos_muestra`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `tipos_muestra` (
+  `cod_tipo_muestra` varchar(1) COLLATE utf8_spanish_ci NOT NULL,
+  `tipo_muestra` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `orden` int(11) NOT NULL,
+  PRIMARY KEY (`cod_tipo_muestra`),
+  UNIQUE KEY `orden_UNIQUE` (`orden`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `tipos_muestras_biol`
+--
+
+DROP TABLE IF EXISTS `tipos_muestras_biol`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `tipos_muestras_biol` (
+  `idtipos_muestras_biol` int(11) NOT NULL,
+  `descripcion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `requiere_posicion` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`idtipos_muestras_biol`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `zonas_pesca_vieira`
+--
+
+DROP TABLE IF EXISTS `zonas_pesca_vieira`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `zonas_pesca_vieira` (
+  `idzonas_pesca_vieira` int(11) NOT NULL,
+  `resolucion_cfp` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_resolucion` date NOT NULL,
+  `descripcion` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `derogada` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idzonas_pesca_vieira`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+
+
+
+
+SET TIME_ZONE=@OLD_TIME_ZONE ;
+SET SQL_MODE=@OLD_SQL_MODE ;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS ;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS ;
+SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT ;
+SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS ;
+SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION ;
+SET SQL_NOTES=@OLD_SQL_NOTES ;
+
+
+
+-- ----------------------------------------------------
+-- Fin de la copia de seguridad: 05/06/2015 01:08
+-- ----------------------------------------------------
+
+

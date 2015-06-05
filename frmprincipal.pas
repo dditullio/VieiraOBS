@@ -9,7 +9,8 @@ uses
   Dialogs, Menus, ActnList, StdActns, ExtCtrls, ComCtrls, IniPropStorage,
   StdCtrls, Buttons, DbCtrls, frmbase, frmmareas,datGeneral, frmrindes,
   frmcoccion, frmmuestrasbiologicas, frmdanio, frmbycatch, frmtallas,
-  frmlances, frminformes, frmmuestrassenasa, frmSplashScreenForm, frmmuestrasrayas;
+  frmlances, frminformes, frmmuestrassenasa, frmSplashScreenForm, frmmuestrasrayas,
+  frmbackup;
 
 type
 
@@ -28,6 +29,7 @@ type
     acInformes: TAction;
     acSenasa: TAction;
     acRayas: TAction;
+    acBackup: TAction;
     alPrincipal: TActionList;
     apGeneral: TApplicationProperties;
     BitBtn1: TBitBtn;
@@ -65,6 +67,7 @@ type
     ToolButton10: TToolButton;
     ToolButton11: TToolButton;
     ToolButton12: TToolButton;
+    ToolButton13: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -74,6 +77,7 @@ type
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
     tsInicio: TTabSheet;
+    procedure acBackupExecute(Sender: TObject);
     procedure acByCatchExecute(Sender: TObject);
     procedure acCoccionExecute(Sender: TObject);
     procedure acDanioExecute(Sender: TObject);
@@ -194,6 +198,14 @@ begin
   ActivarForm(fmByCatch, imageindex);
 end;
 
+procedure TfmPrincipal.acBackupExecute(Sender: TObject);
+begin
+  if not Assigned(fmBackup) then
+    fmBackup:=TfmBackup.Create(Self);
+  CerrarOtrasHojas(nil);
+  fmbackup.ShowModal;
+end;
+
 procedure TfmPrincipal.acDanioExecute(Sender: TObject);
 var
   imageindex: integer=-1;
@@ -297,15 +309,15 @@ var
   ats: TStringList;
 begin
   ats:= TStringList.Create;
-  if F<>nil then
-  begin
+  //if F<>nil then
+  //begin
     //Buscar si está abierto en alguna pestaña
     for i:=0 to pcContenido.PageCount-1 do
     begin
-      if (Assigned(pcContenido.Pages[i])) and (pcContenido.Pages[i].Name<>'ts'+F.Name) then
+      if (Assigned(pcContenido.Pages[i])) and ((not Assigned (F)) or (pcContenido.Pages[i].Name<>'ts'+F.Name)) then
         ats.Add(pcContenido.Pages[i].Name);
     end;
-  end;
+  //end;
   for i:=0 to ats.Count-1 do
   begin
     pcContenido.FindComponent(ats[i]).Free;
@@ -320,7 +332,7 @@ begin
   //Habilito acciones de menu
   for i := 0 to Pred(alPrincipal.ActionCount) do
   begin
-    if (alPrincipal.Actions[i] is TAction) and (alPrincipal.Actions[i].Name<>'acMareas') then
+    if (alPrincipal.Actions[i] is TAction) and (alPrincipal.Actions[i].Tag=0) then
       begin
         (alPrincipal.Actions[i] as TAction).Enabled:=dmGeneral.IdMareaActiva>0;
       end;

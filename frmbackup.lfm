@@ -1,11 +1,11 @@
 object fmBackup: TfmBackup
-  Left = 239
-  Height = 377
-  Top = 116
+  Left = 267
+  Height = 433
+  Top = 146
   Width = 416
   BorderStyle = bsDialog
   Caption = 'Copia de seguridad'
-  ClientHeight = 377
+  ClientHeight = 433
   ClientWidth = 416
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -15,7 +15,7 @@ object fmBackup: TfmBackup
   object paProceso: TPanel
     Left = 0
     Height = 50
-    Top = 327
+    Top = 383
     Width = 416
     Align = alBottom
     BevelOuter = bvNone
@@ -42,16 +42,16 @@ object fmBackup: TfmBackup
   end
   object pcBackup: TPageControl
     Left = 0
-    Height = 262
+    Height = 318
     Top = 65
     Width = 416
-    ActivePage = tsRestaurar
+    ActivePage = tsBackup
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 1
     object tsBackup: TTabSheet
       Caption = 'Realizar copia de seguridad'
-      ClientHeight = 234
+      ClientHeight = 290
       ClientWidth = 408
       object gbDestino: TGroupBox
         Left = 5
@@ -68,7 +68,7 @@ object fmBackup: TfmBackup
           Left = 5
           Height = 23
           Top = 6
-          Width = 305
+          Width = 380
           OnAcceptDirectory = dedCarpetaArchivoAcceptDirectory
           ShowHidden = False
           ButtonWidth = 23
@@ -78,11 +78,78 @@ object fmBackup: TfmBackup
           OnChange = dedCarpetaArchivoChange
           OnExit = dedCarpetaArchivoExit
         end
+      end
+      object GroupBox1: TGroupBox
+        Left = 5
+        Height = 186
+        Top = 65
+        Width = 398
+        Align = alClient
+        BorderSpacing.Around = 5
+        Caption = 'Opciones adicionales'
+        ClientHeight = 168
+        ClientWidth = 394
+        TabOrder = 1
+        object ckCopiaTXT: TCheckBox
+          Left = 20
+          Height = 19
+          Top = 70
+          Width = 300
+          Caption = 'Incluir copia de datos en formato de texto delimitado'
+          Checked = True
+          State = cbChecked
+          TabOrder = 2
+        end
+        object Label2: TLabel
+          Left = 5
+          Height = 15
+          Top = 10
+          Width = 387
+          Alignment = taCenter
+          AutoSize = False
+          Caption = '>>> La copia de seguridad de almacenará en formato SQL <<<'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object ckEstructura: TCheckBox
+          Left = 180
+          Height = 19
+          Top = 40
+          Width = 200
+          Caption = 'Incluir estructura de base de datos'
+          Checked = True
+          OnChange = ckEstructuraChange
+          State = cbChecked
+          TabOrder = 1
+        end
+        object ckDatos: TCheckBox
+          Left = 20
+          Height = 19
+          Top = 40
+          Width = 85
+          Caption = 'Incluir datos'
+          Checked = True
+          OnChange = ckDatosChange
+          State = cbChecked
+          TabOrder = 0
+        end
+      end
+      object Panel2: TPanel
+        Left = 0
+        Height = 34
+        Top = 256
+        Width = 408
+        Align = alBottom
+        BevelOuter = bvNone
+        ClientHeight = 34
+        ClientWidth = 408
+        TabOrder = 2
         object bbGuardar: TBitBtn
-          Left = 315
+          Left = 110
           Height = 25
-          Top = 4
-          Width = 79
+          Top = 5
+          Width = 189
           Action = acBackup
           Glyph.Data = {
             36040000424D3604000000000000360000002800000010000000100000000100
@@ -120,68 +187,13 @@ object fmBackup: TfmBackup
             FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
             FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
           }
-          TabOrder = 1
-        end
-      end
-      object GroupBox1: TGroupBox
-        Left = 5
-        Height = 164
-        Top = 65
-        Width = 398
-        Align = alClient
-        BorderSpacing.Around = 5
-        Caption = 'Opciones adicionales'
-        ClientHeight = 146
-        ClientWidth = 394
-        TabOrder = 1
-        object ckCopiaTXT: TCheckBox
-          Left = 20
-          Height = 19
-          Top = 70
-          Width = 300
-          Caption = 'Incluir copia de datos en formato de texto delimitado'
-          Checked = True
-          State = cbChecked
-          TabOrder = 2
-        end
-        object Label2: TLabel
-          Left = 5
-          Height = 15
-          Top = 10
-          Width = 387
-          Alignment = taCenter
-          AutoSize = False
-          Caption = '>>> La copia de seguridad de almacenará en formato SQL <<<'
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
-        object ckEstructura: TCheckBox
-          Left = 180
-          Height = 19
-          Top = 40
-          Width = 200
-          Caption = 'Incluir estructura de base de datos'
-          Checked = True
-          State = cbChecked
-          TabOrder = 1
-        end
-        object ckDatos: TCheckBox
-          Left = 20
-          Height = 19
-          Top = 40
-          Width = 85
-          Caption = 'Incluir datos'
-          Checked = True
-          OnChange = ckDatosChange
-          State = cbChecked
           TabOrder = 0
         end
       end
     end
     object tsRestaurar: TTabSheet
       Caption = 'Restaurar copia de seguridad'
-      ClientHeight = 234
+      ClientHeight = 290
       ClientWidth = 408
       object gbDestino1: TGroupBox
         Left = 5
@@ -249,7 +261,7 @@ object fmBackup: TfmBackup
       object Panel1: TPanel
         Left = 0
         Height = 34
-        Top = 200
+        Top = 256
         Width = 408
         Align = alBottom
         BevelOuter = bvNone
@@ -263,40 +275,58 @@ object fmBackup: TfmBackup
           Width = 189
           Action = acRestaurar
           Glyph.Data = {
-            36040000424D3604000000000000360000002800000010000000100000000100
-            2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF001F1F
-            252F1D1D1FEC1C1B1EFF757575FF787878FF787878FF787878FF787878FF7878
-            78FF787878FF1A191BFF19191BFF1D1C1FFF1F1F21EFFFFFFF00FFFFFF002222
-            24ED2A2A2DFF323135FF8B8A8BFF29282BFF201F21FF909090FF909090FF9090
-            90FF909090FF343336FF201F21FF4E4D51FF212023FFFFFFFF00FFFFFF002524
-            26FF39383BFF39383BFF999999FF323134FF262528FF9F9F9FFF9F9F9FFF9F9F
-            9FFF9F9F9FFF3F3E41FF252426FF58575AFF252426FFFFFFFF00FFFFFF002A29
-            2BFF403F42FF403F42FFA7A7A7FF3D3C3FFF333335FFAEAEAEFFAEAEAEFFAEAE
-            AEFFAEAEAEFF414042FF272728FF444346FF2A292BFFFFFFFF00FFFFFF002E2D
-            30FF464549FF464549FFCDCDCDFFD6D6D6FFD5D5D6FFD5D5D5FFD6D6D6FFD6D6
-            D6FFD3D3D3FF272629FF242326FF464549FF2E2D30FFFFFFFF00FFFFFF003130
-            32FF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A
-            4DFF4B4A4DFF4B4A4DFF4B4A4DFF4B4A4DFF313032FFFFFFFF00FFFFFF003333
-            35FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF4F4E
-            51FF4F4E51FF4F4E51FF4F4E51FF4F4E51FF333335FFFFFFFF00FFFFFF003635
-            37FF535254FFE8DED4FFE8DDD0FFE8DDD0FFE8DDD0FFE7DCD0FFE7DCCFFFE7DB
-            CFFFE6DBCEFFE6DACDFFE6DACFFF535254FF363537FFFFFFFF00FFFFFF003837
-            39FF565557FFF1EAE2FFB8A28BFFB8A28BFFB8A28BFFB8A28BFFB7A18AFFB7A1
-            8AFFB7A08AFFB6A089FFEDE5DCFF565557FF383739FFFFFFFF00FFFFFF003B3A
-            3BFF5A595BFFF7F3EEFFF7F3EFFFF7F3EFFFF7F3EFFFF7F3EEFFF6F2EEFFF6F1
-            EDFFF5F0EBFFF4EFE9FFF3EDE7FF5A595BFF3B3A3BFFFFFFFF00FFFFFF003D3C
-            3DFF5D5C5EFFFDFCFBFFFBF9F8FFFBF9F9FFFBF9F8FFFBF9F8FFFAF8F7FFFAF7
-            F5FFF9F6F4FFF8F4F2FFF9F6F2FF5D5C5EFF3D3C3DFFFFFFFF00FFFFFF003F3E
-            40FF616062FFFDFAF9FFCFB69CFFCFB69CFFCFB69CFFCFB69CFFCFB69DFFCFB7
-            9DFFD0B79EFFD0B89FFFFEFDFDFF616062FF3F3E40FFFFFFFF00FFFFFF004140
-            42FF59595AFFFAF4F1FFFAF4F0FFFAF4F0FFFAF4F0FFFAF4F1FFFAF5F2FFFBF6
-            F3FFFCF8F5FFFCF9F7FFFDFBF9FF646365FF414042FFFFFFFF00FFFFFF004B4B
-            4CEF444344FFB9B4B3FFB9B4B3FFB9B4B3FFB9B4B3FFB9B6B4FFBBB6B4FFBCB8
-            B6FFBCB9B7FFBCB9B8FFBCB9B9FF444344FF4B4B4CEFFFFFFF00FFFFFF00FFFF
-            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+            76060000424D7606000000000000360000002800000014000000140000000100
+            2000000000004006000064000000640000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000010000
+            0001000000010000000100000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000050000004B3C3E3CAC3E3F3FAD0000004B000000050000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000154B4C4BC3B7B9B8FBDADB
+            DBFFDBDCDCFFBABCBBFD515151C8000000150000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00054C4D4CBACBCECDFFB1DAE7FF79D2EEFF79D2EEFFB0D9E4FFBBBDBDFF4B4C
+            4BBD000000050000000000000000000000000000000000000000000000000000
+            000000000000000000000000000129292982AEB3B1FC7CCDE6FF12B9F0FF00B5
+            F0FF00B6F0FF12BAF1FF77C5DDFF949696FC2424248200000001000000000000
+            00000000000000000000000000000000000000000000000000000D0D0D3C8E91
+            90F195C9D8FF07B6EEFF00B8F1FF00BDF2FF00BEF3FF00BBF2FF07B8F0FF82B2
+            C0FF6C6F6EF30409093B00000000000000000000000000000000000000000000
+            00000000000000000002626663C2ADC7CCFF1BB8EBFF00B8F0FF00C4F4FF0F9D
+            BDFF0F9FBEFF00CEF7FF00BDF2FF1AB9EAFF83979BFF505352C7000000020000
+            000000000000000000000000000000000000000000000000002B939997F35ABC
+            DBFF00B4ECFF00C1F3FF00D4F8FF206C79FF206D7AFF00E2FBFF00CBF6FF00B8
+            F0FF49A8C6FF6C6F6EF50000002B000000000000000000000000000000000000
+            00000000000140434297B2BEBDFF14B0E2FF00B6EEFF00C7F5FF00DBF9FF07C1
+            E0FF07C0E1FF00E9FCFF00D6F9FF00BDF2FF12AFE1FF808988FF3739399C0000
+            0001000000000000000000000000000000000000000C797E7BD677B8C9FF00AC
+            E3FF00B8F0FF00C9F6FF00D9FAFF198497FF1A8195FF00E4FCFF00D6F9FF00C2
+            F3FF00B0E6FF5996A9FF5C605EDF0000000C0000000000000000000000000000
+            00000404043DA3AAA7FA39AACDFF00ADE6FF00B8F1FF00C5F5FF00D3F9FF206A
+            79FF226774FF00DBFBFF00D2F9FF00C3F5FF00B1E9FF2B9DC1FF6F7372FC0404
+            043E000000000000000000000000000000002F313171B2B9B6FF1AA2CEFF00AE
+            E6FF00B6F0FF00C1F5FF00CCF9FF216777FF236371FF00D1FCFF00CBF9FF00C0
+            F5FF00B1E9FF159DCAFF797D7CFF2B2C2C770000000000000000000000000000
+            00014B4E4C9EB1BBBAFF0499CAFF00ADE5FF00B5F0FF00BBF4FF00C3F9FF2165
+            77FF236171FF00C9FCFF00C2F8FF00BAF3FF00AFE8FF039ACCFF7C8181FF4043
+            41A700000001000000000000000000000001606362BAA2BBBDFF0692BEFF009F
+            D3FF00ADE5FF00B5F0FF00BCF8FF1A7694FF1B7391FF00BFFBFF00B9F3FF00AF
+            E8FF00A1D6FF0593C1FF71898DFF4E5150C40000000100000000000000000000
+            0000777978B9CDD0CEFDC4D3D5FF6BB5CCFF149AC5FF00A4D9FF00B3EEFF00BC
+            F9FF00BDFBFF00B6F1FF00A6DCFF149BC7FF62ACC4FFAFBEC1FFAFB2B1FD6869
+            69C100000000000000000000000000000000000000016666663EA2A5A4C5CED2
+            D0F8D4DFE1FF50ADCBFF0098CAFF00A7DFFF00A8E0FF0099CCFF50AFCFFFD2DC
+            DFFFC3C4C4F9989B99CC5F5F5F41000000010000000000000000000000000000
+            0000000000000000000000000001666D662BC1C4C3E0ECEDECFFA8D6E4FF62B4
+            D0FF63B7D2FFABD9E7FFF0F1F1FFC2C3C2E46969692D00000001000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000003A2A3A3A3EFEFEFFCFBFCFBFFFFFFFFFFF5F5F5FDAAACACAB0000
+            0003000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000000000000148484819B9BA
+            BA8DBFBFBF924848481900000001000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000
           }
           TabOrder = 0
         end
@@ -313,13 +343,13 @@ object fmBackup: TfmBackup
       end
       object paMensajeEspera: TPanel
         Left = 0
-        Height = 115
+        Height = 171
         Top = 85
         Width = 408
         Align = alClient
         BevelOuter = bvNone
         Caption = 'Restaurando base de datos. Espere unos minutos por favor...'
-        ClientHeight = 115
+        ClientHeight = 171
         ClientWidth = 408
         Color = clBtnFace
         Font.Style = [fsBold]
@@ -328,7 +358,7 @@ object fmBackup: TfmBackup
         TabOrder = 2
         object meSQL: TMemo
           Left = 5
-          Height = 105
+          Height = 161
           Top = 5
           Width = 398
           Align = alClient
@@ -373,7 +403,7 @@ object fmBackup: TfmBackup
     left = 380
     top = 15
     object acBackup: TAction
-      Caption = 'Guardar'
+      Caption = 'Guardar copia de seguridad'
       OnExecute = acBackupExecute
     end
     object acRestaurar: TAction
@@ -547,20 +577,20 @@ object fmBackup: TfmBackup
     UseCommit = True
     UseDefines = True
     left = 145
-    top = 255
+    top = 220
   end
   object trRestaurar: TSQLTransaction
     Active = False
     Database = conRestaurar
     left = 90
-    top = 255
+    top = 220
   end
   object conRestaurar: TMySQL55Connection
     Connected = False
     LoginPrompt = False
     KeepConnection = False
     left = 20
-    top = 255
+    top = 220
   end
   object zqTriggers: TZQuery
     Connection = dmGeneral.zcDB
@@ -576,6 +606,6 @@ object fmBackup: TfmBackup
     ConnectionType = 'MySQL 5.5'
     LibraryName = 'libmysql.dll'
     left = 200
-    top = 255
+    top = 220
   end
 end

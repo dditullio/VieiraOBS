@@ -40,6 +40,7 @@ type
     paEncabezado: TPanel;
     Panel1: TPanel;
     paMensajeEspera: TPanel;
+    Panel2: TPanel;
     pcBackup: TPageControl;
     paProceso: TPanel;
     prBackup: TProcessUTF8;
@@ -63,6 +64,7 @@ type
     procedure acBackupExecute(Sender: TObject);
     procedure acRestaurarExecute(Sender: TObject);
     procedure ckDatosChange(Sender: TObject);
+    procedure ckEstructuraChange(Sender: TObject);
     procedure dedCarpetaArchivo1AcceptFileName(Sender: TObject;
       var Value: String);
     procedure dedCarpetaArchivoAcceptDirectory(Sender: TObject;
@@ -100,8 +102,8 @@ type
 
 const
     NEWLINE=#13#10;
-    PREFIJO_BKP='BKP_DB_VIEIRA_';
-    CARPETA_TEMP='VieiraOBS';
+    PREFIJO_BKP='BKP_DB_CENTOLLA_';
+    CARPETA_TEMP='CentollaOBS';
     CADENA_TABLAS='TABLAS';
     CADENA_RUTINAS='RUTINAS';
     EXTENSION_ARCH_BACKUP='.obk';
@@ -364,6 +366,12 @@ begin
   ckCopiaTXT.Enabled:=ckDatos.Checked;
   if ckDatos.Checked=False then
      ckCopiaTXT.Checked:=False;
+  HabilitarAcciones;
+end;
+
+procedure TfmBackup.ckEstructuraChange(Sender: TObject);
+begin
+    HabilitarAcciones;
 end;
 
 procedure TfmBackup.dedCarpetaArchivo1AcceptFileName(Sender: TObject;
@@ -570,7 +578,8 @@ end;
 
 procedure TfmBackup.HabilitarAcciones;
 begin
-   acBackup.Enabled:=((dedCarpetaArchivo.Directory<>'') and DirectoryExistsUTF8(dedCarpetaArchivo.Directory));
+   acBackup.Enabled:=((dedCarpetaArchivo.Directory<>'') and DirectoryExistsUTF8(dedCarpetaArchivo.Directory)
+   and(ckDatos.Checked or ckEstructura.Checked));
    acRestaurar.Enabled:=((edArchivoSQL.Text<>'') and FileExistsUTF8(edArchivoSQL.Text));
 end;
 

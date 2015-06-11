@@ -21,7 +21,9 @@ type
     acBackup: TAction;
     alBackup: TActionList;
     bbGuardar: TBitBtn;
-    bbGuardar1: TBitBtn;
+    bbRestaurar: TBitBtn;
+    ckRestaurarEstructura: TCheckBox;
+    ckRestaurarDatos: TCheckBox;
     ckCopiaTXT: TCheckBox;
     ckEstructura: TCheckBox;
     ckDatos: TCheckBox;
@@ -30,11 +32,12 @@ type
     gbDestino: TGroupBox;
     gbDestino1: TGroupBox;
     GroupBox1: TGroupBox;
+    gbOpcRestauracion: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Label4: TLabel;
     conRestaurar: TMySQL55Connection;
+    laVistaPreliminar: TLabel;
     meSQL: TMemo;
     odRestaurar: TOpenDialog;
     paEncabezado: TPanel;
@@ -45,7 +48,7 @@ type
     paProceso: TPanel;
     prBackup: TProcessUTF8;
     pbProceso: TProgressBar;
-    sbRestaurar: TSpeedButton;
+    sbCargarArchivo: TSpeedButton;
     scRestaurar: TSQLScript;
     dblRestaurar: TSQLDBLibraryLoader;
     trRestaurar: TSQLTransaction;
@@ -65,6 +68,8 @@ type
     procedure acRestaurarExecute(Sender: TObject);
     procedure ckDatosChange(Sender: TObject);
     procedure ckEstructuraChange(Sender: TObject);
+    procedure ckRestaurarDatosChange(Sender: TObject);
+    procedure ckRestaurarEstructuraChange(Sender: TObject);
     procedure dedCarpetaArchivo1AcceptFileName(Sender: TObject;
       var Value: String);
     procedure dedCarpetaArchivoAcceptDirectory(Sender: TObject;
@@ -74,20 +79,20 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure sbRestaurarClick(Sender: TObject);
-    function EjecutarRestauracion(proc_tablas, proc_rutinas:Boolean): Boolean;
+    procedure sbCargarArchivoClick(Sender: TObject);
+    function EjecutarRestauracion(proc_tablas, proc_datos, proc_rutinas:Boolean): Boolean;
     procedure zqRutinasBeforeOpen(DataSet: TDataSet);
   private
     { private declarations }
     Procedure HabilitarAcciones;
-    procedure ExportarDB_SQL(archivo_tablas, archivo_rutinas: string);
+    procedure ExportarDB_SQL(archivo_tablas, archivo_datos, archivo_rutinas: string);
     procedure ExportarDB_TXT(carpeta: string);
     function SentenciaCreateTable(tabla:string):string;
     function SentenciaCreateView(vista:string):string;
     function SentenciaInsert(tabla:string):string;
     function FormatField(f: TField):string;
     function CrearEstructuraVista(vista:string):string;
-    procedure CrearTablasYDatos(var str_sql: TStringList; crear_estructura:Boolean=True;incluir_datos:Boolean=True);
+    procedure CrearTablasYDatos(var str_sql_tablas, str_sql_datos: TStringList; crear_estructura:Boolean=True;incluir_datos:Boolean=True);
     procedure CrearEncabezadoTablas(var str_sql: TStringList);
     procedure CrearPieTablas(var str_sql: TStringList);
     procedure GenerarEstructuraVistas(var str_sql: TStringList);
@@ -102,9 +107,10 @@ type
 
 const
     NEWLINE=#13#10;
-    PREFIJO_BKP='BKP_DB_CENTOLLA_';
-    CARPETA_TEMP='CentollaOBS';
+    PREFIJO_BKP='BKP_DB_VIEIRA_';
+    CARPETA_TEMP='VieiraOBS';
     CADENA_TABLAS='TABLAS';
+    CADENA_DATOS='DATOS';
     CADENA_RUTINAS='RUTINAS';
     EXTENSION_ARCH_BACKUP='.obk';
     INSERT_SIMPLE=0;
@@ -225,7 +231,7 @@ const
 
 var
   fmBackup: TfmBackup;
-  sl_tablas, sl_rutinas: TStringList;
+  sl_tablas, sl_datos, sl_rutinas: TStringList;
 
 implementation
 
@@ -244,7 +250,7 @@ procedure TfmBackup.acBackupExecute(Sender: TObject);
 var
   temp_dir: string;
   str_fecha: string;
-  nombre_base, archivo_backup_tablas, archivo_backup_rutinas, archivo_zip, archivo_txt, tabla: string;
+  nombre_base, archivo_backup_tablas, archivo_backup_datos, archivo_backup_rutinas, archivo_zip, archivo_txt, tabla: string;
 begin
 
     temp_dir:=GetTempDir;
@@ -255,12 +261,13 @@ begin
     str_fecha:=FormatDateTime('yyyy-mm-dd-hhmm', Now);
     nombre_base:=temp_dir+DirectorySeparator+PREFIJO_BKP;
     archivo_backup_tablas:=nombre_base+CADENA_TABLAS+EXTENSION_ARCH_BACKUP;
+    archivo_backup_datos:=nombre_base+CADENA_DATOS+EXTENSION_ARCH_BACKUP;
     archivo_backup_rutinas:=nombre_base+CADENA_RUTINAS+EXTENSION_ARCH_BACKUP;
 
     paProceso.Visible:=True;
 
     //Generar archivos SQL
-    ExportarDB_SQL(archivo_backup_tablas, archivo_backup_rutinas);
+    ExportarDB_SQL(archivo_backup_tablas, archivo_backup_datos, archivo_backup_rutinas);
 
     if ckCopiaTXT.Checked then
     begin
@@ -270,7 +277,7 @@ begin
     paProceso.Visible:=False;
 
     //Comprimir en ZIP
-    if FileExistsUTF8(archivo_backup_tablas) then
+    if FileExistsUTF8(archivo_backup_tablas) or FileExistsUTF8(archivo_backup_datos) then
     begin
       archivo_zip:=dedCarpetaArchivo.Directory+DirectorySeparator+PREFIJO_BKP+str_fecha+'.zip';
       if FileExistsUTF8(archivo_zip) then
@@ -279,13 +286,18 @@ begin
       azBackup.FileName:=archivo_zip;
 
       //Agego los archivos de script
-      azBackup.AddFiles(archivo_backup_tablas,0);
-      if ckEstructura.Checked then
+      if FileExistsUTF8(archivo_backup_tablas) then
+         azBackup.AddFiles(archivo_backup_tablas,0);
+      if FileExistsUTF8(archivo_backup_datos) then
+         azBackup.AddFiles(archivo_backup_datos,0);
+      if FileExistsUTF8(archivo_backup_rutinas) then
          azBackup.AddFiles(archivo_backup_rutinas,0);
 
       //Borro los archivos porque ya no se necesitan
-      DeleteFileUTF8(archivo_backup_tablas);
-
+      if FileExistsUTF8(archivo_backup_tablas) then
+         DeleteFileUTF8(archivo_backup_tablas);
+      if FileExistsUTF8(archivo_backup_datos) then
+         DeleteFileUTF8(archivo_backup_datos);
       if FileExistsUTF8(archivo_backup_rutinas) then
          DeleteFileUTF8(archivo_backup_rutinas);
 
@@ -331,7 +343,7 @@ end;
 procedure TfmBackup.acRestaurarExecute(Sender: TObject);
 var
   str_confirm: string;
-  proc_tablas, proc_rutinas: Boolean;
+  proc_tablas, proc_datos, proc_rutinas: Boolean;
 begin
     if MessageDlg('ATENCIÓN!!!','La restauración de una copia de seguridad es una operación que destruye toda la información actual registrada en la aplicación, y la reemplaza por los datos contenidos en la copia de seguridad. ¿Está seguro de que desea perder los datos actuales?', mtConfirmation, [mbYes, mbNo],0, mbNo) = mrYes then
     begin
@@ -341,10 +353,11 @@ begin
         if LowerCase(str_confirm)=LowerCase('Voy a perder mis datos actuales') then
         begin
           //Se inicia la restauración
-          proc_tablas:=true;
-          proc_rutinas:=Assigned(sl_rutinas) and (sl_rutinas.Count>0);
+          proc_tablas:=ckRestaurarEstructura.Checked and Assigned(sl_tablas) and (sl_tablas.Count>0);
+          proc_datos:=ckRestaurarDatos.Checked and Assigned(sl_datos) and (sl_datos.Count>0);
+          proc_rutinas:=ckRestaurarEstructura.Checked and Assigned(sl_rutinas) and (sl_rutinas.Count>0);
 
-          if EjecutarRestauracion (proc_tablas, proc_rutinas) then
+          if EjecutarRestauracion (proc_tablas, proc_datos, proc_rutinas) then
           begin
              MessageDlg('El proceso de restauración ha finalizado.', mtInformation, [mbOK],0);
              Close;
@@ -370,6 +383,16 @@ begin
 end;
 
 procedure TfmBackup.ckEstructuraChange(Sender: TObject);
+begin
+    HabilitarAcciones;
+end;
+
+procedure TfmBackup.ckRestaurarDatosChange(Sender: TObject);
+begin
+    HabilitarAcciones;
+end;
+
+procedure TfmBackup.ckRestaurarEstructuraChange(Sender: TObject);
 begin
     HabilitarAcciones;
 end;
@@ -408,8 +431,10 @@ procedure TfmBackup.FormShow(Sender: TObject);
 var
   destino:String;
 begin
-    if not Assigned(sl_tablas) then
-       sl_tablas:=TStringList.Create;
+  if not Assigned(sl_tablas) then
+     sl_tablas:=TStringList.Create;
+  if not Assigned(sl_datos) then
+     sl_datos:=TStringList.Create;
     if not Assigned(sl_rutinas) then
        sl_rutinas:=TStringList.Create;
 
@@ -426,11 +451,11 @@ begin
   HabilitarAcciones;
 end;
 
-procedure TfmBackup.sbRestaurarClick(Sender: TObject);
+procedure TfmBackup.sbCargarArchivoClick(Sender: TObject);
 var
   i:Integer;
   temp_dir: string;
-  script_tablas, script_rutinas:string;
+  script_tablas, script_datos, script_rutinas:string;
 begin
   odRestaurar.InitialDir:=dedCarpetaArchivo.Directory;
   if odRestaurar.Execute then
@@ -439,7 +464,7 @@ begin
     HabilitarAcciones;
 
     //Para verificar que sea un archivo de copia de seguridad aceptable,
-    //Extraigo los archivos, verifico que existan los 2 SQLS (.obk), y que la
+    //Extraigo los archivos, verifico que exista alguno de los 2 SQLS de tablas(.obk), y que la
     //cabecera sea correcta
     temp_dir:=GetTempDir;
      if not DirectoryExistsUTF8(temp_dir+DirectorySeparator+CARPETA_TEMP) then
@@ -451,16 +476,18 @@ begin
     auzBackup.ExtractFiles('*'+EXTENSION_ARCH_BACKUP);
 
     script_tablas:=temp_dir+DirectorySeparator+PREFIJO_BKP+CADENA_TABLAS+EXTENSION_ARCH_BACKUP;
+    script_datos:=temp_dir+DirectorySeparator+PREFIJO_BKP+CADENA_DATOS+EXTENSION_ARCH_BACKUP;
     script_rutinas:=temp_dir+DirectorySeparator+PREFIJO_BKP+CADENA_RUTINAS+EXTENSION_ARCH_BACKUP;
 
-    if FileExistsUTF8(script_tablas) then
+    if FileExistsUTF8(script_tablas) or FileExistsUTF8(script_datos) or FileExistsUTF8(script_rutinas) then
     begin
-      sl_tablas.LoadFromFile(script_tablas);
-      //Si la copia de seguridad es sólo de datos, no existe el archivo de rutinas
+      if FileExistsUTF8(script_tablas) then
+            sl_tablas.LoadFromFile(script_tablas);
+      if FileExistsUTF8(script_datos) then
+            sl_datos.LoadFromFile(script_datos);
       if FileExistsUTF8(script_rutinas) then
-      begin
            sl_rutinas.LoadFromFile(script_rutinas);
-      end;
+
       //Se oculta el memo para acelerar la carga del texto
       meSQL.Visible:=False;
       meSQL.Text:=sl_tablas.Text;
@@ -468,19 +495,29 @@ begin
       meSQL.Visible:=True;
 
       //Leo sólo uno de los archivos para verificar
-      if (sl_tablas[0] <> '-- ---------------------------------------------')
+      if ((sl_tablas.Count>0) and((sl_tablas[0] <> '-- ---------------------------------------------')
          or (sl_tablas[1] <> '-- Tablas y datos de la base de datos "'+dmGeneral.zcDB.Database+'"')
          or (sl_tablas[2] <> '-- Generado desde la aplicación "'+ApplicationName+'"')
-         or (sl_tablas[4] <> '-- ---------------------------------------------') then
+         or (sl_tablas[4] <> '-- ---------------------------------------------'))) or
+      ((sl_datos.Count>0) and((sl_tablas[0] <> '-- ---------------------------------------------')
+         or (sl_datos[1] <> '-- Tablas y datos de la base de datos "'+dmGeneral.zcDB.Database+'"')
+         or (sl_datos[2] <> '-- Generado desde la aplicación "'+ApplicationName+'"')
+         or (sl_datos[4] <> '-- ---------------------------------------------'))) then
       begin
         if MessageDlg('Advertencia','El archivo seleccionado no parece ser una copia de seguridad generada por esta aplicación. Pueden generarse daños en los datos, perderse toda la información registrada, o inutilizar totalmente esta aplicación. ¿Está seguro de que desea utilizar este archivo?', mtWarning, [mbYes, mbNo],0, mbNo) = mrNo then
         begin
           meSQL.Clear;
           edArchivoSQL.Text:='';
+          sl_tablas.Clear;
+          sl_datos.Clear;
+          sl_rutinas.Clear;
           HabilitarAcciones;
         end;
       end;
-       DeleteFileUTF8(script_tablas);
+      if FileExistsUTF8(script_tablas) then
+         DeleteFileUTF8(script_tablas);
+      if FileExistsUTF8(script_datos) then
+         DeleteFileUTF8(script_datos);
       if FileExistsUTF8(script_rutinas) then
          DeleteFileUTF8(script_rutinas);
     end else
@@ -488,13 +525,18 @@ begin
       MessageDlg('El archivo seleccionado no parece ser una copia de seguridad realizada por esta aplicación. No se puede procesar el archivo', mtError, [mbOK],0);
       meSQL.Clear;
       edArchivoSQL.Text:='';
+      sl_tablas.Clear;
+      sl_datos.Clear;
+      sl_rutinas.Clear;
       HabilitarAcciones;
     end;
+    ckRestaurarEstructura.Enabled:=(sl_tablas.Count>0) or (sl_rutinas.Count>0);
+    ckRestaurarDatos.Enabled:=(sl_datos.Count>0);
   end;
-
 end;
 
-function TfmBackup.EjecutarRestauracion(proc_tablas, proc_rutinas: Boolean): Boolean;
+function TfmBackup.EjecutarRestauracion(proc_tablas, proc_datos,
+    proc_rutinas: Boolean): Boolean;
 var
   restOK: boolean;
   linea: string;
@@ -507,7 +549,7 @@ begin
    paMensajeEspera.Cursor:=crHourGlass;
    Application.ProcessMessages;
    restOK:=False;
-   if (proc_tablas or proc_rutinas) then
+   if (proc_tablas or proc_datos or proc_rutinas) then
    begin
        //Se utilizan los componentes de SQLdb ya que los de ZeosDB no permiten la ejecución de un script
        //Se copian los datos de conección desde la base de datos general
@@ -527,6 +569,13 @@ begin
          begin
              scRestaurar.Terminator:=';';
              scRestaurar.Script.Text:=sl_tablas.Text;
+             scRestaurar.ExecuteScript;
+         end;
+
+         if proc_datos then
+         begin
+             scRestaurar.Terminator:=';';
+             scRestaurar.Script.Text:=sl_datos.Text;
              scRestaurar.ExecuteScript;
          end;
 
@@ -580,12 +629,14 @@ procedure TfmBackup.HabilitarAcciones;
 begin
    acBackup.Enabled:=((dedCarpetaArchivo.Directory<>'') and DirectoryExistsUTF8(dedCarpetaArchivo.Directory)
    and(ckDatos.Checked or ckEstructura.Checked));
-   acRestaurar.Enabled:=((edArchivoSQL.Text<>'') and FileExistsUTF8(edArchivoSQL.Text));
+   acRestaurar.Enabled:=(ckRestaurarEstructura.Checked or ckRestaurarDatos.Checked) and ((edArchivoSQL.Text<>'') and FileExistsUTF8(edArchivoSQL.Text));
 end;
 
-procedure TfmBackup.ExportarDB_SQL(archivo_tablas, archivo_rutinas: string);
+procedure TfmBackup.ExportarDB_SQL(archivo_tablas, archivo_datos,
+    archivo_rutinas: string);
 var
    str_sql_tablas: TStringList;
+   str_sql_datos: TStringList;
    str_sql_rutinas: TStringList;
 begin
 
@@ -593,21 +644,34 @@ begin
 
    //Se utiliza un StringList para almacenar el código del script
    str_sql_tablas:=TStringList.Create;
+   str_sql_datos:=TStringList.Create;
 
    //Se arma un encabezado con las variables de inicio del script
-   CrearEncabezadoTablas(str_sql_tablas);
+   if ckEstructura.Checked then
+      CrearEncabezadoTablas(str_sql_tablas);
+   if ckDatos.Checked then
+      CrearEncabezadoTablas(str_sql_datos);
 
-   CrearTablasYDatos(str_sql_tablas, ckEstructura.Checked, ckDatos.Checked);
+   CrearTablasYDatos(str_sql_tablas, str_sql_datos, ckEstructura.Checked, ckDatos.Checked);
 
    //Se agrega el seteo de variables al final
-   CrearPieTablas(str_sql_tablas);
+   if ckEstructura.Checked then
+      CrearPieTablas(str_sql_tablas);
+   if ckDatos.Checked then
+      CrearPieTablas(str_sql_datos);
 
-  if archivo_tablas <> '' then
+   if (archivo_tablas <> '') and (str_sql_tablas.Count>0) then
+    begin
+      str_sql_tablas.SaveToFile(archivo_tablas);
+    end;
+
+   if (archivo_datos <> '') and (str_sql_datos.Count>0) then
    begin
-     str_sql_tablas.SaveToFile(archivo_tablas);
+     str_sql_datos.SaveToFile(archivo_datos);
    end;
 
-   str_sql_tablas.Free;
+  str_sql_tablas.Free;
+  str_sql_datos.Free;
 
    if ckEstructura.Checked then
    begin
@@ -642,7 +706,7 @@ begin
           str_sql_rutinas.SaveToFile(archivo_rutinas);
      end;
 
-      str_sql_rutinas.Free;
+     str_sql_rutinas.Free;
   end;
 end;
 
@@ -937,8 +1001,9 @@ begin
      result:=sentencia;
 end;
 
-procedure TfmBackup.CrearTablasYDatos(var str_sql: TStringList;
-  crear_estructura: Boolean; incluir_datos: Boolean);
+procedure TfmBackup.CrearTablasYDatos(var str_sql_tablas,
+    str_sql_datos: TStringList; crear_estructura: Boolean;
+    incluir_datos: Boolean);
 var
    tabla: string;
 begin
@@ -957,17 +1022,21 @@ begin
        tabla:=zqTablasYVistas.FieldByName('Tables_in_'+dmGeneral.zcDB.Database).AsString;
        if crear_estructura then
        begin
-              str_sql.Add(SentenciaCreateTable(tabla));
+              str_sql_tablas.Add(SentenciaCreateTable(tabla));
        end;
        if incluir_datos then
        begin
-            str_sql.Add(SentenciaInsert(tabla));
+            str_sql_datos.Add(SentenciaInsert(tabla));
        end;
        Application.ProcessMessages;
        Next;
      end;
    end;
-   str_sql.Add(NEWLINE);
+
+    if crear_estructura then
+       str_sql_tablas.Add(NEWLINE);
+    if incluir_datos then
+       str_sql_datos.Add(NEWLINE);
 end;
 
 procedure TfmBackup.CrearEncabezadoTablas(var str_sql: TStringList);

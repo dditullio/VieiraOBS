@@ -22,6 +22,7 @@ type
     alBackup: TActionList;
     bbGuardar: TBitBtn;
     bbRestaurar: TBitBtn;
+    ckIncluirAplicacion: TCheckBox;
     ckRestaurarEstructura: TCheckBox;
     ckRestaurarDatos: TCheckBox;
     ckCopiaTXT: TCheckBox;
@@ -324,6 +325,12 @@ begin
             Next;
           end;
         end;
+      end;
+
+      //Incluyo el ejecutable si así se indicó
+      if ckIncluirAplicacion.Checked then
+      begin
+        azBackup.AddFiles(Application.ExeName,0);
       end;
 
       azBackup.CloseArchive;

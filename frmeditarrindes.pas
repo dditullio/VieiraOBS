@@ -18,6 +18,9 @@ type
     dbdtFecha: TDBDateTimePicker;
     dbdtHora: TDtDBTimeEdit;
     dbedComercial: TDBEdit;
+    dbedBaldeComercial: TDBEdit;
+    dbedBaldeNoComercial: TDBEdit;
+    dbedBaldeByCatch: TDBEdit;
     dbedNoComercial: TDBEdit;
     dbedByCatch: TDBEdit;
     dblkBanda: TDBLookupComboBox;
@@ -25,13 +28,19 @@ type
     dsBandas: TDataSource;
     dsRindeAnt: TDataSource;
     Label1: TLabel;
+    Label10: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     paFechaHora: TPanel;
+    zqPrincipalpeso_balde_comercial: TFloatField;
+    zqPrincipalpeso_balde_fauna_acomp: TFloatField;
+    zqPrincipalpeso_balde_no_comercial: TFloatField;
     zqRindeAnt: TZQuery;
     zqPrincipalDscBanda: TStringField;
     zqBandas: TZQuery;
@@ -54,6 +63,9 @@ type
     zqRindeAntidlance: TLongintField;
     zqRindeAntidmarea: TLongintField;
     zqRindeAntidmuestras_rinde: TLongintField;
+    zqRindeAntpeso_balde_comercial: TFloatField;
+    zqRindeAntpeso_balde_fauna_acomp: TFloatField;
+    zqRindeAntpeso_balde_no_comercial: TFloatField;
     zqRindeAntpeso_comercial: TFloatField;
     zqRindeAntpeso_fauna_acomp: TFloatField;
     zqRindeAntpeso_no_comercial: TFloatField;
@@ -149,6 +161,13 @@ begin
     //Si no hay registro anterior, comienzo por la banda de estribor
     zqPrincipalbanda.AsString:='E';
   end;
+  //Repito los pesos de los baldes
+  if not zqRindeAntpeso_balde_comercial.IsNull then
+     zqPrincipalpeso_balde_comercial.Value:=zqRindeAntpeso_balde_comercial.Value;
+  if not zqRindeAntpeso_balde_no_comercial.IsNull then
+     zqPrincipalpeso_balde_no_comercial.Value:=zqRindeAntpeso_balde_no_comercial.Value;
+  if not zqRindeAntpeso_balde_fauna_acomp.IsNull then
+     zqPrincipalpeso_balde_fauna_acomp.Value:=zqRindeAntpeso_balde_fauna_acomp.Value;
 end;
 
 procedure TfmEditarRindes.zqRindeAntBeforeOpen(DataSet: TDataSet);

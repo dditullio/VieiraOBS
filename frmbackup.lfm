@@ -132,6 +132,14 @@ object fmBackup: TfmBackup
           State = cbChecked
           TabOrder = 0
         end
+        object ckIncluirAplicacion: TCheckBox
+          Left = 20
+          Height = 19
+          Top = 100
+          Width = 230
+          Caption = 'Incluir aplicación (programa ejecutable)'
+          TabOrder = 3
+        end
       end
       object Panel2: TPanel
         Left = 0
@@ -607,21 +615,21 @@ object fmBackup: TfmBackup
     UseSetTerm = True
     UseCommit = True
     UseDefines = True
-    left = 145
-    top = 220
+    left = 155
+    top = 330
   end
   object trRestaurar: TSQLTransaction
     Active = False
     Database = conRestaurar
-    left = 90
-    top = 220
+    left = 100
+    top = 330
   end
   object conRestaurar: TMySQL55Connection
     Connected = False
     LoginPrompt = False
     KeepConnection = False
-    left = 20
-    top = 220
+    left = 30
+    top = 330
   end
   object zqTriggers: TZQuery
     Connection = dmGeneral.zcDB
@@ -636,7 +644,7 @@ object fmBackup: TfmBackup
     Enabled = False
     ConnectionType = 'MySQL 5.5'
     LibraryName = 'libmysql.dll'
-    left = 200
-    top = 220
+    left = 210
+    top = 330
   end
 end

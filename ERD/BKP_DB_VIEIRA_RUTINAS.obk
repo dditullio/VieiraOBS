@@ -2,7 +2,7 @@ DELIMITER $$
 -- ---------------------------------------------
 -- Rutinas de la base de datos "vieira"
 -- realizada desde la aplicación "Vieira OBS"
--- Fecha y hora de resguardo: 11/06/2015 20:09
+-- Fecha y hora de resguardo: 11/06/2015 22:36
 -- ---------------------------------------------
 
 -- -----------------------------------------------------
@@ -651,6 +651,9 @@ CREATE VIEW `v_muestras_rinde` AS SELECT 1 AS `idmuestras_rinde`,
 1 AS `peso_comercial`,
 1 AS `peso_no_comercial`,
 1 AS `peso_fauna_acomp`,
+1 AS `peso_comercial_bruto`,
+1 AS `peso_no_comercial_bruto`,
+1 AS `peso_fauna_acomp_bruto`,
 1 AS `peso_total`,
 1 AS `rinde_total`,
 1 AS `rinde_comercial`,
@@ -1928,7 +1931,7 @@ SET @saved_col_connection     = @@collation_connection $$
 SET character_set_client      = utf8 $$
 SET character_set_results     = utf8 $$
 SET collation_connection      = utf8_general_ci $$
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_muestras_rinde` AS select `mr`.`idmuestras_rinde` AS `idmuestras_rinde`,`mr`.`idmarea` AS `idmarea`,`mr`.`fecha` AS `fecha`,`mr`.`hora` AS `hora`,`mr`.`idlance` AS `idlance`,`l`.`nro_lance` AS `nrolance`,`mr`.`banda` AS `banda`,concat(convert(`l`.`nro_lance` using utf8),' ',`mr`.`banda`) AS `lance_banda`,`mr`.`peso_comercial` AS `peso_comercial`,`mr`.`peso_no_comercial` AS `peso_no_comercial`,`mr`.`peso_fauna_acomp` AS `peso_fauna_acomp`,((`mr`.`peso_comercial` + `mr`.`peso_no_comercial`) + `mr`.`peso_fauna_acomp`) AS `peso_total`,cast((((`mr`.`peso_comercial` + `mr`.`peso_no_comercial`) * 100) / ((`mr`.`peso_comercial` + `mr`.`peso_no_comercial`) + `mr`.`peso_fauna_acomp`)) as decimal(5,2)) AS `rinde_total`,cast(((`mr`.`peso_comercial` * 100) / ((`mr`.`peso_comercial` + `mr`.`peso_no_comercial`) + `mr`.`peso_fauna_acomp`)) as decimal(5,2)) AS `rinde_comercial`,`mr`.`comentarios` AS `comentarios` from (`muestras_rinde` `mr` left join `lances` `l` on((`l`.`idlance` = `mr`.`idlance`))) $$
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_muestras_rinde` AS select `mr`.`idmuestras_rinde` AS `idmuestras_rinde`,`mr`.`idmarea` AS `idmarea`,`mr`.`fecha` AS `fecha`,`mr`.`hora` AS `hora`,`mr`.`idlance` AS `idlance`,`l`.`nro_lance` AS `nrolance`,`mr`.`banda` AS `banda`,concat(convert(`l`.`nro_lance` using utf8),' ',`mr`.`banda`) AS `lance_banda`,(`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0)) AS `peso_comercial`,(`mr`.`peso_no_comercial` - coalesce(`mr`.`peso_balde_no_comercial`,0)) AS `peso_no_comercial`,(`mr`.`peso_fauna_acomp` - coalesce(`mr`.`peso_balde_fauna_acomp`,0)) AS `peso_fauna_acomp`,`mr`.`peso_comercial` AS `peso_comercial_bruto`,`mr`.`peso_no_comercial` AS `peso_no_comercial_bruto`,`mr`.`peso_fauna_acomp` AS `peso_fauna_acomp_bruto`,((`mr`.`peso_comercial` + `mr`.`peso_no_comercial`) + `mr`.`peso_fauna_acomp`) AS `peso_total`,cast(((((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0)) + (`mr`.`peso_no_comercial` - coalesce(`mr`.`peso_balde_no_comercial`,0))) * 100) / (((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0)) + (`mr`.`peso_no_comercial` - coalesce(`mr`.`peso_balde_no_comercial`,0))) + (`mr`.`peso_fauna_acomp` - coalesce(`mr`.`peso_balde_fauna_acomp`,0)))) as decimal(5,2)) AS `rinde_total`,cast((((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0)) * 100) / (((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0)) + (`mr`.`peso_no_comercial` - coalesce(`mr`.`peso_balde_no_comercial`,0))) + (`mr`.`peso_fauna_acomp` - coalesce(`mr`.`peso_balde_fauna_acomp`,0)))) as decimal(5,2)) AS `rinde_comercial`,`mr`.`comentarios` AS `comentarios` from (`muestras_rinde` `mr` left join `lances` `l` on((`l`.`idlance` = `mr`.`idlance`))) $$
 SET character_set_client      = @saved_cs_client $$
 SET character_set_results     = @saved_cs_results $$
 SET collation_connection      = @saved_col_connection $$
@@ -2061,7 +2064,7 @@ SET @saved_col_connection     = @@collation_connection $$
 SET character_set_client      = utf8 $$
 SET character_set_results     = utf8 $$
 SET collation_connection      = utf8_general_ci $$
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_resumen_rindes` AS select `muestras_rinde`.`idmarea` AS `idmarea`,`muestras_rinde`.`fecha` AS `fecha`,`muestras_rinde`.`hora` AS `hora`,cast(sum(`muestras_rinde`.`peso_fauna_acomp`) as decimal(6,3)) AS `peso_bycatch`,cast((sum(`muestras_rinde`.`peso_comercial`) + sum(`muestras_rinde`.`peso_no_comercial`)) as decimal(6,3)) AS `peso_vieira`,cast(sum(`muestras_rinde`.`peso_comercial`) as decimal(6,3)) AS `peso_mayor_55`,cast((((sum(`muestras_rinde`.`peso_comercial`) + sum(`muestras_rinde`.`peso_no_comercial`)) * 100) / ((sum(`muestras_rinde`.`peso_comercial`) + sum(`muestras_rinde`.`peso_no_comercial`)) + sum(`muestras_rinde`.`peso_fauna_acomp`))) as decimal(5,2)) AS `rinde_total`,cast(((sum(`muestras_rinde`.`peso_comercial`) * 100) / ((sum(`muestras_rinde`.`peso_comercial`) + sum(`muestras_rinde`.`peso_no_comercial`)) + sum(`muestras_rinde`.`peso_fauna_acomp`))) as decimal(5,2)) AS `rinde_comercial` from `muestras_rinde` group by `muestras_rinde`.`fecha`,`muestras_rinde`.`hora` $$
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_resumen_rindes` AS select `mr`.`idmarea` AS `idmarea`,`mr`.`fecha` AS `fecha`,`mr`.`hora` AS `hora`,cast(sum((`mr`.`peso_fauna_acomp` - coalesce(`mr`.`peso_balde_fauna_acomp`,0))) as decimal(6,3)) AS `peso_bycatch`,cast((sum((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0))) + sum((`mr`.`peso_no_comercial` - coalesce(`mr`.`peso_balde_no_comercial`,0)))) as decimal(6,3)) AS `peso_vieira`,cast(sum((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0))) as decimal(6,3)) AS `peso_mayor_55`,cast((((sum((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0))) + sum((`mr`.`peso_no_comercial` - coalesce(`mr`.`peso_balde_no_comercial`,0)))) * 100) / ((sum((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0))) + sum((`mr`.`peso_no_comercial` - coalesce(`mr`.`peso_balde_no_comercial`,0)))) + sum((`mr`.`peso_fauna_acomp` - coalesce(`mr`.`peso_balde_fauna_acomp`,0))))) as decimal(5,2)) AS `rinde_total`,cast(((sum((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0))) * 100) / ((sum((`mr`.`peso_comercial` - coalesce(`mr`.`peso_balde_comercial`,0))) + sum((`mr`.`peso_no_comercial` - coalesce(`mr`.`peso_balde_no_comercial`,0)))) + sum((`mr`.`peso_fauna_acomp` - coalesce(`mr`.`peso_balde_fauna_acomp`,0))))) as decimal(5,2)) AS `rinde_comercial` from `muestras_rinde` `mr` group by `mr`.`fecha`,`mr`.`hora` $$
 SET character_set_client      = @saved_cs_client $$
 SET character_set_results     = @saved_cs_results $$
 SET collation_connection      = @saved_col_connection $$
@@ -2658,7 +2661,7 @@ DELIMITER ;
 
 
 -- ----------------------------------------------------
--- Fin de la copia de seguridad: 11/06/2015 20:09
+-- Fin de la copia de seguridad: 11/06/2015 22:36
 -- ----------------------------------------------------
 
 

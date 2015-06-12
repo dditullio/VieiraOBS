@@ -56,7 +56,7 @@ inherited fmEditarRindes: TfmEditarRindes
       Left = 8
       Height = 23
       Top = 82
-      Width = 91
+      Width = 118
       DataField = 'peso_comercial'
       DataSource = dsPrincipal
       CharCase = ecNormal
@@ -72,60 +72,60 @@ inherited fmEditarRindes: TfmEditarRindes
       ParentColor = False
     end
     object Label5: TLabel[4]
-      Left = 108
+      Left = 8
       Height = 15
-      Top = 62
+      Top = 115
       Width = 97
       Caption = 'Peso no comercial'
       ParentColor = False
     end
     object dbedNoComercial: TDBEdit[5]
-      Left = 108
+      Left = 8
       Height = 23
-      Top = 82
-      Width = 119
+      Top = 135
+      Width = 118
       DataField = 'peso_no_comercial'
-      DataSource = dsPrincipal
-      CharCase = ecNormal
-      MaxLength = 0
-      TabOrder = 3
-    end
-    object Label6: TLabel[6]
-      Left = 232
-      Height = 15
-      Top = 62
-      Width = 70
-      Caption = 'Peso bycatch'
-      ParentColor = False
-    end
-    object dbedByCatch: TDBEdit[7]
-      Left = 232
-      Height = 23
-      Top = 82
-      Width = 119
-      DataField = 'peso_fauna_acomp'
       DataSource = dsPrincipal
       CharCase = ecNormal
       MaxLength = 0
       TabOrder = 4
     end
+    object Label6: TLabel[6]
+      Left = 8
+      Height = 15
+      Top = 170
+      Width = 70
+      Caption = 'Peso bycatch'
+      ParentColor = False
+    end
+    object dbedByCatch: TDBEdit[7]
+      Left = 8
+      Height = 23
+      Top = 190
+      Width = 118
+      DataField = 'peso_fauna_acomp'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 6
+    end
     object Label7: TLabel[8]
       Left = 8
       Height = 15
-      Top = 122
+      Top = 225
       Width = 68
       Caption = 'Comentarios'
       ParentColor = False
     end
     object dbmComentarios: TDBMemo[9]
       Left = 8
-      Height = 138
-      Top = 142
+      Height = 68
+      Top = 245
       Width = 343
       DataField = 'comentarios'
       DataSource = dsPrincipal
       ScrollBars = ssAutoVertical
-      TabOrder = 5
+      TabOrder = 8
     end
     object paFechaHora: TPanel[10]
       Left = 5
@@ -190,6 +190,66 @@ inherited fmEditarRindes: TfmEditarRindes
         MaxLength = 5
         TabOrder = 1
       end
+    end
+    object dbedBaldeComercial: TDBEdit[11]
+      Left = 135
+      Height = 23
+      Hint = 'Peso del recipiente vacío (descuenta del peso total)'
+      Top = 82
+      Width = 118
+      DataField = 'peso_balde_comercial'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 3
+    end
+    object Label8: TLabel[12]
+      Left = 135
+      Height = 15
+      Top = 62
+      Width = 110
+      Caption = 'Peso recipiente com.'
+      ParentColor = False
+    end
+    object Label9: TLabel[13]
+      Left = 135
+      Height = 15
+      Top = 115
+      Width = 127
+      Caption = 'Peso recipiente no com.'
+      ParentColor = False
+    end
+    object dbedBaldeNoComercial: TDBEdit[14]
+      Left = 135
+      Height = 23
+      Hint = 'Peso del recipiente vacío (descuenta del peso total)'
+      Top = 135
+      Width = 118
+      DataField = 'peso_balde_no_comercial'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 5
+    end
+    object Label10: TLabel[15]
+      Left = 135
+      Height = 15
+      Top = 170
+      Width = 125
+      Caption = 'Peso recipiente bycatch'
+      ParentColor = False
+    end
+    object dbedBaldeByCatch: TDBEdit[16]
+      Left = 135
+      Height = 23
+      Hint = 'Peso del recipiente vacío (descuenta del peso total)'
+      Top = 190
+      Width = 118
+      DataField = 'peso_balde_fauna_acomp'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 7
     end
   end
   inherited paControles: TPanel
@@ -281,24 +341,23 @@ inherited fmEditarRindes: TfmEditarRindes
       MinValue = 0
       Precision = 11
     end
-    object zqPrincipalpeso_no_comercial: TFloatField[6]
+    object zqPrincipalpeso_balde_comercial: TFloatField[6]
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'peso_no_comercial'
+      FieldName = 'peso_balde_comercial'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
-      DisplayFormat = '0.00'
+      Required = False
       MaxValue = 0
       MinValue = 0
       Precision = 11
     end
-    object zqPrincipalpeso_fauna_acomp: TFloatField[7]
+    object zqPrincipalpeso_no_comercial: TFloatField[7]
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'peso_fauna_acomp'
+      FieldName = 'peso_no_comercial'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -309,33 +368,73 @@ inherited fmEditarRindes: TfmEditarRindes
       MinValue = 0
       Precision = 11
     end
-    object zqPrincipalcomentarios: TStringField[8]
+    object zqPrincipalpeso_balde_no_comercial: TFloatField[8]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_balde_no_comercial'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqPrincipalpeso_fauna_acomp: TFloatField[9]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_fauna_acomp'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqPrincipalpeso_balde_fauna_acomp: TFloatField[10]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_balde_fauna_acomp'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqPrincipalcomentarios: TStringField[11]
       DisplayWidth = 1024
       FieldKind = fkData
       FieldName = 'comentarios'
-      Index = 8
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 1024
     end
-    object zqPrincipalEncabezado: TStringField[9]
+    object zqPrincipalEncabezado: TStringField[12]
       DisplayWidth = 30
       FieldKind = fkCalculated
       FieldName = 'Encabezado'
-      Index = 9
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 30
     end
-    object zqPrincipalDscBanda: TStringField[10]
+    object zqPrincipalDscBanda: TStringField[13]
       DisplayWidth = 180
       FieldKind = fkLookup
       FieldName = 'descripcion'
-      Index = 10
+      Index = 13
       KeyFields = 'banda'
       LookupCache = False
       LookupDataSet = zqBandas
@@ -356,6 +455,7 @@ inherited fmEditarRindes: TfmEditarRindes
       item
         Dataset = zqBandas
       end>
+    left = 30
   end
   object zqBandas: TZQuery[8]
     Connection = dmGeneral.zcDB
@@ -540,6 +640,45 @@ inherited fmEditarRindes: TfmEditarRindes
       ReadOnly = False
       Required = False
       Size = 1024
+    end
+    object zqRindeAntpeso_balde_comercial: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_balde_comercial'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqRindeAntpeso_balde_no_comercial: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_balde_no_comercial'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqRindeAntpeso_balde_fauna_acomp: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_balde_fauna_acomp'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
     end
   end
 end

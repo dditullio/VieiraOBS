@@ -1,7 +1,7 @@
 -- ---------------------------------------------
 -- Tablas y datos de la base de datos "vieira"
 -- Generado desde la aplicación "Vieira OBS"
--- Fecha y hora de resguardo: 11/06/2015 20:09
+-- Fecha y hora de resguardo: 11/06/2015 22:36
 -- ---------------------------------------------
 
 -- -----------------------------------------------------
@@ -459,8 +459,11 @@ CREATE TABLE `muestras_rinde` (
   `hora` time NOT NULL,
   `banda` varchar(3) COLLATE utf8_spanish_ci NOT NULL,
   `peso_comercial` decimal(9,3) DEFAULT NULL,
+  `peso_balde_comercial` decimal(9,3) DEFAULT NULL,
   `peso_no_comercial` decimal(9,3) DEFAULT NULL,
+  `peso_balde_no_comercial` decimal(9,3) DEFAULT NULL,
   `peso_fauna_acomp` decimal(9,3) DEFAULT NULL,
+  `peso_balde_fauna_acomp` decimal(9,3) DEFAULT NULL,
   `comentarios` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idmuestras_rinde`),
   KEY `fk_muestras_rinde_mareas1_idx` (`idmarea`),
@@ -691,7 +694,7 @@ SET SQL_NOTES=@OLD_SQL_NOTES ;
 
 
 -- ----------------------------------------------------
--- Fin de la copia de seguridad: 11/06/2015 20:09
+-- Fin de la copia de seguridad: 11/06/2015 22:36
 -- ----------------------------------------------------
 
 

@@ -136,7 +136,6 @@
         <ComponentName Value="fmPrincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmPrincipal"/>
       </Unit1>
       <Unit2>
         <Filename Value="frlances.pas"/>
@@ -194,7 +193,6 @@
         <ComponentName Value="fmRindes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmrindes"/>
       </Unit9>
       <Unit10>
         <Filename Value="frmeditarrindes.pas"/>
@@ -323,7 +321,6 @@
         <ComponentName Value="fmLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmlances"/>
       </Unit27>
       <Unit28>
         <Filename Value="funciones.pas"/>
@@ -335,7 +332,6 @@
         <ComponentName Value="fmInformes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frminformes"/>
       </Unit29>
       <Unit30>
         <Filename Value="frmmuestrassenasa.pas"/>
@@ -382,7 +378,6 @@
         <ComponentName Value="fmMuestrasRayas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmmuestrasrayas"/>
       </Unit36>
       <Unit37>
         <Filename Value="frmeditarrayas.pas"/>
@@ -390,7 +385,6 @@
         <ComponentName Value="fmEditarRayas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditarrayas"/>
       </Unit37>
       <Unit38>
         <Filename Value="frmbackup.pas"/>

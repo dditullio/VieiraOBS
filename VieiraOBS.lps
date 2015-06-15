@@ -3,12 +3,12 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="9"/>
-    <BuildModes Active="Default"/>
-    <Units Count="39">
+    <BuildModes Active="Release"/>
+    <Units Count="42">
       <Unit0>
         <Filename Value="VieiraOBS.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit0>
       <Unit1>
         <Filename Value="frmprincipal.pas"/>
@@ -16,7 +16,7 @@
         <ComponentName Value="fmPrincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit1>
       <Unit2>
         <Filename Value="frlances.pas"/>
@@ -24,7 +24,7 @@
         <ComponentName Value="fLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit2>
       <Unit3>
         <Filename Value="datgeneral.pas"/>
@@ -33,10 +33,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="datGeneral"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <CursorPos X="5" Y="15"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit3>
@@ -46,7 +45,7 @@
         <ComponentName Value="fmBase"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit4>
       <Unit5>
         <Filename Value="frmlistabase.pas"/>
@@ -54,7 +53,7 @@
         <ComponentName Value="fmListaBase"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit5>
       <Unit6>
         <Filename Value="frmmareas.pas"/>
@@ -62,7 +61,7 @@
         <ComponentName Value="fmMareas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit6>
       <Unit7>
         <Filename Value="frmzedicionbase.pas"/>
@@ -70,7 +69,7 @@
         <ComponentName Value="ZEdicionBase"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit7>
       <Unit8>
         <Filename Value="frmeditarmarea.pas"/>
@@ -78,7 +77,7 @@
         <ComponentName Value="fmEditarMarea"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit8>
       <Unit9>
         <Filename Value="frmrindes.pas"/>
@@ -86,7 +85,7 @@
         <ComponentName Value="fmRindes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit9>
       <Unit10>
         <Filename Value="frmeditarrindes.pas"/>
@@ -96,7 +95,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmeditarrindes"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit10>
@@ -106,7 +105,7 @@
         <ComponentName Value="fmCoccion"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit11>
       <Unit12>
         <Filename Value="frmeditarcoccion.pas"/>
@@ -114,7 +113,7 @@
         <ComponentName Value="fmEditarCoccion"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit12>
       <Unit13>
         <Filename Value="frmmuestrasbiologicas.pas"/>
@@ -122,7 +121,7 @@
         <ComponentName Value="fmMuestrasBiologicas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit13>
       <Unit14>
         <Filename Value="frmeditarmuestrasbiologicas.pas"/>
@@ -130,7 +129,7 @@
         <ComponentName Value="fmEditarMuestrasBiologicas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit14>
       <Unit15>
         <Filename Value="frmdanio.pas"/>
@@ -138,7 +137,7 @@
         <ComponentName Value="fmDanio"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit15>
       <Unit16>
         <Filename Value="frmeditardanio.pas"/>
@@ -146,7 +145,7 @@
         <ComponentName Value="fmEditarDanio"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit16>
       <Unit17>
         <Filename Value="frmbycatch.pas"/>
@@ -154,7 +153,7 @@
         <ComponentName Value="fmByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit17>
       <Unit18>
         <Filename Value="datbycatch.pas"/>
@@ -162,7 +161,7 @@
         <ComponentName Value="dmByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit18>
       <Unit19>
         <Filename Value="frmeditarbycatch.pas"/>
@@ -170,7 +169,7 @@
         <ComponentName Value="fmEditarByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit19>
       <Unit20>
         <Filename Value="datbase.pas"/>
@@ -178,9 +177,8 @@
         <ComponentName Value="DmBase"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="datBase"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit20>
       <Unit21>
         <Filename Value="frmeditardetallebycatch.pas"/>
@@ -188,7 +186,7 @@
         <ComponentName Value="fmEditarDetalleByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit21>
       <Unit22>
         <Filename Value="frmtallas.pas"/>
@@ -196,7 +194,7 @@
         <ComponentName Value="fmTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit22>
       <Unit23>
         <Filename Value="dattallas.pas"/>
@@ -204,7 +202,7 @@
         <ComponentName Value="dmTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit23>
       <Unit24>
         <Filename Value="frmeditartallas.pas"/>
@@ -212,7 +210,7 @@
         <ComponentName Value="fmEditarTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit24>
       <Unit25>
         <Filename Value="frmeditardetalletallas.pas"/>
@@ -220,7 +218,7 @@
         <ComponentName Value="fmEditarDetalleTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit25>
       <Unit26>
         <Filename Value="frmeditarlances.pas"/>
@@ -228,7 +226,17 @@
         <ComponentName Value="fmEditarLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UnitName Value="frmeditarlances"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="466"/>
+        <CursorPos X="22" Y="485"/>
+        <UsageCount Value="21"/>
+        <Bookmarks Count="1">
+          <Item0 X="44" Y="1076" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit26>
       <Unit27>
         <Filename Value="frmlances.pas"/>
@@ -236,12 +244,12 @@
         <ComponentName Value="fmLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit27>
       <Unit28>
         <Filename Value="funciones.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit28>
       <Unit29>
         <Filename Value="frminformes.pas"/>
@@ -249,7 +257,7 @@
         <ComponentName Value="fmInformes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit29>
       <Unit30>
         <Filename Value="frmmuestrassenasa.pas"/>
@@ -257,7 +265,7 @@
         <ComponentName Value="fmMuestrasSenasa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit30>
       <Unit31>
         <Filename Value="frmrptdatospuente.pas"/>
@@ -265,7 +273,7 @@
         <ComponentName Value="FmRptDatosPuente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit31>
       <Unit32>
         <Filename Value="frmeditarsenasacallos.pas"/>
@@ -273,7 +281,7 @@
         <ComponentName Value="fmEditarSenasaCallos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit32>
       <Unit33>
         <Filename Value="frmeditarsenasaentera.pas"/>
@@ -281,7 +289,7 @@
         <ComponentName Value="FmEditarSenasaEntera"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit33>
       <Unit34>
         <Filename Value="frmSplashScreenForm.pas"/>
@@ -289,12 +297,12 @@
         <ComponentName Value="SplashScreenForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit34>
       <Unit35>
         <Filename Value="UHojaCalc.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit35>
       <Unit36>
         <Filename Value="frmmuestrasrayas.pas"/>
@@ -302,7 +310,7 @@
         <ComponentName Value="fmMuestrasRayas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit36>
       <Unit37>
         <Filename Value="frmeditarrayas.pas"/>
@@ -310,7 +318,7 @@
         <ComponentName Value="fmEditarRayas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit37>
       <Unit38>
         <Filename Value="frmbackup.pas"/>
@@ -319,11 +327,156 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmbackup"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit38>
+      <Unit39>
+        <Filename Value="C:\codetyphon\typhon\lcl\dbctrls.pp"/>
+        <UnitName Value="DbCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="815"/>
+        <CursorPos X="3" Y="825"/>
+        <UsageCount Value="10"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="C:\codetyphon\typhon\lcl\stdctrls.pp"/>
+        <UnitName Value="StdCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="676"/>
+        <CursorPos X="3" Y="686"/>
+        <UsageCount Value="10"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="C:\codetyphon\typhon\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1845"/>
+        <CursorPos X="3" Y="1855"/>
+        <UsageCount Value="10"/>
+      </Unit41>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="22" HistoryIndex="21">
+      <Position1>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="465" TopLine="451"/>
+      </Position1>
+      <Position2>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="904" Column="61" TopLine="886"/>
+      </Position2>
+      <Position3>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="1135" Column="8" TopLine="1121"/>
+      </Position3>
+      <Position4>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="1137" Column="36" TopLine="1118"/>
+      </Position4>
+      <Position5>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="1238" Column="37" TopLine="1222"/>
+      </Position5>
+      <Position6>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="864" Column="62" TopLine="728"/>
+      </Position6>
+      <Position7>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="560" Column="8" TopLine="541"/>
+      </Position7>
+      <Position8>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="505" TopLine="495"/>
+      </Position8>
+      <Position9>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="508" Column="27" TopLine="495"/>
+      </Position9>
+      <Position10>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="519" TopLine="510"/>
+      </Position10>
+      <Position11>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="524" TopLine="509"/>
+      </Position11>
+      <Position12>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="1033" TopLine="1023"/>
+      </Position12>
+      <Position13>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="1035" TopLine="1023"/>
+      </Position13>
+      <Position14>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="1037" TopLine="1023"/>
+      </Position14>
+      <Position15>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="855" TopLine="845"/>
+      </Position15>
+      <Position16>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="449" TopLine="439"/>
+      </Position16>
+      <Position17>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="452" TopLine="439"/>
+      </Position17>
+      <Position18>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="453" TopLine="439"/>
+      </Position18>
+      <Position19>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="455" TopLine="439"/>
+      </Position19>
+      <Position20>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="456" TopLine="440"/>
+      </Position20>
+      <Position21>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="457" TopLine="441"/>
+      </Position21>
+      <Position22>
+        <Filename Value="frmeditarlances.pas"/>
+        <Caret Line="466" TopLine="456"/>
+      </Position22>
+    </JumpHistory>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="4">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="frmeditarlances.pas"/>
+        <Line Value="1180"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="frmeditarlances.pas"/>
+        <Line Value="466"/>
+      </Item2>
+      <Item3>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="frmeditarlances.pas"/>
+        <Line Value="490"/>
+      </Item3>
+      <Item4>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="frmeditarlances.pas"/>
+        <Line Value="513"/>
+      </Item4>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>

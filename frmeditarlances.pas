@@ -58,13 +58,15 @@ type
     procedure SetActiveIndex(AValue: integer);
   public
     constructor Create;
-    procedure AddControl(index: integer; Name: string; Control: TWinControl);
-    function GetControl(index: integer; Name: string): TWinControl;
-    function GetControl(Name: string): TWinControl;
+    procedure AddControl(index: integer; Name: string; Control: TControl);
+    function GetControl(index: integer; Name: string): TControl;
+    function GetControl(Name: string): TControl;
     function CanFocus(index: integer; Name: string): boolean;
     function CanFocus(Name: string): boolean;
     procedure SetFocus(index: integer; Name: string);
     procedure SetFocus(Name: string);
+    procedure SetColor(index: integer; Name: string; FontColor: TColor);
+    procedure SetColor(Name: string; FontColor: TColor);
     property ActiveIndex: integer read FActiveIndex write SetActiveIndex;
   end;
 
@@ -440,7 +442,8 @@ begin
   SetLength(FControls, 1);
 end;
 
-procedure TControlsArray.AddControl(index: integer; Name: string; Control: TWinControl);
+procedure TControlsArray.AddControl(index: integer; Name: string;
+    Control: TControl);
 begin
   //Si es necesario, redimensiono el array
   if index + 1 > Length(FControls) then
@@ -453,7 +456,7 @@ begin
     FControls[index].AddObject(Name, Control);
 end;
 
-function TControlsArray.GetControl(index: integer; Name: string): TWinControl;
+function TControlsArray.GetControl(index: integer; Name: string): TControl;
 var
   i: integer;
 begin
@@ -463,11 +466,18 @@ begin
     i := FControls[index].IndexOf(Name);
     // Si encontró el nombre, devuelvo el control
     if i <> -1 then
-      Result := (FControls[index].Objects[i] as TWinControl);
+    begin
+      if (FControls[index].Objects[i] is TWinControl) then
+         Result := (FControls[index].Objects[i] as TWinControl)
+      else if (FControls[index].Objects[i] is TGraphicControl) then
+         Result := (FControls[index].Objects[i] as TGraphicControl)
+      else
+         Result:=nil;
+    end;
   end;
 end;
 
-function TControlsArray.GetControl(Name: string): TWinControl;
+function TControlsArray.GetControl(Name: string): TControl;
 begin
   Result := GetControl(ActiveIndex, Name);
 end;
@@ -482,7 +492,12 @@ begin
     i := FControls[index].IndexOf(Name);
     // Si encontró el nombre, devuelvo el control
     if i <> -1 then
-      Result := (FControls[index].Objects[i] as TWinControl).CanFocus;
+    begin
+      if (FControls[index].Objects[i] is TWinControl) then
+         Result := (FControls[index].Objects[i] as TWinControl).CanFocus
+      else
+          Result:=False;
+    end;
   end;
 end;
 
@@ -501,8 +516,11 @@ begin
     // Si encontró el nombre, devuelvo el control
     if i <> -1 then
     begin
-      if (FControls[index].Objects[i] as TWinControl).CanFocus then
-        (FControls[index].Objects[i] as TWinControl).SetFocus;
+       if (FControls[index].Objects[i] is TWinControl) then
+       begin
+         if (FControls[index].Objects[i] as TWinControl).CanFocus then
+            (FControls[index].Objects[i] as TWinControl).SetFocus;
+       end;
     end;
   end;
 end;
@@ -510,6 +528,36 @@ end;
 procedure TControlsArray.SetFocus(Name: string);
 begin
   SetFocus(ActiveIndex, Name);
+end;
+
+procedure TControlsArray.SetColor(index: integer; Name: string; FontColor: TColor);
+var
+  i: integer;
+begin
+  if Assigned(FControls[index]) then
+  begin
+    i := FControls[index].IndexOf(Name);
+    // Si encontró el nombre, seteo el FontColor del Font
+    if i <> -1 then
+    begin
+      if (FControls[index].Objects[i] is TWinControl) then
+         (FControls[index].Objects[i] as TWinControl).Font.Color:=FontColor
+      else if (FControls[index].Objects[i] is TGraphicControl) then
+         (FControls[index].Objects[i] as TGraphicControl).Font.Color:=FontColor
+    end;
+  end;
+end;
+
+procedure TControlsArray.SetColor(Name: string; FontColor: TColor);
+var
+  C: TControl;
+begin
+  C:=GetControl(Name);
+  if Assigned(C) then
+  if (C is TWinControl) then
+     (C as TWinControl).Font.Color:=FontColor
+  else if (C is TGraphicControl) then
+     (C as TGraphicControl).Font.Color:=FontColor
 end;
 
 { TfmEditarLances }
@@ -834,6 +882,16 @@ begin
   FControlesEdicion.AddControl(0, 'Profund', dbedProfund);
   FControlesEdicion.AddControl(0, 'Rumbo', dbedRumbo);
   FControlesEdicion.AddControl(0, 'Velocidad', dbedVelocidad);
+  //Textos de verificación
+  FControlesEdicion.AddControl(0, 'DistRegist', dbtDistRegist);
+  FControlesEdicion.AddControl(0, 'VelRegist', dbtVelRegist);
+  FControlesEdicion.AddControl(0, 'TiempoRegist', dbtTiempoRegist);
+  FControlesEdicion.AddControl(0, 'DistCalc', dbtDistCalc);
+  FControlesEdicion.AddControl(0, 'VelCalc', dbtVelCalc);
+  FControlesEdicion.AddControl(0, 'TiempoCalc', dbtTiempoCalc);
+  FControlesEdicion.AddControl(0, 'DistDif', dbtDistDif);
+  FControlesEdicion.AddControl(0, 'VelDif', dbtVelDif);
+  FControlesEdicion.AddControl(0, 'TiempoDif', dbtTiempoDif);
 
   //Controles del formato alternativo (TabIndex=1)
   FControlesEdicion.AddControl(1, 'Comentarios', dbmComentarios1);
@@ -855,6 +913,16 @@ begin
   FControlesEdicion.AddControl(1, 'Profund', dbedProfund1);
   FControlesEdicion.AddControl(1, 'Rumbo', dbedRumbo1);
   FControlesEdicion.AddControl(1, 'Velocidad', dbedVelocidad1);
+  //Textos de verificación
+  FControlesEdicion.AddControl(1, 'DistRegist', dbtDistRegist1);
+  FControlesEdicion.AddControl(1, 'VelRegist', dbtVelRegist1);
+  FControlesEdicion.AddControl(1, 'TiempoRegist', dbtTiempoRegist1);
+  FControlesEdicion.AddControl(1, 'DistCalc', dbtDistCalc1);
+  FControlesEdicion.AddControl(1, 'VelCalc', dbtVelCalc1);
+  FControlesEdicion.AddControl(1, 'TiempoCalc', dbtTiempoCalc1);
+  FControlesEdicion.AddControl(1, 'DistDif', dbtDistDif1);
+  FControlesEdicion.AddControl(1, 'VelDif', dbtVelDif1);
+  FControlesEdicion.AddControl(1, 'TiempoDif', dbtTiempoDif1);
 
   //Asigno el evento acá, porque por algún motivo se desengancha.
   //Hay que averiguar por qué y solucionarlo
@@ -1088,9 +1156,9 @@ begin
       zqPrincipalLatFin.Value, zqPrincipalLongFin.Value);
     // Pongo en rojo valores dudosos
     if (zqPrincipalDistanciaMillas.Value > 3) or (zqPrincipalDistanciaMillas.Value = 0) then
-      dbtDistRegist.Font.Color := clRed
+       FControlesEdicion.SetColor('DistRegist', clRed)
     else
-      dbtDistRegist.Font.Color := clDefault;
+      FControlesEdicion.SetColor('DistRegist', clDefault);
   end
   else
   begin
@@ -1111,9 +1179,9 @@ begin
     // Pongo en rojo valores dudosos
     if (zqPrincipalVelocNecesaria.Value > 5.8) or
       (zqPrincipalVelocNecesaria.Value < 3) then
-      dbtVelCalc.Font.Color := clRed
+      FControlesEdicion.SetColor('VelCalc', clRed)
     else
-      dbtVelCalc.Font.Color := clDefault;
+      FControlesEdicion.SetColor('VelCalc', clDefault);
   end
   else
     zqPrincipalTextoVelocidad.Value := '';
@@ -1130,9 +1198,9 @@ begin
     dbtTiempoCalc.Hint := zqPrincipalTextoTiempo.Value;
     // Pongo en rojo valores dudosos
     if zqPrincipalTiempoNecesario.Value > 40 then
-      dbtTiempoCalc.Font.Color := clRed
-    else
-      dbtTiempoCalc.Font.Color := clDefault;
+    FControlesEdicion.SetColor('TiempoCalc', clRed)
+  else
+    FControlesEdicion.SetColor('TiempoCalc', clDefault);
   end
   else
     zqPrincipalTextoTiempo.Value := '';
@@ -1148,9 +1216,9 @@ begin
     dbtDistCalc.Hint := zqPrincipalTextoDistancia.Value;
     // Pongo en rojo valores dudosos
     if zqPrincipalDistanciaCalculada.Value > 3 then
-      dbtDistCalc.Font.Color := clRed
+       FControlesEdicion.SetColor('DistCalc', clRed)
     else
-      dbtDistCalc.Font.Color := clDefault;
+       FControlesEdicion.SetColor('DistCalc', clDefault);
   end
   else
     zqPrincipalTextoVelocidad.Value := '';
@@ -1162,22 +1230,22 @@ begin
     zqPrincipalDifDistancia.Value :=
       Abs(100 - (zqPrincipalDistanciaCalculada.Value * 100 / zqPrincipalDistanciaMillas.Value));
     if zqPrincipalDifDistancia.Value > 10 then
-      dbtDistDif.Font.Color := clRed
+       FControlesEdicion.SetColor('DistDif', clRed)
     else if zqPrincipalDifDistancia.Value > 5 then
-      dbtDistDif.Font.Color := clBlue
+      FControlesEdicion.SetColor('DistDif', clBlue)
     else
-      dbtDistDif.Font.Color := clDefault;
+      FControlesEdicion.SetColor('DistDif', clDefault);
   end;
   if (not zqPrincipalvelocidad.IsNull) and (not zqPrincipalVelocNecesaria.IsNull) then
   begin
     zqPrincipalDifVelocidad.Value :=
       Abs(100 - (zqPrincipalVelocNecesaria.Value * 100 / zqPrincipalvelocidad.Value));
     if zqPrincipalDifVelocidad.Value > 10 then
-      dbtVelDif.Font.Color := clRed
+       FControlesEdicion.SetColor('VelDif', clRed)
     else if zqPrincipalDifDistancia.Value > 5 then
-      dbtVelDif.Font.Color := clBlue
+         FControlesEdicion.SetColor('VelDif', clBlue)
     else
-      dbtVelDif.Font.Color := clDefault;
+        FControlesEdicion.SetColor('VelDif', clDefault);
   end;
   if (not zqPrincipalminutos_arrastre.IsNull) and
     (not zqPrincipalTiempoNecesario.IsNull) then
@@ -1185,11 +1253,11 @@ begin
     zqPrincipalDifTiempo.Value :=
       Abs(100 - (zqPrincipalminutos_arrastre.Value * 100 / zqPrincipalTiempoNecesario.Value));
     if zqPrincipalDifVelocidad.Value > 10 then
-      dbtTiempoDif.Font.Color := clRed
+       FControlesEdicion.SetColor('TiempoDif', clRed)
     else if zqPrincipalDifDistancia.Value > 5 then
-      dbtTiempoDif.Font.Color := clBlue
+         FControlesEdicion.SetColor('TiempoDif', clBlue)
     else
-      dbtTiempoDif.Font.Color := clDefault;
+        FControlesEdicion.SetColor('TiempoDif', clDefault);
   end;
 
   //Los siguientes dos campos se crean para poder formatearlos independientemente del campo original

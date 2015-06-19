@@ -40383,6 +40383,12 @@ object fmPrincipal: TfmPrincipal
       object MenuItem11: TMenuItem
         Caption = '-'
       end
+      object MenuItem15: TMenuItem
+        Action = acBackup
+      end
+      object MenuItem16: TMenuItem
+        Caption = '-'
+      end
       object MenuItem2: TMenuItem
         Action = FileExit1
         Bitmap.Data = {

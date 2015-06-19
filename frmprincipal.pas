@@ -46,6 +46,8 @@ type
     MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
+    MenuItem15: TMenuItem;
+    MenuItem16: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -155,6 +157,8 @@ end;
 procedure TfmPrincipal.FormShow(Sender: TObject);
 begin
   HideSplashScreen;
+  HabilitarMenu;
+  Caption:=ApplicationName+' - v'+APP_VERSION;
 end;
 
 procedure TfmPrincipal.tmHabilitarMenuTimer(Sender: TObject);

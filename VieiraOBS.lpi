@@ -136,6 +136,7 @@
         <ComponentName Value="fmPrincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmPrincipal"/>
       </Unit1>
       <Unit2>
         <Filename Value="frlances.pas"/>

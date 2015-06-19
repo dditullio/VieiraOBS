@@ -79,6 +79,9 @@ type
     property FactorCalculoCaptura: double read GetFactorCalcCaptura;
   end;
 
+const
+  APP_VERSION='1.0.0';
+
 var
   dmGeneral: TdmGeneral;
 

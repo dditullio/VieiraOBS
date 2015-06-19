@@ -19,7 +19,14 @@
         <ComponentName Value="fmPrincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmPrincipal"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="156"/>
+        <CursorPos X="28" Y="161"/>
         <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="frlances.pas"/>
@@ -37,7 +44,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="datGeneral"/>
         <EditorIndex Value="4"/>
-        <CursorPos X="21" Y="17"/>
+        <TopLine Value="70"/>
+        <CursorPos X="20" Y="81"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -97,7 +105,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmeditarrindes"/>
-        <EditorIndex Value="1"/>
         <CursorPos X="22" Y="13"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
@@ -126,7 +133,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmmuestrasbiologicas"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="1"/>
         <CursorPos X="28" Y="9"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
@@ -163,7 +170,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmbycatch"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -183,7 +190,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmeditarbycatch"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -212,7 +219,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmtallas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="4" Y="2"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
@@ -249,7 +256,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmeditarlances"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="466"/>
         <CursorPos X="22" Y="485"/>
         <UsageCount Value="22"/>
@@ -279,7 +286,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frminformes"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
@@ -353,9 +359,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmbackup"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="548"/>
+        <CursorPos X="66" Y="564"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit38>
       <Unit39>
         <Filename Value="C:\codetyphon\typhon\lcl\dbctrls.pp"/>
@@ -379,7 +387,7 @@
         <UsageCount Value="10"/>
       </Unit41>
     </Units>
-    <JumpHistory Count="24" HistoryIndex="23">
+    <JumpHistory Count="26" HistoryIndex="25">
       <Position1>
         <Filename Value="frmeditarlances.pas"/>
         <Caret Line="465" TopLine="451"/>
@@ -475,6 +483,14 @@
         <Filename Value="frmmuestrasbiologicas.pas"/>
         <Caret Line="2" Column="6"/>
       </Position24>
+      <Position25>
+        <Filename Value="frmprincipal.pas"/>
+        <Caret Line="159" Column="28" TopLine="154"/>
+      </Position25>
+      <Position26>
+        <Filename Value="frmprincipal.pas"/>
+        <Caret Line="160" Column="28" TopLine="155"/>
+      </Position26>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

@@ -1,7 +1,7 @@
 -- ---------------------------------------------
 -- Tablas y datos de la base de datos "vieira"
 -- Generado desde la aplicación "Vieira OBS"
--- Fecha y hora de resguardo: 11/06/2015 22:36
+-- Fecha y hora de resguardo: 17/06/2015 22:02
 -- ---------------------------------------------
 
 -- -----------------------------------------------------
@@ -694,7 +694,7 @@ SET SQL_NOTES=@OLD_SQL_NOTES ;
 
 
 -- ----------------------------------------------------
--- Fin de la copia de seguridad: 11/06/2015 22:36
+-- Fin de la copia de seguridad: 17/06/2015 22:02
 -- ----------------------------------------------------
 
 

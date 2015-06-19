@@ -25,7 +25,12 @@ inherited fmByCatch: TfmByCatch
         inherited paBuscador: TPanel
           Width = 260
           ClientWidth = 260
+          inherited laBuscar: TLabel
+            Height = 15
+            Width = 35
+          end
           inherited edBuscar: TEdit
+            Height = 23
             Width = 220
           end
           inherited bbBuscar: TBitBtn
@@ -61,13 +66,13 @@ inherited fmByCatch: TfmByCatch
                 Title.Orientation = toHorizontal
                 Width = 80
                 FieldName = 'fecha'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -77,13 +82,13 @@ inherited fmByCatch: TfmByCatch
                 Title.Orientation = toHorizontal
                 Width = 50
                 FieldName = 'hora'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -92,13 +97,13 @@ inherited fmByCatch: TfmByCatch
                 Title.Orientation = toHorizontal
                 Width = 87
                 FieldName = 'lance_banda'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -108,13 +113,13 @@ inherited fmByCatch: TfmByCatch
                 Width = 0
                 Visible = False
                 FieldName = 'comentarios'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end>
             OptionsRx = [rdgDblClickOptimizeColWidth, rdgAllowSortForm, rdgCaseInsensitiveSort]
             DataSource = dsByCatch
@@ -166,17 +171,17 @@ inherited fmByCatch: TfmByCatch
             TabOrder = 0
             object Label3: TLabel
               Left = 0
-              Height = 17
+              Height = 15
               Top = 0
-              Width = 182
+              Width = 164
               Caption = 'Latitud:'
               ParentColor = False
             end
             object DBText2: TDBText
-              Left = 187
-              Height = 17
+              Left = 169
+              Height = 15
               Top = 0
-              Width = 58
+              Width = 56
               Alignment = taRightJustify
               DataField = 'latitud'
               DataSource = dsDatosMuestra
@@ -186,17 +191,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label4: TLabel
               Left = 0
-              Height = 17
-              Top = 17
-              Width = 182
+              Height = 15
+              Top = 15
+              Width = 164
               Caption = 'Longitud:'
               ParentColor = False
             end
             object DBText3: TDBText
-              Left = 187
-              Height = 17
-              Top = 17
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 15
+              Width = 56
               Alignment = taRightJustify
               DataField = 'longitud'
               DataSource = dsDatosMuestra
@@ -206,17 +211,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label5: TLabel
               Left = 0
-              Height = 17
-              Top = 34
-              Width = 182
+              Height = 15
+              Top = 30
+              Width = 164
               Caption = 'Profundidad:'
               ParentColor = False
             end
             object DBText4: TDBText
-              Left = 187
-              Height = 17
-              Top = 34
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 30
+              Width = 56
               Alignment = taRightJustify
               DataField = 'profundidad'
               DataSource = dsDatosMuestra
@@ -226,17 +231,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label10: TLabel
               Left = 0
-              Height = 17
-              Top = 51
-              Width = 182
+              Height = 15
+              Top = 45
+              Width = 164
               Caption = 'Velocidad de arrastre:'
               ParentColor = False
             end
             object DBText8: TDBText
-              Left = 187
-              Height = 17
-              Top = 51
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 45
+              Width = 56
               Alignment = taRightJustify
               DataField = 'velocidad'
               DataSource = dsDatosMuestra
@@ -246,33 +251,33 @@ inherited fmByCatch: TfmByCatch
             end
             object Label29: TLabel
               Left = 0
-              Height = 17
-              Top = 68
-              Width = 182
+              Height = 15
+              Top = 60
+              Width = 164
               Caption = ' '
               ParentColor = False
             end
             object Label30: TLabel
-              Left = 187
-              Height = 17
-              Top = 68
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 60
+              Width = 56
               Caption = ' '
               ParentColor = False
             end
             object Label11: TLabel
               Left = 0
-              Height = 17
-              Top = 85
-              Width = 182
+              Height = 15
+              Top = 75
+              Width = 164
               Caption = 'Largo relinga inferior:'
               ParentColor = False
             end
             object DBText9: TDBText
-              Left = 187
-              Height = 17
-              Top = 85
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 75
+              Width = 56
               Alignment = taRightJustify
               DataField = 'largo_relinga_inferior'
               DataSource = dsDatosMuestra
@@ -282,17 +287,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label8: TLabel
               Left = 0
-              Height = 17
-              Top = 102
-              Width = 182
+              Height = 15
+              Top = 90
+              Width = 164
               Caption = 'Mallero del copo:'
               ParentColor = False
             end
             object DBText5: TDBText
-              Left = 187
-              Height = 17
-              Top = 102
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 90
+              Width = 56
               Alignment = taRightJustify
               DataField = 'mallero_copo'
               DataSource = dsDatosMuestra
@@ -302,17 +307,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label9: TLabel
               Left = 0
-              Height = 17
-              Top = 119
-              Width = 182
+              Height = 15
+              Top = 105
+              Width = 164
               Caption = 'Tipo de malla:'
               ParentColor = False
             end
             object DBText6: TDBText
-              Left = 187
-              Height = 17
-              Top = 119
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 105
+              Width = 56
               Alignment = taRightJustify
               DataField = 'tipo_malla'
               DataSource = dsDatosMuestra
@@ -322,33 +327,33 @@ inherited fmByCatch: TfmByCatch
             end
             object Label12: TLabel
               Left = 0
-              Height = 17
-              Top = 136
-              Width = 182
+              Height = 15
+              Top = 120
+              Width = 164
               Caption = ' '
               ParentColor = False
             end
             object Label13: TLabel
-              Left = 187
-              Height = 17
-              Top = 136
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 120
+              Width = 56
               Caption = ' '
               ParentColor = False
             end
             object Label14: TLabel
               Left = 0
-              Height = 17
-              Top = 153
-              Width = 182
+              Height = 15
+              Top = 135
+              Width = 164
               Caption = 'Rinde de vieira:'
               ParentColor = False
             end
             object DBText7: TDBText
-              Left = 187
-              Height = 17
-              Top = 153
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 135
+              Width = 56
               Alignment = taRightJustify
               DataField = 'rinde_total'
               DataSource = dsDatosMuestra
@@ -358,17 +363,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label15: TLabel
               Left = 0
-              Height = 17
-              Top = 170
-              Width = 182
+              Height = 15
+              Top = 150
+              Width = 164
               Caption = 'Captura % bolsa:'
               ParentColor = False
             end
             object DBText10: TDBText
-              Left = 187
-              Height = 17
-              Top = 170
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 150
+              Width = 56
               Alignment = taRightJustify
               DataField = 'porcent_bolsa_captura'
               DataSource = dsDatosMuestra
@@ -378,17 +383,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label16: TLabel
               Left = 0
-              Height = 17
-              Top = 187
-              Width = 182
+              Height = 15
+              Top = 165
+              Width = 164
               Caption = 'Peso total muestra:'
               ParentColor = False
             end
             object DBText11: TDBText
-              Left = 187
-              Height = 17
-              Top = 187
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 165
+              Width = 56
               Alignment = taRightJustify
               DataField = 'peso_muestra_captura'
               DataSource = dsDatosMuestra
@@ -398,17 +403,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label19: TLabel
               Left = 0
-              Height = 17
-              Top = 204
-              Width = 182
+              Height = 15
+              Top = 180
+              Width = 164
               Caption = 'Peso muestra vieira:'
               ParentColor = False
             end
             object DBText12: TDBText
-              Left = 187
-              Height = 17
-              Top = 204
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 180
+              Width = 56
               Alignment = taRightJustify
               DataField = 'peso_total_vieira'
               DataSource = dsDatosMuestra
@@ -418,17 +423,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label20: TLabel
               Left = 0
-              Height = 17
-              Top = 221
-              Width = 182
+              Height = 15
+              Top = 195
+              Width = 164
               Caption = 'Peso muestra bycatch:'
               ParentColor = False
             end
             object DBText13: TDBText
-              Left = 187
-              Height = 17
-              Top = 221
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 195
+              Width = 56
               Alignment = taRightJustify
               DataField = 'peso_muestra_fauna_acomp'
               DataSource = dsDatosMuestra
@@ -438,17 +443,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label21: TLabel
               Left = 0
-              Height = 17
-              Top = 238
-              Width = 182
+              Height = 15
+              Top = 210
+              Width = 164
               Caption = 'Peso organismos identificados:'
               ParentColor = False
             end
             object DBText14: TDBText
-              Left = 187
-              Height = 17
-              Top = 238
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 210
+              Width = 56
               Alignment = taRightJustify
               DataField = 'peso_organismos_muestra'
               DataSource = dsDatosMuestra
@@ -458,17 +463,17 @@ inherited fmByCatch: TfmByCatch
             end
             object Label22: TLabel
               Left = 0
-              Height = 17
-              Top = 255
-              Width = 182
+              Height = 15
+              Top = 225
+              Width = 164
               Caption = 'Peso otros comp. bycatch:'
               ParentColor = False
             end
             object DBText15: TDBText
-              Left = 187
-              Height = 17
-              Top = 255
-              Width = 58
+              Left = 169
+              Height = 15
+              Top = 225
+              Width = 56
               Alignment = taRightJustify
               DataField = 'peso_otros'
               DataSource = dsDatosMuestra
@@ -479,9 +484,9 @@ inherited fmByCatch: TfmByCatch
           end
           object Label2: TLabel
             Left = 0
-            Height = 17
+            Height = 15
             Top = 298
-            Width = 74
+            Width = 68
             Caption = 'Comentarios'
             ParentColor = False
             OnClick = Label2Click
@@ -521,9 +526,9 @@ inherited fmByCatch: TfmByCatch
           end
           object Label1: TLabel
             Left = 6
-            Height = 17
-            Top = 358
-            Width = 186
+            Height = 15
+            Top = 360
+            Width = 164
             Anchors = [akLeft, akBottom]
             Caption = 'Peces observados en la captura'
             ParentColor = False
@@ -542,11 +547,11 @@ inherited fmByCatch: TfmByCatch
                 Title.Orientation = toHorizontal
                 Width = 120
                 FieldName = 'Nombre'
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
               end            
               item
                 SizePriority = 0
@@ -555,11 +560,11 @@ inherited fmByCatch: TfmByCatch
                 Title.Orientation = toHorizontal
                 Width = 70
                 FieldName = 'numero'
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
               end            
               item
                 SizePriority = 0
@@ -568,11 +573,11 @@ inherited fmByCatch: TfmByCatch
                 Title.Orientation = toHorizontal
                 Width = 70
                 FieldName = 'peso'
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
               end            
               item
                 Title.Alignment = taCenter
@@ -580,11 +585,11 @@ inherited fmByCatch: TfmByCatch
                 Title.Orientation = toHorizontal
                 Width = 120
                 FieldName = 'comentarios'
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
               end>
             KeyStrokes = <            
               item
@@ -1320,7 +1325,7 @@ inherited fmByCatch: TfmByCatch
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      DisplayFormat = '0.00 %'
+      DisplayFormat = '0.00'
       MaxValue = 0
       MinValue = 0
       Precision = 7

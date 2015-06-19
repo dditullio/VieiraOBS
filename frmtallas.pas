@@ -114,6 +114,7 @@ type
     zqMarcasTallasmedida: TLargeintField;
     zqMarcasTallasvalor: TLongintField;
     zqTallas: TZQuery;
+    zqTallasarea: TStringField;
     zqTallasbanda: TStringField;
     zqTallascod_tipo_muestra: TStringField;
     zqTallascomentarios: TStringField;
@@ -152,6 +153,7 @@ type
     zqTallasidmuestras_talla: TLongintField;
     zqTallaslance_banda: TBytesField;
     zqTallasnrolance: TLongintField;
+    zqTallaspeso_muestra_captura: TFloatField;
     zqTallastipo_muestra: TStringField;
     zqTallasCompleto: TZQuery;
     zqDetallleTallas: TZQuery;

@@ -2,7 +2,7 @@ DELIMITER $$
 -- ---------------------------------------------
 -- Rutinas de la base de datos "vieira"
 -- realizada desde la aplicación "Vieira OBS"
--- Fecha y hora de resguardo: 11/06/2015 22:36
+-- Fecha y hora de resguardo: 17/06/2015 22:02
 -- ---------------------------------------------
 
 -- -----------------------------------------------------
@@ -724,6 +724,8 @@ CREATE VIEW `v_muestras_talla` AS SELECT 1 AS `idmuestras_talla`,
 1 AS `lance_banda`,
 1 AS `cod_tipo_muestra`,
 1 AS `tipo_muestra`,
+1 AS `area`,
+1 AS `peso_muestra_captura`,
 1 AS `orden_tipo_muestra`,
 1 AS `comentarios` $$
 SET character_set_client = @saved_cs_client $$
@@ -1988,7 +1990,7 @@ SET @saved_col_connection     = @@collation_connection $$
 SET character_set_client      = utf8 $$
 SET character_set_results     = utf8 $$
 SET collation_connection      = utf8_general_ci $$
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_muestras_talla` AS select `mt`.`idmuestras_talla` AS `idmuestras_talla`,`mt`.`idmarea` AS `idmarea`,`mt`.`fecha` AS `fecha`,`mt`.`hora` AS `hora`,`mt`.`idlance` AS `idlance`,`l`.`nro_lance` AS `nrolance`,`mt`.`banda` AS `banda`,concat(convert(`l`.`nro_lance` using utf8),' ',`mt`.`banda`) AS `lance_banda`,`mt`.`cod_tipo_muestra` AS `cod_tipo_muestra`,`tm`.`tipo_muestra` AS `tipo_muestra`,`tm`.`orden` AS `orden_tipo_muestra`,`mt`.`comentarios` AS `comentarios` from ((`muestras_talla` `mt` left join `lances` `l` on((`l`.`idlance` = `mt`.`idlance`))) left join `tipos_muestra` `tm` on((`tm`.`cod_tipo_muestra` = `mt`.`cod_tipo_muestra`))) $$
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_muestras_talla` AS select `mt`.`idmuestras_talla` AS `idmuestras_talla`,`mt`.`idmarea` AS `idmarea`,`mt`.`fecha` AS `fecha`,`mt`.`hora` AS `hora`,`mt`.`idlance` AS `idlance`,`l`.`nro_lance` AS `nrolance`,`mt`.`banda` AS `banda`,concat(convert(`l`.`nro_lance` using utf8),' ',`mt`.`banda`) AS `lance_banda`,`mt`.`cod_tipo_muestra` AS `cod_tipo_muestra`,`tm`.`tipo_muestra` AS `tipo_muestra`,concat(`l`.`grados_latitud_ini`,lpad(floor(`l`.`minutos_latitud_ini`),2,0),'/',`l`.`grados_longitud_ini`,lpad(floor(`l`.`minutos_longitud_ini`),2,0)) AS `area`,coalesce((select sum(`vmr`.`peso_total`) from `v_muestras_rinde` `vmr` where ((`mt`.`cod_tipo_muestra` = 'C') and (`vmr`.`idlance` = `mt`.`idlance`) and ((`mt`.`banda` = 'E+B') or (`vmr`.`banda` = `mt`.`banda`)))),`mt`.`peso_total`) AS `peso_muestra_captura`,`tm`.`orden` AS `orden_tipo_muestra`,`mt`.`comentarios` AS `comentarios` from ((`muestras_talla` `mt` left join `lances` `l` on((`l`.`idlance` = `mt`.`idlance`))) left join `tipos_muestra` `tm` on((`tm`.`cod_tipo_muestra` = `mt`.`cod_tipo_muestra`))) $$
 SET character_set_client      = @saved_cs_client $$
 SET character_set_results     = @saved_cs_results $$
 SET collation_connection      = @saved_col_connection $$
@@ -2661,7 +2663,7 @@ DELIMITER ;
 
 
 -- ----------------------------------------------------
--- Fin de la copia de seguridad: 11/06/2015 22:36
+-- Fin de la copia de seguridad: 17/06/2015 22:02
 -- ----------------------------------------------------
 
 

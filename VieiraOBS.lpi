@@ -222,6 +222,7 @@
         <ComponentName Value="fmMuestrasBiologicas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmmuestrasbiologicas"/>
       </Unit13>
       <Unit14>
         <Filename Value="frmeditarmuestrasbiologicas.pas"/>
@@ -250,6 +251,7 @@
         <ComponentName Value="fmByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmbycatch"/>
       </Unit17>
       <Unit18>
         <Filename Value="datbycatch.pas"/>
@@ -264,6 +266,7 @@
         <ComponentName Value="fmEditarByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditarbycatch"/>
       </Unit19>
       <Unit20>
         <Filename Value="datbase.pas"/>
@@ -285,6 +288,7 @@
         <ComponentName Value="fmTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmtallas"/>
       </Unit22>
       <Unit23>
         <Filename Value="dattallas.pas"/>
@@ -332,6 +336,7 @@
         <ComponentName Value="fmInformes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frminformes"/>
       </Unit29>
       <Unit30>
         <Filename Value="frmmuestrassenasa.pas"/>

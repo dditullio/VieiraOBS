@@ -34,10 +34,10 @@ inherited fmInformes: TfmInformes
           ClientHeight = 462
           ClientWidth = 870
           object bbGuardar: TBitBtn
-            Left = 264
+            Left = 285
             Height = 26
-            Top = 250
-            Width = 144
+            Top = 248
+            Width = 122
             Action = acGuardarPlanillas
             Glyph.Data = {
               36040000424D3604000000000000360000002800000010000000100000000100
@@ -173,7 +173,7 @@ inherited fmInformes: TfmInformes
             Left = 8
             Height = 23
             Top = 251
-            Width = 228
+            Width = 273
             OnAcceptDirectory = dedCarpetaPlanillasAcceptDirectory
             ShowHidden = False
             ButtonWidth = 23

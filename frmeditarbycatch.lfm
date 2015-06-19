@@ -396,6 +396,7 @@ inherited fmEditarByCatch: TfmEditarByCatch
       Height = 23
       Top = 26
       Width = 183
+      AutoComplete = True
       DataField = 'descripcion'
       DataSource = dmByCatch.dsByCatch
       KeyField = 'banda'
@@ -561,6 +562,7 @@ inherited fmEditarByCatch: TfmEditarByCatch
     BotonAgregar = bbAgregar
     BotonEditar = bbEditar
     BotonEliminar = bbEliminar
+    SeleccionarUltimo = False
     CampoIdPadre = dmByCatch.zqByCatchidmuestras_bycatch
     ControlEdicion = fmEditarDetalleByCatch.zcePrincipal
     Grilla = dbgDetByCatch

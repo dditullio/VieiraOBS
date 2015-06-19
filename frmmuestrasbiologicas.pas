@@ -28,6 +28,7 @@ type
     zqMuestrasBiologicasnro_caja: TLongintField;
     zqMuestrasBiologicasstr_latitud: TStringField;
     zqMuestrasBiologicasstr_longitud: TStringField;
+    zqMuestrasBiologicastipo_muestra: TStringField;
     procedure zqMuestrasBiologicasBeforeOpen(DataSet: TDataSet);
     procedure zqMuestrasBiologicasCalcFields(DataSet: TDataSet);
   private

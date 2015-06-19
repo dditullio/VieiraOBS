@@ -25,8 +25,13 @@ inherited fmTallas: TfmTallas
         inherited paBuscador: TPanel
           Width = 496
           ClientWidth = 496
+          inherited laBuscar: TLabel
+            Height = 15
+            Width = 35
+          end
           inherited edBuscar: TEdit
             Left = 124
+            Height = 23
             Width = 337
           end
           inherited bbBuscar: TBitBtn
@@ -34,9 +39,9 @@ inherited fmTallas: TfmTallas
           end
           object dtFecha: TDateTimePicker[3]
             Left = 5
-            Height = 25
+            Height = 23
             Top = 19
-            Width = 115
+            Width = 105
             ShowCheckBox = True
             CenturyFrom = 1941
             MaxDate = 2958465
@@ -89,13 +94,13 @@ inherited fmTallas: TfmTallas
                 Title.Orientation = toHorizontal
                 Width = 80
                 FieldName = 'fecha'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -106,13 +111,13 @@ inherited fmTallas: TfmTallas
                 Title.Orientation = toHorizontal
                 Width = 50
                 FieldName = 'hora'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -122,13 +127,46 @@ inherited fmTallas: TfmTallas
                 Title.Orientation = toHorizontal
                 Width = 70
                 FieldName = 'lance_banda'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Area'
+                Title.Orientation = toHorizontal
+                Width = 65
+                FieldName = 'area'
                 EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Caption = 'Peso'
+                Title.Orientation = toHorizontal
+                Width = 50
+                FieldName = 'peso_muestra_captura'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
               end            
               item
                 Alignment = taCenter
@@ -139,28 +177,28 @@ inherited fmTallas: TfmTallas
                 Title.Orientation = toHorizontal
                 Width = 100
                 FieldName = 'tipo_muestra'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
                 Title.Alignment = taCenter
                 Title.Caption = 'Comentarios'
                 Title.Orientation = toHorizontal
-                Width = 153
+                Width = 38
                 FieldName = 'comentarios'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end>
             DataSource = dsTallas
           end
@@ -243,17 +281,17 @@ inherited fmTallas: TfmTallas
           TabOrder = 2
           object Label1: TLabel
             Left = 0
-            Height = 17
+            Height = 15
             Top = 0
-            Width = 123
+            Width = 111
             Caption = 'Tipo de muestra:'
             ParentColor = False
           end
           object DBText1: TDBText
-            Left = 128
-            Height = 17
+            Left = 116
+            Height = 15
             Top = 0
-            Width = 58
+            Width = 56
             Alignment = taCenter
             DataField = 'tipo_muestra'
             DataSource = dsDatosMuestra
@@ -263,17 +301,17 @@ inherited fmTallas: TfmTallas
           end
           object Label2: TLabel
             Left = 0
-            Height = 17
-            Top = 17
-            Width = 123
+            Height = 15
+            Top = 15
+            Width = 111
             Caption = 'Latitud:'
             ParentColor = False
           end
           object DBText2: TDBText
-            Left = 128
-            Height = 17
-            Top = 17
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 15
+            Width = 56
             Alignment = taCenter
             DataField = 'latitud'
             DataSource = dsDatosMuestra
@@ -283,17 +321,17 @@ inherited fmTallas: TfmTallas
           end
           object Label3: TLabel
             Left = 0
-            Height = 17
-            Top = 34
-            Width = 123
+            Height = 15
+            Top = 30
+            Width = 111
             Caption = 'Longitud:'
             ParentColor = False
           end
           object DBText3: TDBText
-            Left = 128
-            Height = 17
-            Top = 34
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 30
+            Width = 56
             Alignment = taCenter
             DataField = 'longitud'
             DataSource = dsDatosMuestra
@@ -303,17 +341,17 @@ inherited fmTallas: TfmTallas
           end
           object Label4: TLabel
             Left = 0
-            Height = 17
-            Top = 51
-            Width = 123
+            Height = 15
+            Top = 45
+            Width = 111
             Caption = 'Area:'
             ParentColor = False
           end
           object DBText4: TDBText
-            Left = 128
-            Height = 17
-            Top = 51
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 45
+            Width = 56
             Alignment = taCenter
             DataField = 'area'
             DataSource = dsDatosMuestra
@@ -323,17 +361,17 @@ inherited fmTallas: TfmTallas
           end
           object Label10: TLabel
             Left = 0
-            Height = 17
-            Top = 68
-            Width = 123
+            Height = 15
+            Top = 60
+            Width = 111
             Caption = 'Tiempo de arrastre:'
             ParentColor = False
           end
           object DBText8: TDBText
-            Left = 128
-            Height = 17
-            Top = 68
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 60
+            Width = 56
             Alignment = taCenter
             DataField = 'minutos_arrastre'
             DataSource = dsDatosMuestra
@@ -343,33 +381,33 @@ inherited fmTallas: TfmTallas
           end
           object Label29: TLabel
             Left = 0
-            Height = 17
-            Top = 85
-            Width = 123
+            Height = 15
+            Top = 75
+            Width = 111
             Caption = ' '
             ParentColor = False
           end
           object Label30: TLabel
-            Left = 128
-            Height = 17
-            Top = 85
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 75
+            Width = 56
             Caption = ' '
             ParentColor = False
           end
           object Label11: TLabel
             Left = 0
-            Height = 17
-            Top = 102
-            Width = 123
+            Height = 15
+            Top = 90
+            Width = 111
             Caption = '% bolsa captura:'
             ParentColor = False
           end
           object DBText9: TDBText
-            Left = 128
-            Height = 17
-            Top = 102
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 90
+            Width = 56
             Alignment = taCenter
             DataField = 'porcent_bolsa_captura'
             DataSource = dsDatosMuestra
@@ -379,33 +417,33 @@ inherited fmTallas: TfmTallas
           end
           object Label5: TLabel
             Left = 0
-            Height = 17
-            Top = 119
-            Width = 123
+            Height = 15
+            Top = 105
+            Width = 111
             Caption = ' '
             ParentColor = False
           end
           object Label6: TLabel
-            Left = 128
-            Height = 17
-            Top = 119
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 105
+            Width = 56
             Caption = ' '
             ParentColor = False
           end
           object Label7: TLabel
             Left = 0
-            Height = 17
-            Top = 136
-            Width = 123
+            Height = 15
+            Top = 120
+            Width = 111
             Caption = 'Peso muestra:'
             ParentColor = False
           end
           object DBText5: TDBText
-            Left = 128
-            Height = 17
-            Top = 136
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 120
+            Width = 56
             Alignment = taCenter
             DataField = 'peso_muestra_captura'
             DataSource = dsDatosMuestra
@@ -415,17 +453,17 @@ inherited fmTallas: TfmTallas
           end
           object Label8: TLabel
             Left = 0
-            Height = 17
-            Top = 153
-            Width = 123
+            Height = 15
+            Top = 135
+            Width = 111
             Caption = 'Nº ejemp. totales:'
             ParentColor = False
           end
           object DBText6: TDBText
-            Left = 128
-            Height = 17
-            Top = 153
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 135
+            Width = 56
             Alignment = taCenter
             DataField = 'nro_ejemplares'
             DataSource = dsDatosMuestra
@@ -435,33 +473,33 @@ inherited fmTallas: TfmTallas
           end
           object Label9: TLabel
             Left = 0
-            Height = 17
-            Top = 170
-            Width = 123
+            Height = 15
+            Top = 150
+            Width = 111
             Caption = ' '
             ParentColor = False
           end
           object Label12: TLabel
-            Left = 128
-            Height = 17
-            Top = 170
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 150
+            Width = 56
             Caption = ' '
             ParentColor = False
           end
           object Label13: TLabel
             Left = 0
-            Height = 17
-            Top = 187
-            Width = 123
+            Height = 15
+            Top = 165
+            Width = 111
             Caption = 'Peso comerciales:'
             ParentColor = False
           end
           object DBText7: TDBText
-            Left = 128
-            Height = 17
-            Top = 187
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 165
+            Width = 56
             Alignment = taCenter
             DataField = 'peso_muestra_captura_comercial'
             DataSource = dsDatosMuestra
@@ -471,17 +509,17 @@ inherited fmTallas: TfmTallas
           end
           object Label14: TLabel
             Left = 0
-            Height = 17
-            Top = 204
-            Width = 123
+            Height = 15
+            Top = 180
+            Width = 111
             Caption = 'Nº comerciales:'
             ParentColor = False
           end
           object DBText10: TDBText
-            Left = 128
-            Height = 17
-            Top = 204
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 180
+            Width = 56
             Alignment = taCenter
             DataField = 'nro_ejemp_comerciales'
             DataSource = dsDatosMuestra
@@ -491,18 +529,18 @@ inherited fmTallas: TfmTallas
           end
           object Label15: TLabel
             Left = 0
-            Height = 17
-            Top = 221
-            Width = 123
+            Height = 15
+            Top = 195
+            Width = 111
             Caption = '% comerciales:'
             ParentColor = False
             OnClick = Label15Click
           end
           object DBText11: TDBText
-            Left = 128
-            Height = 17
-            Top = 221
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 195
+            Width = 56
             Alignment = taCenter
             DataField = 'porc_ejemp_comerciales'
             DataSource = dsDatosMuestra
@@ -512,33 +550,33 @@ inherited fmTallas: TfmTallas
           end
           object Label16: TLabel
             Left = 0
-            Height = 17
-            Top = 238
-            Width = 123
+            Height = 15
+            Top = 210
+            Width = 111
             Caption = ' '
             ParentColor = False
           end
           object Label17: TLabel
-            Left = 128
-            Height = 17
-            Top = 238
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 210
+            Width = 56
             Caption = ' '
             ParentColor = False
           end
           object Label18: TLabel
             Left = 0
-            Height = 17
-            Top = 255
-            Width = 123
+            Height = 15
+            Top = 225
+            Width = 111
             Caption = 'Peso no comerciales:'
             ParentColor = False
           end
           object DBText12: TDBText
-            Left = 128
-            Height = 17
-            Top = 255
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 225
+            Width = 56
             Alignment = taCenter
             DataField = 'peso_muestra_captura_no_comercial'
             DataSource = dsDatosMuestra
@@ -548,17 +586,17 @@ inherited fmTallas: TfmTallas
           end
           object Label19: TLabel
             Left = 0
-            Height = 17
-            Top = 272
-            Width = 123
+            Height = 15
+            Top = 240
+            Width = 111
             Caption = 'Nº no comerciales:'
             ParentColor = False
           end
           object DBText13: TDBText
-            Left = 128
-            Height = 17
-            Top = 272
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 240
+            Width = 56
             Alignment = taCenter
             DataField = 'nro_ejemp_no_comerciales'
             DataSource = dsDatosMuestra
@@ -568,17 +606,17 @@ inherited fmTallas: TfmTallas
           end
           object Label20: TLabel
             Left = 0
-            Height = 17
-            Top = 289
-            Width = 123
+            Height = 15
+            Top = 255
+            Width = 111
             Caption = '% no comerciales:'
             ParentColor = False
           end
           object DBText14: TDBText
-            Left = 128
-            Height = 17
-            Top = 289
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 255
+            Width = 56
             Alignment = taCenter
             DataField = 'porc_ejemp_no_comerciales'
             DataSource = dsDatosMuestra
@@ -588,33 +626,33 @@ inherited fmTallas: TfmTallas
           end
           object Label21: TLabel
             Left = 0
-            Height = 17
-            Top = 306
-            Width = 123
+            Height = 15
+            Top = 270
+            Width = 111
             Caption = ' '
             ParentColor = False
           end
           object Label22: TLabel
-            Left = 128
-            Height = 17
-            Top = 306
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 270
+            Width = 56
             Caption = ' '
             ParentColor = False
           end
           object Label23: TLabel
             Left = 0
-            Height = 17
-            Top = 323
-            Width = 123
+            Height = 15
+            Top = 285
+            Width = 111
             Caption = 'Nº reclutas:'
             ParentColor = False
           end
           object DBText15: TDBText
-            Left = 128
-            Height = 17
-            Top = 323
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 285
+            Width = 56
             Alignment = taCenter
             DataField = 'nro_ejemp_men_35'
             DataSource = dsDatosMuestra
@@ -624,17 +662,17 @@ inherited fmTallas: TfmTallas
           end
           object Label24: TLabel
             Left = 0
-            Height = 17
-            Top = 340
-            Width = 123
+            Height = 15
+            Top = 300
+            Width = 111
             Caption = '% reclutas:'
             ParentColor = False
           end
           object DBText16: TDBText
-            Left = 128
-            Height = 17
-            Top = 340
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 300
+            Width = 56
             Alignment = taCenter
             DataField = 'porc_ejemp_men_35'
             DataSource = dsDatosMuestra
@@ -644,33 +682,33 @@ inherited fmTallas: TfmTallas
           end
           object Label25: TLabel
             Left = 0
-            Height = 17
-            Top = 357
-            Width = 123
+            Height = 15
+            Top = 315
+            Width = 111
             Caption = ' '
             ParentColor = False
           end
           object Label26: TLabel
-            Left = 128
-            Height = 17
-            Top = 357
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 315
+            Width = 56
             Caption = ' '
             ParentColor = False
           end
           object Label27: TLabel
             Left = 0
-            Height = 17
-            Top = 374
-            Width = 123
+            Height = 15
+            Top = 330
+            Width = 111
             Caption = 'Rinde total:'
             ParentColor = False
           end
           object DBText17: TDBText
-            Left = 128
-            Height = 17
-            Top = 374
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 330
+            Width = 56
             Alignment = taCenter
             DataField = 'rinde_total'
             DataSource = dsDatosMuestra
@@ -680,17 +718,17 @@ inherited fmTallas: TfmTallas
           end
           object Label28: TLabel
             Left = 0
-            Height = 17
-            Top = 391
-            Width = 123
+            Height = 15
+            Top = 345
+            Width = 111
             Caption = 'Rinde comercial:'
             ParentColor = False
           end
           object DBText18: TDBText
-            Left = 128
-            Height = 17
-            Top = 391
-            Width = 58
+            Left = 116
+            Height = 15
+            Top = 345
+            Width = 56
             Alignment = taCenter
             DataField = 'rinde_comenrcial'
             DataSource = dsDatosMuestra
@@ -751,7 +789,7 @@ inherited fmTallas: TfmTallas
         Name = '__FILTRO__'
         ParamType = ptUnknown
       end>
-    left = 141
+    left = 145
     top = 240
     ParamData = <    
       item
@@ -852,11 +890,36 @@ inherited fmTallas: TfmTallas
       Required = False
       Size = 45
     end
+    object zqTallasarea: TStringField
+      DisplayWidth = 108
+      FieldKind = fkData
+      FieldName = 'area'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 108
+    end
+    object zqTallaspeso_muestra_captura: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'peso_muestra_captura'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 35
+    end
     object zqTallascod_tipo_muestra: TStringField
       DisplayWidth = 4
       FieldKind = fkData
       FieldName = 'cod_tipo_muestra'
-      Index = 8
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -867,7 +930,7 @@ inherited fmTallas: TfmTallas
       DisplayWidth = 60
       FieldKind = fkData
       FieldName = 'tipo_muestra'
-      Index = 9
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -878,7 +941,7 @@ inherited fmTallas: TfmTallas
       DisplayWidth = 1024
       FieldKind = fkData
       FieldName = 'comentarios'
-      Index = 10
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

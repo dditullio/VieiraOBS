@@ -6,6 +6,7 @@ inherited fmEditarLances: TfmEditarLances
   Caption = 'Lances'
   ClientHeight = 414
   ClientWidth = 739
+  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   inherited paEncabezadoBase: TPanel
@@ -53,9 +54,9 @@ inherited fmEditarLances: TfmEditarLances
           Height = 314
           Top = 0
           Width = 729
-          ActivePage = tsPredeterminado
+          ActivePage = tsAlternativo
           Align = alClient
-          TabIndex = 0
+          TabIndex = 1
           TabOrder = 0
           OnChange = pcFormatosChange
           object tsPredeterminado: TTabSheet
@@ -707,6 +708,7 @@ inherited fmEditarLances: TfmEditarLances
               ClientHeight = 114
               ClientWidth = 372
               TabOrder = 0
+              OnExit = gbDatosInicioExit
               object Label26: TLabel
                 Left = 170
                 Height = 15
@@ -2297,6 +2299,7 @@ inherited fmEditarLances: TfmEditarLances
   end
   inherited zcePrincipal: TZControladorEdicion
     AltaContinua = True
+    OnValidateForm = zcePrincipalValidateForm
     OnInitRecord = zcePrincipalInitRecord
     left = 212
   end

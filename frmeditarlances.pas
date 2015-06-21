@@ -334,6 +334,7 @@ type
     procedure dbedMinutosLongIniExit(Sender: TObject);
     procedure dbedVelocVientoChange(Sender: TObject);
     procedure dbedVelocVientoExit(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure gbDatosInicioExit(Sender: TObject);
@@ -376,7 +377,7 @@ type
     { public declarations }
   end;
 
-  function CapturaAStrNum(s_captura: string):String;
+function CapturaAStrNum(s_captura: string): string;
 
 var
   fmEditarLances: TfmEditarLances;
@@ -384,39 +385,39 @@ var
 
 implementation
 
-function CapturaAStrNum(s_captura: string): String;
+function CapturaAStrNum(s_captura: string): string;
 var
-  Expr: String;
-  Decimal:String;
-  OLD_DC:char;
+  Expr: string;
+  Decimal: string;
+  OLD_DC: char;
 begin
-  OLD_DC:=DecimalSeparator;
-  DecimalSeparator:='.';
+  OLD_DC := DecimalSeparator;
+  DecimalSeparator := '.';
   //Si es una expresión fraccional, los '+' no se aplican, así que los borro
-  if Pos('/',s_captura)>0 then
+  if Pos('/', s_captura) > 0 then
   begin
-    Expr:=StringReplace(s_captura, '+', '', [rfReplaceAll]);
+    Expr := StringReplace(s_captura, '+', '', [rfReplaceAll]);
   end
-  else if Pos('+',s_captura)>0 then
+  else if Pos('+', s_captura) > 0 then
   begin
-//    Expr:=copy(s_captura,Pos('+',s_captura),Length(s_captura)-Pos('+',s_captura)+1);
-    Expr:=s_captura;
+    //    Expr:=copy(s_captura,Pos('+',s_captura),Length(s_captura)-Pos('+',s_captura)+1);
+    Expr := s_captura;
     //Si hay más de 3 '+' lo cambio por '+++'
-    if RightStr(Expr,4)='++++' then
+    if RightStr(Expr, 4) = '++++' then
     begin
-      Expr:=StringReplace(Expr, '+', '', [rfReplaceAll])+'+++';
+      Expr := StringReplace(Expr, '+', '', [rfReplaceAll]) + '+++';
     end;
     //Busco +++, ++ o + y lo reemplazo por ',75', '.50' o '.25' respectivamente
-    Expr:=StringReplace(Expr, '+++', '.75', [rfReplaceAll]);
-    Expr:=StringReplace(Expr, '++', '.50', [rfReplaceAll]);
-    Expr:=StringReplace(Expr, '+', '.25', [rfReplaceAll]);
+    Expr := StringReplace(Expr, '+++', '.75', [rfReplaceAll]);
+    Expr := StringReplace(Expr, '++', '.50', [rfReplaceAll]);
+    Expr := StringReplace(Expr, '+', '.25', [rfReplaceAll]);
   end
   else
   begin
-    Expr:=s_captura;
+    Expr := s_captura;
   end;
-  Result:=Expr;
-  DecimalSeparator:=OLD_DC;
+  Result := Expr;
+  DecimalSeparator := OLD_DC;
 end;
 
 {$R *.lfm}
@@ -427,7 +428,7 @@ procedure TControlsArray.SetActiveIndex(AValue: integer);
 var
   i: integer;
 begin
-  i:=FActiveIndex;
+  i := FActiveIndex;
   if FActiveIndex = AValue then
     Exit;
   if AValue + 1 > Length(FControls) then
@@ -442,8 +443,7 @@ begin
   SetLength(FControls, 1);
 end;
 
-procedure TControlsArray.AddControl(index: integer; Name: string;
-    Control: TControl);
+procedure TControlsArray.AddControl(index: integer; Name: string; Control: TControl);
 begin
   //Si es necesario, redimensiono el array
   if index + 1 > Length(FControls) then
@@ -468,11 +468,11 @@ begin
     if i <> -1 then
     begin
       if (FControls[index].Objects[i] is TWinControl) then
-         Result := (FControls[index].Objects[i] as TWinControl)
+        Result := (FControls[index].Objects[i] as TWinControl)
       else if (FControls[index].Objects[i] is TGraphicControl) then
-         Result := (FControls[index].Objects[i] as TGraphicControl)
+        Result := (FControls[index].Objects[i] as TGraphicControl)
       else
-         Result:=nil;
+        Result := nil;
     end;
   end;
 end;
@@ -494,9 +494,9 @@ begin
     if i <> -1 then
     begin
       if (FControls[index].Objects[i] is TWinControl) then
-         Result := (FControls[index].Objects[i] as TWinControl).CanFocus
+        Result := (FControls[index].Objects[i] as TWinControl).CanFocus
       else
-          Result:=False;
+        Result := False;
     end;
   end;
 end;
@@ -516,11 +516,11 @@ begin
     // Si encontró el nombre, devuelvo el control
     if i <> -1 then
     begin
-       if (FControls[index].Objects[i] is TWinControl) then
-       begin
-         if (FControls[index].Objects[i] as TWinControl).CanFocus then
-            (FControls[index].Objects[i] as TWinControl).SetFocus;
-       end;
+      if (FControls[index].Objects[i] is TWinControl) then
+      begin
+        if (FControls[index].Objects[i] as TWinControl).CanFocus then
+          (FControls[index].Objects[i] as TWinControl).SetFocus;
+      end;
     end;
   end;
 end;
@@ -541,9 +541,9 @@ begin
     if i <> -1 then
     begin
       if (FControls[index].Objects[i] is TWinControl) then
-         (FControls[index].Objects[i] as TWinControl).Font.Color:=FontColor
+        (FControls[index].Objects[i] as TWinControl).Font.Color := FontColor
       else if (FControls[index].Objects[i] is TGraphicControl) then
-         (FControls[index].Objects[i] as TGraphicControl).Font.Color:=FontColor
+        (FControls[index].Objects[i] as TGraphicControl).Font.Color := FontColor;
     end;
   end;
 end;
@@ -552,12 +552,12 @@ procedure TControlsArray.SetColor(Name: string; FontColor: TColor);
 var
   C: TControl;
 begin
-  C:=GetControl(Name);
+  C := GetControl(Name);
   if Assigned(C) then
-  if (C is TWinControl) then
-     (C as TWinControl).Font.Color:=FontColor
-  else if (C is TGraphicControl) then
-     (C as TGraphicControl).Font.Color:=FontColor
+    if (C is TWinControl) then
+      (C as TWinControl).Font.Color := FontColor
+    else if (C is TGraphicControl) then
+      (C as TGraphicControl).Font.Color := FontColor;
 end;
 
 { TfmEditarLances }
@@ -650,9 +650,9 @@ var
 begin
   //Valido contra la posición inicial por si cambió de grado
   //a) Calculo los minutos entre el inicio y fin del lance actual
-  minutos_tiempo := MinutesBetween(zqPrincipalfecha.AsDateTime + zqPrincipalhora.AsDateTime,
-    IncMinute(zqPrincipalfecha.AsDateTime + zqPrincipalhora.AsDateTime,
-    zqPrincipalminutos_arrastre.AsInteger));
+  minutos_tiempo := MinutesBetween(zqPrincipalfecha.AsDateTime +
+    zqPrincipalhora.AsDateTime, IncMinute(zqPrincipalfecha.AsDateTime +
+    zqPrincipalhora.AsDateTime, zqPrincipalminutos_arrastre.AsInteger));
   //b) Calculo velocidad promedio necesaria (solo en latitud, no cosidero
   //diferencia de longitud
   veloc_prom := VelocidadEnNudos(zqPrincipalgrados_latitud_ini.Value *
@@ -748,9 +748,9 @@ var
 begin
   //Valido contra la posición inicial por si cambió de grado
   //a) Calculo los minutos entre el inicio y fin del lance actual
-  minutos_tiempo := MinutesBetween(zqPrincipalfecha.AsDateTime + zqPrincipalhora.AsDateTime,
-    IncMinute(zqPrincipalfecha.AsDateTime + zqPrincipalhora.AsDateTime,
-    zqPrincipalminutos_arrastre.AsInteger));
+  minutos_tiempo := MinutesBetween(zqPrincipalfecha.AsDateTime +
+    zqPrincipalhora.AsDateTime, IncMinute(zqPrincipalfecha.AsDateTime +
+    zqPrincipalhora.AsDateTime, zqPrincipalminutos_arrastre.AsInteger));
   //b) Calculo velocidad promedio necesaria (solo en longitud, no cosidero
   //diferencia de latitud
   veloc_prom := VelocidadEnNudos(zqPrincipalgrados_longitud_ini.Value *
@@ -854,11 +854,22 @@ begin
   end;
 end;
 
+procedure TfmEditarLances.FormClose(Sender: TObject;
+    var CloseAction: TCloseAction);
+begin
+  //Vuelvo a sacar los TabStop de los grados, en caso de que se hubiesen puesto
+  //por la validación de la hora
+  dbedGradosLatIni.TabStop := False;
+  dbedGradosLongIni.TabStop := False;
+  dbedGradosLatIni1.TabStop := False;
+  dbedGradosLongIni1.TabStop := False;
+end;
+
 procedure TfmEditarLances.FormCreate(Sender: TObject);
 begin
   FControlesEdicion := TControlsArray.Create;
   inherited;
-  pcLances.ActivePage:=tsGeneral;
+  pcLances.ActivePage := tsGeneral;
   pcFormatos.TabIndex := 0;
   zcePrincipal.ControlInicial := dbdtHora;
   //Creo elvector con los controles de edición para cada pestaña de formato
@@ -945,8 +956,10 @@ begin
   dist_entre_lances := -1;
   minutos_entre_lances := -1;
   //Verifico también que la posición final no sea nula
-  if (zqAntLance.RecordCount > 0) and (not zqAntLancegrados_latitud_fin.IsNull) and (not zqAntLancegrados_longitud_fin.IsNull)
-      and (not zqAntLanceminutos_latitud_fin.IsNull) and (not zqAntLanceminutos_longitud_fin.IsNull) then
+  if (zqAntLance.RecordCount > 0) and (not zqAntLancegrados_latitud_fin.IsNull) and
+    (not zqAntLancegrados_longitud_fin.IsNull) and
+    (not zqAntLanceminutos_latitud_fin.IsNull) and
+    (not zqAntLanceminutos_longitud_fin.IsNull) then
   begin
     lat_fin_ant := zqAntLancegrados_latitud_fin.Value * 100 +
       zqAntLanceminutos_latitud_fin.Value;
@@ -977,7 +990,7 @@ begin
         if MessageDlg('Advertencia',
           'El tiempo entre el fin del lance anterior y el inicio del actual no concuerda con la distancia entre ambos lances. El buque debería haber recorrido ' + FormatFloat('0.00', dist_entre_lances) + ' millas en ' + FormatFloat('0', minutos_entre_lances) + ' minutos, a una velocidad de ' + FormatFloat('0.0', velocidad_entre_lances) + ' nudos, lo cual no es posible. Verifique la hora y las posiciones del lance actual y del anterior. ¿Desea continuar igualmente con este error?', mtError, mbYesNo, 0, mbNo) = mrNo then
         begin
-             FControlesEdicion.SetFocus('MinutosLatIni');
+          FControlesEdicion.SetFocus('GradosLatIni');
         end;
       end;
     end;
@@ -985,11 +998,17 @@ begin
 end;
 
 procedure TfmEditarLances.paFechaHoraExit(Sender: TObject);
+var
+  minutos_entre_lances: double;
+  msg_dif_horas: string;
+  hay_error: boolean;
 begin
+  hay_error:=False;
   if zqPrincipalhora.IsNull then
   begin
     MessageDlg('Debe indicar la hora de inicio del lance', mtError, [mbOK], 0);
     FControlesEdicion.SetFocus('Hora');
+    hay_error:=True;
   end
   else //Si la hora es mayor o igual al inicio del lance anterior
   //pero menor a la hora de virada, es error
@@ -1004,14 +1023,11 @@ begin
       IncMinute(int(zqAntLancefecha.AsDateTime) + zqAntLancehora.AsDateTime,
       zqAntLanceminutos_arrastre.AsInteger)), mtError, [mbOK], 0);
     FControlesEdicion.SetFocus('Fecha');
+    hay_error:=True;
   end
   else
   //Si la hora es anterior al inicio del lance anterior, sugiero
   //cambio de fecha
-  //if (zqPrincipal.State in [dsInsert,dsEdit]) and
-  //(zqAntLance.RecordCount>0) and
-  //(not zqPrincipalhora.IsNull) and
-  //(zqPrincipalhora.Value<zqAntLancehora.Value) then
   if (zqAntLance.RecordCount > 0) and (int(zqPrincipalfecha.AsDateTime) +
     zqPrincipalhora.AsDateTime < int(zqAntLancefecha.AsDateTime) +
     zqAntLancehora.AsDateTime) then
@@ -1027,14 +1043,52 @@ begin
         'Verifique si ingresó correctamente la hora de inicio, y si la fecha y hora del lance anterior son las correctas.',
         mtError, [mbClose], 0);
       FControlesEdicion.SetFocus('Fecha');
+      hay_error:=True;
     end;
+  end;
+
+  if not hay_error then
+  begin
+      //Calculo los minutos entre el fin del lance anterior y el inicio del actual
+      minutos_entre_lances := MinutesBetween(
+        IncMinute(zqAntLancefecha.AsDateTime + zqAntLancehora.AsDateTime,
+        zqAntLanceminutos_arrastre.AsInteger), zqPrincipalfecha.AsDateTime +
+        zqPrincipalhora.AsDateTime);
+
+      msg_dif_horas := '';
+      //Si la diferencia entre el lance anterior es de más de 2 horas, habilito
+      //los campos de grado para que se confirme la posición
+      if (minutos_entre_lances / 60) >= 48 then //si la diferencia es > 2 días, mensaje en días
+      begin
+        msg_dif_horas :=
+          'Hay una diferencia de varios días respecto al último lance registrado. Por favor verifique que los grados de latitud y longitud ingresados sean correctos';
+      end
+      else
+      if (minutos_entre_lances / 60) > 2 then //si la diferencia es > 2 horas, mensaje en horas
+      begin
+        msg_dif_horas :=
+          'Hay una diferencia de varias horas respecto al último lance registrado. Por favor verifique que los grados de latitud y longitud ingresados sean correctos';
+      end;
+
+      if (minutos_entre_lances / 60) > 2 then
+      begin
+        MessageDlg(msg_dif_horas, mtInformation, [mbOK], 0);
+        //Habilito el TabStop en los campos de grado. Se deshabilitarán nuevamente en el próximo registro
+        //Solo habilito el inicial, ya que el final se corrige automáticamente
+        dbedGradosLatIni.TabStop := True;
+        dbedGradosLongIni.TabStop := True;
+
+        dbedGradosLatIni1.TabStop := True;
+        dbedGradosLongIni1.TabStop := True;
+        FControlesEdicion.SetFocus('GradosLatIni');
+      end;
   end;
 end;
 
 procedure TfmEditarLances.pcFormatosChange(Sender: TObject);
 begin
   FControlesEdicion.ActiveIndex := pcFormatos.TabIndex;
-  LSSaveConfig(['formato_planilla_puente'],[pcFormatos.TabIndex]);
+  LSSaveConfig(['formato_planilla_puente'], [pcFormatos.TabIndex]);
   FControlesEdicion.SetFocus('Hora');
   //Seteo el control predeterminado en el controlador
   if pcFormatos.TabIndex = 0 then
@@ -1054,14 +1108,14 @@ end;
 
 procedure TfmEditarLances.zcePrincipalInitRecord(Sender: TObject);
 var
-  formato:String;
+  formato: string;
 begin
-  pcLances.PageIndex:=0;
-  LSLoadConfig(['formato_planilla_puente'],[formato],[@formato]);
-  if formato='' then
-    pcFormatos.PageIndex:=0
+  pcLances.PageIndex := 0;
+  LSLoadConfig(['formato_planilla_puente'], [formato], [@formato]);
+  if formato = '' then
+    pcFormatos.PageIndex := 0
   else
-    pcFormatos.PageIndex:=StrToInt(formato);
+    pcFormatos.PageIndex := StrToInt(formato);
 
 end;
 
@@ -1077,8 +1131,7 @@ begin
       (zqPrincipalTiempoNecesario.Value > 40) then
     begin
       if MessageDlg('Advertencia',
-        'Parece que algo no está bien con las posiciones, el tiempo de arrastre o la velocidad. ¿Desea guardar igualmente estos datos con error?',
-        mtWarning, [mbYes, mbNo], 0, mbNo) = mrNo then
+        'Parece que algo no está bien con las posiciones, el tiempo de arrastre o la velocidad. ¿Desea guardar igualmente estos datos con error?', mtWarning, [mbYes, mbNo], 0, mbNo) = mrNo then
       begin
         ValidacionOK := False;
       end
@@ -1131,8 +1184,8 @@ begin
   if (zcePrincipal.Accion = ED_AGREGAR) and (zqAntLance.RecordCount > 0) then
     zqPrincipalEncabezado.Value :=
       zqPrincipalEncabezado.Value + ' (Lance anterior: ' + FormatDateTime(
-      'dd/mm/yyyy', zqAntLancefecha.AsDateTime) + ' a las ' + FormatDateTime(
-      'hh:mm', zqAntLancehora.AsDateTime) + ')';
+      'dd/mm/yyyy', zqAntLancefecha.AsDateTime) + ' a las ' +
+      FormatDateTime('hh:mm', zqAntLancehora.AsDateTime) + ')';
   zqPrincipalLatIni.Value := zqPrincipalgrados_latitud_ini.Value *
     100 + zqPrincipalminutos_latitud_ini.Value;
   zqPrincipalLongIni.Value := zqPrincipalgrados_longitud_ini.Value *
@@ -1141,22 +1194,23 @@ begin
     100 + zqPrincipalminutos_latitud_fin.Value;
   zqPrincipalLongFin.Value := zqPrincipalgrados_longitud_fin.Value *
     100 + zqPrincipalminutos_longitud_fin.Value;
-//Verifico por no nulo, ya que cero puede ser un valor válido
+  //Verifico por no nulo, ya que cero puede ser un valor válido
   //if (zqPrincipalminutos_latitud_ini.Value > 0) and
   //  (zqPrincipalminutos_longitud_ini.Value > 0) and
   //  (zqPrincipalminutos_latitud_fin.Value > 0) and
   //  (zqPrincipalminutos_longitud_fin.Value > 0) then
   if (not zqPrincipalminutos_latitud_ini.IsNull) and
-      (not zqPrincipalminutos_longitud_ini.IsNull) and
-      (not zqPrincipalminutos_latitud_fin.IsNull) and
-      (not zqPrincipalminutos_longitud_fin.IsNull) then
+    (not zqPrincipalminutos_longitud_ini.IsNull) and
+    (not zqPrincipalminutos_latitud_fin.IsNull) and
+    (not zqPrincipalminutos_longitud_fin.IsNull) then
   begin
     zqPrincipalDistanciaMillas.Value :=
       DistanciaEnMillas(zqPrincipalLatIni.Value, zqPrincipalLongIni.Value,
       zqPrincipalLatFin.Value, zqPrincipalLongFin.Value);
     // Pongo en rojo valores dudosos
-    if (zqPrincipalDistanciaMillas.Value > 3) or (zqPrincipalDistanciaMillas.Value = 0) then
-       FControlesEdicion.SetColor('DistRegist', clRed)
+    if (zqPrincipalDistanciaMillas.Value > 3) or
+      (zqPrincipalDistanciaMillas.Value = 0) then
+      FControlesEdicion.SetColor('DistRegist', clRed)
     else
       FControlesEdicion.SetColor('DistRegist', clDefault);
   end
@@ -1186,8 +1240,8 @@ begin
   else
     zqPrincipalTextoVelocidad.Value := '';
 
-  if (not zqPrincipalDistanciaMillas.IsNull) and (zqPrincipalDistanciaMillas.Value > 0) and
-    (zqPrincipalvelocidad.Value > 0) then
+  if (not zqPrincipalDistanciaMillas.IsNull) and
+    (zqPrincipalDistanciaMillas.Value > 0) and (zqPrincipalvelocidad.Value > 0) then
   begin
     zqPrincipalTextoTiempo.Value :=
       'Minutos necesarios para navegar ' + FormatFloat('0.00',
@@ -1198,9 +1252,9 @@ begin
     dbtTiempoCalc.Hint := zqPrincipalTextoTiempo.Value;
     // Pongo en rojo valores dudosos
     if zqPrincipalTiempoNecesario.Value > 40 then
-    FControlesEdicion.SetColor('TiempoCalc', clRed)
-  else
-    FControlesEdicion.SetColor('TiempoCalc', clDefault);
+      FControlesEdicion.SetColor('TiempoCalc', clRed)
+    else
+      FControlesEdicion.SetColor('TiempoCalc', clDefault);
   end
   else
     zqPrincipalTextoTiempo.Value := '';
@@ -1216,21 +1270,23 @@ begin
     dbtDistCalc.Hint := zqPrincipalTextoDistancia.Value;
     // Pongo en rojo valores dudosos
     if zqPrincipalDistanciaCalculada.Value > 3 then
-       FControlesEdicion.SetColor('DistCalc', clRed)
+      FControlesEdicion.SetColor('DistCalc', clRed)
     else
-       FControlesEdicion.SetColor('DistCalc', clDefault);
+      FControlesEdicion.SetColor('DistCalc', clDefault);
   end
   else
     zqPrincipalTextoVelocidad.Value := '';
 
   //Calculo las diferencias
-  if (not zqPrincipalDistanciaMillas.IsNull) and (zqPrincipalDistanciaMillas.Value > 0) and
+  if (not zqPrincipalDistanciaMillas.IsNull) and
+    (zqPrincipalDistanciaMillas.Value > 0) and
     (not zqPrincipalDistanciaCalculada.IsNull) then
   begin
     zqPrincipalDifDistancia.Value :=
-      Abs(100 - (zqPrincipalDistanciaCalculada.Value * 100 / zqPrincipalDistanciaMillas.Value));
+      Abs(100 - (zqPrincipalDistanciaCalculada.Value * 100 /
+      zqPrincipalDistanciaMillas.Value));
     if zqPrincipalDifDistancia.Value > 10 then
-       FControlesEdicion.SetColor('DistDif', clRed)
+      FControlesEdicion.SetColor('DistDif', clRed)
     else if zqPrincipalDifDistancia.Value > 5 then
       FControlesEdicion.SetColor('DistDif', clBlue)
     else
@@ -1241,23 +1297,24 @@ begin
     zqPrincipalDifVelocidad.Value :=
       Abs(100 - (zqPrincipalVelocNecesaria.Value * 100 / zqPrincipalvelocidad.Value));
     if zqPrincipalDifVelocidad.Value > 10 then
-       FControlesEdicion.SetColor('VelDif', clRed)
+      FControlesEdicion.SetColor('VelDif', clRed)
     else if zqPrincipalDifDistancia.Value > 5 then
-         FControlesEdicion.SetColor('VelDif', clBlue)
+      FControlesEdicion.SetColor('VelDif', clBlue)
     else
-        FControlesEdicion.SetColor('VelDif', clDefault);
+      FControlesEdicion.SetColor('VelDif', clDefault);
   end;
   if (not zqPrincipalminutos_arrastre.IsNull) and
     (not zqPrincipalTiempoNecesario.IsNull) then
   begin
     zqPrincipalDifTiempo.Value :=
-      Abs(100 - (zqPrincipalminutos_arrastre.Value * 100 / zqPrincipalTiempoNecesario.Value));
+      Abs(100 - (zqPrincipalminutos_arrastre.Value * 100 /
+      zqPrincipalTiempoNecesario.Value));
     if zqPrincipalDifVelocidad.Value > 10 then
-       FControlesEdicion.SetColor('TiempoDif', clRed)
+      FControlesEdicion.SetColor('TiempoDif', clRed)
     else if zqPrincipalDifDistancia.Value > 5 then
-         FControlesEdicion.SetColor('TiempoDif', clBlue)
+      FControlesEdicion.SetColor('TiempoDif', clBlue)
     else
-        FControlesEdicion.SetColor('TiempoDif', clDefault);
+      FControlesEdicion.SetColor('TiempoDif', clDefault);
   end;
 
   //Los siguientes dos campos se crean para poder formatearlos independientemente del campo original
@@ -1274,43 +1331,45 @@ procedure TfmEditarLances.zqPrincipalcaptura_babor_buqueChange(Sender: TField);
 var
   FLSExpression: TLSExpression;
   Expr: string;
-  OLD_DC:char;
+  OLD_DC: char;
 begin
-  OLD_DC:=DecimalSeparator;
-  DecimalSeparator:=',';
+  OLD_DC := DecimalSeparator;
+  DecimalSeparator := ',';
   FLSExpression := TLSExpression.Create;
-  if (not Sender.IsNull) and (Sender.AsString<>'') then
+  if (not Sender.IsNull) and (Sender.AsString <> '') then
   begin
-    Expr:=CapturaAStrNum(Sender.AsString);
-    Expr:='0' + StringReplace(Expr, '.', ',', [rfReplaceAll]);
+    Expr := CapturaAStrNum(Sender.AsString);
+    Expr := '0' + StringReplace(Expr, '.', ',', [rfReplaceAll]);
     FLSExpression.Calculate(Expr);
     if FLSExpression.Error = CLSExpressionNoError then
     begin
       zqPrincipalcaptura_babor.Value :=
-        round(FLSExpression.Result / dmGeneral.zqMareaActivafactor_calc_captura.Value * 100) / 100;
+        round(FLSExpression.Result / dmGeneral.zqMareaActivafactor_calc_captura.Value *
+        100) / 100;
     end;
-  end else
+  end
+  else
   begin
     zqPrincipalcaptura_babor.AsString := '';
   end;
   FLSExpression.Free;
-  DecimalSeparator:=OLD_DC;
+  DecimalSeparator := OLD_DC;
 end;
 
 procedure TfmEditarLances.zqPrincipalcaptura_babor_buqueValidate(Sender: TField);
 var
   FLSExpression: TLSExpression;
   factor: integer;
-  Expr:string;
-  OLD_DC:char;
+  Expr: string;
+  OLD_DC: char;
 begin
-  OLD_DC:=DecimalSeparator;
-  DecimalSeparator:=',';
+  OLD_DC := DecimalSeparator;
+  DecimalSeparator := ',';
   FLSExpression := TLSExpression.Create;
   if (not Sender.IsNull) then
   begin
-    Expr:=CapturaAStrNum(Sender.AsString);
-    Expr:='0' + StringReplace(Expr, '.', ',', [rfReplaceAll]);
+    Expr := CapturaAStrNum(Sender.AsString);
+    Expr := '0' + StringReplace(Expr, '.', ',', [rfReplaceAll]);
     FLSExpression.Calculate(Expr);
     if FLSExpression.Error <> CLSExpressionNoError then
     begin
@@ -1322,7 +1381,8 @@ begin
     begin
       //Valido el rango
       factor := dmGeneral.zqMareaActivafactor_calc_captura.AsInteger;
-      if (Sender.AsString<>'') and ((FLSExpression.Result < 0) or (FLSExpression.Result > factor)) then
+      if (Sender.AsString <> '') and ((FLSExpression.Result < 0) or
+        (FLSExpression.Result > factor)) then
       begin
         MessageDlg('El valor de captura debe estar comprendido entre 0 y ' +
           IntToStr(factor), mtError, [mbOK], 0);
@@ -1331,50 +1391,52 @@ begin
     end;
   end;
   FLSExpression.Free;
-  DecimalSeparator:=OLD_DC;
+  DecimalSeparator := OLD_DC;
 end;
 
 procedure TfmEditarLances.zqPrincipalcaptura_estribor_buqueChange(Sender: TField);
 var
   FLSExpression: TLSExpression;
   Expr: string;
-  OLD_DC:char;
+  OLD_DC: char;
 begin
-  OLD_DC:=DecimalSeparator;
-  DecimalSeparator:=',';
+  OLD_DC := DecimalSeparator;
+  DecimalSeparator := ',';
   FLSExpression := TLSExpression.Create;
-  if (not Sender.IsNull) and (Sender.AsString<>'') then
+  if (not Sender.IsNull) and (Sender.AsString <> '') then
   begin
-    Expr:=CapturaAStrNum(Sender.AsString);
-    Expr:='0' + StringReplace(Expr, '.', ',', [rfReplaceAll]);
+    Expr := CapturaAStrNum(Sender.AsString);
+    Expr := '0' + StringReplace(Expr, '.', ',', [rfReplaceAll]);
     FLSExpression.Calculate(Expr);
     if FLSExpression.Error = CLSExpressionNoError then
     begin
       zqPrincipalcaptura_estribor.Value :=
-        round(FLSExpression.Result / dmGeneral.zqMareaActivafactor_calc_captura.Value * 100) / 100;
+        round(FLSExpression.Result / dmGeneral.zqMareaActivafactor_calc_captura.Value *
+        100) / 100;
     end;
-  end else
+  end
+  else
   begin
-      zqPrincipalcaptura_estribor.AsString := '';
+    zqPrincipalcaptura_estribor.AsString := '';
   end;
   FLSExpression.Free;
-  DecimalSeparator:=OLD_DC;
+  DecimalSeparator := OLD_DC;
 end;
 
 procedure TfmEditarLances.zqPrincipalcaptura_estribor_buqueValidate(Sender: TField);
 var
   FLSExpression: TLSExpression;
   factor: integer;
-  Expr:string;
-  OLD_DC:char;
+  Expr: string;
+  OLD_DC: char;
 begin
-  OLD_DC:=DecimalSeparator;
-  DecimalSeparator:=',';
+  OLD_DC := DecimalSeparator;
+  DecimalSeparator := ',';
   FLSExpression := TLSExpression.Create;
   if (not Sender.IsNull) then
   begin
-    Expr:=CapturaAStrNum(Sender.AsString);
-    Expr:='0' + StringReplace(Expr, '.', ',', [rfReplaceAll]);
+    Expr := CapturaAStrNum(Sender.AsString);
+    Expr := '0' + StringReplace(Expr, '.', ',', [rfReplaceAll]);
     FLSExpression.Calculate(Expr);
     if FLSExpression.Error <> CLSExpressionNoError then
     begin
@@ -1386,7 +1448,8 @@ begin
     begin
       //Valido el rango
       factor := dmGeneral.zqMareaActivafactor_calc_captura.AsInteger;
-      if (Sender.AsString<>'') and ((FLSExpression.Result < 0) or (FLSExpression.Result > factor)) then
+      if (Sender.AsString <> '') and ((FLSExpression.Result < 0) or
+        (FLSExpression.Result > factor)) then
       begin
         MessageDlg('El valor de captura debe estar comprendido entre 0 y ' +
           IntToStr(factor), mtError, [mbOK], 0);
@@ -1395,7 +1458,7 @@ begin
     end;
   end;
   FLSExpression.Free;
-  DecimalSeparator:=OLD_DC;
+  DecimalSeparator := OLD_DC;
 end;
 
 procedure TfmEditarLances.zqPrincipalcod_estado_marValidate(Sender: TField);
@@ -1470,13 +1533,13 @@ begin
   end;
 end;
 
-procedure TfmEditarLances.zqPrincipalhoraSetText(Sender: TField;
-  const aText: string);
+procedure TfmEditarLances.zqPrincipalhoraSetText(Sender: TField; const aText: string);
 begin
   if not HoraOK(aText) then
-     MessageDlg('La hora ingresada no es correcta. Por favor verifique.', mtError, [mbClose],0)
+    MessageDlg('La hora ingresada no es correcta. Por favor verifique.',
+      mtError, [mbClose], 0)
   else
-    sender.AsString:=aText;
+    Sender.AsString := aText;
 end;
 
 procedure TfmEditarLances.zqPrincipalminutos_arrastreValidate(Sender: TField);

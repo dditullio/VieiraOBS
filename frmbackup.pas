@@ -105,7 +105,7 @@ type
     procedure ExportarDB_Global(archivo_datos: string);
     function SentenciaCreateTable(tabla:string):string;
     function SentenciaCreateView(vista:string):string;
-    function SentenciaInsert(tabla:string; PrefijoTabla: string=''):string;
+    function SentenciaInsert(tabla:string; PrefijoTabla: string=''; FiltroMarea: string=''):string;
     function FormatField(f: TField):string;
     function CrearEstructuraVista(vista:string):string;
     procedure CrearTablasYDatos(var str_sql_tablas, str_sql_datos: TStringList; crear_estructura:Boolean=True;incluir_datos:Boolean=True);
@@ -926,9 +926,10 @@ begin
   result := sentencia;
 end;
 
-function TfmBackup.SentenciaInsert(tabla: string; PrefijoTabla: string
-    ): string;
+function TfmBackup.SentenciaInsert(tabla: string; PrefijoTabla: string;
+    FiltroMarea: string): string;
 var
+   str_sql: string;
    sentencia: string;
    insert_values_reg:string;
    insert_values_gral:string;
@@ -942,7 +943,10 @@ var
    max_reg_paquete: integer=1000;
 begin
      zqDatosTabla.Close;
-     zqDatosTabla.SQL.Text:='SELECT * FROM '+tabla;
+     str_sql:='SELECT * FROM '+tabla;
+     if FiltroMarea<>'' then
+        str_sql:=str_sql+ ' WHERE idmarea_original = '+FiltroMarea;
+     zqDatosTabla.SQL.Text:=str_sql;
      zqDatosTabla.Open;
 
      //Para optimizar el rendimiento y evitar errores en tablas con muchos registros,
@@ -1437,7 +1441,7 @@ begin
        vista:=zqTablasYVistas.FieldByName('Tables_in_'+dmGeneral.zcDB.Database).AsString;
        if LeftStr(LowerCase(vista),7)=PREFIJO_VISTAS then
        begin
-            str_sql.Add(SentenciaInsert(vista, 'tmp_'));
+            str_sql.Add(SentenciaInsert(vista, 'tmp_', IntToStr(dmGeneral.IdMareaActiva)));
        end;
        Application.ProcessMessages;
        Next;

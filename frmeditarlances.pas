@@ -340,6 +340,7 @@ type
     procedure gbDatosInicioExit(Sender: TObject);
     procedure paFechaHoraExit(Sender: TObject);
     procedure pcFormatosChange(Sender: TObject);
+    procedure pcFormatosChanging(Sender: TObject; var AllowChange: Boolean);
     procedure pcLancesChange(Sender: TObject);
     procedure zcePrincipalInitRecord(Sender: TObject);
     procedure zcePrincipalValidateForm(Sender: TObject; var ValidacionOK: boolean);
@@ -382,6 +383,8 @@ function CapturaAStrNum(s_captura: string): string;
 var
   fmEditarLances: TfmEditarLances;
   distancia_lance: double = -1;
+  FormatosChanging:Boolean=False;
+
 
 implementation
 
@@ -857,6 +860,7 @@ end;
 procedure TfmEditarLances.FormClose(Sender: TObject;
     var CloseAction: TCloseAction);
 begin
+  LSSaveConfig(['formato_planilla_puente'], [pcFormatos.TabIndex]);
   //Vuelvo a sacar los TabStop de los grados, en caso de que se hubiesen puesto
   //por la validación de la hora
   dbedGradosLatIni.TabStop := False;
@@ -953,47 +957,51 @@ var
   lat_fin_ant, long_fin_ant: double;
   velocidad_entre_lances: double;
 begin
-  dist_entre_lances := -1;
-  minutos_entre_lances := -1;
-  //Verifico también que la posición final no sea nula
-  if (zqAntLance.RecordCount > 0) and (not zqAntLancegrados_latitud_fin.IsNull) and
-    (not zqAntLancegrados_longitud_fin.IsNull) and
-    (not zqAntLanceminutos_latitud_fin.IsNull) and
-    (not zqAntLanceminutos_longitud_fin.IsNull) then
+  //Evito que se ejecute la validación si está cambiando el tab de formatos
+  if not FormatosChanging then
   begin
-    lat_fin_ant := zqAntLancegrados_latitud_fin.Value * 100 +
-      zqAntLanceminutos_latitud_fin.Value;
-    long_fin_ant := zqAntLancegrados_longitud_fin.Value * 100 +
-      zqAntLanceminutos_longitud_fin.Value;
-    //Calculo la distancia entre el fin del lance anterior y el inicio del actual
-    if (lat_fin_ant > 0) and (long_fin_ant > 0) and (not zqPrincipalLatIni.IsNull) and
-      (not zqPrincipalLongIni.IsNull) then
-    begin
-      dist_entre_lances :=
-        DistanciaEnMillas(lat_fin_ant, long_fin_ant, zqPrincipalLatIni.Value,
-        zqPrincipalLongIni.Value);
-    end;
-
-    if dist_entre_lances <> -1 then
-    begin
-      //Calculo los minutos entre el fin del lance anterior y el inicio del actual
-      minutos_entre_lances := MinutesBetween(
-        IncMinute(zqAntLancefecha.AsDateTime + zqAntLancehora.AsDateTime,
-        zqAntLanceminutos_arrastre.AsInteger), zqPrincipalfecha.AsDateTime +
-        zqPrincipalhora.AsDateTime);
-
-      velocidad_entre_lances :=
-        dist_entre_lances * 60 / minutos_entre_lances;
-      //Si la velocidad calculada entre lances es mayor a 17 nudos, hay un error en los datos
-      if velocidad_entre_lances > 17 then
+      dist_entre_lances := -1;
+      minutos_entre_lances := -1;
+      //Verifico también que la posición final no sea nula
+      if (zqAntLance.RecordCount > 0) and (not zqAntLancegrados_latitud_fin.IsNull) and
+        (not zqAntLancegrados_longitud_fin.IsNull) and
+        (not zqAntLanceminutos_latitud_fin.IsNull) and
+        (not zqAntLanceminutos_longitud_fin.IsNull) then
       begin
-        if MessageDlg('Advertencia',
-          'El tiempo entre el fin del lance anterior y el inicio del actual no concuerda con la distancia entre ambos lances. El buque debería haber recorrido ' + FormatFloat('0.00', dist_entre_lances) + ' millas en ' + FormatFloat('0', minutos_entre_lances) + ' minutos, a una velocidad de ' + FormatFloat('0.0', velocidad_entre_lances) + ' nudos, lo cual no es posible. Verifique la hora y las posiciones del lance actual y del anterior. ¿Desea continuar igualmente con este error?', mtError, mbYesNo, 0, mbNo) = mrNo then
+        lat_fin_ant := zqAntLancegrados_latitud_fin.Value * 100 +
+          zqAntLanceminutos_latitud_fin.Value;
+        long_fin_ant := zqAntLancegrados_longitud_fin.Value * 100 +
+          zqAntLanceminutos_longitud_fin.Value;
+        //Calculo la distancia entre el fin del lance anterior y el inicio del actual
+        if (lat_fin_ant > 0) and (long_fin_ant > 0) and (not zqPrincipalLatIni.IsNull) and
+          (not zqPrincipalLongIni.IsNull) then
         begin
-          FControlesEdicion.SetFocus('GradosLatIni');
+          dist_entre_lances :=
+            DistanciaEnMillas(lat_fin_ant, long_fin_ant, zqPrincipalLatIni.Value,
+            zqPrincipalLongIni.Value);
+        end;
+
+        if dist_entre_lances <> -1 then
+        begin
+          //Calculo los minutos entre el fin del lance anterior y el inicio del actual
+          minutos_entre_lances := MinutesBetween(
+            IncMinute(zqAntLancefecha.AsDateTime + zqAntLancehora.AsDateTime,
+            zqAntLanceminutos_arrastre.AsInteger), zqPrincipalfecha.AsDateTime +
+            zqPrincipalhora.AsDateTime);
+
+          velocidad_entre_lances :=
+            dist_entre_lances * 60 / minutos_entre_lances;
+          //Si la velocidad calculada entre lances es mayor a 15 nudos, hay un error en los datos
+          if velocidad_entre_lances > 15 then
+          begin
+            if MessageDlg('Advertencia',
+              'El tiempo entre el fin del lance anterior y el inicio del actual no concuerda con la distancia entre ambos lances. El buque debería haber recorrido ' + FormatFloat('0.00', dist_entre_lances) + ' millas en ' + FormatFloat('0', minutos_entre_lances) + ' minutos, a una velocidad de ' + FormatFloat('0.0', velocidad_entre_lances) + ' nudos, lo cual no es posible. Verifique la hora y las posiciones del lance actual y del anterior. ¿Desea continuar igualmente con este error?', mtError, mbYesNo, 0, mbNo) = mrNo then
+            begin
+              FControlesEdicion.SetFocus('GradosLatIni');
+            end;
+          end;
         end;
       end;
-    end;
   end;
 end;
 
@@ -1004,97 +1012,108 @@ var
   hay_error: boolean;
 begin
   hay_error:=False;
-  if zqPrincipalhora.IsNull then
+  //Evito que se ejecute la validación si está cambiando el tab de formatos
+  if not FormatosChanging then
   begin
-    MessageDlg('Debe indicar la hora de inicio del lance', mtError, [mbOK], 0);
-    FControlesEdicion.SetFocus('Hora');
-    hay_error:=True;
-  end
-  else //Si la hora es mayor o igual al inicio del lance anterior
-  //pero menor a la hora de virada, es error
-  if (zqAntLance.RecordCount > 0) and (int(zqPrincipalfecha.AsDateTime) +
-    zqPrincipalhora.AsDateTime >= int(zqAntLancefecha.AsDateTime) +
-    zqAntLancehora.AsDateTime) and (int(zqPrincipalfecha.AsDateTime) +
-    zqPrincipalhora.AsDateTime <= IncMinute(int(zqAntLancefecha.AsDateTime) +
-    zqAntLancehora.AsDateTime, zqAntLanceminutos_arrastre.AsInteger)) then
-  begin
-    MessageDlg('EL inicio del lance debe ser mayor a la finalización del lance anterior: '
-      + FormatDateTime('dd/mm/yyyy  hh:mm',
-      IncMinute(int(zqAntLancefecha.AsDateTime) + zqAntLancehora.AsDateTime,
-      zqAntLanceminutos_arrastre.AsInteger)), mtError, [mbOK], 0);
-    FControlesEdicion.SetFocus('Fecha');
-    hay_error:=True;
-  end
-  else
-  //Si la hora es anterior al inicio del lance anterior, sugiero
-  //cambio de fecha
-  if (zqAntLance.RecordCount > 0) and (int(zqPrincipalfecha.AsDateTime) +
-    zqPrincipalhora.AsDateTime < int(zqAntLancefecha.AsDateTime) +
-    zqAntLancehora.AsDateTime) then
-  begin
-    if MessageDlg(
-      'Ha ingresado una hora menor a la hora de inicio del lance anterior, lo cual sugiere un cambio de fecha. Se comenzarán a registrar los lances del día ' + FormatDateTime('dd/mm/yyyy', IncDay(zqAntLancefecha.Value, 1)) + ' ¿Está de acuerdo?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-    begin
-      zqPrincipalfecha.Value := IncDay(zqAntLancefecha.Value, 1);
-    end
-    else
-    begin
-      MessageDlg(
-        'Verifique si ingresó correctamente la hora de inicio, y si la fecha y hora del lance anterior son las correctas.',
-        mtError, [mbClose], 0);
-      FControlesEdicion.SetFocus('Fecha');
-      hay_error:=True;
-    end;
-  end;
-
-  if not hay_error then
-  begin
-      //Calculo los minutos entre el fin del lance anterior y el inicio del actual
-      minutos_entre_lances := MinutesBetween(
-        IncMinute(zqAntLancefecha.AsDateTime + zqAntLancehora.AsDateTime,
-        zqAntLanceminutos_arrastre.AsInteger), zqPrincipalfecha.AsDateTime +
-        zqPrincipalhora.AsDateTime);
-
-      msg_dif_horas := '';
-      //Si la diferencia entre el lance anterior es de más de 2 horas, habilito
-      //los campos de grado para que se confirme la posición
-      if (minutos_entre_lances / 60) >= 48 then //si la diferencia es > 2 días, mensaje en días
+      if zqPrincipalhora.IsNull then
       begin
-        msg_dif_horas :=
-          'Hay una diferencia de varios días respecto al último lance registrado. Por favor verifique que los grados de latitud y longitud ingresados sean correctos';
+        MessageDlg('Debe indicar la hora de inicio del lance', mtError, [mbOK], 0);
+        FControlesEdicion.SetFocus('Hora');
+        hay_error:=True;
+      end
+      else //Si la hora es mayor o igual al inicio del lance anterior
+      //pero menor a la hora de virada, es error
+      if (zqAntLance.RecordCount > 0) and ((int(zqPrincipalfecha.AsDateTime) +
+        zqPrincipalhora.AsDateTime) >= (int(zqAntLancefecha.AsDateTime) +
+        zqAntLancehora.AsDateTime)) and ((int(zqPrincipalfecha.AsDateTime) +
+        zqPrincipalhora.AsDateTime) <= IncMinute(int(zqAntLancefecha.AsDateTime) +
+        zqAntLancehora.AsDateTime, zqAntLanceminutos_arrastre.AsInteger)) then
+      begin
+        MessageDlg('EL inicio del lance debe ser mayor a la finalización del lance anterior: '
+          + FormatDateTime('dd/mm/yyyy  hh:mm',
+          IncMinute(int(zqAntLancefecha.AsDateTime) + zqAntLancehora.AsDateTime,
+          zqAntLanceminutos_arrastre.AsInteger)), mtError, [mbOK], 0);
+        FControlesEdicion.SetFocus('Fecha');
+        hay_error:=True;
       end
       else
-      if (minutos_entre_lances / 60) > 2 then //si la diferencia es > 2 horas, mensaje en horas
+      //Si la hora es anterior al inicio del lance anterior, sugiero
+      //cambio de fecha
+      if (zqAntLance.RecordCount > 0) and ((int(zqPrincipalfecha.AsDateTime) +
+        zqPrincipalhora.AsDateTime) < (int(zqAntLancefecha.AsDateTime) +
+        zqAntLancehora.AsDateTime)) then
       begin
-        msg_dif_horas :=
-          'Hay una diferencia de varias horas respecto al último lance registrado. Por favor verifique que los grados de latitud y longitud ingresados sean correctos';
+        if MessageDlg(
+          'Ha ingresado una hora menor a la hora de inicio del lance anterior, lo cual sugiere un cambio de fecha. Se comenzarán a registrar los lances del día ' + FormatDateTime('dd/mm/yyyy', IncDay(zqAntLancefecha.Value, 1)) + ' ¿Está de acuerdo?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+        begin
+          zqPrincipalfecha.Value := IncDay(zqAntLancefecha.Value, 1);
+        end
+        else
+        begin
+          MessageDlg(
+            'Verifique si ingresó correctamente la hora de inicio, y si la fecha y hora del lance anterior son las correctas.',
+            mtError, [mbClose], 0);
+          FControlesEdicion.SetFocus('Fecha');
+          hay_error:=True;
+        end;
       end;
 
-      if (minutos_entre_lances / 60) > 2 then
+      if not hay_error then
       begin
-        MessageDlg(msg_dif_horas, mtInformation, [mbOK], 0);
-        //Habilito el TabStop en los campos de grado. Se deshabilitarán nuevamente en el próximo registro
-        //Solo habilito el inicial, ya que el final se corrige automáticamente
-        dbedGradosLatIni.TabStop := True;
-        dbedGradosLongIni.TabStop := True;
+          //Calculo los minutos entre el fin del lance anterior y el inicio del actual
+          minutos_entre_lances := MinutesBetween(
+            IncMinute(zqAntLancefecha.AsDateTime + zqAntLancehora.AsDateTime,
+            zqAntLanceminutos_arrastre.AsInteger), zqPrincipalfecha.AsDateTime +
+            zqPrincipalhora.AsDateTime);
 
-        dbedGradosLatIni1.TabStop := True;
-        dbedGradosLongIni1.TabStop := True;
-        FControlesEdicion.SetFocus('GradosLatIni');
+          msg_dif_horas := '';
+          //Si la diferencia entre el lance anterior es de más de 2 horas, habilito
+          //los campos de grado para que se confirme la posición
+          if (minutos_entre_lances / 60) >= 48 then //si la diferencia es > 2 días, mensaje en días
+          begin
+            msg_dif_horas :=
+              'Hay una diferencia de varios días respecto al último lance registrado. Por favor verifique que los grados de latitud y longitud ingresados sean correctos';
+          end
+          else
+          if (minutos_entre_lances / 60) > 2 then //si la diferencia es > 2 horas, mensaje en horas
+          begin
+            msg_dif_horas :=
+              'Hay una diferencia de varias horas respecto al último lance registrado. Por favor verifique que los grados de latitud y longitud ingresados sean correctos';
+          end;
+
+          if (minutos_entre_lances / 60) > 2 then
+          begin
+            MessageDlg(msg_dif_horas, mtInformation, [mbOK], 0);
+            //Habilito el TabStop en los campos de grado. Se deshabilitarán nuevamente en el próximo registro
+            //Solo habilito el inicial, ya que el final se corrige automáticamente
+            dbedGradosLatIni.TabStop := True;
+            dbedGradosLongIni.TabStop := True;
+
+            dbedGradosLatIni1.TabStop := True;
+            dbedGradosLongIni1.TabStop := True;
+            FControlesEdicion.SetFocus('GradosLatIni');
+          end;
       end;
   end;
 end;
 
 procedure TfmEditarLances.pcFormatosChange(Sender: TObject);
 begin
+  FormatosChanging:=False;
   FControlesEdicion.ActiveIndex := pcFormatos.TabIndex;
-  LSSaveConfig(['formato_planilla_puente'], [pcFormatos.TabIndex]);
+//  LSSaveConfig(['formato_planilla_puente'], [pcFormatos.TabIndex]);
   FControlesEdicion.SetFocus('Hora');
   //Seteo el control predeterminado en el controlador
   if pcFormatos.TabIndex = 0 then
     zcePrincipal.ControlInicial := dbdtHora
   else
     zcePrincipal.ControlInicial := dbdtHora1;
+end;
+
+procedure TfmEditarLances.pcFormatosChanging(Sender: TObject;
+    var AllowChange: Boolean);
+begin
+  FormatosChanging:=True;
 end;
 
 procedure TfmEditarLances.pcLancesChange(Sender: TObject);
@@ -1122,6 +1141,20 @@ end;
 procedure TfmEditarLances.zcePrincipalValidateForm(Sender: TObject;
   var ValidacionOK: boolean);
 begin
+  if (not zqPrincipalcable_babor.IsNull) and ((zqPrincipalcable_babor.AsInteger < 200) or (zqPrincipalcable_babor.AsInteger > 800)) then
+  begin
+    MessageDlg('Ingrese los metros de cable filado', mtError, [mbOK], 0);
+    ValidacionOK := False;
+    FControlesEdicion.SetFocus('CableBr');
+  end;
+
+  if (not zqPrincipalcable_estribor.IsNull) and ((zqPrincipalcable_estribor.AsInteger < 200) or (zqPrincipalcable_estribor.AsInteger > 800)) then
+  begin
+    MessageDlg('Ingrese los metros de cable filado', mtError, [mbOK], 0);
+    ValidacionOK := False;
+    FControlesEdicion.SetFocus('CableEr');
+  end;
+
   if (zqPrincipalLatIni.Value > 0) and (zqPrincipalLongIni.Value > 0) and
     (zqPrincipalLatFin.Value > 0) and (zqPrincipalLongFin.Value > 0) then
   begin

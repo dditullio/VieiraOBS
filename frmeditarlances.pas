@@ -795,7 +795,11 @@ var
   minutos_tiempo: double;
   veloc_prom: double;
 begin
-  if zqAntLance.RecordCount > 0 then
+  if (zqAntLance.RecordCount > 0)
+  and (not zqAntLancegrados_latitud_fin.IsNull)
+  and (not zqAntLanceminutos_latitud_fin.IsNull)
+  and (not zqAntLancegrados_longitud_fin.IsNull)
+  and (not zqAntLanceminutos_longitud_fin.IsNull) then
   begin
     //Valido contra el lance anterior por si cambió de grado
     //a) Calculo los minutos entre el fin del lance anterior y el

@@ -65,20 +65,6 @@ type
     zqRutinas: TZQuery;
     zqDefRutina: TZQuery;
     zqTriggers: TZQuery;
-    ZQuery1cant_trampas: TLongintField;
-    ZQuery1comerc_especie1: TLongintField;
-    ZQuery1comerc_especie2: TLongintField;
-    ZQuery1comerc_especie3: TLongintField;
-    ZQuery1especie1: TStringField;
-    ZQuery1especie2: TStringField;
-    ZQuery1especie3: TStringField;
-    ZQuery1estado_trampa: TStringField;
-    ZQuery1id: TLongintField;
-    ZQuery1lance_id: TLongintField;
-    ZQuery1tipo_trampa: TStringField;
-    ZQuery1tot_especie1: TLongintField;
-    ZQuery1tot_especie2: TLongintField;
-    ZQuery1tot_especie3: TLongintField;
     procedure acBackupExecute(Sender: TObject);
     procedure acRestaurarExecute(Sender: TObject);
     procedure ckDatosChange(Sender: TObject);
@@ -573,6 +559,7 @@ begin
           sl_tablas.Clear;
           sl_datos.Clear;
           sl_rutinas.Clear;
+          sl_expglob.Clear;
           HabilitarAcciones;
         end;
       end;
@@ -590,6 +577,7 @@ begin
           sl_tablas.Clear;
           sl_datos.Clear;
           sl_rutinas.Clear;
+          sl_expglob.Clear;
           HabilitarAcciones;
         end;
       end;
@@ -609,6 +597,7 @@ begin
       sl_tablas.Clear;
       sl_datos.Clear;
       sl_rutinas.Clear;
+      sl_expglob.Clear;
       HabilitarAcciones;
     end;
     ckRestaurarEstructura.Enabled:=(sl_tablas.Count>0) or (sl_rutinas.Count>0);
@@ -704,8 +693,17 @@ begin
        HabilitarAcciones;
    end;
    edArchivoSQL.Text:='';
+   meSQL.Lines.Clear;
+   sl_tablas.Clear;
+   sl_datos.Clear;
+   sl_rutinas.Clear;
+   sl_expglob.Clear;
+
+   ckRestaurarEstructura.Checked:=False;
    ckRestaurarEstructura.Enabled:=False;
+   ckRestaurarDatos.Checked:=False;
    ckRestaurarDatos.Enabled:=False;
+
    Result:=restOK;
 end;
 
@@ -1069,6 +1067,10 @@ begin
      if f is TBooleanField then
      begin
        valor:=IntToStr(f.AsInteger);
+     end else
+     if f is TMemoField then
+     begin
+       valor:=AnsiQuotedStr(f.AsString,'''');
      end else
      if f is TStringField then
      begin

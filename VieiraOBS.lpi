@@ -326,6 +326,7 @@
         <ComponentName Value="fmLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmlances"/>
       </Unit27>
       <Unit28>
         <Filename Value="funciones.pas"/>

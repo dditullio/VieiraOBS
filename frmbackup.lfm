@@ -1,7 +1,7 @@
 object fmBackup: TfmBackup
-  Left = 433
+  Left = 455
   Height = 476
-  Top = 148
+  Top = 124
   Width = 416
   BorderStyle = bsDialog
   Caption = 'Copia de seguridad'

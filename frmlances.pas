@@ -135,7 +135,7 @@ end;
 procedure TfmLances.dbgListaGetCellProps(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor);
 begin
-  if (zqLancesVelocidadNecesaria.Value > 5.5) or (zqLancesVelocidadNecesaria.Value < 3) or
+  if (zqLancesVelocidadNecesaria.Value > 5.8) or (zqLancesVelocidadNecesaria.Value < 3) or
       (zqLancesDistancia.Value > 3) then
     Background := clRed;
 end;

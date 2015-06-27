@@ -42,7 +42,6 @@ inherited fmEditarRindes: TfmEditarRindes
       Height = 23
       Top = 26
       Width = 183
-      AutoComplete = True
       DataField = 'banda'
       DataSource = dsPrincipal
       KeyField = 'banda'

@@ -156,6 +156,8 @@ begin
     begin
       zqPrincipalbanda.AsString:='E';
     end;
+    if dbedComercial.CanFocus then
+       dbedComercial.SetFocus;
   end else
   begin
     //Si no hay registro anterior, comienzo por la banda de estribor

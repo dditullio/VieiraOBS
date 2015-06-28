@@ -92,6 +92,7 @@ type
     procedure acRindesExecute(Sender: TObject);
     procedure acSenasaExecute(Sender: TObject);
     procedure acTallasExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure tmHabilitarMenuTimer(Sender: TObject);
   private
@@ -154,11 +155,16 @@ begin
   ActivarForm(fmTallas, imageindex);
 end;
 
+procedure TfmPrincipal.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Self.Caption:=ApplicationName+' - v'+APP_VERSION;
+end;
+
 procedure TfmPrincipal.FormShow(Sender: TObject);
 begin
   HideSplashScreen;
   HabilitarMenu;
-  Caption:=ApplicationName+' - v'+APP_VERSION;
 end;
 
 procedure TfmPrincipal.tmHabilitarMenuTimer(Sender: TObject);

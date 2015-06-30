@@ -152,8 +152,6 @@ begin
       zqPrincipalfecha.Value:=zqRindeAntfecha.Value;
       zqPrincipalhora.Value:=zqRindeAnthora.Value;
       zqPrincipalbanda.AsString:='B';
-      if dbedComercial.CanFocus then
-         dbedComercial.SetFocus;
     end else
     begin
       zqPrincipalbanda.AsString:='E';

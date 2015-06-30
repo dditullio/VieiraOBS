@@ -39,9 +39,9 @@ inherited fmEditarLances: TfmEditarLances
       Height = 342
       Top = 1
       Width = 737
-      ActivePage = tsGeneral
+      ActivePage = tsOtrosDatos
       Align = alClient
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       OnChange = pcLancesChange
       Options = [nboKeyboardTabSwitch]
@@ -54,9 +54,9 @@ inherited fmEditarLances: TfmEditarLances
           Height = 314
           Top = 0
           Width = 729
-          ActivePage = tsAlternativo
+          ActivePage = tsPredeterminado
           Align = alClient
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           OnChange = pcFormatosChange
           OnChanging = pcFormatosChanging
@@ -85,6 +85,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedGradosLatIni: TDBEdit
                 Left = 172
                 Height = 23
+                Hint = 'Grados de latitud inicial'
                 Top = 26
                 Width = 29
                 CustomEditMask = True
@@ -166,6 +167,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedMinutosLatIni: TDBEdit
                 Left = 208
                 Height = 23
+                Hint = 'Minutos y centésimas de latitud inicial'
                 Top = 26
                 Width = 58
                 CustomEditMask = True
@@ -180,6 +182,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedGradosLongIni: TDBEdit
                 Left = 272
                 Height = 23
+                Hint = 'Grados de longitud inicial'
                 Top = 26
                 Width = 29
                 CustomEditMask = True
@@ -193,6 +196,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedMinutosLongIni: TDBEdit
                 Left = 308
                 Height = 23
+                Hint = 'Minutos y centésimas de longitud inicial'
                 Top = 26
                 Width = 58
                 CustomEditMask = True
@@ -215,7 +219,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedProfund: TDBEdit
                 Left = 108
                 Height = 23
-                Hint = 'Metros de cable filado en banda de Estribor'
+                Hint = 'Profundidad inicial'
                 Top = 80
                 Width = 91
                 DataField = 'profundidad'
@@ -245,6 +249,7 @@ inherited fmEditarLances: TfmEditarLances
                 object dbdtFecha: TDBDateTimePicker
                   Left = 4
                   Height = 23
+                  Hint = 'Fecha inicial del lance'
                   Top = 19
                   Width = 81
                   DataField = 'fecha'
@@ -277,6 +282,7 @@ inherited fmEditarLances: TfmEditarLances
                 object dbdtHora: TDtDBTimeEdit
                   Left = 90
                   Height = 23
+                  Hint = 'Hora de inicio del lance'
                   Top = 19
                   Width = 54
                   CustomEditMask = True
@@ -400,6 +406,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedGradosLatFin: TDBEdit
                 Left = 108
                 Height = 23
+                Hint = 'Grados de latitud final'
                 Top = 27
                 Width = 29
                 CustomEditMask = True
@@ -413,6 +420,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedMinutosLatFin: TDBEdit
                 Left = 144
                 Height = 23
+                Hint = 'Minutos y centésimas de latitud final'
                 Top = 27
                 Width = 58
                 CustomEditMask = True
@@ -427,6 +435,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedGradosLongFin: TDBEdit
                 Left = 208
                 Height = 23
+                Hint = 'Grados de longitud final'
                 Top = 27
                 Width = 29
                 CustomEditMask = True
@@ -440,6 +449,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedMinutosLongFin: TDBEdit
                 Left = 244
                 Height = 23
+                Hint = 'Minutos y centésimas de longitud final'
                 Top = 27
                 Width = 58
                 CustomEditMask = True
@@ -721,6 +731,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedGradosLatIni1: TDBEdit
                 Left = 170
                 Height = 23
+                Hint = 'Grados de latitud inicial'
                 Top = 26
                 Width = 29
                 CustomEditMask = True
@@ -748,7 +759,7 @@ inherited fmEditarLances: TfmEditarLances
                 ParentColor = False
               end
               object dbedCableEr1: TDBEdit
-                Left = 206
+                Left = 205
                 Height = 23
                 Hint = 'Metros de cable filado en banda de Estribor'
                 Top = 80
@@ -784,6 +795,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedMinutosLatIni1: TDBEdit
                 Left = 206
                 Height = 23
+                Hint = 'Minutos y centésimas de latitud inicial'
                 Top = 26
                 Width = 58
                 CustomEditMask = True
@@ -798,6 +810,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedGradosLongIni1: TDBEdit
                 Left = 270
                 Height = 23
+                Hint = 'Grados de longitud inicial'
                 Top = 26
                 Width = 29
                 CustomEditMask = True
@@ -811,6 +824,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedMinutosLongIni1: TDBEdit
                 Left = 306
                 Height = 23
+                Hint = 'Minutos y centésimas de longitud inicial'
                 Top = 26
                 Width = 58
                 CustomEditMask = True
@@ -833,7 +847,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedProfund1: TDBEdit
                 Left = 108
                 Height = 23
-                Hint = 'Metros de cable filado en banda de Estribor'
+                Hint = 'Profundidad inicial'
                 Top = 80
                 Width = 91
                 DataField = 'profundidad'
@@ -863,6 +877,7 @@ inherited fmEditarLances: TfmEditarLances
                 object dbdtFecha1: TDBDateTimePicker
                   Left = 4
                   Height = 23
+                  Hint = 'Fecha inicial del lance'
                   Top = 19
                   Width = 81
                   DataField = 'fecha'
@@ -895,6 +910,7 @@ inherited fmEditarLances: TfmEditarLances
                 object dbdtHora1: TDBEdit
                   Left = 90
                   Height = 23
+                  Hint = 'Hora de inicio del lance'
                   Top = 19
                   Width = 54
                   CustomEditMask = True
@@ -1072,6 +1088,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedGradosLatFin1: TDBEdit
                 Left = 9
                 Height = 23
+                Hint = 'Grados de latitud final'
                 Top = 27
                 Width = 29
                 CustomEditMask = True
@@ -1085,6 +1102,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedMinutosLatFin1: TDBEdit
                 Left = 45
                 Height = 23
+                Hint = 'Minutos y centésimas de latitud final'
                 Top = 27
                 Width = 58
                 CustomEditMask = True
@@ -1099,6 +1117,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedGradosLongFin1: TDBEdit
                 Left = 109
                 Height = 23
+                Hint = 'Grados de longitud final'
                 Top = 27
                 Width = 29
                 CustomEditMask = True
@@ -1112,6 +1131,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedMinutosLongFin1: TDBEdit
                 Left = 145
                 Height = 23
+                Hint = 'Minutos y centésimas de longitud final'
                 Top = 27
                 Width = 58
                 CustomEditMask = True
@@ -1360,7 +1380,7 @@ inherited fmEditarLances: TfmEditarLances
           object dbedTempSuperf: TDBEdit
             Left = 9
             Height = 23
-            Hint = 'Temeratura de superficie (pistolita o sensor de casco)'
+            Hint = 'Temperatura de superficie (pistolita o sensor de casco)'
             Top = 26
             Width = 91
             DataField = 'temperatura_superficie'
@@ -1380,7 +1400,7 @@ inherited fmEditarLances: TfmEditarLances
           object dbedTempAire: TDBEdit
             Left = 106
             Height = 23
-            Hint = 'Temeratura ambiente (termómetro común)'
+            Hint = 'Temperatura ambiente (termómetro común)'
             Top = 26
             Width = 91
             DataField = 'temperatura_aire'
@@ -1462,7 +1482,7 @@ inherited fmEditarLances: TfmEditarLances
           object dbedEstadoMar: TDBEdit
             Left = 9
             Height = 23
-            Hint = 'Dirección del viento en grados'
+            Hint = 'Estado del mar según escala Beaufort'
             Top = 80
             Width = 41
             DataField = 'cod_estado_mar'
@@ -1474,6 +1494,7 @@ inherited fmEditarLances: TfmEditarLances
           object dbmDscEstadoMar: TDBMemo
             Left = 302
             Height = 79
+            Hint = 'Ejemplo clásico de las condiciones del mar para el grado de la escala Beaufort seleccionado'
             Top = 26
             Width = 404
             Color = clBtnFace
@@ -1506,6 +1527,7 @@ inherited fmEditarLances: TfmEditarLances
             object DBImage1: TDBImage
               Left = 0
               Height = 19
+              Hint = 'Indicador gráfico de fuerza del viento'
               Top = 0
               Width = 42
               Align = alClient
@@ -1536,7 +1558,7 @@ inherited fmEditarLances: TfmEditarLances
           object dbedMallaCopo: TDBEdit
             Left = 9
             Height = 23
-            Hint = 'Temeratura de superficie (pistolita o sensor de casco)'
+            Hint = 'Mallero del copo (si es malla cuadrada se mide el lado del cuadrado)'
             Top = 26
             Width = 91
             DataField = 'mallero_copo_mm'
@@ -1556,7 +1578,7 @@ inherited fmEditarLances: TfmEditarLances
           object dbedRelinga: TDBEdit
             Left = 294
             Height = 23
-            Hint = 'Temeratura ambiente (termómetro común)'
+            Hint = 'Largo de la relinga inferior'
             Top = 26
             Width = 91
             DataField = 'largo_relinga_inferior'
@@ -1568,6 +1590,7 @@ inherited fmEditarLances: TfmEditarLances
           object dbgTipoMalla: TDBRadioGroup
             Left = 102
             Height = 45
+            Hint = 'Tipo de malla en el copo'
             Top = 6
             Width = 185
             Caption = 'Tipo de malla'

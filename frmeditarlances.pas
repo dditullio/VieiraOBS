@@ -1,35 +1,3 @@
-{ TODO :
-* Confirmar en caso de cambio de fecha
-* Al detectar un error y realizar SetFocus en el control, también setear el campo en NULL
-* En el encabezado, en alta, informar fecha y hora del último lance cargado
-* Agregar un botón <=> para copiar el comentario del lance anterior }
-
-{ VALIDACIONES:
-"Anterior" se refiere al lance anterior (ordenado por número)
-Fecha: Mayor o igual al registro anterior. En nuevo registro repetir anterior. No nulo
-Hora: mayor que fecha/hora anterior mas minutos de arrastre. Puede ser 0, pero no mulo
-Lance: automático, no modificable
-Latitud: Entre 37 y 55, no nulo. En Alta, repite anterior
-Longitud: Entre 53 y 68, no nulo. En Alta, repite anterior
-Minutos Lati/Longi: de 0 a 59.99, no nulo
-   Corrección automática del grado (Lat y Long):
-   Si considerando posición final del anterior, tiempo transcurrido
-   y posicion inicial del lance actual la velocidad necesaria supera
-   los 15 nudos, entonces:
-      Si minutos < 30, probar con Grados + 1
-      Si minutos > 30, probar con Grados - 1
-      Si Sigue siendo incoherente, indicar error.
-Rumbo: de 1 a 360, puede ser nulo
-Profundidad: de 40 a 250. Puede ser nulo
-Cable: de 200 a 800, puede ser nulo. En Alta, repite anterior
-Tiempo: de 1 a 45, puede ser nulo
-Captura: de 0 a 8. Puede ser nulo. Como es String, chequear que sean números, "." o "/" (para las fracciones)
-Velocidad: de 2.5 a 5.5. Puede ser nulo
-Temperaturas: de -20 a 50. Puede ser nulo
-Estado del mar: de 0 a 12. Puede ser nulo
-Direccion del viento: de 1 a 360. Puede ser nulo
-Velocidad viento: de 0 a 100. Puede ser nulo
-}
 unit frmeditarlances;
 
 {$mode objfpc}{$H+}
@@ -1179,6 +1147,7 @@ begin
       end;
     end;
   end;
+  LSSaveConfig(['formato_planilla_puente'], [pcFormatos.TabIndex]);
 end;
 
 procedure TfmEditarLances.zqAntLanceBeforeOpen(DataSet: TDataSet);

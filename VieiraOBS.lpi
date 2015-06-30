@@ -151,7 +151,6 @@
         <ComponentName Value="dmGeneral"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="datGeneral"/>
       </Unit3>
       <Unit4>
         <Filename Value="frmbase.pas"/>
@@ -266,6 +265,7 @@
         <ComponentName Value="fmEditarByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditarbycatch"/>
       </Unit19>
       <Unit20>
         <Filename Value="datbase.pas"/>
@@ -315,6 +315,7 @@
         <ComponentName Value="fmEditarLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditarlances"/>
       </Unit26>
       <Unit27>
         <Filename Value="frmlances.pas"/>

@@ -35,6 +35,8 @@ type
     procedure SetFocus(Name: string);
     procedure SetColor(index: integer; Name: string; FontColor: TColor);
     procedure SetColor(Name: string; FontColor: TColor);
+    procedure SetHint(index: integer; Name: string; Hint: string);
+    procedure SetHint(Name: string; Hint: string);
     property ActiveIndex: integer read FActiveIndex write SetActiveIndex;
   end;
 
@@ -529,6 +531,36 @@ begin
       (C as TWinControl).Font.Color := FontColor
     else if (C is TGraphicControl) then
       (C as TGraphicControl).Font.Color := FontColor;
+end;
+
+procedure TControlsArray.SetHint(index: integer; Name: string; Hint: string);
+var
+  i: integer;
+begin
+  if Assigned(FControls[index]) then
+  begin
+    i := FControls[index].IndexOf(Name);
+    // Si encontró el nombre, seteo el Hint
+    if i <> -1 then
+    begin
+      if (FControls[index].Objects[i] is TWinControl) then
+        (FControls[index].Objects[i] as TWinControl).Hint := Hint
+      else if (FControls[index].Objects[i] is TGraphicControl) then
+        (FControls[index].Objects[i] as TGraphicControl).Hint := Hint;
+    end;
+  end;
+end;
+
+procedure TControlsArray.SetHint(Name: string; Hint: string);
+var
+  C: TControl;
+begin
+  C := GetControl(Name);
+  if Assigned(C) then
+    if (C is TWinControl) then
+      (C as TWinControl).Hint := Hint
+    else if (C is TGraphicControl) then
+      (C as TGraphicControl).Hint := Hint;
 end;
 
 { TfmEditarLances }
@@ -1183,9 +1215,9 @@ end;
 
 procedure TfmEditarLances.zqPrincipalCalcFields(DataSet: TDataSet);
 begin
-  dbtDistCalc.Hint := '';
-  dbtVelCalc.Hint := '';
-  dbtTiempoCalc.Hint := '';
+  FControlesEdicion.SetHint('DistCalc', '');
+  FControlesEdicion.SetHint('VelCalc', '');
+  FControlesEdicion.SetHint('TiempoCalc', '');
   zqPrincipalEncabezado.Value := 'Lance Nº ' + zqPrincipalnro_lance.AsString;
   if (zcePrincipal.Accion = ED_AGREGAR) and (zqAntLance.RecordCount > 0) then
     zqPrincipalEncabezado.Value :=
@@ -1235,7 +1267,7 @@ begin
       FormatFloat('0.#', zqPrincipalminutos_arrastre.Value) + ' minutos';
     zqPrincipalVelocNecesaria.Value :=
       zqPrincipalDistanciaMillas.Value * 60 / zqPrincipalminutos_arrastre.Value;
-    dbtVelCalc.Hint := zqPrincipalTextoVelocidad.Value;
+    FControlesEdicion.SetHint('VelCalc', zqPrincipalTextoVelocidad.Value);
     // Pongo en rojo valores dudosos
     if (zqPrincipalVelocNecesaria.Value > 5.8) or
       (zqPrincipalVelocNecesaria.Value < 3) then
@@ -1255,7 +1287,7 @@ begin
       FormatFloat('0.0#', zqPrincipalvelocidad.Value) + ' nudos';
     zqPrincipalTiempoNecesario.Value :=
       zqPrincipalDistanciaMillas.Value * 60 / zqPrincipalvelocidad.Value;
-    dbtTiempoCalc.Hint := zqPrincipalTextoTiempo.Value;
+    FControlesEdicion.SetHint('TiempoCalc', zqPrincipalTextoTiempo.Value);
     // Pongo en rojo valores dudosos
     if zqPrincipalTiempoNecesario.Value > 40 then
       FControlesEdicion.SetColor('TiempoCalc', clRed)
@@ -1273,7 +1305,7 @@ begin
       FormatFloat('0.0#', zqPrincipalvelocidad.Value) + ' nudos';
     zqPrincipalDistanciaCalculada.Value :=
       (zqPrincipalvelocidad.Value * zqPrincipalminutos_arrastre.Value) / 60;
-    dbtDistCalc.Hint := zqPrincipalTextoDistancia.Value;
+    FControlesEdicion.SetHint('DistCalc', zqPrincipalTextoDistancia.Value);
     // Pongo en rojo valores dudosos
     if zqPrincipalDistanciaCalculada.Value > 3 then
       FControlesEdicion.SetColor('DistCalc', clRed)

@@ -223,6 +223,7 @@
         <ComponentName Value="fmMuestrasBiologicas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmmuestrasbiologicas"/>
       </Unit13>
       <Unit14>
         <Filename Value="frmeditarmuestrasbiologicas.pas"/>

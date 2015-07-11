@@ -182,7 +182,7 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
       'OR date_format(fecha,''%d/%m/%Y'') LIKE CONCAT(''%'',:__FILTRO__,''%'')'
       'OR hora LIKE CONCAT(''%'',:__FILTRO__,''%'')'
       'OR contenido LIKE CONCAT(''%'',:__FILTRO__,''%''))'
-      'ORDER BY fecha, hora'
+      'ORDER BY fecha, hora, nro_caja'
       ''
       ''
     )

@@ -35,7 +35,7 @@ object dmGeneral: TdmGeneral
       'FROM'
       '  v_mareas'
       'ORDER BY '
-      ' anio_marea desc, nro_marea_inidep desc'
+      ' anio_marea desc, nro_marea_inidep desc, marea_buque desc'
     )
     Params = <>
     left = 88

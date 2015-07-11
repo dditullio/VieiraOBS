@@ -951,6 +951,8 @@ end;
 
 procedure TfmEditarLances.FormShow(Sender: TObject);
 begin
+  pcLances.ActivePage:=tsGeneral;
+  Application.ProcessMessages;
   FControlesEdicion.SetFocus('Hora');
 end;
 
@@ -1062,7 +1064,7 @@ begin
         end;
       end;
 
-      if not hay_error then
+      if (not hay_error) and (zqAntLance.RecordCount > 0) then
       begin
           //Calculo los minutos entre el fin del lance anterior y el inicio del actual
           minutos_entre_lances := MinutesBetween(
@@ -1159,6 +1161,12 @@ begin
     FControlesEdicion.SetFocus('CableEr');
   end;
 
+  if (zqPrincipallargo_relinga_inferior.IsNull) then
+  begin
+    MessageDlg('En la pestaña de datos complementarios debe indicar los datos del equipo de pesca', mtError, [mbOK], 0);
+    ValidacionOK := False;
+  end;
+
   if (zqPrincipalLatIni.Value > 0) and (zqPrincipalLongIni.Value > 0) and
     (zqPrincipalLatFin.Value > 0) and (zqPrincipalLongFin.Value > 0) then
   begin
@@ -1174,7 +1182,7 @@ begin
       end
       else
       begin
-        ValidacionOK := True;
+        ValidacionOK := (ValidacionOK and True);
         //Hago foco en la hora para que quede posicionado para el siguiente registro (alta continua)
       end;
     end;

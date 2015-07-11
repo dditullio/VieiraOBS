@@ -151,6 +151,7 @@
         <ComponentName Value="dmGeneral"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="datGeneral"/>
       </Unit3>
       <Unit4>
         <Filename Value="frmbase.pas"/>
@@ -193,7 +194,6 @@
         <ComponentName Value="fmRindes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmrindes"/>
       </Unit9>
       <Unit10>
         <Filename Value="frmeditarrindes.pas"/>
@@ -201,7 +201,6 @@
         <ComponentName Value="fmEditarRindes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditarrindes"/>
       </Unit10>
       <Unit11>
         <Filename Value="frmcoccion.pas"/>
@@ -223,7 +222,6 @@
         <ComponentName Value="fmMuestrasBiologicas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmmuestrasbiologicas"/>
       </Unit13>
       <Unit14>
         <Filename Value="frmeditarmuestrasbiologicas.pas"/>
@@ -266,7 +264,6 @@
         <ComponentName Value="fmEditarByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditarbycatch"/>
       </Unit19>
       <Unit20>
         <Filename Value="datbase.pas"/>

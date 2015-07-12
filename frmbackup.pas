@@ -1214,12 +1214,8 @@ begin
      while not EOF do
      begin
        vista:=zqTablasYVistas.FieldByName('Tables_in_'+dmGeneral.zcDB.Database).AsString;
-       //Las funciones GIS no son del todo compatibles, así que las salteo
-       if (LowerCase(LeftStr(vista, 5))<>'v_gis') and (LowerCase(LeftStr(vista, 6))<>'v_geom') then
-       begin
-         str_sql.Add(CrearEstructuraVista(vista));
-         Application.ProcessMessages;
-       end;
+       str_sql.Add(CrearEstructuraVista(vista));
+       Application.ProcessMessages;
        Next;
      end;
    end;

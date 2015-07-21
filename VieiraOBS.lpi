@@ -325,6 +325,7 @@
       <Unit28>
         <Filename Value="funciones.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="funciones"/>
       </Unit28>
       <Unit29>
         <Filename Value="frminformes.pas"/>

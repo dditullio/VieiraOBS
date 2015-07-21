@@ -1,17 +1,9 @@
 -- ---------------------------------------------
 -- Tablas y datos de la base de datos "vieira"
 -- Generado desde la aplicación "Vieira OBS"
--- Fecha y hora de resguardo: 17/06/2015 22:02
+-- Version 1.0.0
+-- Fecha y hora de resguardo: 12/07/2015 14:33
 -- ---------------------------------------------
-
--- -----------------------------------------------------
--- Esquema vieira
--- -----------------------------------------------------
-
-CREATE SCHEMA IF NOT EXISTS `vieira` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci ;
-
-USE `vieira` ;
-
 
 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;
 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS ;
@@ -694,7 +686,7 @@ SET SQL_NOTES=@OLD_SQL_NOTES ;
 
 
 -- ----------------------------------------------------
--- Fin de la copia de seguridad: 17/06/2015 22:02
+-- Fin de la copia de seguridad: 12/07/2015 14:33
 -- ----------------------------------------------------
 
 

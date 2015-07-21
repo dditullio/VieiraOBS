@@ -20,8 +20,7 @@ type
     azBackup: TAbZipper;
     acBackup: TAction;
     alBackup: TActionList;
-    bbGuardar: TBitBtn;
-    bbRestaurar: TBitBtn;
+    bbEjecutar: TBitBtn;
     ckIncluirAplicacion: TCheckBox;
     ckRestaurarEstructura: TCheckBox;
     ckRestaurarDatos: TCheckBox;
@@ -34,6 +33,7 @@ type
     gbDestino1: TGroupBox;
     GroupBox1: TGroupBox;
     gbOpcRestauracion: TGroupBox;
+    ilBackup: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -42,9 +42,8 @@ type
     meSQL: TMemo;
     odRestaurar: TOpenDialog;
     paEncabezado: TPanel;
-    Panel1: TPanel;
     paMensajeEspera: TPanel;
-    Panel2: TPanel;
+    Panel1: TPanel;
     pcBackup: TPageControl;
     paProceso: TPanel;
     prBackup: TProcessUTF8;
@@ -80,6 +79,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure pcBackupChange(Sender: TObject);
     procedure sbCargarArchivoClick(Sender: TObject);
     function EjecutarRestauracion(proc_tablas, proc_datos, proc_rutinas:Boolean): Boolean;
     procedure zqRutinasBeforeOpen(DataSet: TDataSet);
@@ -474,6 +474,14 @@ begin
   pcBackup.ActivePage:=tsBackup;
   odRestaurar.Filter:='Archivos de copia de seguridad|'+PREFIJO_BKP+'*.zip';
   HabilitarAcciones;
+end;
+
+procedure TfmBackup.pcBackupChange(Sender: TObject);
+begin
+  if pcBackup.ActivePage=tsBackup then
+     bbEjecutar.Action:=acBackup
+  else
+     bbEjecutar.Action:=acRestaurar;
 end;
 
 procedure TfmBackup.sbCargarArchivoClick(Sender: TObject);

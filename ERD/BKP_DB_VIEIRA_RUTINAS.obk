@@ -2,17 +2,8 @@ DELIMITER $$
 -- ---------------------------------------------
 -- Rutinas de la base de datos "vieira"
 -- realizada desde la aplicación "Vieira OBS"
--- Fecha y hora de resguardo: 17/06/2015 22:02
+-- Fecha y hora de resguardo: 12/07/2015 14:33
 -- ---------------------------------------------
-
--- -----------------------------------------------------
--- Esquema vieira
--- -----------------------------------------------------
-
-CREATE SCHEMA IF NOT EXISTS `vieira` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci $$
-
-USE `vieira` $$
-
 
 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT $$
 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS $$
@@ -129,6 +120,100 @@ CREATE VIEW `v_detalle_muestras_talla_simple` AS SELECT 1 AS `idmarea`,
 1 AS `banda`,
 1 AS `talla`,
 1 AS `nro_ejemplares` $$
+SET character_set_client = @saved_cs_client $$
+DELIMITER ;
+
+--
+-- Estructura temporaria para vista `v_geom_poligonos_zonas_pesca_vieira`
+--
+
+DELIMITER $$
+DROP TABLE IF EXISTS `v_geom_poligonos_zonas_pesca_vieira` $$
+DROP VIEW IF EXISTS `v_geom_poligonos_zonas_pesca_vieira` $$
+SET @saved_cs_client     = @@character_set_client $$
+SET character_set_client = utf8 $$
+CREATE VIEW `v_geom_poligonos_zonas_pesca_vieira` AS SELECT 1 AS `idpoligonos_zonas_pesca_vieira`,
+1 AS `geom` $$
+SET character_set_client = @saved_cs_client $$
+DELIMITER ;
+
+--
+-- Estructura temporaria para vista `v_gis_capturas`
+--
+
+DELIMITER $$
+DROP TABLE IF EXISTS `v_gis_capturas` $$
+DROP VIEW IF EXISTS `v_gis_capturas` $$
+SET @saved_cs_client     = @@character_set_client $$
+SET character_set_client = utf8 $$
+CREATE VIEW `v_gis_capturas` AS SELECT 1 AS `Punto`,
+1 AS `marea_buque`,
+1 AS `marea_inidep`,
+1 AS `nro_lance`,
+1 AS `fecha`,
+1 AS `hora`,
+1 AS `fecha_hora`,
+1 AS `captura` $$
+SET character_set_client = @saved_cs_client $$
+DELIMITER ;
+
+--
+-- Estructura temporaria para vista `v_gis_lances`
+--
+
+DELIMITER $$
+DROP TABLE IF EXISTS `v_gis_lances` $$
+DROP VIEW IF EXISTS `v_gis_lances` $$
+SET @saved_cs_client     = @@character_set_client $$
+SET character_set_client = utf8 $$
+CREATE VIEW `v_gis_lances` AS SELECT 1 AS `geom`,
+1 AS `marea_buque`,
+1 AS `marea_inidep`,
+1 AS `nro_lance`,
+1 AS `fecha`,
+1 AS `hora`,
+1 AS `fecha_hora` $$
+SET character_set_client = @saved_cs_client $$
+DELIMITER ;
+
+--
+-- Estructura temporaria para vista `v_gis_muestras_ecologicas`
+--
+
+DELIMITER $$
+DROP TABLE IF EXISTS `v_gis_muestras_ecologicas` $$
+DROP VIEW IF EXISTS `v_gis_muestras_ecologicas` $$
+SET @saved_cs_client     = @@character_set_client $$
+SET character_set_client = utf8 $$
+CREATE VIEW `v_gis_muestras_ecologicas` AS SELECT 1 AS `Punto`,
+1 AS `idmarea`,
+1 AS `marea_buque`,
+1 AS `marea_inidep`,
+1 AS `fecha`,
+1 AS `hora`,
+1 AS `fecha_hora` $$
+SET character_set_client = @saved_cs_client $$
+DELIMITER ;
+
+--
+-- Estructura temporaria para vista `v_gis_rindes`
+--
+
+DELIMITER $$
+DROP TABLE IF EXISTS `v_gis_rindes` $$
+DROP VIEW IF EXISTS `v_gis_rindes` $$
+SET @saved_cs_client     = @@character_set_client $$
+SET character_set_client = utf8 $$
+CREATE VIEW `v_gis_rindes` AS SELECT 1 AS `Punto`,
+1 AS `marea_buque`,
+1 AS `marea_inidep`,
+1 AS `nro_lance`,
+1 AS `fecha`,
+1 AS `hora`,
+1 AS `fecha_hora`,
+1 AS `captura`,
+1 AS `rinde_total`,
+1 AS `rinde_comercial` $$
 SET character_set_client = @saved_cs_client $$
 DELIMITER ;
 
@@ -2663,7 +2748,7 @@ DELIMITER ;
 
 
 -- ----------------------------------------------------
--- Fin de la copia de seguridad: 17/06/2015 22:02
+-- Fin de la copia de seguridad: 12/07/2015 14:33
 -- ----------------------------------------------------
 
 

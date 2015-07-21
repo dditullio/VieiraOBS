@@ -14,6 +14,7 @@ const
                                                 into radians}
 
 function DistanciaEnMillas(lat1, lon1, lat2, lon2: double): double;
+function Rumbo(lat1, lon1, lat2, lon2: double): double;
 function VelocidadEnNudos(lat1, lon1, lat2, lon2, minutos: double): double;
 procedure DecimalToFraction(Decimal: extended; var FractionNumerator: extended;
   var FractionDenominator: extended; AccuracyFactor: extended);
@@ -74,6 +75,38 @@ begin
   a := sqr(sin(dlat / 2)) + cos(lat1 * rad) * cos(lat2 * rad) * sqr(sin(dlon / 2));
   distance := radius * (2 * atan2(sqrt(a), sqrt(1 - a)));
   Result := int(distance * 100) / 100;
+end;
+
+function Rumbo(lat1, lon1, lat2, lon2: double): double;
+var
+  latInicio, longInicio, latFin, longFin, x, dist, angulo: double;
+begin
+  //Asumimos que es el cuadrante SO, por lo tanto las posiciones de convierten a negarivo
+  //Para la distancia no importa, pero el rumbo daría al revés
+  latInicio:=degtorad(-1*lat1);
+  longInicio:=degtorad(-1*lon1);
+  latFin:=degtorad(-1*lat2);
+  longFin:=degtorad(-1*lon2);
+
+  x:=sin(latInicio)*sin(latFin)+cos(latInicio)*cos(latFin)*cos(longFin-longInicio);
+  dist:=60*arccos(x);
+  x:=(sin(latFin)-sin(latInicio)*cos(dist/60))/sin(dist/60)/cos(latInicio);
+
+  if x>=1 then
+          x:=1;
+  if x<=-1 then
+          x:=-1;
+  angulo:=arccos(x);
+  if sin(longFin-longInicio)<0 then
+     angulo:=2*PI-angulo;
+  dist:=dist*180/pi;
+  angulo:=round(angulo*180/pi);
+
+  if angulo=0 then
+     angulo:=360;
+
+  Result:=angulo;
+
 end;
 
 function VelocidadEnNudos(lat1, lon1, lat2, lon2, minutos: double): double;

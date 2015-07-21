@@ -1099,6 +1099,14 @@ begin
             dbedGradosLongIni1.TabStop := True;
             FControlesEdicion.SetFocus('GradosLatIni');
           end;
+
+          if (zqAntLancegrados_latitud_fin.IsNull) or
+             (zqAntLancegrados_longitud_fin.IsNull) or
+             (zqAntLanceminutos_latitud_fin.IsNull) or
+             (zqAntLanceminutos_longitud_fin.IsNull) then
+          begin
+            MessageDlg('Los datos de posición final del lance anterior están incompletos, por lo tanto no se puede validar la posición incial de este lance. Por favor asegúrese de que los datos ingresados sean correctos.', mtInformation, [mbOK], 0);
+          end;
       end;
   end;
 end;

@@ -21,6 +21,7 @@ procedure DecimalToFraction(Decimal: extended; var FractionNumerator: extended;
 function DecimalAFraccion(decimal: extended; max_digitos_denom: integer = 3): string;
 function LetrasColumnasExcel(columna: integer): string;
 function HoraOK(StrHora: string): boolean;
+function GradoDecimalAGradoMinuto(d:double):double;
 
 implementation
 
@@ -218,6 +219,12 @@ begin
   except
     Result := False;
   end;
+end;
+
+function GradoDecimalAGradoMinuto(d: double): double;
+begin
+   //se transforma GG,MMMM en GGMM,MM
+  Result:= (int(d) + ((d - int(d)) * 60/100))*100;
 end;
 
 end.

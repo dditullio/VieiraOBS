@@ -60,70 +60,73 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="21">
+    <RequiredPackages Count="22">
       <Item1>
-        <PackageName Value="pl_exsystem"/>
+        <PackageName Value="pl_orpheus"/>
       </Item1>
       <Item2>
-        <PackageName Value="LazUtils"/>
+        <PackageName Value="pl_exsystem"/>
       </Item2>
       <Item3>
-        <PackageName Value="pl_abbrevia"/>
+        <PackageName Value="LazUtils"/>
       </Item3>
       <Item4>
-        <PackageName Value="lr_DialogDesign"/>
+        <PackageName Value="pl_abbrevia"/>
       </Item4>
       <Item5>
-        <PackageName Value="lr_imgexport"/>
+        <PackageName Value="lr_DialogDesign"/>
       </Item5>
       <Item6>
-        <PackageName Value="lr_pdfexport"/>
+        <PackageName Value="lr_imgexport"/>
       </Item6>
       <Item7>
-        <PackageName Value="lazreport"/>
+        <PackageName Value="lr_pdfexport"/>
       </Item7>
       <Item8>
-        <PackageName Value="pl_fortesreport"/>
+        <PackageName Value="lazreport"/>
       </Item8>
       <Item9>
-        <PackageName Value="pl_jujiboutils"/>
+        <PackageName Value="pl_fortesreport"/>
       </Item9>
       <Item10>
-        <PackageName Value="pl_fzcontrols"/>
+        <PackageName Value="pl_jujiboutils"/>
       </Item10>
       <Item11>
-        <PackageName Value="TAChartLazarusPkg"/>
+        <PackageName Value="pl_fzcontrols"/>
       </Item11>
       <Item12>
-        <PackageName Value="pl_rx"/>
+        <PackageName Value="TAChartLazarusPkg"/>
       </Item12>
       <Item13>
-        <PackageName Value="pl_zeosdbo"/>
+        <PackageName Value="pl_rx"/>
       </Item13>
       <Item14>
-        <PackageName Value="pl_lazsolutions"/>
+        <PackageName Value="pl_zeosdbo"/>
       </Item14>
       <Item15>
-        <PackageName Value="FCL"/>
+        <PackageName Value="pl_lazsolutions"/>
       </Item15>
       <Item16>
-        <PackageName Value="mis_componentes"/>
+        <PackageName Value="FCL"/>
       </Item16>
       <Item17>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="mis_componentes"/>
       </Item17>
       <Item18>
-        <PackageName Value="IDEIntf"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item18>
       <Item19>
-        <PackageName Value="LazControls"/>
+        <PackageName Value="IDEIntf"/>
       </Item19>
       <Item20>
-        <PackageName Value="SQLDBLaz"/>
+        <PackageName Value="LazControls"/>
       </Item20>
       <Item21>
-        <PackageName Value="LCL"/>
+        <PackageName Value="SQLDBLaz"/>
       </Item21>
+      <Item22>
+        <PackageName Value="LCL"/>
+      </Item22>
     </RequiredPackages>
     <Units Count="39">
       <Unit0>
@@ -313,7 +316,6 @@
         <ComponentName Value="fmEditarLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditarlances"/>
       </Unit26>
       <Unit27>
         <Filename Value="frmlances.pas"/>
@@ -321,11 +323,11 @@
         <ComponentName Value="fmLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmlances"/>
       </Unit27>
       <Unit28>
         <Filename Value="funciones.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="funciones"/>
       </Unit28>
       <Unit29>
         <Filename Value="frminformes.pas"/>
@@ -393,7 +395,6 @@
         <ComponentName Value="fmBackup"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmbackup"/>
       </Unit38>
     </Units>
   </ProjectOptions>

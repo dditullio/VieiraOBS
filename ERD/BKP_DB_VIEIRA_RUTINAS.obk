@@ -2,7 +2,7 @@ DELIMITER $$
 -- ---------------------------------------------
 -- Rutinas de la base de datos "vieira"
 -- realizada desde la aplicación "Vieira OBS"
--- Fecha y hora de resguardo: 12/07/2015 14:33
+-- Fecha y hora de resguardo: 25/07/2015 00:30
 -- ---------------------------------------------
 
 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT $$
@@ -22,6 +22,31 @@ DELIMITER ;
 -- -------------------------------- --
 -- Estructura de vistas del sistema --
 -- -------------------------------- --
+--
+-- Estructura temporaria para vista `v_datos_mapa_lances`
+--
+
+DELIMITER $$
+DROP TABLE IF EXISTS `v_datos_mapa_lances` $$
+DROP VIEW IF EXISTS `v_datos_mapa_lances` $$
+SET @saved_cs_client     = @@character_set_client $$
+SET character_set_client = utf8 $$
+CREATE VIEW `v_datos_mapa_lances` AS SELECT 1 AS `idmarea`,
+1 AS `idlance`,
+1 AS `long_ini`,
+1 AS `lat_ini`,
+1 AS `long_fin`,
+1 AS `lat_fin`,
+1 AS `marea_buque`,
+1 AS `marea_inidep`,
+1 AS `nro_lance`,
+1 AS `fecha`,
+1 AS `hora`,
+1 AS `fecha_hora_inicio`,
+1 AS `fecha_hora_fin` $$
+SET character_set_client = @saved_cs_client $$
+DELIMITER ;
+
 --
 -- Estructura temporaria para vista `v_detalle_muestras_bycatch`
 --
@@ -186,6 +211,25 @@ DROP VIEW IF EXISTS `v_gis_muestras_ecologicas` $$
 SET @saved_cs_client     = @@character_set_client $$
 SET character_set_client = utf8 $$
 CREATE VIEW `v_gis_muestras_ecologicas` AS SELECT 1 AS `Punto`,
+1 AS `idmarea`,
+1 AS `marea_buque`,
+1 AS `marea_inidep`,
+1 AS `fecha`,
+1 AS `hora`,
+1 AS `fecha_hora` $$
+SET character_set_client = @saved_cs_client $$
+DELIMITER ;
+
+--
+-- Estructura temporaria para vista `v_gis_muestras_senasa_entera`
+--
+
+DELIMITER $$
+DROP TABLE IF EXISTS `v_gis_muestras_senasa_entera` $$
+DROP VIEW IF EXISTS `v_gis_muestras_senasa_entera` $$
+SET @saved_cs_client     = @@character_set_client $$
+SET character_set_client = utf8 $$
+CREATE VIEW `v_gis_muestras_senasa_entera` AS SELECT 1 AS `Punto`,
 1 AS `idmarea`,
 1 AS `marea_buque`,
 1 AS `marea_inidep`,
@@ -1665,6 +1709,25 @@ select l_str_create;
 END$$
 DELIMITER ;
 --
+-- Estructura final para la vista `v_datos_mapa_lances`
+--
+
+DELIMITER $$
+DROP VIEW IF EXISTS `v_datos_mapa_lances` $$
+SET @saved_cs_client          = @@character_set_client $$
+SET @saved_cs_results         = @@character_set_results $$
+SET @saved_col_connection     = @@collation_connection $$
+SET character_set_client      = utf8 $$
+SET character_set_results     = utf8 $$
+SET collation_connection      = utf8_general_ci $$
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_datos_mapa_lances` AS select `m`.`idmarea` AS `idmarea`,`l`.`idlance` AS `idlance`,(-(1) * (`l`.`grados_longitud_ini` + (`l`.`minutos_longitud_ini` / 60))) AS `long_ini`,(-(1) * (`l`.`grados_latitud_ini` + (`l`.`minutos_latitud_ini` / 60))) AS `lat_ini`,(-(1) * (`l`.`grados_longitud_fin` + (`l`.`minutos_longitud_fin` / 60))) AS `long_fin`,(-(1) * (`l`.`grados_latitud_fin` + (`l`.`minutos_latitud_fin` / 60))) AS `lat_fin`,`m`.`marea_buque` AS `marea_buque`,concat(`m`.`nro_marea_inidep`,'/',`m`.`anio_marea`) AS `marea_inidep`,`l`.`nro_lance` AS `nro_lance`,`l`.`fecha` AS `fecha`,`l`.`hora` AS `hora`,concat('Inicio: ',lpad(dayofmonth(`l`.`fecha`),2,0),'/',lpad(month(`l`.`fecha`),2,0),' ',lpad(hour(`l`.`hora`),2,0),':',lpad(minute(`l`.`hora`),2,0)) AS `fecha_hora_inicio`,concat('Fin: ',lpad(dayofmonth(`l`.`fecha`),2,0),'/',lpad(month(`l`.`fecha`),2,0),' ',lpad(hour((`l`.`hora` + interval `l`.`minutos_arrastre` minute)),2,0),':',lpad(minute((`l`.`hora` + interval `l`.`minutos_arrastre` minute)),2,0)) AS `fecha_hora_fin` from (`lances` `l` join `mareas` `m`) where ((`m`.`idmarea` = `l`.`idmarea`) and (`l`.`grados_longitud_ini` is not null) and (`l`.`minutos_longitud_ini` is not null) and (`l`.`grados_latitud_ini` is not null) and (`l`.`minutos_latitud_ini` is not null) and (`l`.`grados_longitud_fin` is not null) and (`l`.`minutos_longitud_fin` is not null) and (`l`.`grados_latitud_fin` is not null) and `l`.`minutos_latitud_fin`) $$
+SET character_set_client      = @saved_cs_client $$
+SET character_set_results     = @saved_cs_results $$
+SET collation_connection      = @saved_col_connection $$
+DELIMITER ;
+
+
+--
 -- Estructura final para la vista `v_detalle_muestras_bycatch`
 --
 
@@ -2748,7 +2811,7 @@ DELIMITER ;
 
 
 -- ----------------------------------------------------
--- Fin de la copia de seguridad: 12/07/2015 14:33
+-- Fin de la copia de seguridad: 25/07/2015 00:30
 -- ----------------------------------------------------
 
 

@@ -2,7 +2,7 @@
 -- Tablas y datos de la base de datos "vieira"
 -- Generado desde la aplicación "Vieira OBS"
 -- Version 1.0.0
--- Fecha y hora de resguardo: 12/07/2015 14:33
+-- Fecha y hora de resguardo: 25/07/2015 00:30
 -- ---------------------------------------------
 
 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;
@@ -223,6 +223,25 @@ CREATE TABLE `lances` (
   CONSTRAINT `fk_lances_estados_mar1` FOREIGN KEY (`cod_estado_mar`) REFERENCES `estados_mar` (`cod_estado_mar`),
   CONSTRAINT `fk_lances_mareas` FOREIGN KEY (`idmarea`) REFERENCES `mareas` (`idmarea`),
   CONSTRAINT `fk_lances_tipos_malla1` FOREIGN KEY (`tipo_malla`) REFERENCES `tipos_malla` (`tipo_malla`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+SET character_set_client = @saved_cs_client ;
+
+--
+-- Estructura de la tabla `mapas`
+--
+
+DROP TABLE IF EXISTS `mapas`;
+SET @saved_cs_client     = @@character_set_client ;
+SET character_set_client = utf8 ;
+CREATE TABLE `mapas` (
+  `id` int(11) NOT NULL,
+  `mapa` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `orden` int(11) DEFAULT NULL,
+  `longitud` decimal(17,13) DEFAULT NULL,
+  `latitud` decimal(17,13) DEFAULT NULL,
+  `etiqueta` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `orden` (`orden`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 SET character_set_client = @saved_cs_client ;
 
@@ -686,7 +705,7 @@ SET SQL_NOTES=@OLD_SQL_NOTES ;
 
 
 -- ----------------------------------------------------
--- Fin de la copia de seguridad: 12/07/2015 14:33
+-- Fin de la copia de seguridad: 25/07/2015 00:30
 -- ----------------------------------------------------
 
 

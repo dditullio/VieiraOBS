@@ -10,7 +10,7 @@ uses
   ExtCtrls, Buttons, ActnList, StdCtrls, ComCtrls, frmlistabase, db, ZDataset,
   zcontroladorgrilla, datGeneral, frmeditarlances, dateutils, funciones, math,
   TAChartAxisUtils, TAFuncSeries, TADataTools, TAChartListbox, TANavigation,
-  ovctcbox, types, LSConfig;
+  ovctcbox, types, LSConfig, TACustomSeries;
 
 type
 
@@ -20,12 +20,14 @@ type
     acIdentLances: TAction;
     acMostrarMuestrasEcologicas: TAction;
     alMapa: TActionList;
+    Button1: TButton;
     ChartListbox1: TChartListbox;
     ChartToolset1: TChartToolset;
     ChartToolset1DataPointCrosshairTool1: TDataPointCrosshairTool;
     ChartToolset1DataPointDistanceTool1: TDataPointDistanceTool;
     ChartToolset1DataPointHintTool1: TDataPointHintTool;
     ChartToolset1PanDragTool1: TPanDragTool;
+    ChartToolset1UserDefinedTool1: TUserDefinedTool;
     ChartToolset1ZoomDragTool1: TZoomDragTool;
     ChartToolset1ZoomMouseWheelTool1: TZoomMouseWheelTool;
     ckMapaLances: TCheckBox;
@@ -39,14 +41,23 @@ type
     dsLances: TDataSource;
     dtFecha: TDateTimePicker;
     ilToolbar: TImageList;
+    laInfo1: TLabel;
     lcsDatosMapa: TListChartSource;
     lcsMapaBase: TListChartSource;
     lcsUMVieira: TListChartSource;
     lcsOtrasZonas: TListChartSource;
     lcsEtiquetasUM: TListChartSource;
     lcsMuestrasEcologicas: TListChartSource;
+    Panel1: TPanel;
+    SaveDialog1: TSaveDialog;
     Splitter1: TSplitter;
     zqLances: TZQuery;
+    zqLancesetiqueta_fin: TStringField;
+    zqLancesetiqueta_inicio: TStringField;
+    zqLanceslat_fin_gis: TFloatField;
+    zqLanceslat_ini_gis: TFloatField;
+    zqLanceslong_fin_gis: TFloatField;
+    zqLanceslong_ini_gis: TFloatField;
     zqMapaLances: TZQuery;
     zqLancescable_babor: TLongintField;
     zqLancescable_estribor: TLongintField;
@@ -106,16 +117,17 @@ type
     zqMuestrasEcologicas: TZQuery;
     procedure acIdentLancesExecute(Sender: TObject);
     procedure acMostrarMuestrasEcologicasExecute(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure ChartToolset1DataPointClickTool1PointClick(ATool: TChartTool;
       APoint: TPoint);
+    procedure ChartToolset1DataPointCrosshairTool1AfterMouseUp(
+      ATool: TChartTool; APoint: TPoint);
+    procedure ChartToolset1DataPointCrosshairTool1Draw(
+      ASender: TDataPointDrawTool);
     procedure ChartToolset1DataPointDistanceTool1GetDistanceText(
       ASender: TDataPointDistanceTool; var AText: String);
-    procedure ChartToolset1DataPointDistanceTool1Measure(
-      ASender: TDataPointDistanceTool);
     procedure chtLancesAxisList0MarkToText(var AText: String; AMark: Double);
     procedure chtLancesAxisList1MarkToText(var AText: String; AMark: Double);
-    procedure chtLancesClick(Sender: TObject);
-    procedure chtLancesExtentChanged(ASender: TChart);
     procedure ckMapaLancesChange(Sender: TObject);
     procedure dbgListaGetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
@@ -275,13 +287,38 @@ begin
 end;
 
 procedure TfmLances.CargarMapaLances;
+var
+  bm: TBookMark;
 begin
-  zqMapaLances.Close;
+//  zqMapaLances.Close;
   lcsDatosMapa.Clear;
   chtLances.Refresh;
-  if zqLances.RecordCount > 0 then
+  if (zqLances.RecordCount > 0) and (ckMapaLances.Checked) then
   begin
-    zqMapaLances.Open;
+//    zqMapaLances.Open;
+    with zqLances do
+    begin
+      DisableControls;
+      bm:=GetBookmark;
+      First;
+      while not EOF do
+      begin
+        if (not FieldByName('long_ini_gis').IsNull)
+           and (not FieldByName('lat_ini_gis').IsNull)
+           and (not FieldByName('long_fin_gis').IsNull)
+           and (not FieldByName('lat_fin_gis').IsNull) then
+        begin
+          lcsDatosMapa.Add(FieldByName('long_ini_gis').AsFloat,FieldByName('lat_ini_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_inicio').AsString, clGreen);
+          lcsDatosMapa.Add(FieldByName('long_fin_gis').AsFloat,FieldByName('lat_fin_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_fin').AsString, clRed);
+          lcsDatosMapa.Add(NaN,NaN);
+        end;
+        Next;
+      end;
+      if BookmarkValid(bm) then
+         GotoBookmark(bm);
+      EnableControls;
+    end;
+    chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
   end;
 end;
 
@@ -316,10 +353,36 @@ begin
   chtLancesMuestrasEcologicasSerie.Active:=acMostrarMuestrasEcologicas.Checked;
 end;
 
+procedure TfmLances.Button1Click(Sender: TObject);
+begin
+  if SaveDialog1.Execute then
+  chtLances.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
+end;
+
 procedure TfmLances.ChartToolset1DataPointClickTool1PointClick(
   ATool: TChartTool; APoint: TPoint);
 begin
   ShowMessage('Clic');
+end;
+
+procedure TfmLances.ChartToolset1DataPointCrosshairTool1AfterMouseUp(
+  ATool: TChartTool; APoint: TPoint);
+begin
+  laInfo1.Caption := '';
+end;
+
+procedure TfmLances.ChartToolset1DataPointCrosshairTool1Draw(
+  ASender: TDataPointDrawTool);
+var
+  ser: TChartSeries;
+begin
+  ser := TChartSeries(ASender.Series);
+  if ser <> nil then begin
+    with ser.Source.Item[ASender.PointIndex]^ do
+      laInfo1.Caption := 'Lat: '+FormatFloat('00º 00.00´', Abs(GradoDecimalAGradoMinuto(Y)))+ ' S  -  '+
+                         'Long: '+FormatFloat('00º 00.00´', Abs(GradoDecimalAGradoMinuto(X)))+ ' O'
+  end else
+    laInfo1.Caption := '';
 end;
 
 procedure TfmLances.ChartToolset1DataPointDistanceTool1GetDistanceText(
@@ -331,25 +394,10 @@ begin
   end;
 end;
 
-procedure TfmLances.ChartToolset1DataPointDistanceTool1Measure(
-  ASender: TDataPointDistanceTool);
-begin
-
-end;
-
 procedure TfmLances.chtLancesAxisList1MarkToText(var AText: String;
   AMark: Double);
 begin
   Atext:=FormatFloat('#°00.00´', GradoDecimalAGradoMinuto(AMark));
-end;
-
-procedure TfmLances.chtLancesClick(Sender: TObject);
-begin
-end;
-
-procedure TfmLances.chtLancesExtentChanged(ASender: TChart);
-begin
-
 end;
 
 procedure TfmLances.ckMapaLancesChange(Sender: TObject);

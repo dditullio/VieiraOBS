@@ -466,12 +466,12 @@ inherited fmLances: TfmLances
         Width = 330
         ClientHeight = 476
         ClientWidth = 330
-        Constraints.MaxWidth = 500
+        Constraints.MaxWidth = 720
         Constraints.MinWidth = 300
         Visible = True
         object chtLances: TChart[0]
-          Left = 0
-          Height = 378
+          Left = 1
+          Height = 338
           Top = 88
           Width = 323
           AxisList = <          
@@ -513,10 +513,8 @@ inherited fmLances: TfmLances
             'TAChart'
           )
           Toolset = ChartToolset1
-          OnExtentChanged = chtLancesExtentChanged
           Anchors = [akTop, akLeft, akRight, akBottom]
           ParentColor = False
-          OnClick = chtLancesClick
           object chtLancesSerieLances: TLineSeries
             Legend.Format = 'Lances'
             Marks.LabelFont.Height = -11
@@ -533,7 +531,6 @@ inherited fmLances: TfmLances
             Pointer.HorizSize = 2
             Pointer.Style = psCircle
             Pointer.VertSize = 2
-            ShowPoints = True
             Source = lcsDatosMapa
           end
           object chtLancesMuestrasEcologicasSerie: TLineSeries
@@ -554,6 +551,7 @@ inherited fmLances: TfmLances
           object chtLancesEtiquetasUMSerie: TLineSeries
             Legend.Format = 'Nombres U.M.'
             Legend.Visible = False
+            Transparency = 100
             Active = False
             Marks.Shape = clsRoundRect
             Marks.CalloutAngle = 15
@@ -600,6 +598,35 @@ inherited fmLances: TfmLances
           ItemHeight = 0
           TabOrder = 1
         end
+        object Panel1: TPanel[2]
+          Left = 0
+          Height = 42
+          Top = 429
+          Width = 322
+          Anchors = [akLeft, akRight, akBottom]
+          ClientHeight = 42
+          ClientWidth = 322
+          Color = clBtnFace
+          ParentColor = False
+          TabOrder = 2
+          object laInfo1: TLabel
+            Left = 8
+            Height = 15
+            Top = 0
+            Width = 304
+            AutoSize = False
+            ParentColor = False
+          end
+          object Button1: TButton
+            Left = 8
+            Height = 25
+            Top = 11
+            Width = 75
+            Caption = 'Button1'
+            OnClick = Button1Click
+            TabOrder = 0
+          end
+        end
       end
       object Splitter1: TSplitter[2]
         Left = 558
@@ -629,53 +656,7 @@ inherited fmLances: TfmLances
     AfterOpen = zqLancesAfterOpen
     OnCalcFields = zqLancesCalcFields
     SQL.Strings = (
-      'SELECT idlance,'
-      '    idmarea,'
-      '    nro_lance,'
-      '    fecha,'
-      '    hora,'
-      '    grados_latitud_ini,'
-      '    minutos_latitud_ini,'
-      '    cuadrante_latitud_ini,'
-      '    grados_longitud_ini,'
-      '    minutos_longitud_ini,'
-      '    cuadrante_longitud_ini,'
-      '    grados_latitud_fin,'
-      '    minutos_latitud_fin,'
-      '    cuadrante_latitud_fin,'
-      '    grados_longitud_fin,'
-      '    minutos_longitud_fin,'
-      '    cuadrante_longitud_fin,'
-      '    latitud_ini,'
-      '    longitud_ini,'
-      '    latitud_fin,'
-      '    longitud_fin,'
-      '    latitud_ini_fmt,'
-      '    longitud_ini_fmt,'
-      '    latitud_fin_fmt,'
-      '    longitud_fin_fmt,'
-      '    rumbo,'
-      '    profundidad,'
-      '    cable_estribor,'
-      '    cable_babor,'
-      '    minutos_arrastre,'
-      '    captura_estribor,'
-      '    captura_babor,'
-      '    velocidad,'
-      '    rinde_total_E,'
-      '    rinde_total_B,'
-      '    rinde_comercial_E,'
-      '    rinde_comercial_B,'
-      '    comentarios,'
-      '    temperatura_superficie,'
-      '    temperatura_aire,'
-      '    temperatura_fondo,'
-      '    cod_estado_mar,'
-      '    nudos_viento,'
-      '    direccion_viento,'
-      '    largo_relinga_inferior,'
-      '    mallero_copo_mm,'
-      '    tipo_malla'
+      'SELECT *'
       'FROM v_lances_simple'
       'WHERE idmarea=:idmarea'
       'AND (:fecha IS NULL'
@@ -1348,6 +1329,80 @@ inherited fmLances: TfmLances
       MaxValue = 0
       MinValue = 0
     end
+    object zqLanceslong_ini_gis: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'long_ini_gis'
+      Index = 54
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 20
+    end
+    object zqLanceslat_ini_gis: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lat_ini_gis'
+      Index = 55
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 20
+    end
+    object zqLanceslong_fin_gis: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'long_fin_gis'
+      Index = 56
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 20
+    end
+    object zqLanceslat_fin_gis: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lat_fin_gis'
+      Index = 57
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 20
+    end
+    object zqLancesetiqueta_inicio: TStringField
+      DisplayWidth = 76
+      FieldKind = fkData
+      FieldName = 'etiqueta_inicio'
+      Index = 58
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 76
+    end
+    object zqLancesetiqueta_fin: TStringField
+      DisplayWidth = 116
+      FieldKind = fkData
+      FieldName = 'etiqueta_fin'
+      Index = 59
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 116
+    end
   end
   object dsLances: TDataSource[5]
     DataSet = zqLances
@@ -1418,7 +1473,7 @@ inherited fmLances: TfmLances
     top = 1
     object ChartToolset1ZoomMouseWheelTool1: TZoomMouseWheelTool
       AnimationSteps = 10
-      ZoomFactor = 1.5
+      ZoomFactor = 0.75
     end
     object ChartToolset1ZoomDragTool1: TZoomDragTool
       Shift = [ssLeft]
@@ -1452,15 +1507,18 @@ inherited fmLances: TfmLances
       PointerStart.Style = psLeftTriangle
       PointerStart.VertSize = 5
       OnGetDistanceText = ChartToolset1DataPointDistanceTool1GetDistanceText
-      OnMeasure = ChartToolset1DataPointDistanceTool1Measure
     end
     object ChartToolset1DataPointHintTool1: TDataPointHintTool
       UseApplicationHint = True
     end
     object ChartToolset1DataPointCrosshairTool1: TDataPointCrosshairTool
       Shift = [ssShift, ssRight]
+      OnAfterMouseUp = ChartToolset1DataPointCrosshairTool1AfterMouseUp
       DrawingMode = tdmNormal
+      OnDraw = ChartToolset1DataPointCrosshairTool1Draw
       Size = 16
+    end
+    object ChartToolset1UserDefinedTool1: TUserDefinedTool
     end
   end
   object zqOtrosMapas: TZQuery[9]
@@ -2200,5 +2258,9 @@ inherited fmLances: TfmLances
         Name = 'idmarea'
         ParamType = ptUnknown
       end>
+  end
+  object SaveDialog1: TSaveDialog[18]
+    left = 656
+    top = 456
   end
 end

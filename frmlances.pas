@@ -10,47 +10,72 @@ uses
   ExtCtrls, Buttons, ActnList, StdCtrls, ComCtrls, frmlistabase, db, ZDataset,
   zcontroladorgrilla, datGeneral, frmeditarlances, dateutils, funciones, math,
   TAChartAxisUtils, TAFuncSeries, TADataTools, TAChartListbox, TANavigation,
-  ovctcbox, types, LSConfig, TACustomSeries;
+  ovctcbox, types, LSConfig, TACustomSeries, LCLIntf;
 
 type
 
   { TfmLances }
 
   TfmLances = class(TfmListaBase)
-    acIdentLances: TAction;
-    acMostrarMuestrasEcologicas: TAction;
+    acMover: TAction;
+    acMedir: TAction;
+    acInfo: TAction;
+    acGuardarImagen: TAction;
+    acZoomLances: TAction;
+    acZoomRect: TAction;
+    acZoomOut: TAction;
+    acZoomIn: TAction;
     alMapa: TActionList;
-    Button1: TButton;
     ChartListbox1: TChartListbox;
     ChartToolset1: TChartToolset;
     ChartToolset1DataPointCrosshairTool1: TDataPointCrosshairTool;
-    ChartToolset1DataPointDistanceTool1: TDataPointDistanceTool;
-    ChartToolset1DataPointHintTool1: TDataPointHintTool;
-    ChartToolset1PanDragTool1: TPanDragTool;
-    ChartToolset1UserDefinedTool1: TUserDefinedTool;
-    ChartToolset1ZoomDragTool1: TZoomDragTool;
-    ChartToolset1ZoomMouseWheelTool1: TZoomMouseWheelTool;
+    ctPanDrag: TPanDragTool;
+    ctZoomOut: TZoomClickTool;
+    ctDistancia: TDataPointDistanceTool;
+    ctInformacion: TDataPointHintTool;
+    ctMover: TPanDragTool;
+    ctZoomIn: TZoomClickTool;
+    ctZoomDrag: TZoomDragTool;
+    ctZoomWheel: TZoomMouseWheelTool;
+    chtLances: TChart;
+    chtLancesEtiquetasUMSerie1: TLineSeries;
+    chtLancesMapaBaseSerie1: TBSplineSeries;
+    chtLancesMuestrasEcologicasSerie1: TLineSeries;
+    chtLancesOtrasZonasSerie1: TLineSeries;
+    chtLancesSerieLances1: TLineSeries;
+    chtLancesUMVieiraSerie1: TLineSeries;
     ckMapaLances: TCheckBox;
     chtLancesEtiquetasUMSerie: TLineSeries;
     chtLancesMuestrasEcologicasSerie: TLineSeries;
     chtLancesOtrasZonasSerie: TLineSeries;
     chtLancesUMVieiraSerie: TLineSeries;
     chtLancesMapaBaseSerie: TBSplineSeries;
-    chtLances: TChart;
     chtLancesSerieLances: TLineSeries;
     dsLances: TDataSource;
     dtFecha: TDateTimePicker;
     ilToolbar: TImageList;
     laInfo1: TLabel;
-    lcsDatosMapa: TListChartSource;
+    lcsLances: TListChartSource;
     lcsMapaBase: TListChartSource;
     lcsUMVieira: TListChartSource;
     lcsOtrasZonas: TListChartSource;
     lcsEtiquetasUM: TListChartSource;
     lcsMuestrasEcologicas: TListChartSource;
     Panel1: TPanel;
-    SaveDialog1: TSaveDialog;
+    Panel2: TPanel;
+    sdGuardarImagen: TSaveDialog;
     Splitter1: TSplitter;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton10: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
     zqLances: TZQuery;
     zqLancesetiqueta_fin: TStringField;
     zqLancesetiqueta_inicio: TStringField;
@@ -115,16 +140,16 @@ type
     zqLancesVelocidadNecesaria: TFloatField;
     zqOtrosMapas: TZQuery;
     zqMuestrasEcologicas: TZQuery;
-    procedure acIdentLancesExecute(Sender: TObject);
-    procedure acMostrarMuestrasEcologicasExecute(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure acGuardarImagenExecute(Sender: TObject);
+    procedure acHabilitarHerramienta(Sender: TObject);
+    procedure acZoomLancesExecute(Sender: TObject);
     procedure ChartToolset1DataPointClickTool1PointClick(ATool: TChartTool;
       APoint: TPoint);
     procedure ChartToolset1DataPointCrosshairTool1AfterMouseUp(
       ATool: TChartTool; APoint: TPoint);
     procedure ChartToolset1DataPointCrosshairTool1Draw(
       ASender: TDataPointDrawTool);
-    procedure ChartToolset1DataPointDistanceTool1GetDistanceText(
+    procedure ctDistanciaGetDistanceText(
       ASender: TDataPointDistanceTool; var AText: String);
     procedure chtLancesAxisList0MarkToText(var AText: String; AMark: Double);
     procedure chtLancesAxisList1MarkToText(var AText: String; AMark: Double);
@@ -133,6 +158,7 @@ type
       AFont: TFont; var Background: TColor);
     procedure dtFechaChange(Sender: TObject);
     procedure dtFechaCheckBoxChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure zqLancesAfterOpen(DataSet: TDataSet);
     procedure zqLancesBeforeOpen(DataSet: TDataSet);
@@ -157,6 +183,7 @@ var
 implementation
 
 {$R *.lfm}
+{$R cursores.res}
 
 { TfmLances }
 
@@ -196,14 +223,14 @@ end;
 
 procedure TfmLances.zqMapaLancesAfterOpen(DataSet: TDataSet);
 begin
-  lcsDatosMapa.Clear;
+  lcsLances.Clear;
   with zqMapaLances do
   begin
     while not EOF do
     begin
-      lcsDatosMapa.Add(FieldByName('long_ini').AsFloat,FieldByName('lat_ini').AsFloat,FieldByName('fecha_hora_inicio').AsString, clGreen);
-      lcsDatosMapa.Add(FieldByName('long_fin').AsFloat,FieldByName('lat_fin').AsFloat,FieldByName('fecha_hora_fin').AsString, clRed);
-      lcsDatosMapa.Add(NaN,NaN);
+      lcsLances.Add(FieldByName('long_ini').AsFloat,FieldByName('lat_ini').AsFloat,FieldByName('fecha_hora_inicio').AsString, clGreen);
+      lcsLances.Add(FieldByName('long_fin').AsFloat,FieldByName('lat_fin').AsFloat,FieldByName('fecha_hora_fin').AsString, clRed);
+      lcsLances.Add(NaN,NaN);
       Next;
     end;
   end;
@@ -291,7 +318,7 @@ var
   bm: TBookMark;
 begin
 //  zqMapaLances.Close;
-  lcsDatosMapa.Clear;
+  lcsLances.Clear;
   chtLances.Refresh;
   if (zqLances.RecordCount > 0) and (ckMapaLances.Checked) then
   begin
@@ -308,9 +335,9 @@ begin
            and (not FieldByName('long_fin_gis').IsNull)
            and (not FieldByName('lat_fin_gis').IsNull) then
         begin
-          lcsDatosMapa.Add(FieldByName('long_ini_gis').AsFloat,FieldByName('lat_ini_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_inicio').AsString, clGreen);
-          lcsDatosMapa.Add(FieldByName('long_fin_gis').AsFloat,FieldByName('lat_fin_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_fin').AsString, clRed);
-          lcsDatosMapa.Add(NaN,NaN);
+          lcsLances.Add(FieldByName('long_ini_gis').AsFloat,FieldByName('lat_ini_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_inicio').AsString, clGreen);
+          lcsLances.Add(FieldByName('long_fin_gis').AsFloat,FieldByName('lat_fin_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_fin').AsString, clRed);
+          lcsLances.Add(NaN,NaN);
         end;
         Next;
       end;
@@ -341,22 +368,45 @@ begin
   Atext:=FormatFloat('#°00.00´', GradoDecimalAGradoMinuto(AMark));
 end;
 
-procedure TfmLances.acIdentLancesExecute(Sender: TObject);
+procedure TfmLances.acHabilitarHerramienta(Sender: TObject);
 begin
-  acIdentLances.Checked:=not acIdentLances.Checked;
-  chtLancesSerieLances.Marks.Visible:=acIdentLances.Checked;
+  if (Sender is TAction) then
+  begin
+    ctInformacion.Enabled:= ((Sender as TAction).Tag=1);
+    ctMover.Enabled:= ((Sender as TAction).Tag=2);
+    ctZoomIn.Enabled:= ((Sender as TAction).Tag=3);
+    ctZoomOut.Enabled:= ((Sender as TAction).Tag=4);
+    ctZoomDrag.Enabled:= ((Sender as TAction).Tag=5);
+    ctDistancia.Enabled:= ((Sender as TAction).Tag=6);
+  end;
+  //Pongo el cursor correspondiente
+  case (Sender as TAction).Tag of
+  2: chtLances.Cursor:=1;
+  3: chtLances.Cursor:=2;
+  4: chtLances.Cursor:=3;
+  5: chtLances.Cursor:=4;
+  6: chtLances.Cursor:=5;
+  else
+    chtLances.Cursor:=crDefault;
+  end;
 end;
 
-procedure TfmLances.acMostrarMuestrasEcologicasExecute(Sender: TObject);
+procedure TfmLances.acGuardarImagenExecute(Sender: TObject);
 begin
-  acMostrarMuestrasEcologicas.Checked:=not acMostrarMuestrasEcologicas.Checked;
-  chtLancesMuestrasEcologicasSerie.Active:=acMostrarMuestrasEcologicas.Checked;
+  if sdGuardarImagen.Execute then
+  begin
+    if (not FileExistsUTF8(sdGuardarImagen.FileName)) or (MessageDlg('El archivo '+sdGuardarImagen.FileName+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+    begin
+      chtLances.SaveToFile(TJPEGImage, sdGuardarImagen.FileName);
+      OpenDocument(sdGuardarImagen.FileName);
+    end;
+  end;
 end;
 
-procedure TfmLances.Button1Click(Sender: TObject);
+procedure TfmLances.acZoomLancesExecute(Sender: TObject);
 begin
-  if SaveDialog1.Execute then
-  chtLances.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
+  if lcsLances.Count>0 then
+     chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
 end;
 
 procedure TfmLances.ChartToolset1DataPointClickTool1PointClick(
@@ -385,12 +435,14 @@ begin
     laInfo1.Caption := '';
 end;
 
-procedure TfmLances.ChartToolset1DataPointDistanceTool1GetDistanceText(
+procedure TfmLances.ctDistanciaGetDistanceText(
   ASender: TDataPointDistanceTool; var AText: String);
 begin
   with ASender do
   begin
-       Atext:=Format('Dist: %f mn', [DistanciaEnMillas(GradoDecimalAGradoMinuto(PointStart.GraphPos.Y), GradoDecimalAGradoMinuto(PointStart.GraphPos.X), GradoDecimalAGradoMinuto(PointEnd.GraphPos.Y), GradoDecimalAGradoMinuto(PointEnd.GraphPos.X))]);
+    //Atext:=Format('Distancia: %f mn', [DistanciaEnMillas(GradoDecimalAGradoMinuto(PointStart.GraphPos.Y), GradoDecimalAGradoMinuto(PointStart.GraphPos.X), GradoDecimalAGradoMinuto(PointEnd.GraphPos.Y), GradoDecimalAGradoMinuto(PointEnd.GraphPos.X))])
+    //                          +LineEnding+'Rumbo: '+FormatFloat('000°', Rumbo(GradoDecimalAGradoMinuto(Abs(PointStart.GraphPos.Y)), GradoDecimalAGradoMinuto(Abs(PointStart.GraphPos.X)), GradoDecimalAGradoMinuto(Abs(PointEnd.GraphPos.Y)), GradoDecimalAGradoMinuto(Abs(PointEnd.GraphPos.X))));
+    Atext:=Format('Distancia: %f mn', [DistanciaEnMillas(GradoDecimalAGradoMinuto(PointStart.GraphPos.Y), GradoDecimalAGradoMinuto(PointStart.GraphPos.X), GradoDecimalAGradoMinuto(PointEnd.GraphPos.Y), GradoDecimalAGradoMinuto(PointEnd.GraphPos.X))]);
   end;
 end;
 
@@ -419,12 +471,35 @@ begin
   zcgLista.Buscar;
 end;
 
+procedure TfmLances.FormCreate(Sender: TObject);
+var
+  Cur: TCursorImage;
+begin
+  Cur := TCursorImage.Create;
+  Cur.LoadFromResourceName(HInstance, 'VPRHANDOPEN');
+  Screen.Cursors[1] := Cur.ReleaseHandle;
+  Cur.LoadFromResourceName(HInstance, 'ZOOM_IN');
+  Screen.Cursors[2] := Cur.ReleaseHandle;
+  Cur.LoadFromResourceName(HInstance, 'ZOOM_OUT');
+  Screen.Cursors[3] := Cur.ReleaseHandle;
+  Cur.LoadFromResourceName(HInstance, 'MAGNIFY_REGION');
+  Screen.Cursors[4] := Cur.ReleaseHandle;
+  Cur.LoadFromResourceName(HInstance, 'CR_CROSS');
+  Screen.Cursors[5] := Cur.ReleaseHandle;
+  Cur.LoadFromResourceName(HInstance, 'VPRHANDCLOSED');
+  Screen.Cursors[6] := Cur.ReleaseHandle;
+  Cur.Free;
+
+  chtLances.Cursor:=1;
+  ctMover.ActiveCursor:=6;
+end;
+
 procedure TfmLances.FormShow(Sender: TObject);
 var
   str_conf: string;
 begin
   dtFecha.Date:=IncDay(Date,-1);
-
+  chtLances.Title.Text.Text:=PChar('Marea: '+dmGeneral.DscMareaActiva);
   FMapasCargados:=False;
   LSLoadConfig(['ver_mapa_lances'], [str_conf], [@str_conf]);
   ckMapaLances.Checked:=(str_conf='True');

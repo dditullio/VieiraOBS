@@ -82,7 +82,16 @@ function Rumbo(lat1, lon1, lat2, lon2: double): double;
 var
   latInicio, longInicio, latFin, longFin, x, dist, angulo: double;
 begin
-  //Asumimos que es el cuadrante SO, por lo tanto las posiciones de convierten a negarivo
+  lat1 := lat1 / 100; //se transforma GGMM,MM en GG,MMMM
+  lat1 := int(lat1) + ((lat1 - int(lat1)) * 100 / 60);
+  lon1 := lon1 / 100;
+  lon1 := int(lon1) + ((lon1 - int(lon1)) * 100 / 60);
+  lat2 := lat2 / 100;
+  lat2 := int(lat2) + ((lat2 - int(lat2)) * 100 / 60);
+  lon2 := lon2 / 100;
+  lon2 := int(lon2) + ((lon2 - int(lon2)) * 100 / 60);
+
+  //Asumimos que es el cuadrante SO, por lo tanto las posiciones se convierten a negarivo
   //Para la distancia no importa, pero el rumbo daría al revés
   latInicio:=degtorad(-1*lat1);
   longInicio:=degtorad(-1*lon1);

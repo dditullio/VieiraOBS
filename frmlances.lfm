@@ -486,40 +486,20 @@ inherited fmLances: TfmLances
           ItemHeight = 0
           TabOrder = 0
         end
-        object Panel1: TPanel[1]
+        object Panel2: TPanel[1]
           Left = 0
-          Height = 42
-          Top = 424
-          Width = 330
-          Align = alBottom
-          ClientHeight = 42
-          ClientWidth = 330
-          Color = clBtnFace
-          ParentColor = False
-          TabOrder = 2
-          object laInfo1: TLabel
-            Left = 8
-            Height = 15
-            Top = 0
-            Width = 304
-            AutoSize = False
-            ParentColor = False
-          end
-        end
-        object Panel2: TPanel[2]
-          Left = 0
-          Height = 322
+          Height = 364
           Top = 102
           Width = 330
           Align = alClient
           BevelInner = bvLowered
           Caption = 'Panel2'
-          ClientHeight = 322
+          ClientHeight = 364
           ClientWidth = 330
           TabOrder = 1
           object chtLances: TChart
             Left = 2
-            Height = 318
+            Height = 360
             Top = 2
             Width = 326
             AxisList = <            
@@ -636,7 +616,7 @@ inherited fmLances: TfmLances
             end
           end
         end
-        object ToolBar1: TToolBar[3]
+        object ToolBar1: TToolBar[2]
           Left = 0
           Height = 30
           Top = 72
@@ -649,7 +629,7 @@ inherited fmLances: TfmLances
           ParentColor = False
           ParentShowHint = False
           ShowHint = True
-          TabOrder = 3
+          TabOrder = 2
           object ToolButton1: TToolButton
             Left = 29
             Top = 2
@@ -720,7 +700,7 @@ inherited fmLances: TfmLances
           end
         end
       end
-      object Splitter1: TSplitter[2]
+      object splDealles: TSplitter[2]
         Left = 551
         Height = 476
         Top = 0
@@ -1501,75 +1481,20 @@ inherited fmLances: TfmLances
     left = 212
     top = 240
   end
-  object zqMapaLances: TZQuery[6]
-    Connection = dmGeneral.zcDB
-    BeforeOpen = zqMapaLancesBeforeOpen
-    AfterOpen = zqMapaLancesAfterOpen
-    SQL.Strings = (
-      'SELECT * from v_datos_mapa_lances'
-      'WHERE idlance in '
-      '(SELECT idlance'
-      'FROM v_lances_simple'
-      'WHERE idmarea=:idmarea'
-      'AND (:fecha IS NULL'
-      'OR :fecha = '''''
-      'OR fecha=:fecha)'
-      ' AND ('
-      ':__FILTRO__ IS NULL OR'
-      ':__FILTRO__ = '''''
-      'OR date_format(fecha,''%d/%m/%Y'') LIKE CONCAT(''%'',:__FILTRO__,''%'')'
-      'OR hora LIKE CONCAT(''%'',:__FILTRO__,''%'')'
-      'OR comentarios LIKE CONCAT(''%'',:__FILTRO__,''%'')'
-      'OR nro_lance LIKE CONCAT(''%'',:__FILTRO__,''%'')))'
-    )
-    Params = <    
-      item
-        DataType = ftUnknown
-        Name = 'idmarea'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = 'fecha'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = '__FILTRO__'
-        ParamType = ptUnknown
-      end>
-    left = 148
-    top = 288
-    ParamData = <    
-      item
-        DataType = ftUnknown
-        Name = 'idmarea'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = 'fecha'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = '__FILTRO__'
-        ParamType = ptUnknown
-      end>
-  end
-  object lcsLances: TListChartSource[7]
+  object lcsLances: TListChartSource[6]
     left = 328
   end
-  object ChartToolset1: TChartToolset[8]
+  object ChartToolset1: TChartToolset[7]
     left = 360
     top = 1
     object ctZoomWheel: TZoomMouseWheelTool
-      AnimationSteps = 10
       ZoomFactor = 0.75
     end
     object ctZoomDrag: TZoomDragTool
       Enabled = False
       Shift = [ssLeft]
+      AnimationInterval = 25
+      AnimationSteps = 3
       DrawingMode = tdmNormal
     end
     object ctMover: TPanDragTool
@@ -1590,7 +1515,7 @@ inherited fmLances: TfmLances
       Marks.Margins.Bottom = 4
       Marks.Distance = 30
       Marks.Format = '%0:.9g'
-      Options = [dpdoPermanent, dpdoFlipLabel]
+      Options = [dpdoFlipLabel]
       PointerEnd.Brush.Style = bsClear
       PointerEnd.Pen.Color = clBlue
       PointerEnd.Pen.Width = 2
@@ -1611,26 +1536,28 @@ inherited fmLances: TfmLances
     object ChartToolset1DataPointCrosshairTool1: TDataPointCrosshairTool
       Enabled = False
       Shift = [ssShift, ssRight]
-      OnAfterMouseUp = ChartToolset1DataPointCrosshairTool1AfterMouseUp
       DrawingMode = tdmNormal
-      OnDraw = ChartToolset1DataPointCrosshairTool1Draw
       Size = 16
     end
     object ctZoomIn: TZoomClickTool
       Enabled = False
       Shift = [ssLeft]
-      ZoomFactor = 1.25
+      AnimationInterval = 25
+      AnimationSteps = 3
+      ZoomFactor = 1.5
     end
     object ctZoomOut: TZoomClickTool
       Enabled = False
       Shift = [ssLeft]
-      ZoomFactor = 0.75
+      AnimationInterval = 25
+      AnimationSteps = 3
+      ZoomFactor = 0.5
     end
     object ctPanDrag: TPanDragTool
       Shift = [ssRight]
     end
   end
-  object zqOtrosMapas: TZQuery[9]
+  object zqOtrosMapas: TZQuery[8]
     Connection = dmGeneral.zcDB
     SQL.Strings = (
       'SELECT * FROM mapas'
@@ -1652,21 +1579,21 @@ inherited fmLances: TfmLances
         ParamType = ptUnknown
       end>
   end
-  object lcsMapaBase: TListChartSource[10]
+  object lcsMapaBase: TListChartSource[9]
     left = 392
   end
-  object lcsUMVieira: TListChartSource[11]
+  object lcsUMVieira: TListChartSource[10]
     left = 424
   end
-  object lcsOtrasZonas: TListChartSource[12]
+  object lcsOtrasZonas: TListChartSource[11]
     left = 488
     top = 1
   end
-  object lcsEtiquetasUM: TListChartSource[13]
+  object lcsEtiquetasUM: TListChartSource[12]
     left = 456
     top = 1
   end
-  object ilToolbar: TImageList[14]
+  object ilToolbar: TImageList[13]
     Height = 24
     Width = 24
     left = 224
@@ -2898,7 +2825,7 @@ inherited fmLances: TfmLances
       0000000000000000000000000000
     }
   end
-  object alMapa: TActionList[15]
+  object alMapa: TActionList[14]
     Images = ilToolbar
     left = 264
     top = 3
@@ -2956,10 +2883,10 @@ inherited fmLances: TfmLances
       OnExecute = acGuardarImagenExecute
     end
   end
-  object lcsMuestrasEcologicas: TListChartSource[16]
+  object lcsMuestrasEcologicas: TListChartSource[15]
     left = 520
   end
-  object zqMuestrasEcologicas: TZQuery[17]
+  object zqMuestrasEcologicas: TZQuery[16]
     Connection = dmGeneral.zcDB
     BeforeOpen = zqMuestrasEcologicasBeforeOpen
     AfterOpen = zqMuestrasEcologicasAfterOpen
@@ -2985,7 +2912,7 @@ inherited fmLances: TfmLances
         ParamType = ptUnknown
       end>
   end
-  object sdGuardarImagen: TSaveDialog[18]
+  object sdGuardarImagen: TSaveDialog[17]
     Title = 'Guardar mapa como imagen'
     DefaultExt = '.jpg'
     FileName = 'mapa.jpg'

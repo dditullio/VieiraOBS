@@ -54,17 +54,15 @@ type
     dsLances: TDataSource;
     dtFecha: TDateTimePicker;
     ilToolbar: TImageList;
-    laInfo1: TLabel;
     lcsLances: TListChartSource;
     lcsMapaBase: TListChartSource;
     lcsUMVieira: TListChartSource;
     lcsOtrasZonas: TListChartSource;
     lcsEtiquetasUM: TListChartSource;
     lcsMuestrasEcologicas: TListChartSource;
-    Panel1: TPanel;
     Panel2: TPanel;
     sdGuardarImagen: TSaveDialog;
-    Splitter1: TSplitter;
+    splDealles: TSplitter;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton10: TToolButton;
@@ -83,7 +81,6 @@ type
     zqLanceslat_ini_gis: TFloatField;
     zqLanceslong_fin_gis: TFloatField;
     zqLanceslong_ini_gis: TFloatField;
-    zqMapaLances: TZQuery;
     zqLancescable_babor: TLongintField;
     zqLancescable_estribor: TLongintField;
     zqLancescaptura_babor: TFloatField;
@@ -145,10 +142,6 @@ type
     procedure acZoomLancesExecute(Sender: TObject);
     procedure ChartToolset1DataPointClickTool1PointClick(ATool: TChartTool;
       APoint: TPoint);
-    procedure ChartToolset1DataPointCrosshairTool1AfterMouseUp(
-      ATool: TChartTool; APoint: TPoint);
-    procedure ChartToolset1DataPointCrosshairTool1Draw(
-      ASender: TDataPointDrawTool);
     procedure ctDistanciaGetDistanceText(
       ASender: TDataPointDistanceTool; var AText: String);
     procedure chtLancesAxisList0MarkToText(var AText: String; AMark: Double);
@@ -163,8 +156,6 @@ type
     procedure zqLancesAfterOpen(DataSet: TDataSet);
     procedure zqLancesBeforeOpen(DataSet: TDataSet);
     procedure zqLancesCalcFields(DataSet: TDataSet);
-    procedure zqMapaLancesAfterOpen(DataSet: TDataSet);
-    procedure zqMapaLancesBeforeOpen(DataSet: TDataSet);
     procedure zqMuestrasEcologicasAfterOpen(DataSet: TDataSet);
     procedure zqMuestrasEcologicasBeforeOpen(DataSet: TDataSet);
   private
@@ -219,32 +210,6 @@ begin
   begin
     zqLancesHorasPesca.Value:=zqLancesminutos_arrastre.Value/60;
   end;
-end;
-
-procedure TfmLances.zqMapaLancesAfterOpen(DataSet: TDataSet);
-begin
-  lcsLances.Clear;
-  with zqMapaLances do
-  begin
-    while not EOF do
-    begin
-      lcsLances.Add(FieldByName('long_ini').AsFloat,FieldByName('lat_ini').AsFloat,FieldByName('fecha_hora_inicio').AsString, clGreen);
-      lcsLances.Add(FieldByName('long_fin').AsFloat,FieldByName('lat_fin').AsFloat,FieldByName('fecha_hora_fin').AsString, clRed);
-      lcsLances.Add(NaN,NaN);
-      Next;
-    end;
-  end;
-  chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
-end;
-
-procedure TfmLances.zqMapaLancesBeforeOpen(DataSet: TDataSet);
-begin
-  zqMapaLances.ParamByName('__FILTRO__').Value:=edBuscar.Text;
-  zqMapaLances.ParamByName('idmarea').Value:=dmGeneral.IdMareaActiva;
-  if dtFecha.Checked then
-     zqMapaLances.ParamByName('fecha').AsDateTime:=dtFecha.Date
-  else
-    zqMapaLances.ParamByName('fecha').AsString:='';
 end;
 
 procedure TfmLances.zqMuestrasEcologicasAfterOpen(DataSet: TDataSet);
@@ -317,12 +282,10 @@ procedure TfmLances.CargarMapaLances;
 var
   bm: TBookMark;
 begin
-//  zqMapaLances.Close;
   lcsLances.Clear;
   chtLances.Refresh;
   if (zqLances.RecordCount > 0) and (ckMapaLances.Checked) then
   begin
-//    zqMapaLances.Open;
     with zqLances do
     begin
       DisableControls;
@@ -345,7 +308,8 @@ begin
          GotoBookmark(bm);
       EnableControls;
     end;
-    chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
+    if lcsLances.Count>0 then
+       chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
   end;
 end;
 
@@ -415,34 +379,16 @@ begin
   ShowMessage('Clic');
 end;
 
-procedure TfmLances.ChartToolset1DataPointCrosshairTool1AfterMouseUp(
-  ATool: TChartTool; APoint: TPoint);
-begin
-  laInfo1.Caption := '';
-end;
-
-procedure TfmLances.ChartToolset1DataPointCrosshairTool1Draw(
-  ASender: TDataPointDrawTool);
-var
-  ser: TChartSeries;
-begin
-  ser := TChartSeries(ASender.Series);
-  if ser <> nil then begin
-    with ser.Source.Item[ASender.PointIndex]^ do
-      laInfo1.Caption := 'Lat: '+FormatFloat('00º 00.00´', Abs(GradoDecimalAGradoMinuto(Y)))+ ' S  -  '+
-                         'Long: '+FormatFloat('00º 00.00´', Abs(GradoDecimalAGradoMinuto(X)))+ ' O'
-  end else
-    laInfo1.Caption := '';
-end;
-
 procedure TfmLances.ctDistanciaGetDistanceText(
   ASender: TDataPointDistanceTool; var AText: String);
 begin
   with ASender do
   begin
-    //Atext:=Format('Distancia: %f mn', [DistanciaEnMillas(GradoDecimalAGradoMinuto(PointStart.GraphPos.Y), GradoDecimalAGradoMinuto(PointStart.GraphPos.X), GradoDecimalAGradoMinuto(PointEnd.GraphPos.Y), GradoDecimalAGradoMinuto(PointEnd.GraphPos.X))])
-    //                          +LineEnding+'Rumbo: '+FormatFloat('000°', Rumbo(GradoDecimalAGradoMinuto(Abs(PointStart.GraphPos.Y)), GradoDecimalAGradoMinuto(Abs(PointStart.GraphPos.X)), GradoDecimalAGradoMinuto(Abs(PointEnd.GraphPos.Y)), GradoDecimalAGradoMinuto(Abs(PointEnd.GraphPos.X))));
-    Atext:=Format('Distancia: %f mn', [DistanciaEnMillas(GradoDecimalAGradoMinuto(PointStart.GraphPos.Y), GradoDecimalAGradoMinuto(PointStart.GraphPos.X), GradoDecimalAGradoMinuto(PointEnd.GraphPos.Y), GradoDecimalAGradoMinuto(PointEnd.GraphPos.X))]);
+    Atext:=Format('Distancia: %f mn', [DistanciaEnMillas(GradoDecimalAGradoMinuto(PointStart.GraphPos.Y), GradoDecimalAGradoMinuto(PointStart.GraphPos.X), GradoDecimalAGradoMinuto(PointEnd.GraphPos.Y), GradoDecimalAGradoMinuto(PointEnd.GraphPos.X))])
+                              +LineEnding+'Rumbo: '+FormatFloat('000°', Rumbo(Abs(GradoDecimalAGradoMinuto(PointStart.GraphPos.Y)),
+                                                                        Abs(GradoDecimalAGradoMinuto(PointStart.GraphPos.X)),
+                                                                        Abs(GradoDecimalAGradoMinuto(PointEnd.GraphPos.Y)),
+                                                                        Abs(GradoDecimalAGradoMinuto(PointEnd.GraphPos.X))));
   end;
 end;
 
@@ -454,7 +400,16 @@ end;
 
 procedure TfmLances.ckMapaLancesChange(Sender: TObject);
 begin
-  paDetalles.Visible:=ckMapaLances.Checked;
+  if ckMapaLances.Checked then
+  begin
+    paDetalles.Visible:=True;
+    splDealles.Visible:=True;
+  end else
+  begin
+    splDealles.Visible:=False;
+    paDetalles.Visible:=False;
+  end;
+  ckMapaLances.Checked;
   LSSaveConfig(['ver_mapa_lances'], [ckMapaLances.Checked]);
   if ckMapaLances.Checked then
   begin

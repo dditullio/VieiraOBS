@@ -477,10 +477,10 @@ inherited fmLances: TfmLances
         object ChartListbox1: TChartListbox[0]
           Left = 0
           Height = 72
-          Top = 0
+          Top = 394
           Width = 330
           Chart = chtLances
-          Align = alTop
+          Align = alBottom
           Columns = 2
           Constraints.MinWidth = 294
           ItemHeight = 0
@@ -489,7 +489,7 @@ inherited fmLances: TfmLances
         object Panel2: TPanel[1]
           Left = 0
           Height = 364
-          Top = 102
+          Top = 30
           Width = 330
           Align = alClient
           BevelInner = bvLowered
@@ -607,6 +607,11 @@ inherited fmLances: TfmLances
               LinePen.Color = clOlive
               Source = lcsOtrasZonas
             end
+            object chtLancesZEP_ZEESeries: TLineSeries
+              Legend.Format = 'ZEP y ZEE'
+              LinePen.Color = clRed
+              Source = lcsZonasEconomicas
+            end
             object chtLancesMapaBaseSerie: TBSplineSeries
               Legend.Format = 'Mapa base'
               Source = lcsMapaBase
@@ -619,7 +624,7 @@ inherited fmLances: TfmLances
         object ToolBar1: TToolBar[2]
           Left = 0
           Height = 30
-          Top = 72
+          Top = 0
           Width = 330
           ButtonHeight = 26
           ButtonWidth = 26
@@ -700,7 +705,7 @@ inherited fmLances: TfmLances
           end
         end
       end
-      object splDealles: TSplitter[2]
+      object splDetalles: TSplitter[2]
         Left = 551
         Height = 476
         Top = 0
@@ -2919,5 +2924,9 @@ inherited fmLances: TfmLances
     Filter = 'Imagen|*.jpg'
     left = 656
     top = 456
+  end
+  object lcsZonasEconomicas: TListChartSource[18]
+    left = 552
+    top = 1
   end
 end

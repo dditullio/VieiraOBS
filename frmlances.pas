@@ -10,7 +10,7 @@ uses
   ExtCtrls, Buttons, ActnList, StdCtrls, ComCtrls, frmlistabase, db, ZDataset,
   zcontroladorgrilla, datGeneral, frmeditarlances, dateutils, funciones, math,
   TAChartAxisUtils, TAFuncSeries, TADataTools, TAChartListbox, TANavigation,
-  ovctcbox, types, LSConfig, TACustomSeries, LCLIntf;
+  types, LSConfig, TACustomSeries, LCLIntf;
 
 type
 
@@ -29,6 +29,7 @@ type
     ChartListbox1: TChartListbox;
     ChartToolset1: TChartToolset;
     ChartToolset1DataPointCrosshairTool1: TDataPointCrosshairTool;
+    chtLancesZEP_ZEESeries: TLineSeries;
     ctPanDrag: TPanDragTool;
     ctZoomOut: TZoomClickTool;
     ctDistancia: TDataPointDistanceTool;
@@ -56,13 +57,14 @@ type
     ilToolbar: TImageList;
     lcsLances: TListChartSource;
     lcsMapaBase: TListChartSource;
+    lcsZonasEconomicas: TListChartSource;
     lcsUMVieira: TListChartSource;
     lcsOtrasZonas: TListChartSource;
     lcsEtiquetasUM: TListChartSource;
     lcsMuestrasEcologicas: TListChartSource;
     Panel2: TPanel;
     sdGuardarImagen: TSaveDialog;
-    splDealles: TSplitter;
+    splDetalles: TSplitter;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton10: TToolButton;
@@ -268,6 +270,8 @@ begin
     CargarMapa('URUGUAY', lcsMapaBase, False);
     CargarMapa('U.M. VIEIRA', lcsUMVieira);
     CargarMapa('ETIQUETAS U.M. VIEIRA', lcsEtiquetasUM, True, 'Etiqueta');
+    CargarMapa('LIMITE PROVINCIAL', lcsZonasEconomicas);
+    CargarMapa('ZONA ECONOMICA EXCLUSIVA', lcsZonasEconomicas, False);
     CargarMapa('VEDA MERLUZA', lcsOtrasZonas);
     CargarMapa('VEDA MERLUZA NEGRA', lcsOtrasZonas, False);
     CargarMapa('ZONA COMUN', lcsOtrasZonas, False);
@@ -376,7 +380,7 @@ end;
 procedure TfmLances.ChartToolset1DataPointClickTool1PointClick(
   ATool: TChartTool; APoint: TPoint);
 begin
-  ShowMessage('Clic');
+  //ShowMessage('Clic');
 end;
 
 procedure TfmLances.ctDistanciaGetDistanceText(
@@ -403,10 +407,10 @@ begin
   if ckMapaLances.Checked then
   begin
     paDetalles.Visible:=True;
-    splDealles.Visible:=True;
+    splDetalles.Visible:=True;
   end else
   begin
-    splDealles.Visible:=False;
+    splDetalles.Visible:=False;
     paDetalles.Visible:=False;
   end;
   ckMapaLances.Checked;

@@ -54,9 +54,9 @@ inherited fmEditarLances: TfmEditarLances
           Height = 314
           Top = 0
           Width = 729
-          ActivePage = tsAlternativo
+          ActivePage = tsPredeterminado
           Align = alClient
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           OnChange = pcFormatosChange
           OnChanging = pcFormatosChanging
@@ -696,12 +696,47 @@ inherited fmEditarLances: TfmEditarLances
                 DataSource = dsPrincipal
                 ParentColor = False
               end
-              object Label34: TLabel
+              object laTiempo3: TLabel
                 Left = 5
                 Height = 15
                 Top = 90
                 Width = 56
-                Caption = ' '
+                Caption = 'Rumbo:'
+                Font.Style = [fsBold]
+                ParentColor = False
+                ParentFont = False
+              end
+              object dbtRumboRegist: TDBText
+                Left = 66
+                Height = 15
+                Hint = 'Rumbo registrado en la planilla de puente'
+                Top = 90
+                Width = 91
+                Alignment = taCenter
+                DataField = 'RumboRegistrado'
+                DataSource = dsPrincipal
+                ParentColor = False
+              end
+              object dbtRumboCalc: TDBText
+                Left = 162
+                Height = 15
+                Hint = 'Rumbo calculado según las posiciones de inicio y fin de lance'
+                Top = 90
+                Width = 82
+                Alignment = taCenter
+                DataField = 'RumboCalculado'
+                DataSource = dsPrincipal
+                ParentColor = False
+              end
+              object dbtRumboDif: TDBText
+                Left = 249
+                Height = 15
+                Hint = 'Porcentaje de diferencia entre rumbo registrado y calculado'
+                Top = 90
+                Width = 74
+                Alignment = taCenter
+                DataField = 'DifRumbo'
+                DataSource = dsPrincipal
                 ParentColor = False
               end
             end
@@ -907,7 +942,7 @@ inherited fmEditarLances: TfmEditarLances
                   Caption = 'Hora'
                   ParentColor = False
                 end
-                object dbdtHora1: TDBEdit
+                object dbdtHora1: TDtDBTimeEdit
                   Left = 90
                   Height = 23
                   Hint = 'Hora de inicio del lance'
@@ -1344,12 +1379,47 @@ inherited fmEditarLances: TfmEditarLances
                 DataSource = dsPrincipal
                 ParentColor = False
               end
-              object Label47: TLabel
+              object laTiempo2: TLabel
                 Left = 1
                 Height = 15
                 Top = 90
                 Width = 56
-                Caption = ' '
+                Caption = 'Rumbo:'
+                Font.Style = [fsBold]
+                ParentColor = False
+                ParentFont = False
+              end
+              object dbtRumboRegist1: TDBText
+                Left = 58
+                Height = 15
+                Hint = 'Rumbo registrado en la planilla de puente'
+                Top = 90
+                Width = 97
+                Alignment = taCenter
+                DataField = 'RumboRegistrado'
+                DataSource = dsPrincipal
+                ParentColor = False
+              end
+              object dbtRumboCalc1: TDBText
+                Left = 156
+                Height = 15
+                Hint = 'Rumbo calculado según las posiciones de inicio y fin de lance'
+                Top = 90
+                Width = 88
+                Alignment = taCenter
+                DataField = 'RumboCalculado'
+                DataSource = dsPrincipal
+                ParentColor = False
+              end
+              object dbtRumboDif1: TDBText
+                Left = 244
+                Height = 15
+                Hint = 'Porcentaje de diferencia entre rumbo registrado y calculado'
+                Top = 90
+                Width = 80
+                Alignment = taCenter
+                DataField = 'DifRumbo'
+                DataSource = dsPrincipal
                 ParentColor = False
               end
             end
@@ -1637,7 +1707,7 @@ inherited fmEditarLances: TfmEditarLances
       'FROM lances'
       'WHERE idlance=:Id'
     )
-    left = 68
+    left = 72
     object zqPrincipalidlance: TLongintField[0]
       DisplayWidth = 10
       FieldKind = fkData
@@ -2319,6 +2389,45 @@ inherited fmEditarLances: TfmEditarLances
       ReadOnly = False
       Required = False
       Size = 100
+    end
+    object zqPrincipalRumboRegistrado: TFloatField[56]
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'RumboRegistrado'
+      Index = 56
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '000°'
+      MaxValue = 0
+      MinValue = 0
+    end
+    object zqPrincipalRumboCalculado: TFloatField[57]
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'RumboCalculado'
+      Index = 57
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '000°'
+      MaxValue = 0
+      MinValue = 0
+    end
+    object zqPrincipalDifRumbo: TFloatField[58]
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'DifRumbo'
+      Index = 58
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '000°'
+      MaxValue = 0
+      MinValue = 0
     end
   end
   inherited zcePrincipal: TZControladorEdicion

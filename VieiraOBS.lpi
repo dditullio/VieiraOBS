@@ -204,6 +204,7 @@
         <ComponentName Value="fmEditarRindes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditarrindes"/>
       </Unit10>
       <Unit11>
         <Filename Value="frmcoccion.pas"/>
@@ -288,6 +289,7 @@
         <ComponentName Value="fmTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmtallas"/>
       </Unit22>
       <Unit23>
         <Filename Value="dattallas.pas"/>
@@ -316,6 +318,7 @@
         <ComponentName Value="fmEditarLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditarlances"/>
       </Unit26>
       <Unit27>
         <Filename Value="frmlances.pas"/>

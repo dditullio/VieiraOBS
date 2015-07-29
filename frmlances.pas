@@ -10,7 +10,7 @@ uses
   ExtCtrls, Buttons, ActnList, StdCtrls, ComCtrls, frmlistabase, db, ZDataset,
   zcontroladorgrilla, datGeneral, frmeditarlances, dateutils, funciones, math,
   TAChartAxisUtils, TAFuncSeries, TADataTools, TAChartListbox, TANavigation,
-  types, LSConfig, TACustomSeries, LCLIntf;
+  types, LSConfig, LSControls, TACustomSeries, LCLIntf;
 
 type
 
@@ -62,6 +62,7 @@ type
     lcsOtrasZonas: TListChartSource;
     lcsEtiquetasUM: TListChartSource;
     lcsMuestrasEcologicas: TListChartSource;
+    LSExpandPanel1: TLSExpandPanel;
     Panel2: TPanel;
     sdGuardarImagen: TSaveDialog;
     splDetalles: TSplitter;
@@ -77,6 +78,7 @@ type
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
     zqLances: TZQuery;
+    zqLancesDifRumbo: TFloatField;
     zqLancesetiqueta_fin: TStringField;
     zqLancesetiqueta_inicio: TStringField;
     zqLanceslat_fin_gis: TFloatField;
@@ -131,6 +133,7 @@ type
     zqLancesrinde_total_B: TFloatField;
     zqLancesrinde_total_E: TFloatField;
     zqLancesrumbo: TLongintField;
+    zqLancesRumboCalc: TFloatField;
     zqLancestemperatura_aire: TFloatField;
     zqLancestemperatura_fondo: TFloatField;
     zqLancestemperatura_superficie: TFloatField;
@@ -200,6 +203,7 @@ begin
   zqLancesLongFin.Value := zqLancesgrados_longitud_fin.Value * 100 +
     zqLancesminutos_longitud_fin.Value;
 
+
   zqLancesDistancia.Value:=DistanciaEnMillas(zqLancesLatIni.Value, zqLancesLongIni.Value,
       zqLancesLatFin.Value, zqLancesLongFin.Value);
   if (not zqLancesDistancia.IsNull) and
@@ -211,6 +215,23 @@ begin
   if not zqLancesminutos_arrastre.IsNull then
   begin
     zqLancesHorasPesca.Value:=zqLancesminutos_arrastre.Value/60;
+  end;
+
+  if (not zqLancesminutos_latitud_ini.IsNull) and
+    (not zqLancesminutos_longitud_ini.IsNull) and
+    (not zqLancesminutos_latitud_fin.IsNull) and
+    (not zqLancesminutos_longitud_fin.IsNull) then
+  begin
+    //Calculo rumbo
+    zqLancesRumboCalc.Value :=
+      Rumbo(zqLancesLatIni.Value, zqLancesLongIni.Value,
+      zqLancesLatFin.Value, zqLancesLongFin.Value);
+
+    //Calculo diferencia > 15°
+    zqLancesDifRumbo.Value:=abs(zqLancesRumboCalc.Value-zqLancesrumbo.Value);
+    //Me aseguro de que la diferencia no sea mayor a 180°
+    if zqLancesDifRumbo.Value>180 then
+       zqLancesDifRumbo.Value:=360-zqLancesDifRumbo.Value;
   end;
 end;
 
@@ -326,7 +347,7 @@ procedure TfmLances.dbgListaGetCellProps(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor);
 begin
   if (zqLancesVelocidadNecesaria.Value > 5.8) or (zqLancesVelocidadNecesaria.Value < 3) or
-      (zqLancesDistancia.Value > 3) then
+      (zqLancesDistancia.Value > 3) or (zqLancesDifRumbo.Value>15) then
     Background := clRed;
 end;
 

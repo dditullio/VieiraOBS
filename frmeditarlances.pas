@@ -53,7 +53,7 @@ type
     dbdtFecha: TDBDateTimePicker;
     dbdtFecha1: TDBDateTimePicker;
     dbdtHora: TDtDBTimeEdit;
-    dbdtHora1: TDBEdit;
+    dbdtHora1: TDtDBTimeEdit;
     dbedCableBr: TDBEdit;
     dbedCableBr1: TDBEdit;
     dbedCableEr: TDBEdit;
@@ -106,9 +106,15 @@ type
     dbtDistCalc: TDBText;
     dbtDistDif: TDBText;
     dbtDistRegist1: TDBText;
+    dbtRumboCalc: TDBText;
+    dbtRumboDif: TDBText;
+    dbtRumboRegist: TDBText;
     dbtTiempoCalc1: TDBText;
+    dbtRumboCalc1: TDBText;
     dbtTiempoDif1: TDBText;
+    dbtRumboDif1: TDBText;
     dbtTiempoRegist1: TDBText;
+    dbtRumboRegist1: TDBText;
     dbtVelCalc1: TDBText;
     dbtVelDif1: TDBText;
     dbtVelRegist: TDBText;
@@ -171,14 +177,14 @@ type
     Label44: TLabel;
     Label45: TLabel;
     Label46: TLabel;
-    Label47: TLabel;
     Label7: TLabel;
     laDistancia: TLabel;
     laDistancia1: TLabel;
     laTiempo1: TLabel;
+    laTiempo2: TLabel;
+    laTiempo3: TLabel;
     laVelocidad: TLabel;
     laTiempo: TLabel;
-    Label34: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
@@ -229,6 +235,7 @@ type
     zqPrincipalcaptura_babor_buque: TStringField;
     zqPrincipalcaptura_estribor_buque: TStringField;
     zqPrincipalDifDistancia: TFloatField;
+    zqPrincipalDifRumbo: TFloatField;
     zqPrincipalDifTiempo: TFloatField;
     zqPrincipalDifVelocidad: TFloatField;
     zqPrincipalDistanciaCalculada: TFloatField;
@@ -238,6 +245,8 @@ type
     zqPrincipalLatIni: TFloatField;
     zqPrincipalLongFin: TFloatField;
     zqPrincipalLongIni: TFloatField;
+    zqPrincipalRumboCalculado: TFloatField;
+    zqPrincipalRumboRegistrado: TFloatField;
     zqPrincipalTextoDistancia: TStringField;
     zqPrincipalTextoTiempo: TStringField;
     zqPrincipalTextoVelocidad: TStringField;
@@ -451,7 +460,10 @@ begin
 end;
 
 function TControlsArray.GetControl(Name: string): TControl;
+var
+  ai: integer;
 begin
+  ai:=ActiveIndex;
   Result := GetControl(ActiveIndex, Name);
 end;
 
@@ -874,11 +886,13 @@ begin
 end;
 
 procedure TfmEditarLances.FormCreate(Sender: TObject);
+var
+  formato: string;
 begin
   FControlesEdicion := TControlsArray.Create;
+
   inherited;
   pcLances.ActivePage := tsGeneral;
-  pcFormatos.TabIndex := 0;
   zcePrincipal.ControlInicial := dbdtHora;
   //Creo elvector con los controles de edición para cada pestaña de formato
   //Controles del formato predeterminado (TabIndex=0)
@@ -905,12 +919,15 @@ begin
   FControlesEdicion.AddControl(0, 'DistRegist', dbtDistRegist);
   FControlesEdicion.AddControl(0, 'VelRegist', dbtVelRegist);
   FControlesEdicion.AddControl(0, 'TiempoRegist', dbtTiempoRegist);
+  FControlesEdicion.AddControl(0, 'RumboRegist', dbtRumboRegist);
   FControlesEdicion.AddControl(0, 'DistCalc', dbtDistCalc);
   FControlesEdicion.AddControl(0, 'VelCalc', dbtVelCalc);
   FControlesEdicion.AddControl(0, 'TiempoCalc', dbtTiempoCalc);
+  FControlesEdicion.AddControl(0, 'RumboCalc', dbtRumboCalc);
   FControlesEdicion.AddControl(0, 'DistDif', dbtDistDif);
   FControlesEdicion.AddControl(0, 'VelDif', dbtVelDif);
   FControlesEdicion.AddControl(0, 'TiempoDif', dbtTiempoDif);
+  FControlesEdicion.AddControl(0, 'RumboDif', dbtRumboDif);
 
   //Controles del formato alternativo (TabIndex=1)
   FControlesEdicion.AddControl(1, 'Comentarios', dbmComentarios1);
@@ -936,12 +953,23 @@ begin
   FControlesEdicion.AddControl(1, 'DistRegist', dbtDistRegist1);
   FControlesEdicion.AddControl(1, 'VelRegist', dbtVelRegist1);
   FControlesEdicion.AddControl(1, 'TiempoRegist', dbtTiempoRegist1);
+  FControlesEdicion.AddControl(1, 'RumboRegist', dbtRumboRegist1);
   FControlesEdicion.AddControl(1, 'DistCalc', dbtDistCalc1);
   FControlesEdicion.AddControl(1, 'VelCalc', dbtVelCalc1);
   FControlesEdicion.AddControl(1, 'TiempoCalc', dbtTiempoCalc1);
+  FControlesEdicion.AddControl(1, 'RumboCalc', dbtRumboCalc1);
   FControlesEdicion.AddControl(1, 'DistDif', dbtDistDif1);
   FControlesEdicion.AddControl(1, 'VelDif', dbtVelDif1);
   FControlesEdicion.AddControl(1, 'TiempoDif', dbtTiempoDif1);
+  FControlesEdicion.AddControl(1, 'RumboDif', dbtRumboDif1);
+
+  LSLoadConfig(['formato_planilla_puente'], [formato], [@formato]);
+  if formato = '' then
+    pcFormatos.TabIndex := 0
+  else
+    pcFormatos.TabIndex := StrToInt(formato);
+
+  //FControlesEdicion.ActiveIndex := pcFormatos.TabIndex;
 
   //Asigno el evento acá, porque por algún motivo se desengancha.
   //Hay que averiguar por qué y solucionarlo
@@ -1150,6 +1178,7 @@ begin
   else
     pcFormatos.PageIndex := StrToInt(formato);
 
+  FControlesEdicion.ActiveIndex := pcFormatos.PageIndex;
 end;
 
 procedure TfmEditarLances.zcePrincipalValidateForm(Sender: TObject;
@@ -1181,10 +1210,11 @@ begin
     if (zqPrincipalDistanciaMillas.Value > 3) or
       (zqPrincipalVelocNecesaria.Value > 5.8) or
       (zqPrincipalVelocNecesaria.Value < 3) or
-      (zqPrincipalTiempoNecesario.Value > 40) then
+      (zqPrincipalTiempoNecesario.Value > 40) or
+      (zqPrincipalDifRumbo.Value>15) then
     begin
       if MessageDlg('Advertencia',
-        'Parece que algo no está bien con las posiciones, el tiempo de arrastre o la velocidad. ¿Desea guardar igualmente estos datos con error?', mtWarning, [mbYes, mbNo], 0, mbNo) = mrNo then
+        'Parece que algo no está bien con las posiciones, el tiempo de arrastre, el rumbo o la velocidad. ¿Desea guardar igualmente estos datos con error?', mtWarning, [mbYes, mbNo], 0, mbNo) = mrNo then
       begin
         ValidacionOK := False;
       end
@@ -1258,6 +1288,7 @@ begin
     (not zqPrincipalminutos_latitud_fin.IsNull) and
     (not zqPrincipalminutos_longitud_fin.IsNull) then
   begin
+    //Calculo distancia
     zqPrincipalDistanciaMillas.Value :=
       DistanciaEnMillas(zqPrincipalLatIni.Value, zqPrincipalLongIni.Value,
       zqPrincipalLatFin.Value, zqPrincipalLongFin.Value);
@@ -1267,10 +1298,28 @@ begin
       FControlesEdicion.SetColor('DistRegist', clRed)
     else
       FControlesEdicion.SetColor('DistRegist', clDefault);
+
+    //Calculo rumbo
+    zqPrincipalRumboCalculado.Value :=
+      Rumbo(zqPrincipalLatIni.Value, zqPrincipalLongIni.Value,
+      zqPrincipalLatFin.Value, zqPrincipalLongFin.Value);
+
+    //Calculo diferencia > 15°
+    zqPrincipalDifRumbo.Value:=abs(zqPrincipalRumboCalculado.Value-zqPrincipalrumbo.Value);
+    //Me aseguro de que la diferencia no sea mayor a 180°
+    if zqPrincipalDifRumbo.Value>180 then
+       zqPrincipalDifRumbo.Value:=360-zqPrincipalDifRumbo.Value;
+
+    // Pongo en rojo valores dudosos
+    if zqPrincipalDifRumbo.Value > 15 then
+      FControlesEdicion.SetColor('RumboRegist', clRed)
+    else
+      FControlesEdicion.SetColor('RumboRegist', clDefault);
   end
   else
   begin
     zqPrincipalDistanciaMillas.AsVariant := Null;
+    zqPrincipalRumboCalculado.AsVariant := Null;
   end;
 
   if (not zqPrincipalDistanciaMillas.IsNull) and
@@ -1370,12 +1419,22 @@ begin
     else
       FControlesEdicion.SetColor('TiempoDif', clDefault);
   end;
+  if (not zqPrincipalrumbo.IsNull) and
+    (not zqPrincipalRumboCalculado.IsNull) then
+  begin
+    if zqPrincipalDifRumbo.Value > 15 then
+      FControlesEdicion.SetColor('RumboDif', clRed)
+    else
+      FControlesEdicion.SetColor('RumboDif', clDefault);
+  end;
 
   //Los siguientes dos campos se crean para poder formatearlos independientemente del campo original
   if not zqPrincipalminutos_arrastre.IsNull then
     zqPrincipalTiempoRegistrado.Value := zqPrincipalminutos_arrastre.Value;
   if not zqPrincipalvelocidad.IsNull then
     zqPrincipalVelocidadRegistrada.Value := zqPrincipalvelocidad.Value;
+  if not zqPrincipalrumbo.IsNull then
+    zqPrincipalRumboRegistrado.Value := zqPrincipalrumbo.Value;
 
   zqPrincipal.DisableControls;
   zqPrincipal.EnableControls;

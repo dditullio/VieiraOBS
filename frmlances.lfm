@@ -474,32 +474,20 @@ inherited fmLances: TfmLances
         Constraints.MaxWidth = 720
         Constraints.MinWidth = 300
         Visible = True
-        object ChartListbox1: TChartListbox[0]
+        object Panel2: TPanel[0]
           Left = 0
-          Height = 72
-          Top = 394
-          Width = 330
-          Chart = chtLances
-          Align = alBottom
-          Columns = 2
-          Constraints.MinWidth = 294
-          ItemHeight = 0
-          TabOrder = 0
-        end
-        object Panel2: TPanel[1]
-          Left = 0
-          Height = 364
+          Height = 436
           Top = 30
           Width = 330
           Align = alClient
           BevelInner = bvLowered
           Caption = 'Panel2'
-          ClientHeight = 364
+          ClientHeight = 436
           ClientWidth = 330
-          TabOrder = 1
+          TabOrder = 0
           object chtLances: TChart
             Left = 2
-            Height = 360
+            Height = 410
             Top = 2
             Width = 326
             AxisList = <            
@@ -620,8 +608,66 @@ inherited fmLances: TfmLances
               Pointer.Visible = False
             end
           end
+          object LSExpandPanel1: TLSExpandPanel
+            Left = 2
+            Height = 22
+            Top = 412
+            Width = 326
+            Align = alBottom
+            Caption = 'LSExpandPanel1'
+            ClientHeight = 22
+            ClientWidth = 326
+            CollapsePic.Data = {
+              1754506F727461626C654E6574776F726B47726170686963AA00000089504E47
+              0D0A1A0A0000000D494844520000000B0000000B0806000000A9AC7726000000
+              017352474200AECE1CE900000006624B474400FF00FF00FFA0BDA79300000009
+              7048597300000B1300000B1301009A9C180000000774494D4507DB0C07002429
+              5F50EA3E0000002A4944415418D363646060F8CF40022056F17F26524CA59D62
+              1622DCCF884B31E3C0B89924C58CA4C4200079100514DB1FDF77000000004945
+              4E44AE426082
+            }
+            Expand = False
+            ExpandPic.Data = {
+              1754506F727461626C654E6574776F726B47726170686963B000000089504E47
+              0D0A1A0A0000000D494844520000000B0000000B0806000000A9AC7726000000
+              017352474200AECE1CE900000006624B474400FF00FF00FFA0BDA79300000009
+              7048597300000B1300000B1301009A9C180000000774494D4507DB0C07002224
+              77BB3105000000304944415418D363646060F8CF40022056F17F26524C6522C5
+              36924C66C163228CCD48C8CAFF34F32023C51E64242506010DD80A0B08A699B4
+              0000000049454E44AE426082
+            }
+            GradientStart = clBtnFace
+            GradientStop = clBtnFace
+            TabOrder = 1
+            TopPanel.Left = 1
+            TopPanel.Height = 20
+            TopPanel.Top = 1
+            TopPanel.Width = 324
+            TopPanel.BevelOuter = bvNone
+            TopPanel.BorderStyle = bsSingle
+            TopPanel.Caption = 'Activar o desactivar elementos del mapa'
+            TopPanel.Font.Color = clTeal
+            TopPanel.Font.Style = [fsBold]
+            TopPanel.GradientStart = clBtnFace
+            TopPanel.GradientStop = clBtnFace
+            TopPanel.ParentFont = False
+            TopPanel.TabOrder = 0
+            OldTopPanelHeight = 170
+            object ChartListbox1: TChartListbox
+              Left = 1
+              Height = 0
+              Top = 21
+              Width = 324
+              Chart = chtLances
+              Align = alClient
+              Columns = 2
+              Constraints.MinWidth = 294
+              ItemHeight = 0
+              TabOrder = 1
+            end
+          end
         end
-        object ToolBar1: TToolBar[2]
+        object ToolBar1: TToolBar[1]
           Left = 0
           Height = 30
           Top = 0
@@ -634,7 +680,7 @@ inherited fmLances: TfmLances
           ParentColor = False
           ParentShowHint = False
           ShowHint = True
-          TabOrder = 2
+          TabOrder = 1
           object ToolButton1: TToolButton
             Left = 29
             Top = 2
@@ -1346,11 +1392,23 @@ inherited fmLances: TfmLances
       MaxValue = 0
       MinValue = 0
     end
+    object zqLancesRumboCalc: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'RumboCalc'
+      Index = 49
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
     object zqLancesLatIni: TFloatField
       DisplayWidth = 10
       FieldKind = fkCalculated
       FieldName = 'LatIni'
-      Index = 49
+      Index = 50
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1362,7 +1420,7 @@ inherited fmLances: TfmLances
       DisplayWidth = 10
       FieldKind = fkCalculated
       FieldName = 'LongIni'
-      Index = 50
+      Index = 51
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1374,7 +1432,7 @@ inherited fmLances: TfmLances
       DisplayWidth = 10
       FieldKind = fkCalculated
       FieldName = 'LatFin'
-      Index = 51
+      Index = 52
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1386,7 +1444,7 @@ inherited fmLances: TfmLances
       DisplayWidth = 10
       FieldKind = fkCalculated
       FieldName = 'LongFin'
-      Index = 52
+      Index = 53
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1398,7 +1456,7 @@ inherited fmLances: TfmLances
       DisplayWidth = 10
       FieldKind = fkCalculated
       FieldName = 'HorasPesca'
-      Index = 53
+      Index = 54
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1410,7 +1468,7 @@ inherited fmLances: TfmLances
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'long_ini_gis'
-      Index = 54
+      Index = 55
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1423,7 +1481,7 @@ inherited fmLances: TfmLances
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'lat_ini_gis'
-      Index = 55
+      Index = 56
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1436,7 +1494,7 @@ inherited fmLances: TfmLances
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'long_fin_gis'
-      Index = 56
+      Index = 57
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1449,7 +1507,7 @@ inherited fmLances: TfmLances
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'lat_fin_gis'
-      Index = 57
+      Index = 58
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1462,7 +1520,7 @@ inherited fmLances: TfmLances
       DisplayWidth = 76
       FieldKind = fkData
       FieldName = 'etiqueta_inicio'
-      Index = 58
+      Index = 59
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1473,12 +1531,24 @@ inherited fmLances: TfmLances
       DisplayWidth = 116
       FieldKind = fkData
       FieldName = 'etiqueta_fin'
-      Index = 59
+      Index = 60
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 116
+    end
+    object zqLancesDifRumbo: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'DifRumbo'
+      Index = 61
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
     end
   end
   object dsLances: TDataSource[5]

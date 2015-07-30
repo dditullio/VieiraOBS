@@ -1300,21 +1300,25 @@ begin
       FControlesEdicion.SetColor('DistRegist', clDefault);
 
     //Calculo rumbo
-    zqPrincipalRumboCalculado.Value :=
-      Rumbo(zqPrincipalLatIni.Value, zqPrincipalLongIni.Value,
-      zqPrincipalLatFin.Value, zqPrincipalLongFin.Value);
+    //Si la distancia es 0, el cálculo de rumbo da error
+    if zqPrincipalDistanciaMillas.Value>0 then
+    begin
+      zqPrincipalRumboCalculado.Value :=
+        Rumbo(zqPrincipalLatIni.Value, zqPrincipalLongIni.Value,
+        zqPrincipalLatFin.Value, zqPrincipalLongFin.Value);
 
-    //Calculo diferencia > 15°
-    zqPrincipalDifRumbo.Value:=abs(zqPrincipalRumboCalculado.Value-zqPrincipalrumbo.Value);
-    //Me aseguro de que la diferencia no sea mayor a 180°
-    if zqPrincipalDifRumbo.Value>180 then
-       zqPrincipalDifRumbo.Value:=360-zqPrincipalDifRumbo.Value;
+      //Calculo diferencia > 15°
+      zqPrincipalDifRumbo.Value:=abs(zqPrincipalRumboCalculado.Value-zqPrincipalrumbo.Value);
+      //Me aseguro de que la diferencia no sea mayor a 180°
+      if zqPrincipalDifRumbo.Value>180 then
+         zqPrincipalDifRumbo.Value:=360-zqPrincipalDifRumbo.Value;
 
-    // Pongo en rojo valores dudosos
-    if zqPrincipalDifRumbo.Value > 15 then
-      FControlesEdicion.SetColor('RumboRegist', clRed)
-    else
-      FControlesEdicion.SetColor('RumboRegist', clDefault);
+      // Pongo en rojo valores dudosos
+      if zqPrincipalDifRumbo.Value > 15 then
+        FControlesEdicion.SetColor('RumboRegist', clRed)
+      else
+        FControlesEdicion.SetColor('RumboRegist', clDefault);
+    end;
   end
   else
   begin

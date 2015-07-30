@@ -5,12 +5,12 @@ unit frmlances;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, DateTimePicker, TAGraph, TALegendPanel,
+  Classes, SysUtils, FileUtil, DateTimePicker, TAGraph,
   TASources, TASeries, TATools, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, Buttons, ActnList, StdCtrls, ComCtrls, frmlistabase, db, ZDataset,
   zcontroladorgrilla, datGeneral, frmeditarlances, dateutils, funciones, math,
-  TAChartAxisUtils, TAFuncSeries, TADataTools, TAChartListbox, TANavigation,
-  types, LSConfig, LSControls, TACustomSeries, LCLIntf;
+  TAFuncSeries, TADataTools, TAChartListbox, types, LSConfig, LSControls,
+  TACustomSeries, LCLIntf, DBGrids, TAChartUtils;
 
 type
 
@@ -21,14 +21,17 @@ type
     acMedir: TAction;
     acInfo: TAction;
     acGuardarImagen: TAction;
+    acZoomLanceSeleccionado: TAction;
     acZoomLances: TAction;
     acZoomRect: TAction;
     acZoomOut: TAction;
     acZoomIn: TAction;
     alMapa: TActionList;
-    ChartListbox1: TChartListbox;
+    ckOcultarMapaBase: TCheckBox;
+    clbReferencias: TChartListbox;
     ChartToolset1: TChartToolset;
     ChartToolset1DataPointCrosshairTool1: TDataPointCrosshairTool;
+    chtLancesLanceSeleccionadoSerie: TLineSeries;
     chtLancesZEP_ZEESeries: TLineSeries;
     ctPanDrag: TPanDragTool;
     ctZoomOut: TZoomClickTool;
@@ -62,6 +65,7 @@ type
     lcsOtrasZonas: TListChartSource;
     lcsEtiquetasUM: TListChartSource;
     lcsMuestrasEcologicas: TListChartSource;
+    lcsLanceSeleccionado: TListChartSource;
     LSExpandPanel1: TLSExpandPanel;
     Panel2: TPanel;
     sdGuardarImagen: TSaveDialog;
@@ -69,6 +73,7 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -144,7 +149,10 @@ type
     zqMuestrasEcologicas: TZQuery;
     procedure acGuardarImagenExecute(Sender: TObject);
     procedure acHabilitarHerramienta(Sender: TObject);
+    procedure acZoomLanceSeleccionadoExecute(Sender: TObject);
     procedure acZoomLancesExecute(Sender: TObject);
+    procedure chtLancesExtentChanged(ASender: TChart);
+    procedure clbReferenciasCheckboxClick(ASender: TObject; AIndex: Integer);
     procedure ChartToolset1DataPointClickTool1PointClick(ATool: TChartTool;
       APoint: TPoint);
     procedure ctDistanciaGetDistanceText(
@@ -152,6 +160,7 @@ type
     procedure chtLancesAxisList0MarkToText(var AText: String; AMark: Double);
     procedure chtLancesAxisList1MarkToText(var AText: String; AMark: Double);
     procedure ckMapaLancesChange(Sender: TObject);
+    procedure dbgListaCellClick(Column: TColumn);
     procedure dbgListaGetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
     procedure dtFechaChange(Sender: TObject);
@@ -217,10 +226,12 @@ begin
     zqLancesHorasPesca.Value:=zqLancesminutos_arrastre.Value/60;
   end;
 
-  if (not zqLancesminutos_latitud_ini.IsNull) and
-    (not zqLancesminutos_longitud_ini.IsNull) and
-    (not zqLancesminutos_latitud_fin.IsNull) and
-    (not zqLancesminutos_longitud_fin.IsNull) then
+  if (not zqLancesLatIni.IsNull) and
+    (not zqLancesLongIni.IsNull) and
+    (not zqLancesLatFin.IsNull) and
+    (not zqLancesLongFin.IsNull) and
+    (not zqLancesDistancia.IsNull) and
+    (zqLancesDistancia.Value>0) then
   begin
     //Calculo rumbo
     zqLancesRumboCalc.Value :=
@@ -308,6 +319,7 @@ var
   bm: TBookMark;
 begin
   lcsLances.Clear;
+  lcsLanceSeleccionado.Clear;
   chtLances.Refresh;
   if (zqLances.RecordCount > 0) and (ckMapaLances.Checked) then
   begin
@@ -380,6 +392,21 @@ begin
   end;
 end;
 
+procedure TfmLances.acZoomLanceSeleccionadoExecute(Sender: TObject);
+var
+  NewExtent: TDoubleRect;
+  ax, ay, bx, by: Double;
+begin
+  if lcsLanceSeleccionado.Count>0 then
+  begin
+    NewExtent.a.X:=lcsLanceSeleccionado.Extent.a.X-max(0.001,abs((lcsLanceSeleccionado.Extent.a.X-lcsLanceSeleccionado.Extent.b.X)));
+    NewExtent.a.Y:=lcsLanceSeleccionado.Extent.a.Y-max(0.001,abs((lcsLanceSeleccionado.Extent.a.Y-lcsLanceSeleccionado.Extent.b.Y)));
+    NewExtent.b.X:=lcsLanceSeleccionado.Extent.b.X+max(0.001,abs((lcsLanceSeleccionado.Extent.a.X-lcsLanceSeleccionado.Extent.b.X)));
+    NewExtent.b.Y:=lcsLanceSeleccionado.Extent.b.Y+max(0.001,abs((lcsLanceSeleccionado.Extent.a.Y-lcsLanceSeleccionado.Extent.b.Y)));
+    chtLances.LogicalExtent:=NewExtent;
+  end;
+end;
+
 procedure TfmLances.acGuardarImagenExecute(Sender: TObject);
 begin
   if sdGuardarImagen.Execute then
@@ -396,6 +423,28 @@ procedure TfmLances.acZoomLancesExecute(Sender: TObject);
 begin
   if lcsLances.Count>0 then
      chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
+end;
+
+procedure TfmLances.chtLancesExtentChanged(ASender: TChart);
+var
+  ext_y: double;
+begin
+  //Si se aumenta el zoom como para mostrar menos de 1/2 grado en vertical,
+  //deshabilito el mapa base (si está marcada esta opción)
+  if ckOcultarMapaBase.Checked then
+  begin
+    ext_y:=ABS(chtLances.LogicalExtent.a.Y-chtLances.LogicalExtent.b.Y);
+       if (ext_y<0.5) and (chtLancesMapaBaseSerie.Active) then
+          chtLancesMapaBaseSerie.Active:=False
+       else if (ext_y>=0.5) and (not chtLancesMapaBaseSerie.Active) then
+          chtLancesMapaBaseSerie.Active:=True;
+  end;
+end;
+
+procedure TfmLances.clbReferenciasCheckboxClick(ASender: TObject; AIndex: Integer
+  );
+begin
+     clbReferencias.Series[AIndex].Active:=clbReferencias.Checked[AIndex];
 end;
 
 procedure TfmLances.ChartToolset1DataPointClickTool1PointClick(
@@ -439,6 +488,23 @@ begin
   if ckMapaLances.Checked then
   begin
     InicializarMapas;
+  end;
+end;
+
+procedure TfmLances.dbgListaCellClick(Column: TColumn);
+begin
+  lcsLanceSeleccionado.Clear;
+  with zqLances do
+  begin
+    if (not FieldByName('long_ini_gis').IsNull)
+       and (not FieldByName('lat_ini_gis').IsNull)
+       and (not FieldByName('long_fin_gis').IsNull)
+       and (not FieldByName('lat_fin_gis').IsNull) then
+    begin
+      lcsLanceSeleccionado.Add(FieldByName('long_ini_gis').AsFloat,FieldByName('lat_ini_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_inicio').AsString, clGreen);
+      lcsLanceSeleccionado.Add(FieldByName('long_fin_gis').AsFloat,FieldByName('lat_fin_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_fin').AsString, clRed);
+      lcsLanceSeleccionado.Add(NaN,NaN);
+    end;
   end;
 end;
 

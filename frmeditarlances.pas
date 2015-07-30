@@ -1211,7 +1211,7 @@ begin
       (zqPrincipalVelocNecesaria.Value > 5.8) or
       (zqPrincipalVelocNecesaria.Value < 3) or
       (zqPrincipalTiempoNecesario.Value > 40) or
-      (zqPrincipalDifRumbo.Value>15) then
+      ((not zqPrincipalDifRumbo.IsNull) and (zqPrincipalDifRumbo.Value>15)) then
     begin
       if MessageDlg('Advertencia',
         'Parece que algo no está bien con las posiciones, el tiempo de arrastre, el rumbo o la velocidad. ¿Desea guardar igualmente estos datos con error?', mtWarning, [mbYes, mbNo], 0, mbNo) = mrNo then
@@ -1307,17 +1307,21 @@ begin
         Rumbo(zqPrincipalLatIni.Value, zqPrincipalLongIni.Value,
         zqPrincipalLatFin.Value, zqPrincipalLongFin.Value);
 
-      //Calculo diferencia > 15°
-      zqPrincipalDifRumbo.Value:=abs(zqPrincipalRumboCalculado.Value-zqPrincipalrumbo.Value);
-      //Me aseguro de que la diferencia no sea mayor a 180°
-      if zqPrincipalDifRumbo.Value>180 then
-         zqPrincipalDifRumbo.Value:=360-zqPrincipalDifRumbo.Value;
+      //Si no se indicó el rumbo, no calculo diferencia
+      if not zqPrincipalrumbo.IsNull then
+      begin
+        //Calculo diferencia > 15°
+        zqPrincipalDifRumbo.Value:=abs(zqPrincipalRumboCalculado.Value-zqPrincipalrumbo.Value);
+        //Me aseguro de que la diferencia no sea mayor a 180°
+        if zqPrincipalDifRumbo.Value>180 then
+           zqPrincipalDifRumbo.Value:=360-zqPrincipalDifRumbo.Value;
 
-      // Pongo en rojo valores dudosos
-      if zqPrincipalDifRumbo.Value > 15 then
-        FControlesEdicion.SetColor('RumboRegist', clRed)
-      else
-        FControlesEdicion.SetColor('RumboRegist', clDefault);
+        // Pongo en rojo valores dudosos
+        if zqPrincipalDifRumbo.Value > 15 then
+          FControlesEdicion.SetColor('RumboRegist', clRed)
+        else
+          FControlesEdicion.SetColor('RumboRegist', clDefault);
+      end;
     end;
   end
   else

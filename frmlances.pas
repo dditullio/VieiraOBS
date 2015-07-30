@@ -231,7 +231,8 @@ begin
     (not zqLancesLatFin.IsNull) and
     (not zqLancesLongFin.IsNull) and
     (not zqLancesDistancia.IsNull) and
-    (zqLancesDistancia.Value>0) then
+    (zqLancesDistancia.Value>0) and
+    (not zqLancesrumbo.IsNull) then
   begin
     //Calculo rumbo
     zqLancesRumboCalc.Value :=
@@ -359,7 +360,7 @@ procedure TfmLances.dbgListaGetCellProps(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor);
 begin
   if (zqLancesVelocidadNecesaria.Value > 5.8) or (zqLancesVelocidadNecesaria.Value < 3) or
-      (zqLancesDistancia.Value > 3) or (zqLancesDifRumbo.Value>15) then
+      (zqLancesDistancia.Value > 3) or ((not zqLancesDifRumbo.IsNull) and (zqLancesDifRumbo.Value>15)) then
     Background := clRed;
 end;
 

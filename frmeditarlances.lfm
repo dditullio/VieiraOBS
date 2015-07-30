@@ -47,8 +47,8 @@ inherited fmEditarLances: TfmEditarLances
       Options = [nboKeyboardTabSwitch]
       object tsGeneral: TTabSheet
         Caption = 'Datos generales'
-        ClientHeight = 628
-        ClientWidth = 1458
+        ClientHeight = 314
+        ClientWidth = 729
         object pcFormatos: TPageControl
           Left = 0
           Height = 314
@@ -62,8 +62,8 @@ inherited fmEditarLances: TfmEditarLances
           OnChanging = pcFormatosChanging
           object tsPredeterminado: TTabSheet
             Caption = 'Formato predeterminado'
-            ClientHeight = 572
-            ClientWidth = 1442
+            ClientHeight = 286
+            ClientWidth = 721
             object gbDatosInicio: TGroupBox
               Left = 4
               Height = 132
@@ -1590,8 +1590,8 @@ inherited fmEditarLances: TfmEditarLances
             Width = 46
             BevelOuter = bvNone
             BorderStyle = bsSingle
-            ClientHeight = 23
-            ClientWidth = 46
+            ClientHeight = 19
+            ClientWidth = 42
             Enabled = False
             TabOrder = 7
             object DBImage1: TDBImage

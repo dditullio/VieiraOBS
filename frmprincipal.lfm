@@ -40504,6 +40504,9 @@ object fmPrincipal: TfmPrincipal
     end
     object MenuItem3: TMenuItem
       Caption = 'Muestras'
+      object MenuItem17: TMenuItem
+        Action = acLances
+      end
       object MenuItem4: TMenuItem
         Action = acRindes
         Bitmap.Data = {

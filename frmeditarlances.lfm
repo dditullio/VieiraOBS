@@ -743,8 +743,8 @@ inherited fmEditarLances: TfmEditarLances
           end
           object tsAlternativo: TTabSheet
             Caption = 'Formato alternativo'
-            ClientHeight = 572
-            ClientWidth = 1442
+            ClientHeight = 286
+            ClientWidth = 721
             object gbDatosInicio1: TGroupBox
               Left = 4
               Height = 132
@@ -2425,7 +2425,7 @@ inherited fmEditarLances: TfmEditarLances
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      DisplayFormat = '000°'
+      DisplayFormat = '0.00%'
       MaxValue = 0
       MinValue = 0
     end

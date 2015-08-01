@@ -27,10 +27,10 @@ type
     acZoomOut: TAction;
     acZoomIn: TAction;
     alMapa: TActionList;
+    ctInfoCoordenadas: TUserDefinedTool;
     ckOcultarMapaBase: TCheckBox;
     clbReferencias: TChartListbox;
     ChartToolset1: TChartToolset;
-    ChartToolset1DataPointCrosshairTool1: TDataPointCrosshairTool;
     chtLancesLanceSeleccionadoSerie: TLineSeries;
     chtLancesZEP_ZEESeries: TLineSeries;
     ctPanDrag: TPanDragTool;
@@ -70,6 +70,7 @@ type
     Panel2: TPanel;
     sdGuardarImagen: TSaveDialog;
     splDetalles: TSplitter;
+    sbInfoMapa: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton10: TToolButton;
@@ -151,6 +152,8 @@ type
     procedure acHabilitarHerramienta(Sender: TObject);
     procedure acZoomLanceSeleccionadoExecute(Sender: TObject);
     procedure acZoomLancesExecute(Sender: TObject);
+    procedure ctInfoCoordenadasAfterMouseMove(ATool: TChartTool;
+      APoint: TPoint);
     procedure chtLancesExtentChanged(ASender: TChart);
     procedure clbReferenciasCheckboxClick(ASender: TObject; AIndex: Integer);
     procedure ChartToolset1DataPointClickTool1PointClick(ATool: TChartTool;
@@ -167,6 +170,7 @@ type
     procedure dtFechaCheckBoxChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Panel2MouseLeave(Sender: TObject);
     procedure zqLancesAfterOpen(DataSet: TDataSet);
     procedure zqLancesBeforeOpen(DataSet: TDataSet);
     procedure zqLancesCalcFields(DataSet: TDataSet);
@@ -202,6 +206,8 @@ begin
 end;
 
 procedure TfmLances.zqLancesCalcFields(DataSet: TDataSet);
+var
+  grados_dif_rumbo: double;
 begin
   zqLancesLatIni.Value := zqLancesgrados_latitud_ini.Value * 100 +
     zqLancesminutos_latitud_ini.Value;
@@ -239,11 +245,14 @@ begin
       Rumbo(zqLancesLatIni.Value, zqLancesLongIni.Value,
       zqLancesLatFin.Value, zqLancesLongFin.Value);
 
-    //Calculo diferencia > 15°
-    zqLancesDifRumbo.Value:=abs(zqLancesRumboCalc.Value-zqLancesrumbo.Value);
+    //Calculo diferencia > 10%
+    grados_dif_rumbo:=abs(zqLancesRumboCalc.Value-zqLancesrumbo.Value);
+
     //Me aseguro de que la diferencia no sea mayor a 180°
-    if zqLancesDifRumbo.Value>180 then
-       zqLancesDifRumbo.Value:=360-zqLancesDifRumbo.Value;
+    if grados_dif_rumbo>180 then
+       grados_dif_rumbo:=360-grados_dif_rumbo;
+
+    zqLancesDifRumbo.Value:=round(grados_dif_rumbo*10000/180)/100;
   end;
 end;
 
@@ -308,8 +317,6 @@ begin
     CargarMapa('VEDA MERLUZA', lcsOtrasZonas);
     CargarMapa('VEDA MERLUZA NEGRA', lcsOtrasZonas, False);
     CargarMapa('ZONA COMUN', lcsOtrasZonas, False);
-    zqMuestrasEcologicas.Close;
-    zqMuestrasEcologicas.Open;
     CargarMapaLances;
     FMapasCargados:=True;
   end;
@@ -319,6 +326,10 @@ procedure TfmLances.CargarMapaLances;
 var
   bm: TBookMark;
 begin
+  //Se refrescan las muestras ecológicas por si se modificó o agregó alguna
+  zqMuestrasEcologicas.Close;
+  zqMuestrasEcologicas.Open;
+
   lcsLances.Clear;
   lcsLanceSeleccionado.Clear;
   chtLances.Refresh;
@@ -360,7 +371,7 @@ procedure TfmLances.dbgListaGetCellProps(Sender: TObject; Field: TField;
   AFont: TFont; var Background: TColor);
 begin
   if (zqLancesVelocidadNecesaria.Value > 5.8) or (zqLancesVelocidadNecesaria.Value < 3) or
-      (zqLancesDistancia.Value > 3) or ((not zqLancesDifRumbo.IsNull) and (zqLancesDifRumbo.Value>15)) then
+      (zqLancesDistancia.Value > 3) or ((not zqLancesDifRumbo.IsNull) and (zqLancesDifRumbo.Value>10)) then
     Background := clRed;
 end;
 
@@ -424,6 +435,15 @@ procedure TfmLances.acZoomLancesExecute(Sender: TObject);
 begin
   if lcsLances.Count>0 then
      chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
+end;
+
+procedure TfmLances.ctInfoCoordenadasAfterMouseMove(
+  ATool: TChartTool; APoint: TPoint);
+begin
+  //sbInfoMapa.SimpleText:='Latitud: '+FormatFloat('00° 00.00´ S', Abs(GradoDecimalAGradoMinuto(chtLances.ImageToGraph(APoint).Y)))+
+  //                       ' - Longitud: '+FormatFloat('00° 00.00´ O', Abs(GradoDecimalAGradoMinuto(chtLances.ImageToGraph(APoint).X)));
+  sbInfoMapa.Panels[0].Text:='Latitud: '+FormatFloat('00° 00.00´ S', Abs(GradoDecimalAGradoMinuto(chtLances.ImageToGraph(APoint).Y)))+
+                         ' - Longitud: '+FormatFloat('00° 00.00´ O', Abs(GradoDecimalAGradoMinuto(chtLances.ImageToGraph(APoint).X)));
 end;
 
 procedure TfmLances.chtLancesExtentChanged(ASender: TChart);
@@ -551,6 +571,11 @@ begin
   LSLoadConfig(['ver_mapa_lances'], [str_conf], [@str_conf]);
   ckMapaLances.Checked:=(str_conf='True');
   inherited;
+end;
+
+procedure TfmLances.Panel2MouseLeave(Sender: TObject);
+begin
+  sbInfoMapa.Panels[0].Text:='';
 end;
 
 procedure TfmLances.zqLancesAfterOpen(DataSet: TDataSet);

@@ -663,48 +663,51 @@ var
   minutos_tiempo: double;
   veloc_prom: double;
 begin
-  //Valido contra la posición inicial por si cambió de grado
-  //a) Calculo los minutos entre el inicio y fin del lance actual
-  minutos_tiempo := MinutesBetween(zqPrincipalfecha.AsDateTime +
-    zqPrincipalhora.AsDateTime, IncMinute(zqPrincipalfecha.AsDateTime +
-    zqPrincipalhora.AsDateTime, zqPrincipalminutos_arrastre.AsInteger));
-  //b) Calculo velocidad promedio necesaria (solo en latitud, no cosidero
-  //diferencia de longitud
-  veloc_prom := VelocidadEnNudos(zqPrincipalgrados_latitud_ini.Value *
-    100 + zqPrincipalminutos_latitud_ini.Value, 0,
-    zqPrincipalgrados_latitud_fin.Value * 100 + zqPrincipalminutos_latitud_fin.Value,
-    0, minutos_tiempo);
-  //c) Si la velocidad promedio es mayor a 15 nudos, hay un problema,
-  // Entonces veo si parece que cambió el grado
-  if veloc_prom > 15 then
+  if (FControlesEdicion.GetControl('MinutosLatFin') as TDBEdit).Text<>'' then
   begin
-    if (zqPrincipalminutos_latitud_ini.Value < 10) and
-      (zqPrincipalminutos_latitud_fin.Value > 50) then
+    //Valido contra la posición inicial por si cambió de grado
+    //a) Calculo los minutos entre el inicio y fin del lance actual
+    minutos_tiempo := MinutesBetween(zqPrincipalfecha.AsDateTime +
+      zqPrincipalhora.AsDateTime, IncMinute(zqPrincipalfecha.AsDateTime +
+      zqPrincipalhora.AsDateTime, zqPrincipalminutos_arrastre.AsInteger));
+    //b) Calculo velocidad promedio necesaria (solo en latitud, no cosidero
+    //diferencia de longitud
+    veloc_prom := VelocidadEnNudos(zqPrincipalgrados_latitud_ini.Value *
+      100 + zqPrincipalminutos_latitud_ini.Value, 0,
+      zqPrincipalgrados_latitud_fin.Value * 100 + zqPrincipalminutos_latitud_fin.Value,
+      0, minutos_tiempo);
+    //c) Si la velocidad promedio es mayor a 15 nudos, hay un problema,
+    // Entonces veo si parece que cambió el grado
+    if veloc_prom > 15 then
     begin
-      zqPrincipalgrados_latitud_fin.Value := zqPrincipalgrados_latitud_fin.Value - 1;
-    end
-    else if (zqPrincipalminutos_latitud_ini.Value > 50) and
-      (zqPrincipalminutos_latitud_fin.Value < 10) then
-    begin
-      zqPrincipalgrados_latitud_fin.Value := zqPrincipalgrados_latitud_fin.Value + 1;
-    end
-    else if (((zqPrincipalminutos_latitud_ini.Value > 50) and
-      (zqPrincipalminutos_latitud_fin.Value > 50)) or
-      ((zqPrincipalminutos_latitud_ini.Value < 10) and
-      (zqPrincipalminutos_latitud_fin.Value < 10))) and
-      (zqPrincipalgrados_latitud_ini.Value <>
-      zqPrincipalgrados_latitud_fin.Value) then
-    begin
-      zqPrincipalgrados_latitud_fin.Value := zqPrincipalgrados_latitud_ini.Value;
-    end
-    else //Ante otra condición, se intenta corregir colocando el mismo grado que al inicio
-    begin
-      zqPrincipalgrados_latitud_fin.Value := zqPrincipalgrados_latitud_ini.Value;
+      if (zqPrincipalminutos_latitud_ini.Value < 10) and
+        (zqPrincipalminutos_latitud_fin.Value > 50) then
+      begin
+        zqPrincipalgrados_latitud_fin.Value := zqPrincipalgrados_latitud_fin.Value - 1;
+      end
+      else if (zqPrincipalminutos_latitud_ini.Value > 50) and
+        (zqPrincipalminutos_latitud_fin.Value < 10) then
+      begin
+        zqPrincipalgrados_latitud_fin.Value := zqPrincipalgrados_latitud_fin.Value + 1;
+      end
+      else if (((zqPrincipalminutos_latitud_ini.Value > 50) and
+        (zqPrincipalminutos_latitud_fin.Value > 50)) or
+        ((zqPrincipalminutos_latitud_ini.Value < 10) and
+        (zqPrincipalminutos_latitud_fin.Value < 10))) and
+        (zqPrincipalgrados_latitud_ini.Value <>
+        zqPrincipalgrados_latitud_fin.Value) then
+      begin
+        zqPrincipalgrados_latitud_fin.Value := zqPrincipalgrados_latitud_ini.Value;
+      end
+      else //Ante otra condición, se intenta corregir colocando el mismo grado que al inicio
+      begin
+        zqPrincipalgrados_latitud_fin.Value := zqPrincipalgrados_latitud_ini.Value;
+      end;
     end;
+    //if zqPrincipalgrados_latitud_fin.Value>0 then
+    //   if dbedMinutosLatFin.CanFocus then
+    //      dbedMinutosLatFin.SetFocus;
   end;
-  //if zqPrincipalgrados_latitud_fin.Value>0 then
-  //   if dbedMinutosLatFin.CanFocus then
-  //      dbedMinutosLatFin.SetFocus;
 end;
 
 procedure TfmEditarLances.dbedMinutosLatIniExit(Sender: TObject);
@@ -712,7 +715,11 @@ var
   minutos_tiempo: double;
   veloc_prom: double;
 begin
-  if zqAntLance.RecordCount > 0 then
+  if (zqAntLance.RecordCount > 0) and ((FControlesEdicion.GetControl('MinutosLatIni') as TDBEdit).Text<>'')
+  and (not zqAntLancegrados_latitud_fin.IsNull)
+  and (not zqAntLanceminutos_latitud_fin.IsNull)
+  and (not zqAntLancegrados_longitud_fin.IsNull)
+  and (not zqAntLanceminutos_longitud_fin.IsNull) then
   begin
     //Valido contra el lance anterior por si cambió de grado
     //a) Calculo los minutos entre el fin del lance anterior y el
@@ -761,43 +768,46 @@ var
   minutos_tiempo: double;
   veloc_prom: double;
 begin
-  //Valido contra la posición inicial por si cambió de grado
-  //a) Calculo los minutos entre el inicio y fin del lance actual
-  minutos_tiempo := MinutesBetween(zqPrincipalfecha.AsDateTime +
-    zqPrincipalhora.AsDateTime, IncMinute(zqPrincipalfecha.AsDateTime +
-    zqPrincipalhora.AsDateTime, zqPrincipalminutos_arrastre.AsInteger));
-  //b) Calculo velocidad promedio necesaria (solo en longitud, no cosidero
-  //diferencia de latitud
-  veloc_prom := VelocidadEnNudos(zqPrincipalgrados_longitud_ini.Value *
-    100 + zqPrincipalminutos_longitud_ini.Value, 0,
-    zqPrincipalgrados_longitud_fin.Value * 100 + zqPrincipalminutos_longitud_fin.Value,
-    0, minutos_tiempo);
-  //c) Si la velocidad promedio es mayor a 15 nudos, hay un problema,
-  // Entonces veo si parece que cambió el grado
-  if veloc_prom > 15 then
+  if (FControlesEdicion.GetControl('MinutosLongFin') as TDBEdit).Text<>'' then
   begin
-    if (zqPrincipalminutos_longitud_ini.Value < 10) and
-      (zqPrincipalminutos_longitud_fin.Value > 50) then
+    //Valido contra la posición inicial por si cambió de grado
+    //a) Calculo los minutos entre el inicio y fin del lance actual
+    minutos_tiempo := MinutesBetween(zqPrincipalfecha.AsDateTime +
+      zqPrincipalhora.AsDateTime, IncMinute(zqPrincipalfecha.AsDateTime +
+      zqPrincipalhora.AsDateTime, zqPrincipalminutos_arrastre.AsInteger));
+    //b) Calculo velocidad promedio necesaria (solo en longitud, no cosidero
+    //diferencia de latitud
+    veloc_prom := VelocidadEnNudos(zqPrincipalgrados_longitud_ini.Value *
+      100 + zqPrincipalminutos_longitud_ini.Value, 0,
+      zqPrincipalgrados_longitud_fin.Value * 100 + zqPrincipalminutos_longitud_fin.Value,
+      0, minutos_tiempo);
+    //c) Si la velocidad promedio es mayor a 15 nudos, hay un problema,
+    // Entonces veo si parece que cambió el grado
+    if veloc_prom > 15 then
     begin
-      zqPrincipalgrados_longitud_fin.Value := zqPrincipalgrados_longitud_fin.Value - 1;
-    end
-    else if (zqPrincipalminutos_longitud_ini.Value > 50) and
-      (zqPrincipalminutos_longitud_fin.Value < 10) then
-    begin
-      zqPrincipalgrados_longitud_fin.Value := zqPrincipalgrados_longitud_fin.Value + 1;
-    end
-    else if (((zqPrincipalminutos_longitud_ini.Value > 50) and
-      (zqPrincipalminutos_longitud_fin.Value > 50)) or
-      ((zqPrincipalminutos_longitud_ini.Value < 10) and
-      (zqPrincipalminutos_longitud_fin.Value < 10))) and
-      (zqPrincipalgrados_longitud_ini.Value <>
-      zqPrincipalgrados_longitud_fin.Value) then
-    begin
-      zqPrincipalgrados_longitud_fin.Value := zqPrincipalgrados_longitud_ini.Value;
-    end
-    else //Ante otra condición, se intenta corregir colocando el mismo grado que al inicio
-    begin
-      zqPrincipalgrados_longitud_fin.Value := zqPrincipalgrados_longitud_ini.Value;
+      if (zqPrincipalminutos_longitud_ini.Value < 10) and
+        (zqPrincipalminutos_longitud_fin.Value > 50) then
+      begin
+        zqPrincipalgrados_longitud_fin.Value := zqPrincipalgrados_longitud_fin.Value - 1;
+      end
+      else if (zqPrincipalminutos_longitud_ini.Value > 50) and
+        (zqPrincipalminutos_longitud_fin.Value < 10) then
+      begin
+        zqPrincipalgrados_longitud_fin.Value := zqPrincipalgrados_longitud_fin.Value + 1;
+      end
+      else if (((zqPrincipalminutos_longitud_ini.Value > 50) and
+        (zqPrincipalminutos_longitud_fin.Value > 50)) or
+        ((zqPrincipalminutos_longitud_ini.Value < 10) and
+        (zqPrincipalminutos_longitud_fin.Value < 10))) and
+        (zqPrincipalgrados_longitud_ini.Value <>
+        zqPrincipalgrados_longitud_fin.Value) then
+      begin
+        zqPrincipalgrados_longitud_fin.Value := zqPrincipalgrados_longitud_ini.Value;
+      end
+      else //Ante otra condición, se intenta corregir colocando el mismo grado que al inicio
+      begin
+        zqPrincipalgrados_longitud_fin.Value := zqPrincipalgrados_longitud_ini.Value;
+      end;
     end;
   end;
 end;
@@ -807,7 +817,7 @@ var
   minutos_tiempo: double;
   veloc_prom: double;
 begin
-  if (zqAntLance.RecordCount > 0)
+  if (zqAntLance.RecordCount > 0) and ((FControlesEdicion.GetControl('MinutosLongIni') as TDBEdit).Text<>'')
   and (not zqAntLancegrados_latitud_fin.IsNull)
   and (not zqAntLanceminutos_latitud_fin.IsNull)
   and (not zqAntLancegrados_longitud_fin.IsNull)
@@ -1211,7 +1221,7 @@ begin
       (zqPrincipalVelocNecesaria.Value > 5.8) or
       (zqPrincipalVelocNecesaria.Value < 3) or
       (zqPrincipalTiempoNecesario.Value > 40) or
-      ((not zqPrincipalDifRumbo.IsNull) and (zqPrincipalDifRumbo.Value>15)) then
+      ((not zqPrincipalDifRumbo.IsNull) and (zqPrincipalDifRumbo.Value>10)) then
     begin
       if MessageDlg('Advertencia',
         'Parece que algo no está bien con las posiciones, el tiempo de arrastre, el rumbo o la velocidad. ¿Desea guardar igualmente estos datos con error?', mtWarning, [mbYes, mbNo], 0, mbNo) = mrNo then
@@ -1222,6 +1232,7 @@ begin
       begin
         ValidacionOK := (ValidacionOK and True);
         //Hago foco en la hora para que quede posicionado para el siguiente registro (alta continua)
+        FControlesEdicion.SetFocus('Hora');
       end;
     end;
   end;
@@ -1260,6 +1271,8 @@ begin
 end;
 
 procedure TfmEditarLances.zqPrincipalCalcFields(DataSet: TDataSet);
+var
+  grados_dif_rumbo: double;
 begin
   FControlesEdicion.SetHint('DistCalc', '');
   FControlesEdicion.SetHint('VelCalc', '');
@@ -1310,14 +1323,16 @@ begin
       //Si no se indicó el rumbo, no calculo diferencia
       if not zqPrincipalrumbo.IsNull then
       begin
-        //Calculo diferencia > 15°
-        zqPrincipalDifRumbo.Value:=abs(zqPrincipalRumboCalculado.Value-zqPrincipalrumbo.Value);
+        //Calculo diferencia > 10%. COnsidero 180° como el 100%
+        grados_dif_rumbo:=abs(zqPrincipalRumboCalculado.Value-zqPrincipalrumbo.Value);
         //Me aseguro de que la diferencia no sea mayor a 180°
-        if zqPrincipalDifRumbo.Value>180 then
-           zqPrincipalDifRumbo.Value:=360-zqPrincipalDifRumbo.Value;
+        if grados_dif_rumbo>180 then
+           grados_dif_rumbo:=360-grados_dif_rumbo;
+
+        zqPrincipalDifRumbo.Value:=round(grados_dif_rumbo*10000/180)/100;
 
         // Pongo en rojo valores dudosos
-        if zqPrincipalDifRumbo.Value > 15 then
+        if zqPrincipalDifRumbo.Value > 10 then
           FControlesEdicion.SetColor('RumboRegist', clRed)
         else
           FControlesEdicion.SetColor('RumboRegist', clDefault);
@@ -1430,7 +1445,7 @@ begin
   if (not zqPrincipalrumbo.IsNull) and
     (not zqPrincipalRumboCalculado.IsNull) then
   begin
-    if zqPrincipalDifRumbo.Value > 15 then
+    if zqPrincipalDifRumbo.Value > 10 then
       FControlesEdicion.SetColor('RumboDif', clRed)
     else
       FControlesEdicion.SetColor('RumboDif', clDefault);

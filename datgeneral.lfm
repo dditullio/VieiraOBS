@@ -21,7 +21,7 @@ object dmGeneral: TdmGeneral
     Database = 'vieira'
     User = 'root'
     Password = 'root'
-    Protocol = 'mysql-5'
+    Protocol = 'mysqld-5'
     left = 16
     top = 16
   end

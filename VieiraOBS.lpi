@@ -396,6 +396,7 @@
         <ComponentName Value="fmBackup"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmbackup"/>
       </Unit38>
     </Units>
   </ProjectOptions>

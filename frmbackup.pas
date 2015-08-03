@@ -7,8 +7,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, UTF8Process, AbZipper, AbBrowse, Forms, Controls,
   Graphics, Dialogs, StdCtrls, EditBtn, Buttons, ActnList, ComCtrls, LSConfig,
-  datGeneral, db, sqldb, sqldblib, mysql55conn, ZSqlMetadata, ZDataset,
-  ExSystemUtils, process, LCLIntf, ExtCtrls, AbArcTyp, AbUnzper, math;
+  datGeneral, db, sqldb, sqldblib, mysql56conn, ZSqlMetadata,
+  ZDataset, ExSystemUtils, process, LCLIntf, ExtCtrls, AbArcTyp, AbUnzper, math;
 
 type
 
@@ -27,6 +27,7 @@ type
     ckCopiaTXT: TCheckBox;
     ckEstructura: TCheckBox;
     ckDatos: TCheckBox;
+    conRestaurar: TMySQL56Connection;
     dedCarpetaArchivo: TDirectoryEdit;
     edArchivoSQL: TEdit;
     gbDestino: TGroupBox;
@@ -37,7 +38,6 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    conRestaurar: TMySQL55Connection;
     laVistaPreliminar: TLabel;
     meSQL: TMemo;
     odRestaurar: TOpenDialog;

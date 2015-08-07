@@ -10,7 +10,7 @@ uses
   ExtCtrls, Buttons, ActnList, StdCtrls, ComCtrls, frmlistabase, db, ZDataset,
   zcontroladorgrilla, datGeneral, frmeditarlances, dateutils, funciones, math,
   TAFuncSeries, TADataTools, TAChartListbox, types, LSConfig, LSControls,
-  TACustomSeries, LCLIntf, DBGrids, TAChartUtils;
+  TACustomSeries, LCLIntf, DBGrids, TAChartUtils, TALegendPanel;
 
 type
 
@@ -27,6 +27,7 @@ type
     acZoomOut: TAction;
     acZoomIn: TAction;
     alMapa: TActionList;
+    ctZoomDrag2: TZoomDragTool;
     ctInfoCoordenadas: TUserDefinedTool;
     ckOcultarMapaBase: TCheckBox;
     clbReferencias: TChartListbox;
@@ -293,7 +294,7 @@ begin
     while not EOF do
     begin
       if campoEtiqueta<>'' then
-         Texto:=FieldByName(campoEtiqueta).AsString;
+         Texto:=' '+FieldByName(campoEtiqueta).AsString+' ';
       if (FieldByName('Longitud').AsFloat<>0) and (FieldByName('Latitud').AsFloat<>0) then
          lcs.Add(FieldByName('Longitud').AsFloat,FieldByName('Latitud').AsFloat,Texto)
       else
@@ -425,7 +426,11 @@ begin
   begin
     if (not FileExistsUTF8(sdGuardarImagen.FileName)) or (MessageDlg('El archivo '+sdGuardarImagen.FileName+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
+      chtLances.Title.Visible:=True;
+      chtLances.Foot.Visible:=True;
       chtLances.SaveToFile(TJPEGImage, sdGuardarImagen.FileName);
+      chtLances.Title.Visible:=False;
+      chtLances.Foot.Visible:=False;
       OpenDocument(sdGuardarImagen.FileName);
     end;
   end;
@@ -567,6 +572,7 @@ var
 begin
   dtFecha.Date:=IncDay(Date,-1);
   chtLances.Title.Text.Text:=PChar('Marea: '+dmGeneral.DscMareaActiva);
+  chtLances.Foot.Text.Text:=PChar('Mapa generado por: '+ApplicationName+' v'+APP_VERSION);
   FMapasCargados:=False;
   LSLoadConfig(['ver_mapa_lances'], [str_conf], [@str_conf]);
   ckMapaLances.Checked:=(str_conf='True');

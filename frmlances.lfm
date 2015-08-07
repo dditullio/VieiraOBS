@@ -512,6 +512,7 @@ inherited fmLances: TfmLances
                 Title.Caption = 'Longitud'
                 OnMarkToText = chtLancesAxisList1MarkToText
               end>
+            BackColor = clInactiveBorder
             Extent.UseXMax = True
             Extent.UseXMin = True
             Extent.UseYMax = True
@@ -522,6 +523,12 @@ inherited fmLances: TfmLances
             Extent.YMin = -50
             Foot.Brush.Color = clBtnFace
             Foot.Font.Color = clBlue
+            Foot.Font.Height = -9
+            Foot.Text.Strings = (
+              'Vieira OBS v 1.0.0'
+            )
+            Legend.Alignment = laTopCenter
+            Legend.ColumnCount = 2
             Legend.Font.Height = -9
             Proportional = True
             ReticuleMode = rmCross
@@ -540,6 +547,7 @@ inherited fmLances: TfmLances
               Marks.Visible = False
               Marks.Format = '%2:s'
               Marks.Style = smsLabel
+              ZPosition = 8
               LinePen.Color = clBlue
               LinePen.Width = 2
               Pointer.HorizSize = 3
@@ -547,6 +555,22 @@ inherited fmLances: TfmLances
               Pointer.VertSize = 3
               ShowPoints = True
               Source = lcsLanceSeleccionado
+            end
+            object chtLancesMuestrasEcologicasSerie: TLineSeries
+              Legend.Format = 'Muestras Ecol.'
+              Marks.Alignment = taCenter
+              Marks.Visible = False
+              Marks.Format = '%2:s'
+              Marks.Style = smsLabel
+              ZPosition = 7
+              LineType = ltNone
+              MarkPositions = lmpInside
+              Pointer.Brush.Color = clYellow
+              Pointer.HorizSize = 6
+              Pointer.Style = psDiamond
+              Pointer.VertSize = 6
+              ShowPoints = True
+              Source = lcsMuestrasEcologicas
             end
             object chtLancesSerieLances: TLineSeries
               Legend.Format = 'Lances'
@@ -558,6 +582,7 @@ inherited fmLances: TfmLances
               Marks.Format = '%2:s'
               Marks.LinkPen.Color = clBlack
               Marks.Style = smsLabel
+              ZPosition = 6
               LinePen.Color = clRed
               LinePen.Width = 2
               MarkPositions = lmpInside
@@ -566,62 +591,56 @@ inherited fmLances: TfmLances
               Pointer.VertSize = 3
               Source = lcsLances
             end
-            object chtLancesMuestrasEcologicasSerie: TLineSeries
-              Legend.Format = 'Muestras Ecol.'
-              Marks.Alignment = taCenter
-              Marks.Visible = False
-              Marks.Format = '%2:s'
-              Marks.Style = smsLabel
-              LineType = ltNone
-              MarkPositions = lmpInside
-              Pointer.Brush.Color = clYellow
-              Pointer.HorizSize = 6
-              Pointer.Style = psDiamond
-              Pointer.VertSize = 6
-              ShowPoints = True
-              Source = lcsMuestrasEcologicas
+            object chtLancesUMVieiraSerie: TLineSeries
+              Legend.Format = 'U.M. Vieira'
+              Legend.Visible = False
+              Marks.Distance = 0
+              ZPosition = 5
+              LinePen.Color = clGreen
+              Source = lcsUMVieira
+            end
+            object chtLancesOtrasZonasSerie: TLineSeries
+              Legend.Format = 'Veda y Z. Común'
+              ZPosition = 4
+              LinePen.Color = clOlive
+              Source = lcsOtrasZonas
+            end
+            object chtLancesZEP_ZEESeries: TLineSeries
+              Legend.Format = 'ZEP y ZEE'
+              ZPosition = 3
+              LinePen.Color = clRed
+              Source = lcsZonasEconomicas
+            end
+            object chtLancesMapaBaseSerie: TBSplineSeries
+              Legend.Format = 'Mapa base'
+              ZPosition = 2
+              Source = lcsMapaBase
+              Pen.Color = clGray
+              Pen.Width = 2
+              Pointer.Visible = False
             end
             object chtLancesEtiquetasUMSerie: TLineSeries
               Legend.Format = 'Nombres U.M.'
               Legend.Visible = False
               Transparency = 100
               Active = False
-              Marks.Shape = clsRoundRect
-              Marks.CalloutAngle = 15
+              Marks.Attachment = maCenter
+              Marks.Distance = 0
+              Marks.LabelFont.Height = -27
+              Marks.LabelFont.Style = [fsBold]
+              Marks.Shape = clsRoundSide
               Marks.Format = '%2:s'
+              Marks.Frame.Visible = False
+              Marks.LabelBrush.Color = clInactiveCaption
               Marks.Style = smsLabel
+              ZPosition = 1
               LineType = ltNone
               MarkPositions = lmpInside
               Pointer.Brush.Color = clLime
               Pointer.HorizSize = 6
               Pointer.Style = psCircle
               Pointer.VertSize = 6
-              ShowPoints = True
               Source = lcsEtiquetasUM
-            end
-            object chtLancesUMVieiraSerie: TLineSeries
-              Legend.Format = 'U.M. Vieira'
-              Legend.Visible = False
-              Marks.Distance = 0
-              LinePen.Color = clGreen
-              Source = lcsUMVieira
-            end
-            object chtLancesOtrasZonasSerie: TLineSeries
-              Legend.Format = 'Veda y Z. Común'
-              LinePen.Color = clOlive
-              Source = lcsOtrasZonas
-            end
-            object chtLancesZEP_ZEESeries: TLineSeries
-              Legend.Format = 'ZEP y ZEE'
-              LinePen.Color = clRed
-              Source = lcsZonasEconomicas
-            end
-            object chtLancesMapaBaseSerie: TBSplineSeries
-              Legend.Format = 'Mapa base'
-              Source = lcsMapaBase
-              Pen.Color = clGray
-              Pen.Width = 2
-              Pointer.Visible = False
             end
           end
           object LSExpandPanel1: TLSExpandPanel
@@ -1616,6 +1635,12 @@ inherited fmLances: TfmLances
       AnimationSteps = 5
       DrawingMode = tdmNormal
     end
+    object ctZoomDrag2: TZoomDragTool
+      Shift = [ssCtrl, ssLeft]
+      AnimationInterval = 10
+      AnimationSteps = 5
+      DrawingMode = tdmNormal
+    end
     object ctMover: TPanDragTool
       Enabled = False
       Shift = [ssLeft]
@@ -1638,14 +1663,27 @@ inherited fmLances: TfmLances
       PointerEnd.Brush.Style = bsClear
       PointerEnd.Pen.Color = clBlue
       PointerEnd.Pen.Width = 2
-      PointerEnd.Style = psRightTriangle
       PointerEnd.VertSize = 5
       PointerStart.Brush.Style = bsClear
       PointerStart.HorizSize = 6
       PointerStart.Pen.Color = clBlue
       PointerStart.Pen.Width = 2
-      PointerStart.Style = psLeftTriangle
       PointerStart.VertSize = 5
+      OnGetDistanceText = ctDistanciaGetDistanceText
+    end
+    object ctDistancia2: TDataPointDistanceTool
+      Shift = [ssShift, ssLeft]
+      DrawingMode = tdmNormal
+      LinePen.Color = clBlue
+      LinePen.Width = 2
+      DataPointModeEnd = dpmSnap
+      DataPointModeStart = dpmSnap
+      Marks.Format = '%0:.9g'
+      Options = [dpdoFlipLabel]
+      PointerEnd.Pen.Color = clBlue
+      PointerEnd.Pen.Width = 2
+      PointerStart.Pen.Color = clBlue
+      PointerStart.Pen.Width = 2
       OnGetDistanceText = ctDistanciaGetDistanceText
     end
     object ctInformacion: TDataPointHintTool

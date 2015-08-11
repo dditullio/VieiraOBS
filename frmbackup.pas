@@ -608,8 +608,11 @@ begin
       sl_expglob.Clear;
       HabilitarAcciones;
     end;
+    ckRestaurarEstructura.Checked:=False;
     ckRestaurarEstructura.Enabled:=(sl_tablas.Count>0) or (sl_rutinas.Count>0);
-    ckRestaurarEstructura.Checked:=ckRestaurarEstructura.Enabled;
+    //Para evitar problemas, se sugiere que sólo se importen los datos
+    //ya que la estructura por ser una versión anterior puede estar desactualizada
+    ckRestaurarEstructura.Checked:=(ckRestaurarEstructura.Enabled and (version_script=APP_VERSION));
     ckRestaurarDatos.Enabled:=(sl_datos.Count>0);
     ckRestaurarDatos.Checked:=ckRestaurarDatos.Enabled;
   end;

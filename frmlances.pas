@@ -575,7 +575,7 @@ begin
   chtLances.Foot.Text.Text:=PChar('Mapa generado por: '+ApplicationName+' v'+APP_VERSION);
   FMapasCargados:=False;
   LSLoadConfig(['ver_mapa_lances'], [str_conf], [@str_conf]);
-  ckMapaLances.Checked:=(str_conf='True');
+  ckMapaLances.Checked:=(not (str_conf='False'));
   inherited;
 end;
 

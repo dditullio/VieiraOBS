@@ -45,9 +45,9 @@ object fmBackup: TfmBackup
     Height = 327
     Top = 65
     Width = 416
-    ActivePage = tsBackup
+    ActivePage = tsRestaurar
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     OnChange = pcBackupChange
     object tsBackup: TTabSheet
@@ -579,6 +579,7 @@ object fmBackup: TfmBackup
   end
   object trRestaurar: TSQLTransaction
     Active = False
+    Database = conRestaurar
     left = 100
     top = 330
   end
@@ -732,6 +733,7 @@ object fmBackup: TfmBackup
     Connected = False
     LoginPrompt = False
     KeepConnection = False
+    Transaction = trRestaurar
     left = 30
     top = 330
   end

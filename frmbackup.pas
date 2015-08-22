@@ -676,7 +676,6 @@ begin
                sl_rutinas[i]:=StringReplace(sl_rutinas[i], 'DELIMITER $$', '', [rfReplaceAll, rfIgnoreCase]);
                sl_rutinas[i]:=StringReplace(sl_rutinas[i], 'DELIMITER ;', '', [rfReplaceAll, rfIgnoreCase]);
              end;
-             sl_rutinas.SaveToFile('d:\tmp\rutinas.sql');
              scRestaurar.Terminator:='$$';
              scRestaurar.Script.Text:=sl_rutinas.Text;
              scRestaurar.ExecuteScript;

@@ -33,7 +33,7 @@ type
     zqMareaActivafecha_arribo: TDateField;
     zqMareaActivafecha_zarpada: TDateField;
     zqMareaActivaidmarea: TLongintField;
-    zqMareaActivaMarea: TBytesField;
+    zqMareaActivaMarea: TStringField;
     zqMareaActivamarea_buque: TStringField;
     zqMareaActivanro_marea_inidep: TLongintField;
     zqMareaActivaobservador: TStringField;
@@ -56,7 +56,7 @@ type
     zqMareasfecha_zarpada: TDateField;
     zqMareasidbuque: TLongintField;
     zqMareasidmarea: TLongintField;
-    zqMareasMarea: TBytesField;
+    zqMareasMarea: TStringField;
     zqMareasmarea_buque: TStringField;
     zqMareasnro_marea_inidep: TLongintField;
     zqMareasoficial: TStringField;

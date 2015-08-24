@@ -289,6 +289,7 @@
         <ComponentName Value="fmEditarLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditarlances"/>
       </Unit26>
       <Unit27>
         <Filename Value="frmlances.pas"/>
@@ -307,6 +308,7 @@
         <ComponentName Value="fmInformes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frminformes"/>
       </Unit29>
       <Unit30>
         <Filename Value="frmmuestrassenasa.pas"/>

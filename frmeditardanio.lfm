@@ -38,6 +38,7 @@ inherited fmEditarDanio: TfmEditarDanio
       Height = 23
       Top = 26
       Width = 164
+      AutoComplete = True
       DataField = 'banda'
       DataSource = dsPrincipal
       KeyField = 'banda'
@@ -51,7 +52,7 @@ inherited fmEditarDanio: TfmEditarDanio
     object dbmComentarios: TDBMemo[2]
       Left = 8
       Height = 84
-      Top = 262
+      Top = 265
       Width = 636
       DataField = 'comentarios'
       DataSource = dsPrincipal
@@ -61,18 +62,18 @@ inherited fmEditarDanio: TfmEditarDanio
     object Label7: TLabel[3]
       Left = 8
       Height = 15
-      Top = 242
+      Top = 245
       Width = 68
       Caption = 'Comentarios'
       ParentColor = False
     end
     object GroupBox1: TGroupBox[4]
       Left = 28
-      Height = 201
+      Height = 187
       Top = 58
       Width = 304
       Caption = 'Antes del proceso (Captura)'
-      ClientHeight = 183
+      ClientHeight = 169
       ClientWidth = 300
       TabOrder = 2
       object Panel1: TPanel
@@ -384,11 +385,11 @@ inherited fmEditarDanio: TfmEditarDanio
     end
     object GroupBox2: TGroupBox[10]
       Left = 340
-      Height = 201
+      Height = 186
       Top = 58
       Width = 304
       Caption = 'Después del proceso (Descarte)'
-      ClientHeight = 183
+      ClientHeight = 168
       ClientWidth = 300
       TabOrder = 3
       object Panel5: TPanel
@@ -710,7 +711,6 @@ inherited fmEditarDanio: TfmEditarDanio
         EditMask = '00:00;1;_'
         MaxLength = 5
         TabOrder = 1
-        OnExit = dbdtHoraExit
       end
     end
   end
@@ -775,7 +775,6 @@ inherited fmEditarDanio: TfmEditarDanio
       ReadOnly = False
       Required = True
       OnSetText = zqPrincipalhoraSetText
-      OnValidate = zqPrincipalhoraValidate
       DisplayFormat = 'hh:mm'
     end
     object zqPrincipalbanda: TStringField[4]

@@ -132,12 +132,10 @@ type
     zqPrincipalidmarea: TLongintField;
     zqPrincipalidmuestras_danio: TLongintField;
     procedure dbdtFechaEnter(Sender: TObject);
-    procedure dbdtHoraExit(Sender: TObject);
     procedure dblkBandaExit(Sender: TObject);
     procedure paFechaHoraExit(Sender: TObject);
     procedure zqPrincipalCalcFields(DataSet: TDataSet);
     procedure zqPrincipalhoraSetText(Sender: TField; const aText: string);
-    procedure zqPrincipalhoraValidate(Sender: TField);
     procedure zqPrincipalNewRecord(DataSet: TDataSet);
   private
     { private declarations }
@@ -170,10 +168,6 @@ begin
     sender.AsString:=aText;
 end;
 
-procedure TfmEditarDanio.zqPrincipalhoraValidate(Sender: TField);
-begin
-end;
-
 procedure TfmEditarDanio.dblkBandaExit(Sender: TObject);
 begin
   if dblkBanda.Text='' then
@@ -200,10 +194,6 @@ begin
   // en la última posición
   (Sender as TDBDateTimePicker).SelectTime;
   (Sender as TDBDateTimePicker).SelectDate;
-end;
-
-procedure TfmEditarDanio.dbdtHoraExit(Sender: TObject);
-begin
 end;
 
 procedure TfmEditarDanio.zqPrincipalNewRecord(DataSet: TDataSet);

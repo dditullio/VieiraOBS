@@ -310,7 +310,7 @@ inherited fmEditarLances: TfmEditarLances
                 Left = 9
                 Height = 15
                 Top = 7
-                Width = 68
+                Width = 67
                 Caption = 'Tpo. Arrastre'
                 ParentColor = False
               end
@@ -387,7 +387,7 @@ inherited fmEditarLances: TfmEditarLances
                 Left = 206
                 Height = 15
                 Top = 60
-                Width = 52
+                Width = 51
                 Caption = 'Velocidad'
                 ParentColor = False
               end

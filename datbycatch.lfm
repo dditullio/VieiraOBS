@@ -39,7 +39,7 @@ inherited dmByCatch: TdmByCatch
         Name = 'Id'
         ParamType = ptUnknown
       end>
-    left = 36
+    left = 32
     top = 12
     ParamData = <    
       item

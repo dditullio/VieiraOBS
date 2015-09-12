@@ -1,5 +1,7 @@
 inherited fmEditarDetalleByCatch: TfmEditarDetalleByCatch
+  Left = 487
   Height = 225
+  Top = 190
   Width = 363
   Caption = 'Componente de ByCatch'
   ClientHeight = 225
@@ -12,13 +14,14 @@ inherited fmEditarDetalleByCatch: TfmEditarDetalleByCatch
       Left = 248
     end
     inherited DividerBevel1: TDividerBevel
-      Left = 231
+      Left = 233
+      Width = 15
     end
     inherited paEncabezado: TPanel
-      Width = 230
-      ClientWidth = 230
+      Width = 232
+      ClientWidth = 232
       inherited dbtEncabezado: TDBText
-        Width = 390
+        Width = 392
         DataField = 'Nombre'
         DataSource = dmByCatch.dsDetByCatch
       end
@@ -31,15 +34,15 @@ inherited fmEditarDetalleByCatch: TfmEditarDetalleByCatch
     ClientWidth = 363
     object Label3: TLabel[0]
       Left = 7
-      Height = 17
+      Height = 15
       Top = 6
-      Width = 44
+      Width = 39
       Caption = 'Especie'
       ParentColor = False
     end
     object dblkEspecie: TDBLookupComboBox[1]
       Left = 7
-      Height = 25
+      Height = 23
       Top = 26
       Width = 183
       AutoComplete = True
@@ -54,15 +57,15 @@ inherited fmEditarDetalleByCatch: TfmEditarDetalleByCatch
     end
     object Label1: TLabel[2]
       Left = 276
-      Height = 17
+      Height = 15
       Top = 6
-      Width = 59
+      Width = 53
       Caption = 'Nº Ejemp.'
       ParentColor = False
     end
     object dbedNroEjemp: TDBEdit[3]
       Left = 276
-      Height = 25
+      Height = 23
       Top = 26
       Width = 80
       DataField = 'numero'
@@ -73,15 +76,15 @@ inherited fmEditarDetalleByCatch: TfmEditarDetalleByCatch
     end
     object Label2: TLabel[4]
       Left = 193
-      Height = 17
+      Height = 15
       Top = 6
-      Width = 28
+      Width = 25
       Caption = 'Peso'
       ParentColor = False
     end
     object dbedPeso: TDBEdit[5]
       Left = 193
-      Height = 25
+      Height = 23
       Top = 26
       Width = 80
       DataField = 'peso'
@@ -92,9 +95,9 @@ inherited fmEditarDetalleByCatch: TfmEditarDetalleByCatch
     end
     object Label7: TLabel[6]
       Left = 7
-      Height = 17
+      Height = 15
       Top = 56
-      Width = 74
+      Width = 68
       Caption = 'Comentarios'
       ParentColor = False
     end

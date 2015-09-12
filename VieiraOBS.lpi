@@ -219,6 +219,7 @@
         <ComponentName Value="fmEditarDanio"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditardanio"/>
       </Unit16>
       <Unit17>
         <Filename Value="frmbycatch.pas"/>
@@ -233,6 +234,7 @@
         <ComponentName Value="dmByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="datbycatch"/>
       </Unit18>
       <Unit19>
         <Filename Value="frmeditarbycatch.pas"/>
@@ -240,6 +242,7 @@
         <ComponentName Value="fmEditarByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditarbycatch"/>
       </Unit19>
       <Unit20>
         <Filename Value="datbase.pas"/>
@@ -254,6 +257,7 @@
         <ComponentName Value="fmEditarDetalleByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditardetallebycatch"/>
       </Unit21>
       <Unit22>
         <Filename Value="frmtallas.pas"/>
@@ -268,6 +272,7 @@
         <ComponentName Value="dmTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dattallas"/>
       </Unit23>
       <Unit24>
         <Filename Value="frmeditartallas.pas"/>
@@ -275,6 +280,7 @@
         <ComponentName Value="fmEditarTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditartallas"/>
       </Unit24>
       <Unit25>
         <Filename Value="frmeditardetalletallas.pas"/>

@@ -536,7 +536,9 @@ inherited fmEditarTallas: TfmEditarTallas
     end
   end
   inherited zcePrincipal: TZControladorEdicion
+    AltaContinua = True
     ControlInicial = dbdtHora
+    OnInitRecord = zcePrincipalInitRecord
   end
   inherited zdgPrincipal: TZDatasetGroup
     DatasetMaestro = dmTallas.zqTallas
@@ -559,6 +561,7 @@ inherited fmEditarTallas: TfmEditarTallas
     BotonAgregar = bbAgregar
     BotonEditar = bbEditar
     BotonEliminar = bbEliminar
+    SeleccionarUltimo = False
     ControlEdicion = fmEditarDetalleTallas.zcePrincipal
     MostrarBotonExportar = False
     ZDataset = dmTallas.zqDetalleTallas

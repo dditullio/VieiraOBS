@@ -40,6 +40,7 @@ type
     procedure dblkTipoExit(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure paFechaHoraExit(Sender: TObject);
+    procedure zcePrincipalInitRecord(Sender: TObject);
     procedure zcePrincipalValidateForm(Sender: TObject; var ValidacionOK: boolean);
     procedure zcgListaAntesAgregar(Sender: TObject);
   private
@@ -128,6 +129,11 @@ begin
     if dbdtHora.CanFocus then
       dbdtHora.SetFocus;
   end;
+end;
+
+procedure TfmEditarTallas.zcePrincipalInitRecord(Sender: TObject);
+begin
+  max_talla:=-1;
 end;
 
 procedure TfmEditarTallas.zcePrincipalValidateForm(Sender: TObject;

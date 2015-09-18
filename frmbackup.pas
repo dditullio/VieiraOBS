@@ -454,6 +454,7 @@ procedure TfmBackup.FormShow(Sender: TObject);
 var
   destino:String;
 begin
+  destino :='';
   if not Assigned(sl_tablas) then
      sl_tablas:=TStringList.Create;
   if not Assigned(sl_datos) then

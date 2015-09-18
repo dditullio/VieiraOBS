@@ -49,6 +49,12 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <Verbosity>
+              <ShowNotes Value="False"/>
+              <ShowHints Value="False"/>
+            </Verbosity>
+          </Other>
         </CompilerOptions>
       </Item2>
     </BuildModes>
@@ -303,6 +309,7 @@
         <ComponentName Value="fmLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmlances"/>
       </Unit27>
       <Unit28>
         <Filename Value="funciones.pas"/>
@@ -322,6 +329,7 @@
         <ComponentName Value="fmMuestrasSenasa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmmuestrassenasa"/>
       </Unit30>
       <Unit31>
         <Filename Value="frmrptdatospuente.pas"/>
@@ -350,10 +358,12 @@
         <ComponentName Value="SplashScreenForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmSplashScreenForm"/>
       </Unit34>
       <Unit35>
         <Filename Value="UHojaCalc.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="UHojaCalc"/>
       </Unit35>
       <Unit36>
         <Filename Value="frmmuestrasrayas.pas"/>

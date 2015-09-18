@@ -373,8 +373,8 @@ var
   Decimal: string;
   OLD_DC: char;
 begin
-  OLD_DC := DecimalSeparator;
-  DecimalSeparator := '.';
+  OLD_DC := DefaultFormatSettings.DecimalSeparator;
+  DefaultFormatSettings.DecimalSeparator := '.';
   //Si es una expresión fraccional, los '+' no se aplican, así que los borro
   if Pos('/', s_captura) > 0 then
   begin
@@ -399,7 +399,7 @@ begin
     Expr := s_captura;
   end;
   Result := Expr;
-  DecimalSeparator := OLD_DC;
+  DefaultFormatSettings.DecimalSeparator := OLD_DC;
 end;
 
 {$R *.lfm}
@@ -900,6 +900,7 @@ var
   formato: string;
 begin
   FControlesEdicion := TControlsArray.Create;
+  formato:='';
 
   inherited;
   pcLances.ActivePage := tsGeneral;
@@ -1181,6 +1182,7 @@ procedure TfmEditarLances.zcePrincipalInitRecord(Sender: TObject);
 var
   formato: string;
 begin
+  formato:='';
   pcLances.PageIndex := 0;
   LSLoadConfig(['formato_planilla_puente'], [formato], [@formato]);
   if formato = '' then
@@ -1469,8 +1471,8 @@ var
   Expr: string;
   OLD_DC: char;
 begin
-  OLD_DC := DecimalSeparator;
-  DecimalSeparator := ',';
+  OLD_DC := DefaultFormatSettings.DecimalSeparator;
+  DefaultFormatSettings.DecimalSeparator := ',';
   FLSExpression := TLSExpression.Create;
   if (not Sender.IsNull) and (Sender.AsString <> '') then
   begin
@@ -1489,7 +1491,7 @@ begin
     zqPrincipalcaptura_babor.AsString := '';
   end;
   FLSExpression.Free;
-  DecimalSeparator := OLD_DC;
+  DefaultFormatSettings.DecimalSeparator := OLD_DC;
 end;
 
 procedure TfmEditarLances.zqPrincipalcaptura_babor_buqueValidate(Sender: TField);
@@ -1499,8 +1501,8 @@ var
   Expr: string;
   OLD_DC: char;
 begin
-  OLD_DC := DecimalSeparator;
-  DecimalSeparator := ',';
+  OLD_DC := DefaultFormatSettings.DecimalSeparator;
+  DefaultFormatSettings.DecimalSeparator := ',';
   FLSExpression := TLSExpression.Create;
   if (not Sender.IsNull) then
   begin
@@ -1527,7 +1529,7 @@ begin
     end;
   end;
   FLSExpression.Free;
-  DecimalSeparator := OLD_DC;
+  DefaultFormatSettings.DecimalSeparator := OLD_DC;
 end;
 
 procedure TfmEditarLances.zqPrincipalcaptura_estribor_buqueChange(Sender: TField);
@@ -1536,8 +1538,8 @@ var
   Expr: string;
   OLD_DC: char;
 begin
-  OLD_DC := DecimalSeparator;
-  DecimalSeparator := ',';
+  OLD_DC := DefaultFormatSettings.DecimalSeparator;
+  DefaultFormatSettings.DecimalSeparator := ',';
   FLSExpression := TLSExpression.Create;
   if (not Sender.IsNull) and (Sender.AsString <> '') then
   begin
@@ -1556,7 +1558,7 @@ begin
     zqPrincipalcaptura_estribor.AsString := '';
   end;
   FLSExpression.Free;
-  DecimalSeparator := OLD_DC;
+  DefaultFormatSettings.DecimalSeparator := OLD_DC;
 end;
 
 procedure TfmEditarLances.zqPrincipalcaptura_estribor_buqueValidate(Sender: TField);
@@ -1566,8 +1568,8 @@ var
   Expr: string;
   OLD_DC: char;
 begin
-  OLD_DC := DecimalSeparator;
-  DecimalSeparator := ',';
+  OLD_DC := DefaultFormatSettings.DecimalSeparator;
+  DefaultFormatSettings.DecimalSeparator := ',';
   FLSExpression := TLSExpression.Create;
   if (not Sender.IsNull) then
   begin
@@ -1594,7 +1596,7 @@ begin
     end;
   end;
   FLSExpression.Free;
-  DecimalSeparator := OLD_DC;
+  DefaultFormatSettings.DecimalSeparator := OLD_DC;
 end;
 
 procedure TfmEditarLances.zqPrincipalcod_estado_marValidate(Sender: TField);

@@ -570,6 +570,7 @@ procedure TfmLances.FormShow(Sender: TObject);
 var
   str_conf: string;
 begin
+  str_conf:='';
   dtFecha.Date:=IncDay(Date,-1);
   chtLances.Title.Text.Text:=PChar('Marea: '+dmGeneral.DscMareaActiva);
   chtLances.Foot.Text.Text:=PChar('Mapa generado por: '+ApplicationName+' v'+APP_VERSION);

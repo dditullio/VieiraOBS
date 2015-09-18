@@ -15,7 +15,7 @@ uses
   frmeditardetallebycatch, frmtallas, dattallas, frmeditartallas,
   frmeditardetalletallas, frmeditarlances, frmlances, funciones, frmInformes,
   frmmuestrassenasa, frmrptdatospuente, frmeditarsenasacallos, lr_pdfexp_reg,
-  lr_pdfexport, frmeditarsenasaentera, frmSplashScreenForm, UHojaCalc,
+  lr_pdfexport, frmeditarsenasaentera, frmSplashScreenForm,
   frmmuestrasrayas, frmeditarrayas, frmbackup;
 
 {$R *.res}
@@ -23,7 +23,7 @@ uses
 begin
   Application.Title:='Vieira OBS';
   RequireDerivedFormResource := True;
-  DecimalSeparator:='.';
+  DefaultFormatSettings.DecimalSeparator:='.';
   Application.Initialize;
   ShowSplashScreen;
   SetSplashScreenStatus( 'Iniciando...' );

@@ -97,6 +97,7 @@ var
   lib_standard, lib_embedded: string;
   servidor_local: string;
 begin
+  tmp_MareaActiva:=-1;
   zcDB.Connected := False;
   {$IFDEF MSWINDOWS}
   lib_standard := ExtractFilePath(Application.ExeName) + 'libmysql.dll';

@@ -22,6 +22,8 @@ type
     bbEditar1: TBitBtn;
     bbEliminar: TBitBtn;
     bbEliminar1: TBitBtn;
+    bbExportarSenasaCallos: TBitBtn;
+    bbExportarSenasaEntera: TBitBtn;
     dsSenasaEntera: TDataSource;
     dsSenasaCallos: TDataSource;
     dbgLista: TRxDBGrid;

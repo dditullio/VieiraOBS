@@ -98,10 +98,10 @@ var startTime: cardinal;
     isVisible: Boolean;
 
 begin
-    startTime := GetTickCount;
+    startTime := GetTickCount64;
     isVisible := TRUE;
     while isVisible do begin
-        difference := GetTickCount - startTime;
+        difference := GetTickCount64 - startTime;
         value := 255 - difference div 2;
 
         if value < 0 then begin

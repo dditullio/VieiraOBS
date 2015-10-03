@@ -56,11 +56,14 @@ type
     zqPrincipalnro_marea_inidep: TLongintField;
     zqPrincipalobservador: TStringField;
     zqPrincipaloficial: TStringField;
+    procedure dbdtArriboCheckBoxChange(Sender: TObject);
     procedure dbdtArriboEnter(Sender: TObject);
+    procedure dbdtFinalizacionCheckBoxChange(Sender: TObject);
     procedure dbdtFinalizacionEnter(Sender: TObject);
     procedure dbdtInicioEnter(Sender: TObject);
     procedure dbdtZarpadaEnter(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormShow(Sender: TObject);
     procedure zqPrincipalCalcFields(DataSet: TDataSet);
     procedure zqPrincipalNewRecord(DataSet: TDataSet);
   private
@@ -111,12 +114,40 @@ begin
   dmGeneral.zqMareaActiva.Open;
 end;
 
+procedure TfmEditarMarea.FormShow(Sender: TObject);
+begin
+  if zqPrincipalfecha_arribo.IsNull then
+     dbdtArribo.Checked:=false;
+  if zqPrincipalfecha_finalizacion.IsNull then
+     dbdtFinalizacion.Checked:=false;
+end;
+
 procedure TfmEditarMarea.dbdtArriboEnter(Sender: TObject);
 begin
   //Hago esto para que se seleccione el día. Si no, el cursor queda
   // en la última posición
   (Sender as TDBDateTimePicker).SelectTime;
   (Sender as TDBDateTimePicker).SelectDate;
+end;
+
+procedure TfmEditarMarea.dbdtFinalizacionCheckBoxChange(Sender: TObject);
+begin
+  if not dbdtFinalizacion.Checked then
+     begin
+       if not (dbdtFinalizacion.DataSource.DataSet.State in [dsInsert, dsEdit]) then
+          dbdtFinalizacion.DataSource.DataSet.Edit;
+       dbdtFinalizacion.Field.Clear;
+     end;
+end;
+
+procedure TfmEditarMarea.dbdtArriboCheckBoxChange(Sender: TObject);
+begin
+  if not dbdtArribo.Checked then
+     begin
+       if not (dbdtArribo.DataSource.DataSet.State in [dsInsert, dsEdit]) then
+          dbdtArribo.DataSource.DataSet.Edit;
+       dbdtArribo.Field.Clear;
+     end;
 end;
 
 procedure TfmEditarMarea.dbdtFinalizacionEnter(Sender: TObject);

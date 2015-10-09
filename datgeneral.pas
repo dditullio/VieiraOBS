@@ -188,7 +188,7 @@ begin
     else
     begin
       MessageDlg(
-        'No se ha seleccionado una marea para registrar los datos. Por favor seleccione una marea existente y establézcala como aciva, o cree una nueva marea.', mtWarning, [mbClose], 0);
+        'No se ha seleccionado una marea para registrar los datos. Por favor seleccione una marea existente y establézcala como activa, o cree una nueva marea.', mtWarning, [mbClose], 0);
       acEstablecerActiva.Enabled := True;
       IdMareaActiva := -1;
     end;

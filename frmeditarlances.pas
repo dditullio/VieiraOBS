@@ -1089,7 +1089,7 @@ begin
         zqAntLancehora.AsDateTime)) then
       begin
         if MessageDlg(
-          'Ha ingresado una hora menor a la hora de inicio del lance anterior, lo cual sugiere un cambio de fecha. Se comenzarán a registrar los lances del día ' + FormatDateTime('dd/mm/yyyy', IncDay(zqAntLancefecha.Value, 1)) + ' ¿Está de acuerdo?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+          'Ha ingresado una hora menor a la hora de inicio del lance anterior, lo cual sugiere un cambio de fecha. Se comenzarán a registrar los lances del día ' + FormatDateTime('dd/mm/yyyy', IncDay(zqAntLancefecha.Value, 1)) + ' ¿Está de acuerdo?', mtWarning, [mbYes, mbNo], 0) = mrYes then
         begin
           zqPrincipalfecha.Value := IncDay(zqAntLancefecha.Value, 1);
         end

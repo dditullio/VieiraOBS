@@ -28,6 +28,7 @@ object dmGeneral: TdmGeneral
   object zqMareas: TZQuery
     Connection = zcDB
     AfterScroll = zqMareasAfterScroll
+    OnCalcFields = zqMareasCalcFields
     CachedUpdates = True
     AfterApplyUpdates = zqMareasAfterApplyUpdates
     SQL.Strings = (
@@ -50,11 +51,22 @@ object dmGeneral: TdmGeneral
       ReadOnly = False
       Required = True
     end
+    object zqMareasMarea: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Marea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 378
+    end
     object zqMareasnro_marea_inidep: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'nro_marea_inidep'
-      Index = 1
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -64,7 +76,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'anio_marea'
-      Index = 2
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -74,7 +86,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 180
       FieldKind = fkData
       FieldName = 'marea_buque'
-      Index = 3
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -85,7 +97,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'idbuque'
-      Index = 4
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -95,7 +107,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 180
       FieldKind = fkData
       FieldName = 'Buque'
-      Index = 5
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -106,7 +118,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 180
       FieldKind = fkData
       FieldName = 'capitan'
-      Index = 6
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -117,7 +129,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 180
       FieldKind = fkData
       FieldName = 'oficial'
-      Index = 7
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -128,7 +140,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'fecha_inicio'
-      Index = 8
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
@@ -138,7 +150,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'fecha_zarpada'
-      Index = 9
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
@@ -148,7 +160,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'fecha_arribo'
-      Index = 10
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
@@ -158,7 +170,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'fecha_finalizacion'
-      Index = 11
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
@@ -168,7 +180,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'dias_pesca'
-      Index = 12
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -178,7 +190,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cant_lances'
-      Index = 13
+      Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -188,7 +200,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cant_muestras_coccion'
-      Index = 14
+      Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -198,7 +210,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cant_muestras_rinde'
-      Index = 15
+      Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -208,7 +220,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cant_muestras_talla'
-      Index = 16
+      Index = 17
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -218,7 +230,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cant_muestras_bycatch'
-      Index = 17
+      Index = 18
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -228,7 +240,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cant_muestras_danio'
-      Index = 18
+      Index = 19
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -238,17 +250,17 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cant_muestras_ecologicas'
-      Index = 19
+      Index = 20
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqMareasMarea: TStringField
+    object zqMareasMareaStr: TStringField
       DisplayWidth = 150
-      FieldKind = fkData
-      FieldName = 'Marea'
-      Index = 20
+      FieldKind = fkCalculated
+      FieldName = 'MareaStr'
+      Index = 21
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -259,6 +271,7 @@ object dmGeneral: TdmGeneral
   object zqMareaActiva: TZQuery
     Connection = zcDB
     BeforeOpen = zqMareaActivaBeforeOpen
+    OnCalcFields = zqMareaActivaCalcFields
     SQL.Strings = (
       'SELECT idmarea, buque, marea_buque, anio_marea, nro_marea_inidep, Marea, capitan, observador, puerto_registro, factor_calc_captura, fecha_zarpada, fecha_arribo'
       'FROM v_mareas'
@@ -310,11 +323,22 @@ object dmGeneral: TdmGeneral
       Required = False
       Size = 180
     end
+    object zqMareaActivaMarea: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Marea'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 378
+    end
     object zqMareaActivacapitan: TStringField
       DisplayWidth = 180
       FieldKind = fkData
       FieldName = 'capitan'
-      Index = 3
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -325,7 +349,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 180
       FieldKind = fkData
       FieldName = 'observador'
-      Index = 4
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -336,7 +360,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'factor_calc_captura'
-      Index = 5
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -346,7 +370,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 180
       FieldKind = fkData
       FieldName = 'puerto_registro'
-      Index = 6
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -357,7 +381,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'fecha_zarpada'
-      Index = 7
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -368,7 +392,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'fecha_arribo'
-      Index = 8
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -379,7 +403,7 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'anio_marea'
-      Index = 9
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -389,17 +413,17 @@ object dmGeneral: TdmGeneral
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'nro_marea_inidep'
-      Index = 10
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object zqMareaActivaMarea: TStringField
+    object zqMareaActivaMareaStr: TStringField
       DisplayWidth = 150
-      FieldKind = fkData
-      FieldName = 'Marea'
-      Index = 11
+      FieldKind = fkCalculated
+      FieldName = 'MareaStr'
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

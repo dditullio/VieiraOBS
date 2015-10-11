@@ -23,6 +23,8 @@ object fmPrincipal: TfmPrincipal
     ClientHeight = 524
     ClientWidth = 155
     Color = clWhite
+    Constraints.MaxWidth = 270
+    Constraints.MinWidth = 155
     ParentColor = False
     TabOrder = 0
     object paBaseLateral: TPanel
@@ -151,15 +153,15 @@ object fmPrincipal: TfmPrincipal
     end
   end
   object paContenido: TPanel
-    Left = 155
+    Left = 160
     Height = 524
     Top = 0
-    Width = 691
+    Width = 686
     Align = alClient
     BevelOuter = bvNone
     BorderWidth = 7
     ClientHeight = 524
-    ClientWidth = 691
+    ClientWidth = 686
     Color = clWhite
     ParentColor = False
     TabOrder = 1
@@ -167,7 +169,7 @@ object fmPrincipal: TfmPrincipal
       Left = 7
       Height = 510
       Top = 7
-      Width = 677
+      Width = 672
       ActivePage = tsInicio
       Align = alClient
       Images = ilPrincipal
@@ -177,12 +179,12 @@ object fmPrincipal: TfmPrincipal
       object tsInicio: TTabSheet
         Caption = 'Inicio'
         ClientHeight = 479
-        ClientWidth = 669
+        ClientWidth = 664
         object Image1: TImage
           Left = 0
           Height = 408
           Top = 71
-          Width = 669
+          Width = 664
           Align = alClient
           Center = True
           Picture.Data = {
@@ -40221,11 +40223,11 @@ object fmPrincipal: TfmPrincipal
           Left = 0
           Height = 71
           Top = 0
-          Width = 669
+          Width = 664
           Align = alTop
           BevelOuter = bvNone
           ClientHeight = 71
-          ClientWidth = 669
+          ClientWidth = 664
           TabOrder = 0
           object Label1: TLabel
             Left = 9
@@ -40306,7 +40308,7 @@ object fmPrincipal: TfmPrincipal
             Height = 21
             Top = 15
             Width = 122
-            DataField = 'Marea'
+            DataField = 'MareaStr'
             DataSource = dmGeneral.dsMareaActiva
             Font.Color = clHotLight
             Font.Height = -16
@@ -40317,6 +40319,12 @@ object fmPrincipal: TfmPrincipal
         end
       end
     end
+  end
+  object Splitter1: TSplitter
+    Left = 155
+    Height = 524
+    Top = 0
+    Width = 5
   end
   object mmPrincipal: TMainMenu
     Images = ilPrincipal

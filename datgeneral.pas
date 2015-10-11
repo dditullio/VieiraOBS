@@ -33,7 +33,8 @@ type
     zqMareaActivafecha_arribo: TDateField;
     zqMareaActivafecha_zarpada: TDateField;
     zqMareaActivaidmarea: TLongintField;
-    zqMareaActivaMarea: TStringField;
+    zqMareaActivaMarea: TBytesField;
+    zqMareaActivaMareaStr: TStringField;
     zqMareaActivamarea_buque: TStringField;
     zqMareaActivanro_marea_inidep: TLongintField;
     zqMareaActivaobservador: TStringField;
@@ -56,7 +57,8 @@ type
     zqMareasfecha_zarpada: TDateField;
     zqMareasidbuque: TLongintField;
     zqMareasidmarea: TLongintField;
-    zqMareasMarea: TStringField;
+    zqMareasMarea: TBytesField;
+    zqMareasMareaStr: TStringField;
     zqMareasmarea_buque: TStringField;
     zqMareasnro_marea_inidep: TLongintField;
     zqMareasoficial: TStringField;
@@ -65,8 +67,10 @@ type
     procedure acEstablecerActivaExecute(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure zqMareaActivaBeforeOpen(DataSet: TDataSet);
+    procedure zqMareaActivaCalcFields(DataSet: TDataSet);
     procedure zqMareasAfterApplyUpdates(Sender: TObject);
     procedure zqMareasAfterScroll(DataSet: TDataSet);
+    procedure zqMareasCalcFields(DataSet: TDataSet);
   private
     FIdMareaActiva: integer;
     function GetDscMareaActiva: string;
@@ -97,7 +101,6 @@ var
   lib_standard, lib_embedded: string;
   servidor_local: string;
 begin
-  tmp_MareaActiva:=-1;
   zcDB.Connected := False;
   {$IFDEF MSWINDOWS}
   lib_standard := ExtractFilePath(Application.ExeName) + 'libmysql.dll';
@@ -189,7 +192,7 @@ begin
     else
     begin
       MessageDlg(
-        'No se ha seleccionado una marea para registrar los datos. Por favor seleccione una marea existente y establézcala como aciva, o cree una nueva marea.', mtWarning, [mbClose], 0);
+        'No se ha seleccionado una marea para registrar los datos. Por favor seleccione una marea existente y establézcala como activa, o cree una nueva marea.', mtWarning, [mbClose], 0);
       acEstablecerActiva.Enabled := True;
       IdMareaActiva := -1;
     end;
@@ -197,7 +200,7 @@ begin
   else
   begin
     MessageDlg(
-      'No se ha seleccionado una marea para registrar los datos. Por favor seleccione una marea existente y establézcala como aciva, o cree una nueva marea.', mtWarning, [mbClose], 0);
+      'No se ha seleccionado una marea para registrar los datos. Por favor seleccione una marea existente y establézcala como activa, o cree una nueva marea.', mtWarning, [mbClose], 0);
     acEstablecerActiva.Enabled := True;
     IdMareaActiva := -1;
   end;
@@ -207,6 +210,12 @@ end;
 procedure TdmGeneral.zqMareaActivaBeforeOpen(DataSet: TDataSet);
 begin
   zqMareaActiva.ParamByName('idmarea').Value := FIdMareaActiva;
+end;
+
+procedure TdmGeneral.zqMareaActivaCalcFields(DataSet: TDataSet);
+begin
+  if not zqMareaActivaMarea.IsNull then
+     zqMareaActivaMareaStr.AsString:=zqMareaActivaMarea.AsString;
 end;
 
 procedure TdmGeneral.zqMareasAfterApplyUpdates(Sender: TObject);
@@ -220,11 +229,17 @@ begin
   acEstablecerActiva.Enabled := (zqMareas.RecordCount>0) and (IdMareaActiva <> zqMareasidmarea.Value);
 end;
 
+procedure TdmGeneral.zqMareasCalcFields(DataSet: TDataSet);
+begin
+  if not zqMareasMarea.IsNull then
+     zqMareasMareaStr.AsString:=zqMareasMarea.AsString;
+end;
+
 procedure TdmGeneral.acEstablecerActivaExecute(Sender: TObject);
 var
   msg: string;
 begin
-  msg := '¿Desea activar la marea: ' + zqMareasMarea.AsString + '?';
+  msg := '¿Desea activar la marea: ' + zqMareasMareaStr.AsString + '?';
   if MessageDlg(msg, mtConfirmation, mbYesNo, 0) = mrYes then
   begin
     IdMareaActiva := zqMareasidmarea.Value;

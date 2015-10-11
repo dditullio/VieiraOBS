@@ -41,7 +41,7 @@ procedure TfmMareas.bbEstablecerActivaClick(Sender: TObject);
 var
   msg: string;
 begin
-  msg:='¿Desea activar la marea: '+dmGeneral.zqMareasMarea.AsString+'?';
+  msg:='¿Desea activar la marea: '+dmGeneral.zqMareasMareaStr.AsString+'?';
   if MessageDlg(msg, mtConfirmation, mbYesNo,0) = mrYes then
      dmGeneral.IdMareaActiva:=dmGeneral.zqMareasidmarea.Value;
 end;

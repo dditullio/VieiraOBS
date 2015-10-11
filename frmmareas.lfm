@@ -27,10 +27,13 @@ inherited fmMareas: TfmMareas
           ClientWidth = 455
           Visible = False
           inherited laBuscar: TLabel
+            Height = 15
             Top = 3
+            Width = 35
             FocusControl = edBuscar
           end
           inherited edBuscar: TEdit
+            Height = 23
             Width = 415
           end
           inherited bbBuscar: TBitBtn
@@ -64,14 +67,14 @@ inherited fmMareas: TfmMareas
                 Title.Caption = 'Marea'
                 Title.Orientation = toHorizontal
                 Width = 172
-                FieldName = 'Marea'
-                KeyList.Strings = (                )
+                FieldName = 'MareaStr'
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -81,13 +84,13 @@ inherited fmMareas: TfmMareas
                 Title.Orientation = toHorizontal
                 Width = 120
                 FieldName = 'fecha_zarpada'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end            
               item
                 PickList.Strings = (                )
@@ -97,13 +100,13 @@ inherited fmMareas: TfmMareas
                 Title.Orientation = toHorizontal
                 Width = 120
                 FieldName = 'fecha_arribo'
-                KeyList.Strings = (                )
+                EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
-                EditButtons = <>
+                KeyList.Strings = (                )
               end>
             DataSource = dmGeneral.dsMareas
           end
@@ -190,15 +193,15 @@ inherited fmMareas: TfmMareas
         ClientHeight = 317
         object Label1: TLabel[0]
           Left = 3
-          Height = 17
+          Height = 15
           Top = 50
-          Width = 47
+          Width = 44
           Caption = 'Capitán:'
           ParentColor = False
         end
         object dbedCapitan: TDBEdit[1]
           Left = 3
-          Height = 25
+          Height = 23
           Top = 68
           Width = 144
           DataField = 'capitan'
@@ -211,15 +214,15 @@ inherited fmMareas: TfmMareas
         end
         object Label2: TLabel[2]
           Left = 3
-          Height = 17
+          Height = 15
           Top = 98
-          Width = 39
+          Width = 37
           Caption = 'Oficial:'
           ParentColor = False
         end
         object dbedOficial: TDBEdit[3]
           Left = 3
-          Height = 25
+          Height = 23
           Top = 116
           Width = 144
           DataField = 'oficial'
@@ -232,15 +235,15 @@ inherited fmMareas: TfmMareas
         end
         object Label3: TLabel[4]
           Left = 3
-          Height = 17
+          Height = 15
           Top = 0
-          Width = 39
+          Width = 37
           Caption = 'Buque:'
           ParentColor = False
         end
         object dbedBuque: TDBEdit[5]
           Left = 3
-          Height = 25
+          Height = 23
           Top = 18
           Width = 144
           DataField = 'Buque'

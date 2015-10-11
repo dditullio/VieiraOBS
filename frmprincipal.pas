@@ -63,6 +63,7 @@ type
     paBaseLateral: TPanel;
     Panel1: TPanel;
     pcContenido: TPageControl;
+    Splitter1: TSplitter;
     tbPrincipal: TToolBar;
     tbSalir: TToolBar;
     tmHabilitarMenu: TTimer;

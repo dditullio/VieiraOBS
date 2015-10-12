@@ -66,46 +66,52 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="13">
+    <RequiredPackages Count="15">
       <Item1>
-        <PackageName Value="lr_pdfexport"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item1>
       <Item2>
-        <PackageName Value="lazreport"/>
+        <PackageName Value="LazControls"/>
       </Item2>
       <Item3>
-        <PackageName Value="pl_orpheus"/>
+        <PackageName Value="lr_pdfexport"/>
       </Item3>
       <Item4>
-        <PackageName Value="pl_exsystem"/>
+        <PackageName Value="lazreport"/>
       </Item4>
       <Item5>
-        <PackageName Value="pl_abbrevia"/>
+        <PackageName Value="pl_orpheus"/>
       </Item5>
       <Item6>
-        <PackageName Value="pl_fortesreport"/>
+        <PackageName Value="pl_exsystem"/>
       </Item6>
       <Item7>
-        <PackageName Value="pl_jujiboutils"/>
+        <PackageName Value="pl_abbrevia"/>
       </Item7>
       <Item8>
-        <PackageName Value="pl_fzcontrols"/>
+        <PackageName Value="pl_fortesreport"/>
       </Item8>
       <Item9>
-        <PackageName Value="pl_rx"/>
+        <PackageName Value="pl_jujiboutils"/>
       </Item9>
       <Item10>
-        <PackageName Value="pl_zeosdbo"/>
+        <PackageName Value="pl_fzcontrols"/>
       </Item10>
       <Item11>
-        <PackageName Value="FCL"/>
+        <PackageName Value="pl_rx"/>
       </Item11>
       <Item12>
-        <PackageName Value="mis_componentes"/>
+        <PackageName Value="pl_zeosdbo"/>
       </Item12>
       <Item13>
-        <PackageName Value="LCL"/>
+        <PackageName Value="FCL"/>
       </Item13>
+      <Item14>
+        <PackageName Value="mis_componentes"/>
+      </Item14>
+      <Item15>
+        <PackageName Value="LCL"/>
+      </Item15>
     </RequiredPackages>
     <Units Count="39">
       <Unit0>
@@ -184,6 +190,7 @@
         <ComponentName Value="fmEditarRindes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmeditarrindes"/>
       </Unit10>
       <Unit11>
         <Filename Value="frmcoccion.pas"/>
@@ -296,7 +303,6 @@
         <ComponentName Value="fmEditarLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditarlances"/>
       </Unit26>
       <Unit27>
         <Filename Value="frmlances.pas"/>

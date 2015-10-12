@@ -7,16 +7,16 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  sysutils, Forms, pl_zeosdbo, pl_rx, pl_exsystem, frmPrincipal, frLances,
-  datGeneral, frmbase, frmlistabase, frmmareas, frmzedicionbase,
-  DefaultTranslator, frmEditarMarea, frmrindes, frmeditarrindes, frmcoccion,
-  frmeditarcoccion, frmmuestrasbiologicas, frmeditarmuestrasbiologicas,
-  frmdanio, frmeditardanio, frmbycatch, datbycatch, frmeditarbycatch, datBase,
-  frmeditardetallebycatch, frmtallas, dattallas, frmeditartallas,
-  frmeditardetalletallas, frmeditarlances, frmlances, funciones, frmInformes,
-  frmmuestrassenasa, frmrptdatospuente, frmeditarsenasacallos, lr_pdfexp_reg,
-  lr_pdfexport, frmeditarsenasaentera, frmSplashScreenForm,
-  frmmuestrasrayas, frmeditarrayas, frmbackup;
+  sysutils, Forms, pl_zeosdbo, pl_rx, pl_exsystem, lazcontrols, datetimectrls,
+  frmPrincipal, frLances, datGeneral, frmbase, frmlistabase, frmmareas,
+  frmzedicionbase, DefaultTranslator, frmEditarMarea, frmrindes,
+  frmeditarrindes, frmcoccion, frmeditarcoccion, frmmuestrasbiologicas,
+  frmeditarmuestrasbiologicas, frmdanio, frmeditardanio, frmbycatch, datbycatch,
+  frmeditarbycatch, datBase, frmeditardetallebycatch, frmtallas, dattallas,
+  frmeditartallas, frmeditardetalletallas, frmeditarlances, frmlances,
+  funciones, frmInformes, frmmuestrassenasa, frmrptdatospuente,
+  frmeditarsenasacallos, lr_pdfexp_reg, lr_pdfexport, frmeditarsenasaentera,
+  frmSplashScreenForm, frmmuestrasrayas, frmeditarrayas, frmbackup;
 
 {$R *.res}
 

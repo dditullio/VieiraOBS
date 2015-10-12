@@ -8,13 +8,14 @@ uses
   Classes, SysUtils, FileUtil, DividerBevel, DBDateTimePicker, Forms, Controls,
   Graphics, Dialogs, ExtCtrls, StdCtrls, DbCtrls, Buttons, frmzedicionbase,
   ZDataset, SQLQueryGroup, zcontroladoredicion, zdatasetgroup, DtDBTimeEdit, db,
-  datGeneral, funciones;
+  datGeneral, funciones, LSConfig;
 
 type
 
   { TfmEditarRindes }
 
   TfmEditarRindes = class(TZEdicionBase)
+    ckDatosBabor: TCheckBox;
     dbdtFecha: TDBDateTimePicker;
     dbdtHora: TDtDBTimeEdit;
     dbedComercial: TDBEdit;
@@ -69,8 +70,11 @@ type
     zqRindeAntpeso_comercial: TFloatField;
     zqRindeAntpeso_fauna_acomp: TFloatField;
     zqRindeAntpeso_no_comercial: TFloatField;
+    procedure ckDatosBaborClick(Sender: TObject);
     procedure dbdtFechaEnter(Sender: TObject);
     procedure dblkBandaExit(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure paFechaHoraExit(Sender: TObject);
     procedure zqPrincipalCalcFields(DataSet: TDataSet);
     procedure zqPrincipalhoraSetText(Sender: TField; const aText: string);
@@ -115,6 +119,11 @@ begin
   (Sender as TDBDateTimePicker).SelectDate;
 end;
 
+procedure TfmEditarRindes.ckDatosBaborClick(Sender: TObject);
+begin
+  LSSaveConfig(['RindesCompletarBabor'], [ckDatosBabor.Checked]);
+end;
+
 procedure TfmEditarRindes.dblkBandaExit(Sender: TObject);
 begin
   if dblkBanda.Text='' then
@@ -123,6 +132,21 @@ begin
     if dblkBanda.CanFocus then
     dblkBanda.SetFocus;
   end;
+end;
+
+procedure TfmEditarRindes.FormCreate(Sender: TObject);
+var
+  str_conf: string;
+begin
+  inherited;
+  str_conf := '';
+  LSLoadConfig(['RindesCompletarBabor'], [str_conf], [@str_conf]);
+  if str_conf <> '' then
+    ckDatosBabor.Checked := (str_conf = 'True');
+end;
+
+procedure TfmEditarRindes.FormShow(Sender: TObject);
+begin
 end;
 
 procedure TfmEditarRindes.paFechaHoraExit(Sender: TObject);
@@ -147,7 +171,8 @@ begin
   if zqRindeAnt.RecordCount>0 then
   begin
     // Se considera que siempre se carga primero la banda de estribor
-    if zqRindeAntbanda.AsString='E' then
+    //Sólo inicializo los datos de babor si está marcado el checkbox correspondiente
+    if (zqRindeAntbanda.AsString='E') and (ckDatosBabor.Checked) then
     begin
       zqPrincipalfecha.Value:=zqRindeAntfecha.Value;
       zqPrincipalhora.Value:=zqRindeAnthora.Value;

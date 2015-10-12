@@ -4,6 +4,8 @@ inherited fmEditarRindes: TfmEditarRindes
   Caption = 'Rindes'
   ClientHeight = 391
   ClientWidth = 361
+  OnCreate = FormCreate
+  OnShow = FormShow
   inherited paEncabezadoBase: TPanel
     Width = 361
     ClientWidth = 361
@@ -126,7 +128,7 @@ inherited fmEditarRindes: TfmEditarRindes
       DataField = 'comentarios'
       DataSource = dsPrincipal
       ScrollBars = ssAutoVertical
-      TabOrder = 8
+      TabOrder = 9
     end
     object paFechaHora: TPanel[10]
       Left = 5
@@ -251,6 +253,18 @@ inherited fmEditarRindes: TfmEditarRindes
       CharCase = ecNormal
       MaxLength = 0
       TabOrder = 7
+    end
+    object ckDatosBabor: TCheckBox[17]
+      Left = 192
+      Height = 19
+      Top = 221
+      Width = 158
+      Caption = 'Completar datos de babor'
+      Checked = True
+      OnClick = ckDatosBaborClick
+      State = cbChecked
+      TabOrder = 8
+      TabStop = False
     end
   end
   inherited paControles: TPanel

@@ -27,6 +27,8 @@ type
     acZoomOut: TAction;
     acZoomIn: TAction;
     alMapa: TActionList;
+    chtLancesComentariosSeries: TLineSeries;
+    ctDistancia2: TDataPointDistanceTool;
     ctZoomDrag2: TZoomDragTool;
     ctInfoCoordenadas: TUserDefinedTool;
     ckOcultarMapaBase: TCheckBox;
@@ -60,6 +62,7 @@ type
     dtFecha: TDateTimePicker;
     ilToolbar: TImageList;
     lcsLances: TListChartSource;
+    lcsComentariosLances: TListChartSource;
     lcsMapaBase: TListChartSource;
     lcsZonasEconomicas: TListChartSource;
     lcsUMVieira: TListChartSource;
@@ -326,6 +329,7 @@ end;
 procedure TfmLances.CargarMapaLances;
 var
   bm: TBookMark;
+  prom_lat, prom_long: double;
 begin
   //Se refrescan las muestras ecológicas por si se modificó o agregó alguna
   zqMuestrasEcologicas.Close;
@@ -333,6 +337,7 @@ begin
 
   lcsLances.Clear;
   lcsLanceSeleccionado.Clear;
+  lcsComentariosLances.Clear;
   chtLances.Refresh;
   if (zqLances.RecordCount > 0) and (ckMapaLances.Checked) then
   begin
@@ -351,6 +356,14 @@ begin
           lcsLances.Add(FieldByName('long_ini_gis').AsFloat,FieldByName('lat_ini_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_inicio').AsString, clGreen);
           lcsLances.Add(FieldByName('long_fin_gis').AsFloat,FieldByName('lat_fin_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_fin').AsString, clRed);
           lcsLances.Add(NaN,NaN);
+          //Si tiene comentarios, lo agrego al mapa
+          if Trim(FieldByName('comentarios').AsString)<>'' then
+          begin
+            //Calculo el promedio de la posición para que quede en el medio
+            prom_lat:=(FieldByName('lat_ini_gis').AsFloat+FieldByName('lat_fin_gis').AsFloat)/2;
+            prom_long:=(FieldByName('long_ini_gis').AsFloat+FieldByName('long_fin_gis').AsFloat)/2;
+            lcsComentariosLances.Add(prom_long,prom_lat,' '+Trim(FieldByName('comentarios').AsString)+' ', clYellow);
+          end;
         end;
         Next;
       end;

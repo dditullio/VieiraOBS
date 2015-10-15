@@ -542,6 +542,21 @@ inherited fmLances: TfmLances
             OnExtentChanged = chtLancesExtentChanged
             Align = alClient
             ParentColor = False
+            object chtLancesComentariosSeries: TLineSeries
+              Legend.Format = 'Comentarios de lances'
+              Marks.Alignment = taCenter
+              Marks.Visible = False
+              Marks.Format = '%2:s'
+              Marks.Style = smsLabel
+              ZPosition = 9
+              LineType = ltNone
+              MarkPositions = lmpInside
+              Pointer.Brush.Color = clYellow
+              Pointer.HorizSize = 2
+              Pointer.VertSize = 2
+              ShowPoints = True
+              Source = lcsComentariosLances
+            end
             object chtLancesLanceSeleccionadoSerie: TLineSeries
               Legend.Format = 'Lance seleccionado'
               Marks.Visible = False
@@ -565,7 +580,7 @@ inherited fmLances: TfmLances
               ZPosition = 7
               LineType = ltNone
               MarkPositions = lmpInside
-              Pointer.Brush.Color = clYellow
+              Pointer.Brush.Color = clLime
               Pointer.HorizSize = 6
               Pointer.Style = psDiamond
               Pointer.VertSize = 6
@@ -646,7 +661,7 @@ inherited fmLances: TfmLances
           object LSExpandPanel1: TLSExpandPanel
             Left = 2
             Height = 22
-            Top = 389
+            Top = 412
             Width = 326
             Align = alBottom
             Caption = 'LSExpandPanel1'
@@ -687,7 +702,7 @@ inherited fmLances: TfmLances
             TopPanel.GradientStop = clBtnFace
             TopPanel.ParentFont = False
             TopPanel.TabOrder = 0
-            OldTopPanelHeight = 186
+            OldTopPanelHeight = 202
             object clbReferencias: TChartListbox
               Left = 1
               Height = 0
@@ -715,7 +730,7 @@ inherited fmLances: TfmLances
           object sbInfoMapa: TStatusBar
             Left = 2
             Height = 23
-            Top = 411
+            Top = 389
             Width = 326
             Panels = <            
               item
@@ -1620,7 +1635,8 @@ inherited fmLances: TfmLances
     top = 240
   end
   object lcsLances: TListChartSource[6]
-    left = 328
+    left = 296
+    top = 1
   end
   object ChartToolset1: TChartToolset[7]
     left = 360
@@ -3157,5 +3173,9 @@ inherited fmLances: TfmLances
   end
   object lcsLanceSeleccionado: TListChartSource[19]
     left = 584
+  end
+  object lcsComentariosLances: TListChartSource[20]
+    left = 328
+    top = 3
   end
 end

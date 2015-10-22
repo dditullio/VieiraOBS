@@ -1029,10 +1029,12 @@ begin
         if dist_entre_lances <> -1 then
         begin
           //Calculo los minutos entre el fin del lance anterior y el inicio del actual
-          minutos_entre_lances := MinutesBetween(
+          //Pongo el "Max(0.1, ...)" para evitar la división por cero en caso de que
+          //los minutos entre lances den cero
+          minutos_entre_lances := Max(0.1, MinutesBetween(
             IncMinute(zqAntLancefecha.AsDateTime + zqAntLancehora.AsDateTime,
             zqAntLanceminutos_arrastre.AsInteger), zqPrincipalfecha.AsDateTime +
-            zqPrincipalhora.AsDateTime);
+            zqPrincipalhora.AsDateTime));
 
           velocidad_entre_lances :=
             dist_entre_lances * 60 / minutos_entre_lances;

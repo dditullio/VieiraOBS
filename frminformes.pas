@@ -15,7 +15,7 @@ uses
   Controls, Graphics, Dialogs, ExtCtrls, Buttons, ActnList, ComCtrls, StdCtrls,
   EditBtn, IniPropStorage, Grids, frmbase, ZDataset, windirs, DB, datGeneral,
   comobj, variants, frmrptdatospuente,
-  funciones, LSConfig, UHojaCalc, LR_DSet, lr_e_pdf;
+  funciones, LSConfig, LR_DSet, lr_e_pdf;
 
 type
 
@@ -242,7 +242,6 @@ type
     procedure GenerarSenasaPDF;
     procedure GenerarMuestrasBiolPDF;
 
-    procedure GenerarRindesODF;
   public
     { public declarations }
   end;
@@ -383,6 +382,7 @@ procedure TfmInformes.FormShow(Sender: TObject);
 var
   destino:String;
 begin
+  destino:='';
 //  destino:= ipsPreferencias.ReadString('carpeta_destino', GetWindowsSpecialDir(CSIDL_PERSONAL));
   LSLoadConfig(['destino_informes'],[destino],[@destino]);
   {$IFDEF MSWINDOWS}
@@ -562,7 +562,7 @@ begin
       archivo_destino:=UTF8Decode(archivo_destino);
       xls.Workbooks.Open(archivo_destino);
       //Pongo los datos de la marea
-      tmp := UTF8Decode(dmGeneral.zqMareaActivaMarea.AsString);
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
       xls.Cells[1, 3] := tmp;
       tmp := UTF8Decode(dmGeneral.zqMareaActivacapitan.AsString);
       xls.Cells[2, 3] := tmp;
@@ -678,7 +678,7 @@ begin
       archivo_destino:=UTF8Decode(archivo_destino);
       xls.Workbooks.Open(archivo_destino);
       //Pongo los datos de la marea
-      tmp := UTF8Decode(dmGeneral.zqMareaActivaMarea.AsString);
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
       xls.Cells[1, 2] := tmp;
       with zqRindes do
       begin
@@ -750,7 +750,7 @@ begin
       archivo_destino:=UTF8Decode(archivo_destino);
       xls.Workbooks.Open(archivo_destino);
       //Pongo los datos de la marea
-      tmp := UTF8Decode(dmGeneral.zqMareaActivaMarea.AsString);
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
       xls.Cells[1, 2] := tmp;
       with zqCoccion do
       begin
@@ -824,7 +824,7 @@ begin
       //Abro el archivo para guardar los datos
       xls.Workbooks.Open(archivo_destino);
       //Pongo los datos de la marea
-      tmp := UTF8Decode(dmGeneral.zqMareaActivaMarea.AsString);
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
       xls.Cells[1, 2] := tmp;
       tmp := UTF8Decode(dmGeneral.zqMareaActivacapitan.AsString);
       xls.Cells[2, 2] := tmp;
@@ -948,7 +948,7 @@ begin
       //Abro el archivo para guardar los datos
       xls.Workbooks.Open(archivo_destino);
       //Pongo los datos de la marea
-      tmp := UTF8Decode(dmGeneral.zqMareaActivaMarea.AsString);
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
       xls.Cells[1, 3] := tmp;
       with zqDanio do
       begin
@@ -1093,7 +1093,7 @@ begin
           //Pego formatos
           xls.Range(rango).PasteSpecial(-4122);
           //Pongo los datos de la marea
-          tmp := UTF8Decode(dmGeneral.zqMareaActivaMarea.AsString);
+          tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
           xls.Cells[fila+1, 2] := tmp;
           //Completo los datos
           xls.Cells[fila+2, 3] := FieldByName('fecha').AsDateTime;
@@ -1244,7 +1244,7 @@ begin
           //Pego formatos
           xls.Range(rango).PasteSpecial(-4122);
           //Pongo los datos de la marea
-          tmp := UTF8Decode(dmGeneral.zqMareaActivaMarea.AsString);
+          tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
           xls.Cells[fila, 5] := tmp;
           //Completo los datos
           xls.Cells[fila+2, 2] := FieldByName('fecha').AsDateTime;
@@ -1513,81 +1513,6 @@ begin
       frrMuestrasBiol.ExportTo(TfrTNPDFExportFilter, archivo_destino);
     end;
     laProceso.Caption:='';
-  end;
-end;
-
-procedure TfmInformes.GenerarRindesODF;
-const
-  NombreServidor = 'com.sun.star.ServiceManager';
-var
-  HCalc: THojaCalc;
-  xls,odf: olevariant;
-  Escritorio: Variant;
-  ParametrosCarga: Variant;
-  Documento: Variant;
-  Hoja: Variant;
-
-  archivo_origen, archivo_destino, tmp: WideString;
-  fila, columna: integer;
-begin
-  //Primero verifico que el objeto se pueda crear
-{  try
-    HCalc:=THojaCalc.Create(thcOpenOffice, false);
-    HCalc.Free;
-  except
-    MessageDlg('No se puede abrir la aplicación de Planillas de Cálculo, o la misma no está instalada', mtError, [mbClose], 0);
-    Exit;
-  end;
-}  //Pongo el resto dentro de un Try para si o si finalizar le Excel al terminar
-  try
-    archivo_origen := ExtractFilePath(Application.ExeName) +
-      'PlanillasExcel' + DirectorySeparator + 'Rindes.ods';
-    archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Rindes.ods';
-    if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
-    begin
-      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
-      archivo_destino:=UTF8Decode(archivo_destino);
-      HCalc:=THojaCalc.Create(archivo_destino, false);
-      HCalc.ActivateSheetByIndex(0);
-      //Pongo los datos de la marea
-      HCalc.CellText[1,2]:=dmGeneral.zqMareaActivaMarea.AsString+' (desde OpenOffice)';
-      with zqRindes do
-      begin
-        Close;
-        Open;
-        First;
-        //Configuro la barra de progreso
-        pbProceso.Max := RecordCount;
-        pbProceso.Position := 0;
-        laProceso.Caption:='Procesando muestras de rinde';
-        pbProceso.Visible := True;
-        Fila := 4;//Arranco en la fila 4 porque antes están los títulos
-        //Columnas: 1: Fecha, 2: Lance (Nro y banda), 3: Comenrcial, 4: No comercial, 5:Acompañante, 9: Observaciones
-        while not EOF do
-        begin
-          HCalc.SendDate(fila,1,FieldByName('fecha').AsDateTime);
-          HCalc.CellText[fila, 2] := FieldByName('lance_banda').AsString;
-          HCalc.SendNumber(fila, 3, FieldByName('peso_comercial').AsFloat);
-          HCalc.SendNumber(fila, 4, FieldByName('peso_no_comercial').AsFloat);
-          HCalc.SendNumber(fila, 5, FieldByName('peso_fauna_acomp').AsFloat);
-          //Pongo también las fórmulas
-          HCalc.CellText[fila,6]:=Format('=(C%d+D%d+E%d)',[fila,fila,fila]);
-          HCalc.CellText[fila, 7] := Format('=((C%d+D%d)*100)/F%d',[fila,fila,fila]);
-          HCalc.CellText[fila, 8] := Format('=(C%d*100)/F%d',[fila,fila]);
-          HCalc.CellText[fila, 9] := FieldByName('comentarios').AsString;
-          pbProceso.Position := RecNo;
-          Application.ProcessMessages;
-          Next;
-          Inc(fila);
-        end;
-        HCalc.SaveDoc;
-      end;
-    end;
-  finally
-    laProceso.Caption:='';
-    pbProceso.Visible := False;
-    HCalc.Free;
   end;
 end;
 

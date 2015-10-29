@@ -8,6 +8,7 @@ inherited fmEditarMarea: TfmEditarMarea
   ClientHeight = 393
   ClientWidth = 395
   OnClose = FormClose
+  OnShow = FormShow
   inherited paEncabezadoBase: TPanel
     Width = 395
     ClientWidth = 395
@@ -15,13 +16,15 @@ inherited fmEditarMarea: TfmEditarMarea
       Left = 280
     end
     inherited DividerBevel1: TDividerBevel
-      Left = 263
+      Left = 265
+      Width = 15
     end
     inherited paEncabezado: TPanel
-      Width = 262
-      ClientWidth = 262
+      Width = 264
+      ClientWidth = 264
       inherited dbtEncabezado: TDBText
-        Width = 422
+        Height = 15
+        Width = 424
         AutoSize = True
         DataField = 'DscMarea'
         DataSource = dsPrincipal
@@ -45,23 +48,23 @@ inherited fmEditarMarea: TfmEditarMarea
       TabOrder = 0
       object Label1: TLabel
         Left = 62
-        Height = 17
+        Height = 15
         Top = 8
-        Width = 101
+        Width = 89
         Caption = 'Marea del buque'
         ParentColor = False
       end
       object Label2: TLabel
         Left = 182
-        Height = 17
+        Height = 15
         Top = 8
-        Width = 81
+        Width = 72
         Caption = 'Marea INIDEP'
         ParentColor = False
       end
       object dbedMareaBuque: TDBEdit
         Left = 62
-        Height = 25
+        Height = 23
         Top = 24
         Width = 112
         DataField = 'marea_buque'
@@ -72,7 +75,7 @@ inherited fmEditarMarea: TfmEditarMarea
       end
       object dbedMareaInidep: TDBEdit
         Left = 182
-        Height = 25
+        Height = 23
         Top = 24
         Width = 112
         DataField = 'nro_marea_inidep'
@@ -83,15 +86,15 @@ inherited fmEditarMarea: TfmEditarMarea
       end
       object Label3: TLabel
         Left = 6
-        Height = 17
+        Height = 15
         Top = 8
-        Width = 23
+        Width = 22
         Caption = 'Año'
         ParentColor = False
       end
       object dbedAnio: TDBEdit
         Left = 6
-        Height = 25
+        Height = 23
         Top = 24
         Width = 51
         DataField = 'anio_marea'
@@ -113,15 +116,15 @@ inherited fmEditarMarea: TfmEditarMarea
       TabOrder = 1
       object Label4: TLabel
         Left = 6
-        Height = 17
+        Height = 15
         Top = 8
-        Width = 36
+        Width = 34
         Caption = 'Buque'
         ParentColor = False
       end
       object dblkBuque: TDBLookupComboBox
         Left = 6
-        Height = 25
+        Height = 23
         Top = 24
         Width = 184
         DataField = 'Buque'
@@ -132,15 +135,15 @@ inherited fmEditarMarea: TfmEditarMarea
       end
       object Label5: TLabel
         Left = 6
-        Height = 17
+        Height = 15
         Top = 56
-        Width = 44
+        Width = 41
         Caption = 'Capitán'
         ParentColor = False
       end
       object dbedCapitan: TDBEdit
         Left = 6
-        Height = 25
+        Height = 23
         Top = 72
         Width = 184
         DataField = 'capitan'
@@ -151,15 +154,15 @@ inherited fmEditarMarea: TfmEditarMarea
       end
       object Label6: TLabel
         Left = 197
-        Height = 17
+        Height = 15
         Top = 56
-        Width = 36
+        Width = 34
         Caption = 'Oficial'
         ParentColor = False
       end
       object dbedOficial: TDBEdit
         Left = 197
-        Height = 25
+        Height = 23
         Top = 72
         Width = 184
         DataField = 'oficial'
@@ -170,41 +173,41 @@ inherited fmEditarMarea: TfmEditarMarea
       end
       object Label7: TLabel
         Left = 6
-        Height = 17
+        Height = 15
         Top = 109
-        Width = 116
+        Width = 103
         Caption = 'Inicio real de marea'
         ParentColor = False
       end
       object Label8: TLabel
         Left = 6
-        Height = 17
+        Height = 15
         Top = 157
-        Width = 49
+        Width = 43
         Caption = 'Zarpada'
         ParentColor = False
       end
       object Label9: TLabel
         Left = 197
-        Height = 17
+        Height = 15
         Top = 109
-        Width = 91
+        Width = 80
         Caption = 'Arribo a puerto'
         ParentColor = False
       end
       object Label10: TLabel
         Left = 197
-        Height = 17
+        Height = 15
         Top = 157
-        Width = 102
+        Width = 90
         Caption = 'Fin real de marea'
         ParentColor = False
       end
       object dbdtInicio: TDBDateTimePicker
         Left = 6
-        Height = 25
+        Height = 23
         Top = 125
-        Width = 91
+        Width = 83
         DataField = 'fecha_inicio'
         DataSource = dsPrincipal
         ReadOnly = False
@@ -226,9 +229,9 @@ inherited fmEditarMarea: TfmEditarMarea
       end
       object dbdtZarpada: TDBDateTimePicker
         Left = 6
-        Height = 25
+        Height = 23
         Top = 173
-        Width = 91
+        Width = 83
         DataField = 'fecha_zarpada'
         DataSource = dsPrincipal
         ReadOnly = False
@@ -250,12 +253,13 @@ inherited fmEditarMarea: TfmEditarMarea
       end
       object dbdtArribo: TDBDateTimePicker
         Left = 197
-        Height = 25
+        Height = 23
         Top = 125
-        Width = 91
+        Width = 105
         DataField = 'fecha_arribo'
         DataSource = dsPrincipal
         ReadOnly = False
+        ShowCheckBox = True
         CenturyFrom = 1941
         MaxDate = 2958465
         MinDate = -53780
@@ -270,16 +274,18 @@ inherited fmEditarMarea: TfmEditarMarea
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
+        OnCheckBoxChange = dbdtArriboCheckBoxChange
         OnEnter = dbdtArriboEnter
       end
       object dbdtFinalizacion: TDBDateTimePicker
         Left = 197
-        Height = 25
+        Height = 23
         Top = 173
-        Width = 91
+        Width = 105
         DataField = 'fecha_finalizacion'
         DataSource = dsPrincipal
         ReadOnly = False
+        ShowCheckBox = True
         CenturyFrom = 1941
         MaxDate = 2958465
         MinDate = -53780
@@ -294,19 +300,20 @@ inherited fmEditarMarea: TfmEditarMarea
         UseDefaultSeparators = True
         HideDateTimeParts = []
         MonthNames = 'Long'
+        OnCheckBoxChange = dbdtFinalizacionCheckBoxChange
         OnEnter = dbdtFinalizacionEnter
       end
       object Label11: TLabel
         Left = 197
-        Height = 17
+        Height = 15
         Top = 8
-        Width = 70
+        Width = 61
         Caption = 'Observador'
         ParentColor = False
       end
       object dbedObservador: TDBEdit
         Left = 197
-        Height = 25
+        Height = 23
         Top = 24
         Width = 184
         DataField = 'observador'

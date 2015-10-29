@@ -223,7 +223,6 @@
         <ComponentName Value="fmEditarMuestrasBiologicas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditarmuestrasbiologicas"/>
       </Unit14>
       <Unit15>
         <Filename Value="frmdanio.pas"/>
@@ -308,7 +307,6 @@
         <ComponentName Value="fmEditarLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditarlances"/>
       </Unit26>
       <Unit27>
         <Filename Value="frmlances.pas"/>
@@ -316,7 +314,6 @@
         <ComponentName Value="fmLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmlances"/>
       </Unit27>
       <Unit28>
         <Filename Value="funciones.pas"/>
@@ -388,6 +385,7 @@
         <ComponentName Value="fmBackup"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmbackup"/>
       </Unit38>
     </Units>
   </ProjectOptions>

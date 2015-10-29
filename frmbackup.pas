@@ -153,9 +153,9 @@ const
                  'SET SQL_NOTES=@OLD_SQL_NOTES ;'+NEWLINE;
 
       CREATE_TABLE_TEMPLATE=
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  '-- Estructura de la tabla `<TABLA>`'+NEWLINE+
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  ''+NEWLINE+
                  'DROP TABLE IF EXISTS `<TABLA>`;'+NEWLINE+
                  'SET @saved_cs_client     = @@character_set_client ;'+NEWLINE+
@@ -167,9 +167,9 @@ const
       //varias veces no da error de registros duplicados, sino que se reemplazan
       //los existentes y se agregan los nuevos
       INSERT_SINGLE_TEMPLATE=
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  '-- Volcado de datos de la tabla `<TABLA>`'+NEWLINE+
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  ''+NEWLINE+
                  'LOCK TABLES `<TABLA>` WRITE;'+NEWLINE+
                  'ALTER TABLE `<TABLA>` DISABLE KEYS ;'+NEWLINE+
@@ -181,9 +181,9 @@ const
                  'REPLACE INTO `<TABLA>` (<CAMPOS>) VALUES <INSERT_VALUES>;'+NEWLINE;
 
       INSERT_MULTI_TEMPLATE=
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  '-- Volcado de datos de la tabla `<TABLA>`'+NEWLINE+
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  ''+NEWLINE+
                  'LOCK TABLES `<TABLA>` WRITE;'+NEWLINE+
                  'ALTER TABLE `<TABLA>` DISABLE KEYS ;'+NEWLINE+
@@ -194,9 +194,9 @@ const
       //Por compatibilidad con la ejecución del script en Lazarus, se utiliza el
       //mismo delimitador que en las funciones y stored procedures
       CREATE_VIEW_STRUCTURE_TEMPLATE=
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  '-- Estructura temporaria para vista `<VISTA>`'+NEWLINE+
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  ''+NEWLINE+
                  'DELIMITER $$'+NEWLINE+
                  'DROP TABLE IF EXISTS `<VISTA>` $$'+NEWLINE+
@@ -208,9 +208,9 @@ const
                  'DELIMITER ;'+NEWLINE;
 
       CREATE_VIEW_TEMPLATE=
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  '-- Estructura final para la vista `<VISTA>`'+NEWLINE+
-                 '--'+NEWLINE+
+                 '-- -'+NEWLINE+
                  ''+NEWLINE+
                  'DELIMITER $$'+NEWLINE+
                  'DROP VIEW IF EXISTS `<VISTA>` $$'+NEWLINE+
@@ -1278,9 +1278,9 @@ begin
 
 
      str_sql.Add('');
-     str_sql.Add('--');
+     str_sql.Add('-- -');
      str_sql.Add('-- Estructura base de Rutina '+zqRutinasroutine_name.AsString);
-     str_sql.Add('--');
+     str_sql.Add('-- -');
      str_sql.Add('');
      str_sql.Add(drop_rutina);
      str_sql.Add('DELIMITER $$'+NEWLINE+def_rutina+NEWLINE+'DELIMITER ;');
@@ -1318,9 +1318,9 @@ begin
      def_rutina:=StringReplace(def_rutina, zqRutinasroutine_name.AsString, LowerCase(zqRutinasroutine_name.AsString), [rfReplaceAll, rfIgnoreCase]);;
 
      str_sql.Add(NEWLINE);
-     str_sql.Add('--');
+     str_sql.Add('-- -');
      str_sql.Add('-- Definición completa de Rutina '+zqRutinasroutine_name.AsString);
-     str_sql.Add('--');
+     str_sql.Add('-- -');
      str_sql.Add('');
      str_sql.Add(drop_rutina);
      str_sql.Add('DELIMITER $$'+NEWLINE+def_rutina+NEWLINE+'DELIMITER ;');

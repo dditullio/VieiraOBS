@@ -972,10 +972,15 @@ begin
 
   LSLoadConfig(['formato_planilla_puente'], [formato], [@formato]);
   if formato = '' then
-    pcFormatos.TabIndex := 0
+  begin
+    pcFormatos.TabIndex := 0;
+    zcePrincipal.ControlInicial := dbdtHora;
+  end
   else
+  begin
     pcFormatos.TabIndex := StrToInt(formato);
-
+    zcePrincipal.ControlInicial := dbdtHora1;
+  end;
   //FControlesEdicion.ActiveIndex := pcFormatos.TabIndex;
 
   //Asigno el evento acá, porque por algún motivo se desengancha.

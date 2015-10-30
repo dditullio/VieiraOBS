@@ -108,6 +108,8 @@ type
     { public declarations }
   end;
 
+  function CheckScriptText(var Script: TStringList): String;
+
 const
     NEWLINE=#13#10;
     PREFIJO_BKP='BKP_DB_VIEIRA_';
@@ -238,6 +240,24 @@ var
   sl_tablas, sl_datos, sl_rutinas, sl_expglob: TStringList;
 
 implementation
+
+function CheckScriptText(var Script: TStringList): String;
+var
+  i: integer;
+begin
+  for i:=0 to Script.Count-1 do
+  begin
+    //Reemplazo los comentarios. En las versiones nuevas de ZeosDB,
+    //El comentario '--' da error
+    if Script[i]='--' then
+       Script[i]:='-- -';
+
+    //Esto se hace por un problema de compatibilidad con el componente de script
+    Script[i]:=StringReplace(Script[i], 'DELIMITER $$', '', [rfReplaceAll, rfIgnoreCase]);
+    Script[i]:=StringReplace(Script[i], 'DELIMITER ;', '', [rfReplaceAll, rfIgnoreCase]);
+  end;
+  Result:=Script.Text;
+end;
 
 {$R *.lfm}
 
@@ -655,30 +675,32 @@ begin
          if proc_tablas then
          begin
              scRestaurar.Terminator:=';';
-             scRestaurar.Script.Text:=sl_tablas.Text;
+             scRestaurar.Script.Text:=CheckScriptText(sl_tablas);
              scRestaurar.ExecuteScript;
          end;
 
          if proc_datos then
          begin
              scRestaurar.Terminator:=';';
-             scRestaurar.Script.Text:=sl_datos.Text;
+             scRestaurar.Script.Text:=CheckScriptText(sl_datos);
              scRestaurar.ExecuteScript;
          end;
 
-         //Por un problema de compatibilidad con el componente de script,
-         //debe eliminarse el "DELIMITER" y configurarlo directamente
-         //en el componente
 
          if proc_rutinas then
          begin
-             for i:=0 to sl_rutinas.Count-1 do
+           { //Esto se pasa a la función CheckScriptText
+           for i:=0 to sl_rutinas.Count-1 do
              begin
                sl_rutinas[i]:=StringReplace(sl_rutinas[i], 'DELIMITER $$', '', [rfReplaceAll, rfIgnoreCase]);
                sl_rutinas[i]:=StringReplace(sl_rutinas[i], 'DELIMITER ;', '', [rfReplaceAll, rfIgnoreCase]);
              end;
+           }
+           //Por un problema de compatibilidad con el componente de script,
+           //debe eliminarse el "DELIMITER" y configurarlo directamente
+           //en el componente
              scRestaurar.Terminator:='$$';
-             scRestaurar.Script.Text:=sl_rutinas.Text;
+             scRestaurar.Script.Text:=CheckScriptText(sl_rutinas);
              scRestaurar.ExecuteScript;
          end;
 

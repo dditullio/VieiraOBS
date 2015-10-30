@@ -311,7 +311,6 @@ type
     procedure dbedMinutosLatIniExit(Sender: TObject);
     procedure dbedMinutosLongFinExit(Sender: TObject);
     procedure dbedMinutosLongIniExit(Sender: TObject);
-    procedure dbedVelocVientoChange(Sender: TObject);
     procedure dbedVelocVientoExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -602,6 +601,7 @@ procedure TfmEditarLances.bbBaborClick(Sender: TObject);
 var
   dbm: TDBMemo;
 begin
+  dbedMinArrastre1.SelectAll;
   if not (dsPrincipal.State in [dsInsert, dsEdit]) then
     dsPrincipal.Edit;
   dbm := (FControlesEdicion.GetControl('Comentarios') as TDBMemo);
@@ -860,10 +860,6 @@ begin
       end;
     end;
   end;
-end;
-
-procedure TfmEditarLances.dbedVelocVientoChange(Sender: TObject);
-begin
 end;
 
 procedure TfmEditarLances.dbedVelocVientoExit(Sender: TObject);

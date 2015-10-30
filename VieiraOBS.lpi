@@ -68,22 +68,22 @@
     </RunParams>
     <RequiredPackages Count="17">
       <Item1>
-        <PackageName Value="pl_lazsolutions"/>
+        <PackageName Value="pl_solutions"/>
       </Item1>
       <Item2>
-        <PackageName Value="TAChartLazarusPkg"/>
+        <PackageName Value="lz_tachart"/>
       </Item2>
       <Item3>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="lz_datetimectrls"/>
       </Item3>
       <Item4>
-        <PackageName Value="LazControls"/>
+        <PackageName Value="bs_Controls"/>
       </Item4>
       <Item5>
-        <PackageName Value="lr_pdfexport"/>
+        <PackageName Value="lz_reportpdfexport"/>
       </Item5>
       <Item6>
-        <PackageName Value="lazreport"/>
+        <PackageName Value="lz_report"/>
       </Item6>
       <Item7>
         <PackageName Value="pl_orpheus"/>
@@ -238,7 +238,6 @@
         <ComponentName Value="fmEditarDanio"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditardanio"/>
       </Unit16>
       <Unit17>
         <Filename Value="frmbycatch.pas"/>
@@ -253,7 +252,6 @@
         <ComponentName Value="dmByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="datbycatch"/>
       </Unit18>
       <Unit19>
         <Filename Value="frmeditarbycatch.pas"/>
@@ -261,7 +259,6 @@
         <ComponentName Value="fmEditarByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditarbycatch"/>
       </Unit19>
       <Unit20>
         <Filename Value="datbase.pas"/>
@@ -276,7 +273,6 @@
         <ComponentName Value="fmEditarDetalleByCatch"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditardetallebycatch"/>
       </Unit21>
       <Unit22>
         <Filename Value="frmtallas.pas"/>
@@ -291,7 +287,6 @@
         <ComponentName Value="dmTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dattallas"/>
       </Unit23>
       <Unit24>
         <Filename Value="frmeditartallas.pas"/>
@@ -299,7 +294,6 @@
         <ComponentName Value="fmEditarTallas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditartallas"/>
       </Unit24>
       <Unit25>
         <Filename Value="frmeditardetalletallas.pas"/>
@@ -314,7 +308,6 @@
         <ComponentName Value="fmEditarLances"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmeditarlances"/>
       </Unit26>
       <Unit27>
         <Filename Value="frmlances.pas"/>
@@ -333,7 +326,6 @@
         <ComponentName Value="fmInformes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frminformes"/>
       </Unit29>
       <Unit30>
         <Filename Value="frmmuestrassenasa.pas"/>
@@ -341,7 +333,6 @@
         <ComponentName Value="fmMuestrasSenasa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmmuestrassenasa"/>
       </Unit30>
       <Unit31>
         <Filename Value="frmrptdatospuente.pas"/>
@@ -370,7 +361,6 @@
         <ComponentName Value="SplashScreenForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmSplashScreenForm"/>
       </Unit34>
       <Unit35>
         <Filename Value="UHojaCalc.pas"/>
@@ -396,7 +386,6 @@
         <ComponentName Value="fmBackup"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmbackup"/>
       </Unit38>
     </Units>
   </ProjectOptions>

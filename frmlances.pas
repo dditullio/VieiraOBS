@@ -28,6 +28,7 @@ type
     acZoomIn: TAction;
     alMapa: TActionList;
     chtLancesComentariosSeries: TLineSeries;
+    chtLancesSerieOtrosLances: TLineSeries;
     ctDistancia2: TDataPointDistanceTool;
     ctZoomDrag2: TZoomDragTool;
     ctInfoCoordenadas: TUserDefinedTool;
@@ -63,6 +64,7 @@ type
     ilToolbar: TImageList;
     lcsLances: TListChartSource;
     lcsComentariosLances: TListChartSource;
+    lcsOtrosLances: TListChartSource;
     lcsMapaBase: TListChartSource;
     lcsZonasEconomicas: TListChartSource;
     lcsUMVieira: TListChartSource;
@@ -88,12 +90,50 @@ type
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
     zqLances: TZQuery;
+    zqOtrosLances: TZQuery;
+    zqLancescable_babor1: TLongintField;
+    zqLancescable_estribor1: TLongintField;
+    zqLancescaptura_babor1: TFloatField;
+    zqLancescaptura_estribor1: TFloatField;
+    zqLancescod_estado_mar1: TLongintField;
+    zqLancescomentarios1: TStringField;
+    zqLancescuadrante_latitud_fin1: TStringField;
+    zqLancescuadrante_latitud_ini1: TStringField;
+    zqLancescuadrante_longitud_fin1: TStringField;
+    zqLancescuadrante_longitud_ini1: TStringField;
     zqLancesDifRumbo: TFloatField;
+    zqLancesdireccion_viento1: TLongintField;
     zqLancesetiqueta_fin: TStringField;
+    zqLancesetiqueta_fin1: TStringField;
     zqLancesetiqueta_inicio: TStringField;
+    zqLancesetiqueta_inicio1: TStringField;
+    zqLancesfecha1: TDateField;
+    zqOtrosLancesgrados_latitud_fin: TLongintField;
+    zqOtrosLancesgrados_latitud_ini: TLongintField;
+    zqOtrosLancesgrados_longitud_fin: TLongintField;
+    zqOtrosLancesgrados_longitud_ini: TLongintField;
+    zqLanceshora1: TTimeField;
+    zqLancesidlance1: TLongintField;
+    zqLancesidmarea1: TLongintField;
+    zqLanceslargo_relinga_inferior1: TLongintField;
+    zqOtrosLancesLatFin: TFloatField;
+    zqOtrosLancesLatIni: TFloatField;
+    zqLanceslatitud_fin1: TStringField;
+    zqLanceslatitud_fin_fmt1: TBytesField;
+    zqLanceslatitud_ini1: TStringField;
+    zqLanceslatitud_ini_fmt1: TBytesField;
     zqLanceslat_fin_gis: TFloatField;
+    zqLanceslat_fin_gis1: TFloatField;
     zqLanceslat_ini_gis: TFloatField;
+    zqLanceslat_ini_gis1: TFloatField;
+    zqOtrosLancesLongFin: TFloatField;
+    zqOtrosLancesLongIni: TFloatField;
+    zqLanceslongitud_fin1: TStringField;
+    zqLanceslongitud_fin_fmt1: TBytesField;
+    zqLanceslongitud_ini1: TStringField;
+    zqLanceslongitud_ini_fmt1: TBytesField;
     zqLanceslong_fin_gis: TFloatField;
+    zqLanceslong_fin_gis1: TFloatField;
     zqLanceslong_ini_gis: TFloatField;
     zqLancescable_babor: TLongintField;
     zqLancescable_estribor: TLongintField;
@@ -129,26 +169,46 @@ type
     zqLanceslongitud_fin_fmt: TBytesField;
     zqLanceslongitud_ini: TStringField;
     zqLanceslongitud_ini_fmt: TBytesField;
+    zqLanceslong_ini_gis1: TFloatField;
     zqLancesmallero_copo_mm: TLongintField;
+    zqLancesmallero_copo_mm1: TLongintField;
     zqLancesminutos_arrastre: TFloatField;
+    zqLancesminutos_arrastre1: TFloatField;
     zqLancesminutos_latitud_fin: TFloatField;
+    zqOtrosLancesminutos_latitud_fin: TFloatField;
     zqLancesminutos_latitud_ini: TFloatField;
+    zqOtrosLancesminutos_latitud_ini: TFloatField;
     zqLancesminutos_longitud_fin: TFloatField;
+    zqOtrosLancesminutos_longitud_fin: TFloatField;
     zqLancesminutos_longitud_ini: TFloatField;
+    zqOtrosLancesminutos_longitud_ini: TFloatField;
     zqLancesnro_lance: TLongintField;
+    zqLancesnro_lance1: TLongintField;
     zqLancesnudos_viento: TLongintField;
+    zqLancesnudos_viento1: TLongintField;
     zqLancesprofundidad: TLongintField;
+    zqLancesprofundidad1: TLongintField;
     zqLancesrinde_comercial_B: TFloatField;
+    zqLancesrinde_comercial_B1: TFloatField;
     zqLancesrinde_comercial_E: TFloatField;
+    zqLancesrinde_comercial_E1: TFloatField;
     zqLancesrinde_total_B: TFloatField;
+    zqLancesrinde_total_B1: TFloatField;
     zqLancesrinde_total_E: TFloatField;
+    zqLancesrinde_total_E1: TFloatField;
     zqLancesrumbo: TLongintField;
+    zqLancesrumbo1: TLongintField;
     zqLancesRumboCalc: TFloatField;
     zqLancestemperatura_aire: TFloatField;
+    zqLancestemperatura_aire1: TFloatField;
     zqLancestemperatura_fondo: TFloatField;
+    zqLancestemperatura_fondo1: TFloatField;
     zqLancestemperatura_superficie: TFloatField;
+    zqLancestemperatura_superficie1: TFloatField;
     zqLancestipo_malla: TStringField;
+    zqLancestipo_malla1: TStringField;
     zqLancesvelocidad: TFloatField;
+    zqLancesvelocidad1: TFloatField;
     zqLancesVelocidadNecesaria: TFloatField;
     zqOtrosMapas: TZQuery;
     zqMuestrasEcologicas: TZQuery;
@@ -178,8 +238,10 @@ type
     procedure zqLancesAfterOpen(DataSet: TDataSet);
     procedure zqLancesBeforeOpen(DataSet: TDataSet);
     procedure zqLancesCalcFields(DataSet: TDataSet);
+    procedure zqOtrosLancesBeforeOpen(DataSet: TDataSet);
     procedure zqMuestrasEcologicasAfterOpen(DataSet: TDataSet);
     procedure zqMuestrasEcologicasBeforeOpen(DataSet: TDataSet);
+    procedure zqOtrosLancesCalcFields(DataSet: TDataSet);
   private
     { private declarations }
     procedure CargarMapa(mapa: string; var lcs: TListChartSource;clearSource: boolean=True;campoEtiqueta:string='');
@@ -260,6 +322,15 @@ begin
   end;
 end;
 
+procedure TfmLances.zqOtrosLancesBeforeOpen(DataSet: TDataSet);
+begin
+  zqOtrosLances.ParamByName('idmarea').Value:=dmGeneral.IdMareaActiva;
+  if dtFecha.Checked then
+     zqOtrosLances.ParamByName('fecha').AsDateTime:=dtFecha.Date
+  else
+    zqOtrosLances.ParamByName('fecha').AsString:='';
+end;
+
 procedure TfmLances.zqMuestrasEcologicasAfterOpen(DataSet: TDataSet);
 begin
   lcsMuestrasEcologicas.Clear;
@@ -276,6 +347,20 @@ end;
 procedure TfmLances.zqMuestrasEcologicasBeforeOpen(DataSet: TDataSet);
 begin
   zqMuestrasEcologicas.ParamByName('idmarea').Value:=dmGeneral.IdMareaActiva;
+end;
+
+procedure TfmLances.zqOtrosLancesCalcFields(DataSet: TDataSet);
+var
+  grados_dif_rumbo: double;
+begin
+  zqOtrosLancesLatIni.Value := zqOtrosLancesgrados_latitud_ini.Value * 100 +
+    zqOtrosLancesminutos_latitud_ini.Value;
+  zqOtrosLancesLongIni.Value := zqOtrosLancesgrados_longitud_ini.Value * 100 +
+    zqOtrosLancesminutos_longitud_ini.Value;
+  zqOtrosLancesLatFin.Value := zqOtrosLancesgrados_latitud_fin.Value * 100 +
+    zqOtrosLancesminutos_latitud_fin.Value;
+  zqOtrosLancesLongFin.Value := zqOtrosLancesgrados_longitud_fin.Value * 100 +
+    zqOtrosLancesminutos_longitud_fin.Value;
 end;
 
 procedure TfmLances.CargarMapa(mapa: string; var lcs: TListChartSource;
@@ -335,10 +420,45 @@ begin
   zqMuestrasEcologicas.Close;
   zqMuestrasEcologicas.Open;
 
+  //Cargo los otros lances. Los cargo primero para mejorar el aspecto visual
+  lcsOtrosLances.Clear;
   lcsLances.Clear;
   lcsLanceSeleccionado.Clear;
   lcsComentariosLances.Clear;
   chtLances.Refresh;
+  zqOtrosLances.Close;
+  zqOtrosLances.Open;
+  if (zqOtrosLances.RecordCount > 0) and (ckMapaLances.Checked) then
+  begin
+    chtLancesSerieOtrosLances.Active:=True;
+    with zqOtrosLances do
+    begin
+      DisableControls;
+      bm:=GetBookmark;
+      First;
+      while not EOF do
+      begin
+        if (not FieldByName('long_ini_gis').IsNull)
+           and (not FieldByName('lat_ini_gis').IsNull)
+           and (not FieldByName('long_fin_gis').IsNull)
+           and (not FieldByName('lat_fin_gis').IsNull) then
+        begin
+          lcsOtrosLances.Add(FieldByName('long_ini_gis').AsFloat,FieldByName('lat_ini_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_inicio').AsString, clGreen);
+          lcsOtrosLances.Add(FieldByName('long_fin_gis').AsFloat,FieldByName('lat_fin_gis').AsFloat,'Lance N° '+IntToStr(FieldByName('nro_lance').AsInteger)+LineEnding+FieldByName('etiqueta_fin').AsString, clRed);
+          lcsOtrosLances.Add(NaN,NaN);
+        end;
+        Next;
+      end;
+      if BookmarkValid(bm) then
+         GotoBookmark(bm);
+      EnableControls;
+    end;
+  end else //No hay otros lances para mostrar
+  begin
+      chtLancesSerieOtrosLances.Active:=False;
+  end;
+
+  //Cargo los lances listados
   if (zqLances.RecordCount > 0) and (ckMapaLances.Checked) then
   begin
     with zqLances do
@@ -374,6 +494,7 @@ begin
     if lcsLances.Count>0 then
        chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
   end;
+
 end;
 
 procedure TfmLances.dtFechaChange(Sender: TObject);

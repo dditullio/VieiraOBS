@@ -91,8 +91,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Fecha'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Fecha'
                 Width = 75
                 FieldName = 'fecha'
                 DisplayFormat = 'dd/mm/yyyy'
@@ -111,8 +111,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Hora'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Hora'
                 Width = 40
                 FieldName = 'hora'
                 DisplayFormat = 'hh:mm'
@@ -132,8 +132,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Lance'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Lance'
                 Width = 40
                 FieldName = 'nro_lance'
                 EditButtons = <>
@@ -148,8 +148,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Inicio del lance|Latitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Inicio del lance|Latitud'
                 Width = 65
                 FieldName = 'latitud_ini_fmt'
                 DisplayFormat = '00º 00.00'''
@@ -167,8 +167,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Inicio del lance|Longitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Inicio del lance|Longitud'
                 Width = 65
                 FieldName = 'longitud_ini_fmt'
                 DisplayFormat = '00º 00.00'''
@@ -189,8 +189,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Inicio del lance|Rv'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Inicio del lance|Rv'
                 Width = 30
                 FieldName = 'rumbo'
                 DisplayFormat = '000'
@@ -207,8 +207,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Inicio del lance|Prof.'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Inicio del lance|Prof.'
                 Width = 30
                 FieldName = 'profundidad'
                 EditButtons = <>
@@ -224,8 +224,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Cable|Er'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Cable|Er'
                 Width = 30
                 FieldName = 'cable_estribor'
                 EditButtons = <>
@@ -241,8 +241,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Cable|Br'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Cable|Br'
                 Width = 30
                 FieldName = 'cable_babor'
                 EditButtons = <>
@@ -258,8 +258,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Min. Arr.'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Min. Arr.'
                 Width = 30
                 FieldName = 'minutos_arrastre'
                 EditButtons = <>
@@ -274,8 +274,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Fin del lance|Latitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Fin del lance|Latitud'
                 Width = 65
                 FieldName = 'latitud_fin_fmt'
                 DisplayFormat = '00º 00.00'''
@@ -291,8 +291,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Fin del lance|Longitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Fin del lance|Longitud'
                 Width = 65
                 FieldName = 'longitud_fin_fmt'
                 DisplayFormat = '00º 00.00'''
@@ -309,8 +309,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Captura|Er'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Captura|Er'
                 Width = 35
                 FieldName = 'captura_estribor'
                 EditButtons = <>
@@ -326,8 +326,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Captura|Br'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Captura|Br'
                 Width = 35
                 FieldName = 'captura_babor'
                 EditButtons = <>
@@ -343,8 +343,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Vel.'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Vel.'
                 Width = 35
                 FieldName = 'velocidad'
                 EditButtons = <>
@@ -360,8 +360,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Rinde total|Er'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Rinde total|Er'
                 Width = 55
                 FieldName = 'rinde_total_E'
                 EditButtons = <>
@@ -377,8 +377,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Rinde total|Br'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Rinde total|Br'
                 Width = 55
                 FieldName = 'rinde_total_B'
                 EditButtons = <>
@@ -394,8 +394,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Rinde comerc.|Er'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Rinde comerc.|Er'
                 Width = 55
                 FieldName = 'rinde_comercial_E'
                 EditButtons = <>
@@ -411,8 +411,8 @@ inherited fmLances: TfmLances
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Rinde comerc.|Br'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Rinde comerc.|Br'
                 Width = 55
                 FieldName = 'rinde_comercial_B'
                 EditButtons = <>
@@ -426,8 +426,8 @@ inherited fmLances: TfmLances
               item
                 PickList.Strings = (                )
                 Title.Alignment = taCenter
-                Title.Caption = 'Comentarios'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Comentarios'
                 Width = 0
                 FieldName = 'comentarios'
                 EditButtons = <>
@@ -541,14 +541,13 @@ inherited fmLances: TfmLances
             Toolset = ChartToolset1
             OnExtentChanged = chtLancesExtentChanged
             Align = alClient
-            ParentColor = False
             object chtLancesComentariosSeries: TLineSeries
               Legend.Format = 'Comentarios de lances'
               Marks.Alignment = taCenter
               Marks.Visible = False
               Marks.Format = '%2:s'
               Marks.Style = smsLabel
-              ZPosition = 9
+              ZPosition = 10
               LineType = ltNone
               MarkPositions = lmpInside
               Pointer.Brush.Color = clYellow
@@ -562,7 +561,7 @@ inherited fmLances: TfmLances
               Marks.Visible = False
               Marks.Format = '%2:s'
               Marks.Style = smsLabel
-              ZPosition = 8
+              ZPosition = 9
               LinePen.Color = clBlue
               LinePen.Width = 2
               Pointer.HorizSize = 3
@@ -577,7 +576,7 @@ inherited fmLances: TfmLances
               Marks.Visible = False
               Marks.Format = '%2:s'
               Marks.Style = smsLabel
-              ZPosition = 7
+              ZPosition = 8
               LineType = ltNone
               MarkPositions = lmpInside
               Pointer.Brush.Color = clLime
@@ -588,7 +587,27 @@ inherited fmLances: TfmLances
               Source = lcsMuestrasEcologicas
             end
             object chtLancesSerieLances: TLineSeries
-              Legend.Format = 'Lances'
+              Legend.Format = 'Lances listados'
+              Marks.LabelFont.Height = -11
+              Marks.Shape = clsRoundRect
+              Marks.Visible = False
+              Marks.Arrow.Width = 3
+              Marks.CalloutAngle = 200
+              Marks.Format = '%2:s'
+              Marks.LinkPen.Color = clBlack
+              Marks.Style = smsLabel
+              ZPosition = 7
+              LinePen.Color = clRed
+              LinePen.Width = 2
+              MarkPositions = lmpInside
+              Pointer.HorizSize = 3
+              Pointer.Style = psCircle
+              Pointer.VertSize = 3
+              Source = lcsLances
+            end
+            object chtLancesSerieOtrosLances: TLineSeries
+              Legend.Format = 'Otros lances'
+              Transparency = 225
               Marks.LabelFont.Height = -11
               Marks.Shape = clsRoundRect
               Marks.Visible = False
@@ -598,13 +617,12 @@ inherited fmLances: TfmLances
               Marks.LinkPen.Color = clBlack
               Marks.Style = smsLabel
               ZPosition = 6
-              LinePen.Color = clRed
-              LinePen.Width = 2
+              LinePen.Color = clMaroon
               MarkPositions = lmpInside
               Pointer.HorizSize = 3
               Pointer.Style = psCircle
               Pointer.VertSize = 3
-              Source = lcsLances
+              Source = lcsOtrosLances
             end
             object chtLancesUMVieiraSerie: TLineSeries
               Legend.Format = 'U.M. Vieira'
@@ -702,7 +720,7 @@ inherited fmLances: TfmLances
             TopPanel.GradientStop = clBtnFace
             TopPanel.ParentFont = False
             TopPanel.TabOrder = 0
-            OldTopPanelHeight = 202
+            OldTopPanelHeight = 217
             object clbReferencias: TChartListbox
               Left = 1
               Height = 0
@@ -799,6 +817,7 @@ inherited fmLances: TfmLances
           end
           object ToolButton7: TToolButton
             Left = 169
+            Height = 26
             Top = 2
             Width = 5
             Caption = 'ToolButton7'
@@ -817,6 +836,7 @@ inherited fmLances: TfmLances
           end
           object ToolButton10: TToolButton
             Left = 230
+            Height = 26
             Top = 2
             Width = 5
             Caption = 'ToolButton10'
@@ -3177,5 +3197,725 @@ inherited fmLances: TfmLances
   object lcsComentariosLances: TListChartSource[20]
     left = 328
     top = 3
+  end
+  object zqOtrosLances: TZQuery[21]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqOtrosLancesBeforeOpen
+    OnCalcFields = zqOtrosLancesCalcFields
+    SQL.Strings = (
+      'SELECT *'
+      'FROM v_lances_simple'
+      'WHERE idmarea=:idmarea'
+      'AND NOT ((:fecha IS NULL'
+      'OR :fecha = '''''
+      'OR fecha=:fecha)'
+      ' AND ('
+      ':__FILTRO__ IS NULL OR'
+      ':__FILTRO__ = '''''
+      'OR date_format(fecha,''%d/%m/%Y'') LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR hora LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR comentarios LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR nro_lance LIKE CONCAT(''%'',:__FILTRO__,''%'')))'
+      'ORDER BY fecha asc , MAKETIME(HOUR(hora),MINUTE(hora),0) asc'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    left = 256
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    object zqLancesidlance1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idlance'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqLancesidmarea1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqLancesnro_lance1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_lance'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqLancesfecha1: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object zqLanceshora1: TTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'hh:mm'
+    end
+    object zqOtrosLancesgrados_latitud_ini: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'grados_latitud_ini'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqOtrosLancesminutos_latitud_ini: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_latitud_ini'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object zqLancescuadrante_latitud_ini1: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_latitud_ini'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqOtrosLancesgrados_longitud_ini: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'grados_longitud_ini'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqOtrosLancesminutos_longitud_ini: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_longitud_ini'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object zqLancescuadrante_longitud_ini1: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_longitud_ini'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqOtrosLancesgrados_latitud_fin: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'grados_latitud_fin'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqOtrosLancesminutos_latitud_fin: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_latitud_fin'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object zqLancescuadrante_latitud_fin1: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_latitud_fin'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqOtrosLancesgrados_longitud_fin: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'grados_longitud_fin'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqOtrosLancesminutos_longitud_fin: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_longitud_fin'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 10
+    end
+    object zqLancescuadrante_longitud_fin1: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'cuadrante_longitud_fin'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object zqLanceslatitud_ini1: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'latitud_ini'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      EditMask = '00º 00.00'''
+      Size = 64
+    end
+    object zqLanceslongitud_ini1: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'longitud_ini'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      EditMask = '00º 00.00'''
+      Size = 64
+    end
+    object zqLanceslatitud_fin1: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'latitud_fin'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      EditMask = '00º 00.00'''
+      Size = 64
+    end
+    object zqLanceslongitud_fin1: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'longitud_fin'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      EditMask = '00º 00.00'''
+      Size = 64
+    end
+    object zqLanceslatitud_ini_fmt1: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'latitud_ini_fmt'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 63
+    end
+    object zqLanceslongitud_ini_fmt1: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'longitud_ini_fmt'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 63
+    end
+    object zqLanceslatitud_fin_fmt1: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'latitud_fin_fmt'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 63
+    end
+    object zqLanceslongitud_fin_fmt1: TBytesField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'longitud_fin_fmt'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 63
+    end
+    object zqLancesrumbo1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rumbo'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '000'
+    end
+    object zqLancesprofundidad1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'profundidad'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqLancescable_estribor1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cable_estribor'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqLancescable_babor1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cable_babor'
+      Index = 28
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqLancesminutos_arrastre1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'minutos_arrastre'
+      Index = 29
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 6
+    end
+    object zqLancescaptura_estribor1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'captura_estribor'
+      Index = 30
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 6
+    end
+    object zqLancescaptura_babor1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'captura_babor'
+      Index = 31
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 6
+    end
+    object zqLancesvelocidad1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'velocidad'
+      Index = 32
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqLancesrinde_total_E1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_total_E'
+      Index = 33
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00%'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqLancesrinde_total_B1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_total_B'
+      Index = 34
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00%'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqLancesrinde_comercial_E1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_comercial_E'
+      Index = 35
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00%'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqLancesrinde_comercial_B1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'rinde_comercial_B'
+      Index = 36
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '0.00%'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqLancescomentarios1: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 37
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqLancestemperatura_superficie1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'temperatura_superficie'
+      Index = 38
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqLancestemperatura_aire1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'temperatura_aire'
+      Index = 39
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqLancestemperatura_fondo1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'temperatura_fondo'
+      Index = 40
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 7
+    end
+    object zqLancescod_estado_mar1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cod_estado_mar'
+      Index = 41
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqLancesnudos_viento1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nudos_viento'
+      Index = 42
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqLancesdireccion_viento1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'direccion_viento'
+      Index = 43
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqLanceslargo_relinga_inferior1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'largo_relinga_inferior'
+      Index = 44
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqLancesmallero_copo_mm1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'mallero_copo_mm'
+      Index = 45
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqLancestipo_malla1: TStringField
+      DisplayWidth = 180
+      FieldKind = fkData
+      FieldName = 'tipo_malla'
+      Index = 46
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
+    object zqOtrosLancesLatIni: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'LatIni'
+      Index = 47
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object zqOtrosLancesLongIni: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'LongIni'
+      Index = 48
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object zqOtrosLancesLatFin: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'LatFin'
+      Index = 49
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object zqOtrosLancesLongFin: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkCalculated
+      FieldName = 'LongFin'
+      Index = 50
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object zqLanceslong_ini_gis1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'long_ini_gis'
+      Index = 51
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 20
+    end
+    object zqLanceslat_ini_gis1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lat_ini_gis'
+      Index = 52
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 20
+    end
+    object zqLanceslong_fin_gis1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'long_fin_gis'
+      Index = 53
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 20
+    end
+    object zqLanceslat_fin_gis1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lat_fin_gis'
+      Index = 54
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 20
+    end
+    object zqLancesetiqueta_inicio1: TStringField
+      DisplayWidth = 76
+      FieldKind = fkData
+      FieldName = 'etiqueta_inicio'
+      Index = 55
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 76
+    end
+    object zqLancesetiqueta_fin1: TStringField
+      DisplayWidth = 116
+      FieldKind = fkData
+      FieldName = 'etiqueta_fin'
+      Index = 56
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 116
+    end
+  end
+  object lcsOtrosLances: TListChartSource[22]
+    left = 620
   end
 end

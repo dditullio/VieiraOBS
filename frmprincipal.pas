@@ -101,6 +101,7 @@ type
     { private declarations }
     procedure ActivarForm (F: TfmBase; ImageIndex:integer=-1);
     procedure CerrarOtrasHojas(F:TfmBase);
+    procedure CerrarHojaMarea;
   public
     { public declarations }
     procedure HabilitarMenu;
@@ -290,6 +291,10 @@ var
 begin
   if F<>nil then
   begin
+    //Si abro cualquier funcion que no sea mareas, cierro pestaña de mareas (si estaba abierta)
+    if F<>fmMareas then
+      CerrarHojaMarea;
+
     Rotulo:= F.Caption;
     //Buscar si está abierto en alguna pestaña
     EncontradoEnHoja:=-1;
@@ -335,6 +340,20 @@ begin
     pcContenido.FindComponent(ats[i]).Free;
   end;
   ats.Free;
+end;
+
+procedure TfmPrincipal.CerrarHojaMarea;
+var
+  i: integer;
+begin
+  if Assigned(fmMareas) then
+  begin
+    for i:=0 to pcContenido.PageCount-1 do
+    begin
+      if (Assigned(pcContenido.Pages[i])) and (pcContenido.Pages[i].Name='ts'+fmMareas.Name) then
+        pcContenido.Pages[i].Free;
+    end;
+  end;
 end;
 
 procedure TfmPrincipal.HabilitarMenu;

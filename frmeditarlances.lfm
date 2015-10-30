@@ -47,30 +47,30 @@ inherited fmEditarLances: TfmEditarLances
       Options = [nboKeyboardTabSwitch]
       object tsGeneral: TTabSheet
         Caption = 'Datos generales'
-        ClientHeight = 628
-        ClientWidth = 1458
+        ClientHeight = 314
+        ClientWidth = 729
         object pcFormatos: TPageControl
           Left = 0
           Height = 314
           Top = 0
           Width = 729
-          ActivePage = tsPredeterminado
+          ActivePage = tsAlternativo
           Align = alClient
-          TabIndex = 0
+          TabIndex = 1
           TabOrder = 0
           OnChange = pcFormatosChange
           OnChanging = pcFormatosChanging
           object tsPredeterminado: TTabSheet
             Caption = 'Formato predeterminado'
-            ClientHeight = 572
-            ClientWidth = 1442
+            ClientHeight = 286
+            ClientWidth = 721
             object gbDatosInicio: TGroupBox
               Left = 4
               Height = 132
               Top = 6
               Width = 376
               Caption = 'Inicio del lance'
-              ClientHeight = 114
+              ClientHeight = 112
               ClientWidth = 372
               TabOrder = 0
               OnExit = gbDatosInicioExit
@@ -303,7 +303,7 @@ inherited fmEditarLances: TfmEditarLances
               Top = 146
               Width = 376
               Caption = 'Finalización del lance'
-              ClientHeight = 111
+              ClientHeight = 109
               ClientWidth = 372
               TabOrder = 1
               object Label15: TLabel
@@ -468,7 +468,7 @@ inherited fmEditarLances: TfmEditarLances
               Top = 6
               Width = 328
               Caption = 'Comentarios'
-              ClientHeight = 114
+              ClientHeight = 112
               ClientWidth = 324
               TabOrder = 2
               object dbmComentarios: TDBMemo
@@ -526,7 +526,7 @@ inherited fmEditarLances: TfmEditarLances
               ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 4
-              ClientHeight = 111
+              ClientHeight = 109
               ClientWidth = 324
               TabOrder = 3
               object Label4: TLabel
@@ -743,15 +743,15 @@ inherited fmEditarLances: TfmEditarLances
           end
           object tsAlternativo: TTabSheet
             Caption = 'Formato alternativo'
-            ClientHeight = 572
-            ClientWidth = 1442
+            ClientHeight = 286
+            ClientWidth = 721
             object gbDatosInicio1: TGroupBox
               Left = 4
               Height = 132
               Top = 6
               Width = 376
               Caption = 'Inicio del lance'
-              ClientHeight = 114
+              ClientHeight = 112
               ClientWidth = 372
               TabOrder = 0
               OnExit = gbDatosInicioExit
@@ -963,7 +963,7 @@ inherited fmEditarLances: TfmEditarLances
                 Left = 9
                 Height = 15
                 Top = 60
-                Width = 68
+                Width = 67
                 Caption = 'Tpo. Arrastre'
                 ParentColor = False
               end
@@ -987,7 +987,7 @@ inherited fmEditarLances: TfmEditarLances
               Top = 6
               Width = 328
               Caption = 'Comentarios'
-              ClientHeight = 114
+              ClientHeight = 112
               ClientWidth = 324
               TabOrder = 2
               object dbmComentarios1: TDBMemo
@@ -1041,7 +1041,7 @@ inherited fmEditarLances: TfmEditarLances
               Top = 146
               Width = 377
               Caption = 'Finalización del lance'
-              ClientHeight = 111
+              ClientHeight = 109
               ClientWidth = 373
               TabOrder = 1
               object Label38: TLabel
@@ -1104,7 +1104,7 @@ inherited fmEditarLances: TfmEditarLances
                 Left = 107
                 Height = 15
                 Top = 63
-                Width = 52
+                Width = 51
                 Caption = 'Velocidad'
                 ParentColor = False
               end
@@ -1209,7 +1209,7 @@ inherited fmEditarLances: TfmEditarLances
               ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 4
-              ClientHeight = 111
+              ClientHeight = 109
               ClientWidth = 324
               TabOrder = 3
               object Label43: TLabel
@@ -1436,7 +1436,7 @@ inherited fmEditarLances: TfmEditarLances
           Top = 7
           Width = 716
           Caption = 'Meteorología'
-          ClientHeight = 111
+          ClientHeight = 109
           ClientWidth = 712
           TabOrder = 0
           object Label18: TLabel
@@ -1546,7 +1546,6 @@ inherited fmEditarLances: TfmEditarLances
             CharCase = ecNormal
             MaxLength = 0
             TabOrder = 5
-            OnChange = dbedVelocVientoChange
             OnExit = dbedVelocVientoExit
           end
           object dbedEstadoMar: TDBEdit
@@ -1590,8 +1589,8 @@ inherited fmEditarLances: TfmEditarLances
             Width = 46
             BevelOuter = bvNone
             BorderStyle = bsSingle
-            ClientHeight = 23
-            ClientWidth = 46
+            ClientHeight = 19
+            ClientWidth = 42
             Enabled = False
             TabOrder = 7
             object DBImage1: TDBImage
@@ -1614,7 +1613,7 @@ inherited fmEditarLances: TfmEditarLances
           Top = 143
           Width = 717
           Caption = 'Equipo de pesca'
-          ClientHeight = 87
+          ClientHeight = 85
           ClientWidth = 713
           TabOrder = 1
           object Label27: TLabel
@@ -2177,7 +2176,6 @@ inherited fmEditarLances: TfmEditarLances
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      BlobType = ftBlob
     end
     object zqPrincipalEncabezado: TStringField[39]
       DisplayWidth = 80
@@ -2549,7 +2547,6 @@ inherited fmEditarLances: TfmEditarLances
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      BlobType = ftBlob
     end
   end
   object dsEstadoMar: TDataSource[9]
@@ -2667,7 +2664,6 @@ inherited fmEditarLances: TfmEditarLances
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      BlobType = ftBlob
     end
   end
   object dsLkpEstadoMar: TDataSource[11]

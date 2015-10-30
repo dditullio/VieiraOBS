@@ -5,7 +5,7 @@ unit frmbackup;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, UTF8Process, AbZipper, AbBrowse, Forms, Controls,
+  Classes, SysUtils, LazFileUtils, UTF8Process, AbZipper, AbBrowse, Forms, Controls,
   Graphics, Dialogs, StdCtrls, EditBtn, Buttons, ActnList, ComCtrls, LSConfig,
   datGeneral, db, sqldb, sqldblib, mysql56conn, ZSqlMetadata,
   ZDataset, ExSystemUtils, process, LCLIntf, ExtCtrls, AbArcTyp, AbUnzper, math;

@@ -868,6 +868,7 @@ inherited fmLances: TfmLances
     end
   end
   inherited zcgLista: TZControladorGrilla
+    SeleccionarUltimo = True
     ControlEdicion = fmEditarLances.zcePrincipal
     ZDataset = zqLances
   end

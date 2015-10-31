@@ -5,7 +5,7 @@ unit frmlances;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, DateTimePicker, TAGraph,
+  Classes, SysUtils, LazFileUtils, DateTimePicker, TAGraph,
   TASources, TASeries, TATools, rxdbgrid, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, Buttons, ActnList, StdCtrls, ComCtrls, frmlistabase, db, ZDataset,
   zcontroladorgrilla, datGeneral, frmeditarlances, dateutils, funciones, math,
@@ -491,10 +491,13 @@ begin
          GotoBookmark(bm);
       EnableControls;
     end;
-    if lcsLances.Count>0 then
-       chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
   end;
 
+  // Acerco el mapa a los lances visibles, con prioridad a los listados
+  if lcsLances.Count>0 then
+     chtLances.LogicalExtent:=chtLancesSerieLances.Extent
+  else if lcsOtrosLances.Count>0 then
+     chtLances.LogicalExtent:=chtLancesSerieOtrosLances.Extent;
 end;
 
 procedure TfmLances.dtFechaChange(Sender: TObject);

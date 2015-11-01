@@ -39,16 +39,16 @@ inherited fmListaBase: TfmListaBase
           TabOrder = 0
           object laBuscar: TLabel
             Left = 5
-            Height = 17
+            Height = 15
             Top = 2
-            Width = 38
+            Width = 35
             Caption = '&Buscar'
             ParentColor = False
           end
           object edBuscar: TEdit
             AnchorSideRight.Control = bbBuscar
             Left = 5
-            Height = 25
+            Height = 23
             Top = 19
             Width = 257
             Anchors = [akTop, akLeft, akRight]
@@ -472,7 +472,9 @@ inherited fmListaBase: TfmListaBase
     BotonEliminar = bbEliminar
     BotonBuscar = bbBuscar
     Buscador = edBuscar
+    SeleccionarUltimo = False
     Grilla = dbgLista
+    MostrarBotonExportar = False
     left = 48
     top = 240
   end

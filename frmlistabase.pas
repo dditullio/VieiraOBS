@@ -43,8 +43,14 @@ implementation
 
 procedure TfmListaBase.FormShow(Sender: TObject);
 begin
+  //El componente zcgLista encapsula todas las funciones de manejo
+  //de la lista de registros
   zcgLista.Buscar;
+
+  //Se habilitan o deshabilitan los botones del formulario de acuerdo
+  //a los regisros encontrados
   zcgLista.HabilitarAcciones;
+
   if edBuscar.CanFocus then
      edBuscar.SetFocus;
 end;

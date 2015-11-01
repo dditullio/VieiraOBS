@@ -5,7 +5,7 @@ unit datGeneral;
 interface
 
 uses
-  Classes, SysUtils, sqldb, DB, mysql50conn, mysql55conn, FileUtil, ZConnection,
+  Classes, SysUtils, sqldb, DB, mysql50conn, mysql55conn, LazFileUtils, ZConnection,
   ZDataset, ZSqlMonitor, Forms, ActnList, LSConfig, Dialogs, Controls,
   frmSplashScreenForm;
 
@@ -97,7 +97,7 @@ implementation
 
 procedure TdmGeneral.DataModuleCreate(Sender: TObject);
 var
-  tmp_MareaActiva: integer;
+  tmp_MareaActiva: integer=-1;
   lib_standard, lib_embedded: string;
   servidor_local: string;
 begin

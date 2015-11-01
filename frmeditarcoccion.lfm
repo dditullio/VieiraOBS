@@ -1,4 +1,6 @@
 inherited fmEditarCoccion: TfmEditarCoccion
+  Left = 497
+  Top = 183
   Width = 359
   Caption = 'Cocción'
   ClientWidth = 359
@@ -10,7 +12,6 @@ inherited fmEditarCoccion: TfmEditarCoccion
     end
     inherited DividerBevel1: TDividerBevel
       Left = 229
-      Width = 15
     end
     inherited paEncabezado: TPanel
       Width = 228
@@ -71,7 +72,7 @@ inherited fmEditarCoccion: TfmEditarCoccion
       Top = 62
       Width = 168
       Caption = 'Antes del proceso'
-      ClientHeight = 114
+      ClientHeight = 112
       ClientWidth = 164
       TabOrder = 2
       object Label4: TLabel
@@ -119,7 +120,7 @@ inherited fmEditarCoccion: TfmEditarCoccion
       Top = 62
       Width = 168
       Caption = 'Después del proceso'
-      ClientHeight = 114
+      ClientHeight = 112
       ClientWidth = 164
       TabOrder = 3
       object Label6: TLabel
@@ -231,11 +232,9 @@ inherited fmEditarCoccion: TfmEditarCoccion
     ClientWidth = 359
     inherited bbCancelar: TBitBtn
       Left = 177
-      Height = 24
     end
     inherited bbAceptar: TBitBtn
       Left = 265
-      Height = 24
     end
   end
   inherited zqPrincipal: TZQuery

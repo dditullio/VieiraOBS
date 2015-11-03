@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, DBDateTimePicker, DividerBevel, rxlookup, Forms,
   Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, DBCtrls, Buttons, DBGrids,
   ComCtrls, frmzedicionbase, ZDataset, zcontroladoredicion, zdatasetgroup,
-  DtDBTimeEdit, DB, datGeneral, funciones, dateutils,
+  SQLQueryGroup, DtDBTimeEdit, DB, datGeneral, funciones, dateutils,
   LSExpression, LSConsts, LSConfig, LCLType, Math;
 
 type
@@ -975,16 +975,13 @@ begin
   begin
     pcFormatos.TabIndex := 0;
     zcePrincipal.ControlInicial := dbdtHora;
-    //Al cambiar el tabindex en el Create, no se ejecuta el evento OnChange
-    FormatosChanging:=False;
   end
   else
   begin
     pcFormatos.TabIndex := StrToInt(formato);
     zcePrincipal.ControlInicial := dbdtHora1;
-    //Al cambiar el tabindex en el Create, no se ejecuta el evento OnChange
-    FormatosChanging:=False;
   end;
+  //FControlesEdicion.ActiveIndex := pcFormatos.TabIndex;
 
   //Asigno el evento acá, porque por algún motivo se desengancha.
   //Hay que averiguar por qué y solucionarlo

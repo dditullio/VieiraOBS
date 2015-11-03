@@ -13,6 +13,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
     end
     inherited DividerBevel1: TDividerBevel
       Left = 164
+      Width = 15
     end
     inherited paEncabezado: TPanel
       Width = 163
@@ -151,7 +152,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
       Left = 112
       Height = 15
       Top = 126
-      Width = 73
+      Width = 74
       Caption = 'Temp. Superf.'
       ParentColor = False
     end
@@ -201,9 +202,11 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
     ClientWidth = 294
     inherited bbCancelar: TBitBtn
       Left = 112
+      Height = 24
     end
     inherited bbAceptar: TBitBtn
       Left = 200
+      Height = 24
     end
   end
   inherited dsPrincipal: TDataSource
@@ -361,8 +364,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
     end
   end
   inherited zcePrincipal: TZControladorEdicion
-    AltaContinua = True
-    ControlInicial = dbdtFecha
+    ControlInicial = dbdtHora
     left = 208
     top = 184
   end

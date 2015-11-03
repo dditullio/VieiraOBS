@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, DividerBevel, DBDateTimePicker, rxdbgrid, Forms,
   Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, DBCtrls, Buttons, DBGrids,
-  frmzedicionbase, dattallas, ZDataset, zcontroladoredicion,
+  frmzedicionbase, dattallas, ZDataset, SQLQueryGroup, zcontroladoredicion,
   zdatasetgroup, zcontroladorgrilla, DtDBTimeEdit, DB, frmeditardetalletallas,
   Math;
 

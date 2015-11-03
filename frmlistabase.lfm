@@ -39,16 +39,16 @@ inherited fmListaBase: TfmListaBase
           TabOrder = 0
           object laBuscar: TLabel
             Left = 5
-            Height = 15
+            Height = 17
             Top = 2
-            Width = 35
+            Width = 38
             Caption = '&Buscar'
             ParentColor = False
           end
           object edBuscar: TEdit
             AnchorSideRight.Control = bbBuscar
             Left = 5
-            Height = 23
+            Height = 25
             Top = 19
             Width = 257
             Anchors = [akTop, akLeft, akRight]
@@ -427,7 +427,7 @@ inherited fmListaBase: TfmListaBase
                 ShortCut = 16451
                 Enabled = True
               end>
-            OptionsRx = [rdgDblClickOptimizeColWidth, rdgCaseInsensitiveSort]
+            OptionsRx = [rdgDblClickOptimizeColWidth, rdgAllowQuickFilter, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
             Align = alTop
             Anchors = [akTop, akLeft, akRight, akBottom]
             AutoAdvance = aaNone
@@ -472,9 +472,7 @@ inherited fmListaBase: TfmListaBase
     BotonEliminar = bbEliminar
     BotonBuscar = bbBuscar
     Buscador = edBuscar
-    SeleccionarUltimo = False
     Grilla = dbgLista
-    MostrarBotonExportar = False
     left = 48
     top = 240
   end

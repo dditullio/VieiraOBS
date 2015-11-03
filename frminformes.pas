@@ -11,7 +11,7 @@ uses
   {$IFDEF UNIX}
     Unix,
   {$ENDIF}
-  Classes, SysUtils, lazFileUtils, LR_Class, LR_DBSet, RxIniPropStorage, Forms,
+  Classes, SysUtils, FileUtil, LR_Class, LR_DBSet, RxIniPropStorage, Forms,
   Controls, Graphics, Dialogs, ExtCtrls, Buttons, ActnList, ComCtrls, StdCtrls,
   EditBtn, IniPropStorage, Grids, frmbase, ZDataset, windirs, DB, datGeneral,
   comobj, variants, frmrptdatospuente,
@@ -558,8 +558,7 @@ begin
       DirectorySeparator + 'Datos puente.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
-//      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
-      CopyFile(PChar(archivo_origen), PChar(archivo_destino), False);
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
       archivo_destino:=UTF8Decode(archivo_destino);
       xls.Workbooks.Open(archivo_destino);
       //Pongo los datos de la marea
@@ -675,7 +674,7 @@ begin
       DirectorySeparator + 'Rindes.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
-      CopyFile(PChar(archivo_origen), PChar(archivo_destino), False);
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
       archivo_destino:=UTF8Decode(archivo_destino);
       xls.Workbooks.Open(archivo_destino);
       //Pongo los datos de la marea
@@ -747,8 +746,7 @@ begin
       DirectorySeparator + 'Cocción.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
-      //CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
-      CopyFile(PChar(archivo_origen), PChar(archivo_destino), False);
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
       archivo_destino:=UTF8Decode(archivo_destino);
       xls.Workbooks.Open(archivo_destino);
       //Pongo los datos de la marea
@@ -821,7 +819,7 @@ begin
       DirectorySeparator + 'Tallas.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
-      CopyFile(PChar(archivo_origen), PChar(archivo_destino), False);
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
       archivo_destino:=UTF8Decode(archivo_destino);
       //Abro el archivo para guardar los datos
       xls.Workbooks.Open(archivo_destino);
@@ -943,7 +941,7 @@ begin
       DirectorySeparator + 'Daño valvar.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
-      CopyFile(PChar(archivo_origen), PChar(archivo_destino), False);
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
       archivo_destino:=UTF8Decode(archivo_destino);
       //Abro el archivo de donde voy a copiar el formato
       xlp.Workbooks.Open(plantilla);
@@ -1068,7 +1066,7 @@ begin
       DirectorySeparator + 'Fauna acompañante.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
-      CopyFile(PChar(archivo_origen), PChar(archivo_destino), False);
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
       archivo_destino:=UTF8Decode(archivo_destino);
       //Abro el archivo de donde voy a copiar el formato
       xlp.Workbooks.Open(plantilla);
@@ -1212,7 +1210,7 @@ begin
       DirectorySeparator + 'Fauna acompañante nueva.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
-      CopyFile(PChar(archivo_origen), PChar(archivo_destino), False);
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
       archivo_destino:=UTF8Decode(archivo_destino);
       //Abro el archivo de donde voy a copiar el formato
       xlp.Workbooks.Open(plantilla);
@@ -1365,7 +1363,7 @@ begin
       DirectorySeparator + 'Rayas.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
-      CopyFile(PChar(archivo_origen), PChar(archivo_destino), False);
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
       archivo_destino:=UTF8Decode(archivo_destino);
       xls.Workbooks.Open(archivo_destino);
       xls.ActiveWorkBook.Sheets('planilla para completar').Activate;

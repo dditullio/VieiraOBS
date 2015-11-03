@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, DividerBevel, DBDateTimePicker, Forms, Controls,
   Graphics, Dialogs, ExtCtrls, StdCtrls, DbCtrls, Buttons, frmzedicionbase,
-  ZDataset, zcontroladoredicion, zdatasetgroup, db, datGeneral;
+  ZDataset, SQLQueryGroup, zcontroladoredicion, zdatasetgroup, db, datGeneral;
 
 type
 

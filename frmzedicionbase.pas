@@ -5,9 +5,9 @@ unit frmzedicionbase;
 interface
 
 uses
-  Classes, SysUtils, sqldb, DB, LazFileUtils, LResources, Forms, Controls, Graphics,
+  Classes, SysUtils, sqldb, DB, FileUtil, LResources, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, Buttons, StdCtrls, ActnList, LCLType, DBCtrls,
-  zcontroladoredicion, zdatasetgroup,
+  SQLQueryGroup, ControladorEdicion, zcontroladoredicion, zdatasetgroup,
   DividerBevel, ZDataset;
 
 const
@@ -32,10 +32,12 @@ type
     paAccion: TPanel;
     paEncabezado: TPanel;
     paPrincipal: TPanel;
+    qgPrincipal: TSQLQueryGroup;
     zcePrincipal: TZControladorEdicion;
     zdgPrincipal: TZDatasetGroup;
     zqPrincipal: TZQuery;
   private
+    FSkipped: array of TWinControlClass;
   protected
   public
     { public declarations }

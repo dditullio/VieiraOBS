@@ -46,8 +46,6 @@ end;
 
 procedure TfmBase.CerrarForm;
 begin
-  //Considera que el formulario puede estar embebido en una hoja ((TTabSheet)
-  //de un paginador (TPageControl)
   if Parent is TTabSheet then
     Parent.Free
   else

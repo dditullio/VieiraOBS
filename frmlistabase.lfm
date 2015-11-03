@@ -427,7 +427,7 @@ inherited fmListaBase: TfmListaBase
                 ShortCut = 16451
                 Enabled = True
               end>
-            OptionsRx = [rdgDblClickOptimizeColWidth, rdgAllowQuickFilter, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
+            OptionsRx = [rdgDblClickOptimizeColWidth, rdgCaseInsensitiveSort]
             Align = alTop
             Anchors = [akTop, akLeft, akRight, akBottom]
             AutoAdvance = aaNone

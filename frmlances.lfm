@@ -25,13 +25,8 @@ inherited fmLances: TfmLances
         inherited paBuscador: TPanel
           Width = 551
           ClientWidth = 551
-          inherited laBuscar: TLabel
-            Height = 15
-            Width = 35
-          end
           inherited edBuscar: TEdit
             Left = 124
-            Height = 23
             Width = 392
           end
           inherited bbBuscar: TBitBtn
@@ -441,7 +436,7 @@ inherited fmLances: TfmLances
             FooterOptions.Active = True
             FooterOptions.Color = clBtnFace
             FooterOptions.RowCount = 1
-            OptionsRx = [rdgDblClickOptimizeColWidth, rdgFooterRows, rdgAllowQuickFilter, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
+            OptionsRx = [rdgDblClickOptimizeColWidth, rdgFooterRows, rdgAllowQuickFilter, rdgAllowSortForm, rdgCaseInsensitiveSort]
             FooterColor = clBtnFace
             FooterRowCount = 1
             DataSource = dsLances
@@ -622,6 +617,7 @@ inherited fmLances: TfmLances
               Pointer.HorizSize = 3
               Pointer.Style = psCircle
               Pointer.VertSize = 3
+              Pointer.Visible = False
               Source = lcsOtrosLances
             end
             object chtLancesUMVieiraSerie: TLineSeries

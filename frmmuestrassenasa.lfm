@@ -390,8 +390,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Fecha'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Fecha'
                 Width = 80
                 FieldName = 'fecha'
                 EditButtons = <>
@@ -403,8 +403,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Hora'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Hora'
                 Width = 50
                 FieldName = 'hora'
                 EditButtons = <>
@@ -416,8 +416,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Latitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Latitud'
                 Width = 60
                 FieldName = 'str_latitud'
                 EditButtons = <>
@@ -429,8 +429,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Longitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Longitud'
                 Width = 60
                 FieldName = 'str_longitud'
                 EditButtons = <>
@@ -442,8 +442,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Nº muestra'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Nº muestra'
                 Width = 55
                 FieldName = 'nro_muestra'
                 EditButtons = <>
@@ -454,8 +454,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               end            
               item
                 Title.Alignment = taCenter
-                Title.Caption = 'CM1'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'CM1'
                 Width = 10
                 FieldName = 'contramuestra1'
                 EditButtons = <>
@@ -466,8 +466,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               end            
               item
                 Title.Alignment = taCenter
-                Title.Caption = 'CM2'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'CM2'
                 Width = 10
                 FieldName = 'contramuestra2'
                 EditButtons = <>
@@ -478,8 +478,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               end            
               item
                 Title.Alignment = taCenter
-                Title.Caption = 'LabMDP'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'LabMDP'
                 Width = 10
                 FieldName = 'lab_mdp'
                 EditButtons = <>
@@ -490,8 +490,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               end            
               item
                 Title.Alignment = taCenter
-                Title.Caption = 'LabBsAs'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'LabBsAs'
                 Width = 13
                 FieldName = 'lab_bsas'
                 EditButtons = <>
@@ -556,7 +556,7 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
                 ShortCut = 16451
                 Enabled = True
               end>
-            OptionsRx = [rdgDblClickOptimizeColWidth, rdgAllowQuickFilter, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
+            OptionsRx = [rdgDblClickOptimizeColWidth, rdgCaseInsensitiveSort]
             Align = alTop
             Anchors = [akTop, akLeft, akRight, akBottom]
             AutoAdvance = aaNone
@@ -1004,8 +1004,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Fecha'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Fecha'
                 Width = 80
                 FieldName = 'fecha'
                 EditButtons = <>
@@ -1017,8 +1017,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Hora'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Hora'
                 Width = 50
                 FieldName = 'hora'
                 EditButtons = <>
@@ -1030,8 +1030,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Latitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Latitud'
                 Width = 80
                 FieldName = 'str_latitud'
                 EditButtons = <>
@@ -1043,8 +1043,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Longitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Longitud'
                 Width = 80
                 FieldName = 'str_longitud'
                 EditButtons = <>
@@ -1056,8 +1056,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Nº muestra'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Nº muestra'
                 Width = 55
                 FieldName = 'nro_muestra'
                 EditButtons = <>
@@ -1069,8 +1069,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Prof.'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Prof.'
                 Width = 55
                 FieldName = 'profundidad'
                 EditButtons = <>
@@ -1081,8 +1081,8 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               end            
               item
                 Title.Alignment = taCenter
-                Title.Caption = 'Temp. Sup.'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Temp. Sup.'
                 Width = 0
                 FieldName = 'temp_superficie'
                 EditButtons = <>
@@ -1147,7 +1147,7 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
                 ShortCut = 16451
                 Enabled = True
               end>
-            OptionsRx = [rdgDblClickOptimizeColWidth, rdgAllowQuickFilter, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
+            OptionsRx = [rdgDblClickOptimizeColWidth, rdgCaseInsensitiveSort]
             Align = alTop
             Anchors = [akTop, akLeft, akRight, akBottom]
             AutoAdvance = aaNone

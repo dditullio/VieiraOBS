@@ -13,7 +13,6 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
     end
     inherited DividerBevel1: TDividerBevel
       Left = 171
-      Width = 15
     end
     inherited paEncabezado: TPanel
       Width = 170
@@ -240,11 +239,9 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
     ClientWidth = 301
     inherited bbCancelar: TBitBtn
       Left = 119
-      Height = 24
     end
     inherited bbAceptar: TBitBtn
       Left = 207
-      Height = 24
     end
   end
   inherited dsPrincipal: TDataSource
@@ -419,7 +416,8 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
     end
   end
   inherited zcePrincipal: TZControladorEdicion
-    ControlInicial = dbdtHora
+    AltaContinua = True
+    ControlInicial = dbdtFecha
     left = 208
     top = 136
   end

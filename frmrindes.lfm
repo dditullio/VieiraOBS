@@ -25,13 +25,8 @@ inherited fmRindes: TfmRindes
         inherited paBuscador: TPanel
           Width = 651
           ClientWidth = 651
-          inherited laBuscar: TLabel
-            Height = 15
-            Width = 35
-          end
           inherited edBuscar: TEdit
             Left = 122
-            Height = 23
             Width = 494
           end
           inherited bbBuscar: TBitBtn
@@ -91,8 +86,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Muestra|Fecha'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Muestra|Fecha'
                 Width = 80
                 FieldName = 'fecha'
                 EditButtons = <>
@@ -108,8 +103,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Muestra|Hora'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Muestra|Hora'
                 Width = 50
                 FieldName = 'hora'
                 EditButtons = <>
@@ -124,8 +119,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Muestra|Lance'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Muestra|Lance'
                 Width = 50
                 FieldName = 'nrolance'
                 EditButtons = <>
@@ -141,8 +136,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Muestra|Banda'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Muestra|Banda'
                 Width = 50
                 FieldName = 'banda'
                 EditButtons = <>
@@ -157,8 +152,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Peso|Comercial'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Peso|Comercial'
                 Width = 90
                 FieldName = 'peso_comercial'
                 EditButtons = <>
@@ -173,8 +168,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Peso|No comercial'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Peso|No comercial'
                 Width = 90
                 FieldName = 'peso_no_comercial'
                 EditButtons = <>
@@ -189,8 +184,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Peso|Acompañante'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Peso|Acompañante'
                 Width = 90
                 FieldName = 'peso_fauna_acomp'
                 EditButtons = <>
@@ -205,8 +200,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Peso|Total'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Peso|Total'
                 Width = 90
                 FieldName = 'peso_total'
                 EditButtons = <>
@@ -221,8 +216,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Rinde|Total'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Rinde|Total'
                 Width = 90
                 FieldName = 'rinde_total'
                 EditButtons = <>
@@ -237,8 +232,8 @@ inherited fmRindes: TfmRindes
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Rinde|Comercial'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Rinde|Comercial'
                 Width = 90
                 FieldName = 'rinde_comercial'
                 EditButtons = <>
@@ -252,8 +247,8 @@ inherited fmRindes: TfmRindes
               item
                 PickList.Strings = (                )
                 Title.Alignment = taCenter
-                Title.Caption = 'Comentarios'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Comentarios'
                 Width = 0
                 FieldName = 'comentarios'
                 EditButtons = <>
@@ -264,7 +259,7 @@ inherited fmRindes: TfmRindes
                 Filter.ItemIndex = -1
                 KeyList.Strings = (                )
               end>
-            OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+            OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind]
             DataSource = dsRindes
           end
         end
@@ -289,8 +284,8 @@ inherited fmRindes: TfmRindes
               item
                 Alignment = taCenter
                 Title.Alignment = taCenter
-                Title.Caption = 'Hora'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Hora'
                 Width = 74
                 FieldName = 'hora'
                 EditButtons = <>
@@ -302,8 +297,8 @@ inherited fmRindes: TfmRindes
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Peso|ByCatch'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Peso|ByCatch'
                 Width = 90
                 FieldName = 'peso_bycatch'
                 EditButtons = <>
@@ -315,8 +310,8 @@ inherited fmRindes: TfmRindes
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Peso|V. total'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Peso|V. total'
                 Width = 90
                 FieldName = 'peso_vieira'
                 EditButtons = <>
@@ -328,8 +323,8 @@ inherited fmRindes: TfmRindes
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Peso|V. comercial'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Peso|V. comercial'
                 Width = 90
                 FieldName = 'peso_mayor_55'
                 EditButtons = <>
@@ -341,8 +336,8 @@ inherited fmRindes: TfmRindes
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Rinde|Total'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Rinde|Total'
                 Width = 90
                 FieldName = 'rinde_total'
                 EditButtons = <>
@@ -354,8 +349,8 @@ inherited fmRindes: TfmRindes
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Rinde|Comercial'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Rinde|Comercial'
                 Width = 90
                 FieldName = 'rinde_comercial'
                 EditButtons = <>

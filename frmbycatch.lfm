@@ -25,12 +25,7 @@ inherited fmByCatch: TfmByCatch
         inherited paBuscador: TPanel
           Width = 260
           ClientWidth = 260
-          inherited laBuscar: TLabel
-            Height = 15
-            Width = 35
-          end
           inherited edBuscar: TEdit
-            Height = 23
             Width = 220
           end
           inherited bbBuscar: TBitBtn
@@ -62,8 +57,8 @@ inherited fmByCatch: TfmByCatch
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Fecha'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Fecha'
                 Width = 80
                 FieldName = 'fecha'
                 EditButtons = <>
@@ -78,8 +73,8 @@ inherited fmByCatch: TfmByCatch
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Hora'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Hora'
                 Width = 50
                 FieldName = 'hora'
                 EditButtons = <>
@@ -93,8 +88,8 @@ inherited fmByCatch: TfmByCatch
               item
                 PickList.Strings = (                )
                 Title.Alignment = taCenter
-                Title.Caption = 'Lance'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Lance'
                 Width = 87
                 FieldName = 'lance_banda'
                 EditButtons = <>
@@ -108,8 +103,8 @@ inherited fmByCatch: TfmByCatch
               item
                 PickList.Strings = (                )
                 Title.Alignment = taCenter
-                Title.Caption = 'Comentarios'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Comentarios'
                 Width = 0
                 Visible = False
                 FieldName = 'comentarios'
@@ -543,8 +538,8 @@ inherited fmByCatch: TfmByCatch
             Columns = <            
               item
                 Title.Alignment = taCenter
-                Title.Caption = 'Especie'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Especie'
                 Width = 120
                 FieldName = 'Nombre'
                 EditButtons = <>
@@ -556,8 +551,8 @@ inherited fmByCatch: TfmByCatch
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Nº Ejemp.'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Nº Ejemp.'
                 Width = 70
                 FieldName = 'numero'
                 EditButtons = <>
@@ -569,8 +564,8 @@ inherited fmByCatch: TfmByCatch
               item
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Peso (Kg.)'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Peso (Kg.)'
                 Width = 70
                 FieldName = 'peso'
                 EditButtons = <>
@@ -581,8 +576,8 @@ inherited fmByCatch: TfmByCatch
               end            
               item
                 Title.Alignment = taCenter
-                Title.Caption = 'Comentarios'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Comentarios'
                 Width = 120
                 FieldName = 'comentarios'
                 EditButtons = <>

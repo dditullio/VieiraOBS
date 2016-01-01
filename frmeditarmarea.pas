@@ -19,6 +19,7 @@ type
     dbdtArribo: TDBDateTimePicker;
     dbdtFinalizacion: TDBDateTimePicker;
     dbedAnio: TDBEdit;
+    dbedNroLanceInicial: TDBEdit;
     dbedMareaBuque: TDBEdit;
     dbedMareaInidep: TDBEdit;
     dbedCapitan: TDBEdit;
@@ -31,6 +32,7 @@ type
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
+    Label12: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -53,6 +55,7 @@ type
     zqPrincipalidbuque: TLongintField;
     zqPrincipalidmarea: TLongintField;
     zqPrincipalmarea_buque: TStringField;
+    zqPrincipalnro_lance_inicial: TLongintField;
     zqPrincipalnro_marea_inidep: TLongintField;
     zqPrincipalobservador: TStringField;
     zqPrincipaloficial: TStringField;
@@ -161,6 +164,7 @@ end;
 procedure TfmEditarMarea.zqPrincipalNewRecord(DataSet: TDataSet);
 begin
   zqPrincipalidmarea.Value:=zcePrincipal.NuevoID('mareas');
+  zqPrincipalnro_lance_inicial.Value:=1;
 end;
 
 end.

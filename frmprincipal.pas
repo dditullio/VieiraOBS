@@ -167,7 +167,7 @@ end;
 procedure TfmPrincipal.FormShow(Sender: TObject);
 begin
   HideSplashScreen;
-  HabilitarMenu;
+  tmHabilitarMenu.Enabled:=True;
 end;
 
 procedure TfmPrincipal.tmHabilitarMenuTimer(Sender: TObject);

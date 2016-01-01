@@ -196,6 +196,7 @@ type
     zqSenasaCallos: TZQuery;
     zqInfMuestrasBiol: TZQuery;
     zqResumen: TZQuery;
+    zqByCatch2: TZQuery;
     procedure acGuardarPlanillasExecute(Sender: TObject);
     procedure acImprimirDatosPuenteExecute(Sender: TObject);
     procedure acImprimirMuestrasBiolExecute(Sender: TObject);
@@ -227,6 +228,7 @@ type
     procedure zqSenasaEnteraBeforeOpen(DataSet: TDataSet);
     procedure zqTallasAfterScroll(DataSet: TDataSet);
     procedure zqTallasBeforeOpen(DataSet: TDataSet);
+    procedure zqByCatch2BeforeOpen(DataSet: TDataSet);
   private
     { private declarations }
     procedure GenerarDatosPuenteXLS;
@@ -534,6 +536,11 @@ end;
 procedure TfmInformes.zqTallasBeforeOpen(DataSet: TDataSet);
 begin
   zqTallas.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+end;
+
+procedure TfmInformes.zqByCatch2BeforeOpen(DataSet: TDataSet);
+begin
+  zqByCatch2.ParamByName('idmuestras_bycatch').Value := zqByCatch.FieldByName('idmuestras_bycatch').Value;
 end;
 
 procedure TfmInformes.GenerarDatosPuenteXLS;
@@ -1087,6 +1094,8 @@ begin
         xlp.Range('A1:D30').Copy;
         while not EOF do
         begin
+          zqByCatch2.Close;
+          zqByCatch2.Open;
           rango:=UTF8Decode('A'+IntToStr(fila)+':D'+IntToStr(fila+29));
           //Pego el texto
           xls.Range(rango).PasteSpecial(-4163);
@@ -1126,41 +1135,41 @@ begin
              xls.Cells[fila+12, 3] := FieldByName('peso_muestra_captura').AsFloat;
           if not FieldByName('peso_total_vieira').IsNull then
              xls.Cells[fila+13, 3] := FieldByName('peso_total_vieira').AsFloat;
-          if not FieldByName('peso_valvas').IsNull then
-             xls.Cells[fila+14, 3] := FieldByName('peso_valvas').AsFloat;
+          if not zqByCatch2.FieldByName('peso_valvas').IsNull then
+             xls.Cells[fila+14, 3] := zqByCatch2.FieldByName('peso_valvas').AsFloat;
           if not FieldByName('peso_muestra_fauna_acomp').IsNull then
              xls.Cells[fila+15, 3] := FieldByName('peso_muestra_fauna_acomp').AsFloat;
-          xls.Cells[fila+17, 3] := FieldByName('peso_esponjas').AsFloat;
-          xls.Cells[fila+18, 3] := FieldByName('peso_ofiuras').AsFloat;
-          xls.Cells[fila+19, 3] := FieldByName('peso_estrellas').AsFloat;
-          xls.Cells[fila+19, 4] := FieldByName('nro_estrellas').AsInteger;
-          xls.Cells[fila+20, 3] := FieldByName('peso_caracoles').AsFloat;
-          xls.Cells[fila+20, 4] := FieldByName('nro_caracoles').AsInteger;
-          xls.Cells[fila+21, 3] := FieldByName('peso_erizos').AsFloat;
-          xls.Cells[fila+21, 4] := FieldByName('nro_erizos').AsInteger;
-          xls.Cells[fila+22, 3] := FieldByName('peso_cangrejos').AsFloat;
-          xls.Cells[fila+22, 4] := FieldByName('nro_cangrejos').AsInteger;
-          xls.Cells[fila+23, 3] := FieldByName('peso_tubos_amarillentos').AsFloat;
+          xls.Cells[fila+17, 3] := zqByCatch2.FieldByName('peso_esponjas').AsFloat;
+          xls.Cells[fila+18, 3] := zqByCatch2.FieldByName('peso_ofiuras').AsFloat;
+          xls.Cells[fila+19, 3] := zqByCatch2.FieldByName('peso_estrellas').AsFloat;
+          xls.Cells[fila+19, 4] := zqByCatch2.FieldByName('nro_estrellas').AsInteger;
+          xls.Cells[fila+20, 3] := zqByCatch2.FieldByName('peso_caracoles').AsFloat;
+          xls.Cells[fila+20, 4] := zqByCatch2.FieldByName('nro_caracoles').AsInteger;
+          xls.Cells[fila+21, 3] := zqByCatch2.FieldByName('peso_erizos').AsFloat;
+          xls.Cells[fila+21, 4] := zqByCatch2.FieldByName('nro_erizos').AsInteger;
+          xls.Cells[fila+22, 3] := zqByCatch2.FieldByName('peso_cangrejos').AsFloat;
+          xls.Cells[fila+22, 4] := zqByCatch2.FieldByName('nro_cangrejos').AsInteger;
+          xls.Cells[fila+23, 3] := zqByCatch2.FieldByName('peso_tubos_amarillentos').AsFloat;
           //Peces en captura
-          tmp := UTF8Decode(FieldByName('peces1').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces1').AsString);
           xls.Cells[fila+25, 1] := tmp;
-          tmp := UTF8Decode(FieldByName('peces2').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces2').AsString);
           xls.Cells[fila+26, 1] := tmp;
-          tmp := UTF8Decode(FieldByName('peces3').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces3').AsString);
           xls.Cells[fila+27, 1] := tmp;
-          tmp := UTF8Decode(FieldByName('peces4').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces4').AsString);
           xls.Cells[fila+28, 1] := tmp;
-          tmp := UTF8Decode(FieldByName('peces5').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces5').AsString);
           xls.Cells[fila+29, 1] := tmp;
-          tmp := UTF8Decode(FieldByName('peces6').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces6').AsString);
           xls.Cells[fila+25, 2] := tmp;
-          tmp := UTF8Decode(FieldByName('peces7').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces7').AsString);
           xls.Cells[fila+26, 2] := tmp;
-          tmp := UTF8Decode(FieldByName('peces8').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces8').AsString);
           xls.Cells[fila+27, 2] := tmp;
-          tmp := UTF8Decode(FieldByName('peces9').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces9').AsString);
           xls.Cells[fila+28, 2] := tmp;
-          tmp := UTF8Decode(FieldByName('peces10').AsString);
+          tmp := UTF8Decode(zqByCatch2.FieldByName('peces10').AsString);
           xls.Cells[fila+29, 2] := tmp;
 
           pbProceso.Position := RecNo;

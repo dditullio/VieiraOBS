@@ -273,7 +273,7 @@ object dmGeneral: TdmGeneral
     BeforeOpen = zqMareaActivaBeforeOpen
     OnCalcFields = zqMareaActivaCalcFields
     SQL.Strings = (
-      'SELECT idmarea, buque, marea_buque, anio_marea, nro_marea_inidep, Marea, capitan, observador, puerto_registro, factor_calc_captura, fecha_zarpada, fecha_arribo'
+      'SELECT idmarea, buque, marea_buque, anio_marea, nro_marea_inidep, Marea, capitan, observador, puerto_registro, factor_calc_captura, fecha_zarpada, fecha_arribo, nro_lance_inicial'
       'FROM v_mareas'
       'WHERE idmarea=:idmarea'
     )
@@ -419,11 +419,20 @@ object dmGeneral: TdmGeneral
       ReadOnly = False
       Required = True
     end
+    object zqMareaActivanro_lance_inicial: TLongintField
+      FieldKind = fkData
+      FieldName = 'nro_lance_inicial'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
     object zqMareaActivaMareaStr: TStringField
       DisplayWidth = 150
       FieldKind = fkCalculated
       FieldName = 'MareaStr'
-      Index = 12
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

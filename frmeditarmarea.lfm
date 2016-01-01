@@ -1,11 +1,11 @@
 inherited fmEditarMarea: TfmEditarMarea
   Left = 552
-  Height = 393
+  Height = 431
   Top = 167
   Width = 395
   ActiveControl = dbedAnio
   Caption = 'Marea'
-  ClientHeight = 393
+  ClientHeight = 431
   ClientWidth = 395
   OnClose = FormClose
   OnShow = FormShow
@@ -32,9 +32,9 @@ inherited fmEditarMarea: TfmEditarMarea
     end
   end
   inherited paPrincipal: TPanel
-    Height = 323
+    Height = 361
     Width = 395
-    ClientHeight = 323
+    ClientHeight = 361
     ClientWidth = 395
     object GroupBox1: TGroupBox[0]
       Left = 1
@@ -43,7 +43,7 @@ inherited fmEditarMarea: TfmEditarMarea
       Width = 393
       Align = alTop
       Caption = 'Identificación'
-      ClientHeight = 54
+      ClientHeight = 52
       ClientWidth = 389
       TabOrder = 0
       object Label1: TLabel
@@ -106,12 +106,12 @@ inherited fmEditarMarea: TfmEditarMarea
     end
     object GroupBox2: TGroupBox[1]
       Left = 1
-      Height = 249
+      Height = 287
       Top = 73
       Width = 393
       Align = alClient
       Caption = 'Datos del viaje'
-      ClientHeight = 231
+      ClientHeight = 267
       ClientWidth = 389
       TabOrder = 1
       object Label4: TLabel
@@ -322,10 +322,29 @@ inherited fmEditarMarea: TfmEditarMarea
         MaxLength = 0
         TabOrder = 1
       end
+      object Label12: TLabel
+        Left = 6
+        Height = 15
+        Top = 208
+        Width = 79
+        Caption = 'N° lance Inicial'
+        ParentColor = False
+      end
+      object dbedNroLanceInicial: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 229
+        Width = 81
+        DataField = 'nro_lance_inicial'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 8
+      end
     end
   end
   inherited paControles: TPanel
-    Top = 357
+    Top = 395
     Width = 395
     ClientWidth = 395
     inherited bbCancelar: TBitBtn
@@ -358,7 +377,8 @@ inherited fmEditarMarea: TfmEditarMarea
       '  mareas.fecha_inicio,'
       '  mareas.fecha_zarpada,'
       '  mareas.fecha_arribo,'
-      '  mareas.fecha_finalizacion'
+      '  mareas.fecha_finalizacion,'
+      '  mareas.nro_lance_inicial'
       'From'
       '  mareas'
       'WHERE idmarea=:Id'
@@ -489,11 +509,20 @@ inherited fmEditarMarea: TfmEditarMarea
       ReadOnly = False
       Required = False
     end
-    object zqPrincipalNombreBuque: TStringField[12]
+    object zqPrincipalnro_lance_inicial: TLongintField[12]
+      FieldKind = fkData
+      FieldName = 'nro_lance_inicial'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalNombreBuque: TStringField[13]
       DisplayWidth = 180
       FieldKind = fkLookup
       FieldName = 'Buque'
-      Index = 12
+      Index = 13
       KeyFields = 'idbuque'
       LookupCache = False
       LookupDataSet = zqBuques
@@ -504,11 +533,11 @@ inherited fmEditarMarea: TfmEditarMarea
       Required = False
       Size = 180
     end
-    object zqPrincipalDscMarea: TStringField[13]
+    object zqPrincipalDscMarea: TStringField[14]
       DisplayWidth = 150
       FieldKind = fkCalculated
       FieldName = 'DscMarea'
-      Index = 13
+      Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

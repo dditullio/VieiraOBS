@@ -901,7 +901,7 @@ begin
   inherited;
   pcLances.ActivePage := tsGeneral;
   zcePrincipal.ControlInicial := dbdtHora;
-  //Creo elvector con los controles de edición para cada pestaña de formato
+  //Creo el vector con los controles de edición para cada pestaña de formato
   //Controles del formato predeterminado (TabIndex=0)
   FControlesEdicion.AddControl(0, 'Comentarios', dbmComentarios);
   FControlesEdicion.AddControl(0, 'Fecha', dbdtFecha);
@@ -979,7 +979,6 @@ begin
   else
   begin
     pcFormatos.TabIndex := StrToInt(formato);
-    zcePrincipal.ControlInicial := dbdtHora1;
   end;
   //FControlesEdicion.ActiveIndex := pcFormatos.TabIndex;
 
@@ -993,6 +992,10 @@ procedure TfmEditarLances.FormShow(Sender: TObject);
 begin
   pcLances.ActivePage:=tsGeneral;
   Application.ProcessMessages;
+
+  if Assigned(FControlesEdicion.GetControl('Hora')) and (FControlesEdicion.GetControl('Hora') is TWinControl) then
+     zcePrincipal.ControlInicial := (FControlesEdicion.GetControl('Hora') as TWinControl);
+
   FControlesEdicion.SetFocus('Hora');
 end;
 

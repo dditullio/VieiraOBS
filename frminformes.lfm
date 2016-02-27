@@ -965,12 +965,15 @@ inherited fmInformes: TfmInformes
     Connection = dmGeneral.zcDB
     BeforeOpen = zqByCatchBeforeOpen
     SQL.Strings = (
-      'select *'
-      'from v_muestras_bycatch_completa mb,'
-      'v_detalle_muestras_bycatch_informe dmb'
-      'where mb.idmarea=:idmarea'
-      'and dmb.idmuestras_bycatch=mb.idmuestras_bycatch'
-      'and mb.nrolance is not null'
+      'select * '
+      'FROM'
+      '        (`v_muestras_bycatch_completa` `mb`'
+      '        JOIN `v_detalle_muestras_bycatch_informe` `dmb`)'
+      '    WHERE'
+      'dmb.idmarea=:idmarea and'
+      '        ((`dmb`.`idmuestras_bycatch` = `mb`.`idmuestras_bycatch`)'
+      '            AND (`mb`.`nrolance` IS NOT NULL))'
+      ''
       'ORDER BY fecha asc ,hora asc, banda desc'
       ''
     )

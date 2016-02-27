@@ -231,6 +231,7 @@ type
     procedure zqSenasaEnteraBeforeOpen(DataSet: TDataSet);
     procedure zqTallasAfterScroll(DataSet: TDataSet);
     procedure zqTallasBeforeOpen(DataSet: TDataSet);
+    procedure ZQuery3BeforeOpen(DataSet: TDataSet);
   private
     { private declarations }
     procedure GenerarDatosPuenteXLS;
@@ -294,7 +295,7 @@ begin
       if cbByCatch.Checked then
       begin
         GenerarByCatchXLS;
-        //GenerarByCatch2XLS;
+        GenerarByCatch2XLS;
       end;
       if cbRaya.Checked then
       begin
@@ -547,6 +548,10 @@ end;
 procedure TfmInformes.zqTallasBeforeOpen(DataSet: TDataSet);
 begin
   zqTallas.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+end;
+
+procedure TfmInformes.ZQuery3BeforeOpen(DataSet: TDataSet);
+begin
 end;
 
 procedure TfmInformes.GenerarDatosPuenteXLS;
@@ -976,6 +981,7 @@ begin
         fila := 4;//Arranco en la fila 4 porque antes están los títulos
         //Copio la plantilla para pegarla en la fila actual
         xlp.Range('A4:M9').Copy;
+        Sleep(1000);
         while not EOF do
         begin
           rango:=UTF8Decode('A'+IntToStr(fila)+':M'+IntToStr(fila+5));
@@ -1085,6 +1091,7 @@ begin
       xlp.Workbooks.Open(plantilla);
       //Abro el archivo para guardar los datos
       xls.Workbooks.Open(archivo_destino);
+
       with zqByCatch do
       begin
         Close;
@@ -1098,6 +1105,7 @@ begin
         fila := 1;
         //Copio la plantilla para pegarla en la fila actual
         xlp.Range('A1:D30').Copy;
+        Sleep(1000);
         while not EOF do
         begin
           rango:=UTF8Decode('A'+IntToStr(fila)+':D'+IntToStr(fila+29));
@@ -1216,11 +1224,11 @@ begin
   //Pongo el resto dentro de un Try para si o si finalizar le Excel al terminar
   try
     plantilla := ExtractFilePath(Application.ExeName) +
-      'PlanillasExcel' + DirectorySeparator + 'fa_plantilla_nueva.xls';
+      'PlanillasExcel' + DirectorySeparator + 'fa_plantilla_detallada.xls';
     archivo_origen := ExtractFilePath(Application.ExeName) +
-      'PlanillasExcel' + DirectorySeparator + 'Fauna acompañante nueva.xls';
+      'PlanillasExcel' + DirectorySeparator + 'Fauna acompañante detallada.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Fauna acompañante nueva.xls';
+      DirectorySeparator + 'Fauna acompañante detallada.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
@@ -1240,7 +1248,7 @@ begin
         //Configuro la barra de progreso
         pbProceso.Max := RecordCount;
         pbProceso.Position := 0;
-        laProceso.Caption:='Procesando muestras de fauna acompañante (nuevo formato)';
+        laProceso.Caption:='Procesando muestras de fauna acompañante (detallada)';
         pbProceso.Visible := True;
         fila := 1;
         muestra_pp:=0; //esta variable cuenta la cantidad de muestras por página
@@ -1248,6 +1256,7 @@ begin
                        //y se resetea la variable
         //Copio la plantilla para pegarla en la fila actual
         xlp.Range('A1:G22').Copy;
+        Sleep(1000);
         while not EOF do
         begin
           Inc(muestra_pp);

@@ -359,13 +359,15 @@ end;
 procedure TfmPrincipal.HabilitarMenu;
 var
   i: integer;
+  HayMareaActiva: Boolean;
 begin
+  HayMareaActiva:=(dmGeneral.IdMareaActiva>0);
   //Habilito acciones de menu
   for i := 0 to Pred(alPrincipal.ActionCount) do
   begin
     if (alPrincipal.Actions[i] is TAction) and (alPrincipal.Actions[i].Tag=0) then
       begin
-        (alPrincipal.Actions[i] as TAction).Enabled:=dmGeneral.IdMareaActiva>0;
+        (alPrincipal.Actions[i] as TAction).Enabled:=HayMareaActiva;
       end;
   end;
 end;

@@ -76,6 +76,7 @@ type
       var Value: String);
     procedure dedCarpetaArchivoChange(Sender: TObject);
     procedure dedCarpetaArchivoExit(Sender: TObject);
+    procedure edArchivoSQLChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -89,11 +90,13 @@ type
     procedure ExportarDB_SQL(archivo_tablas, archivo_datos, archivo_rutinas: string);
     procedure ExportarDB_TXT(carpeta: string);
     procedure ExportarDB_Global(archivo_datos: string);
+    function SentenciaTruncateTable(tabla:string):string;
     function SentenciaCreateTable(tabla:string):string;
     function SentenciaCreateView(vista:string):string;
     function SentenciaInsert(tabla:string; PrefijoTabla: string=''; FiltroMarea: string=''):string;
     function FormatField(f: TField):string;
     function CrearEstructuraVista(vista:string):string;
+    procedure CrearVaciadoDB(var str_sql_vaciar: TStringList;incluir_datos:Boolean=True);
     procedure CrearTablasYDatos(var str_sql_tablas, str_sql_datos: TStringList; crear_estructura:Boolean=True;incluir_datos:Boolean=True);
     procedure CrearEncabezadoTablas(var str_sql: TStringList);
     procedure CrearPieTablas(var str_sql: TStringList);
@@ -124,16 +127,7 @@ const
 
 
      SET_VAR_ENCABEZADO=
-{                '-- -----------------------------------------------------'+NEWLINE+
-                '-- Esquema <ESQUEMA>'+NEWLINE+
-                '-- -----------------------------------------------------'+NEWLINE+
-                ''+NEWLINE+
-                'CREATE SCHEMA IF NOT EXISTS `<ESQUEMA>` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci ;'+NEWLINE+
-                ''+NEWLINE+
-                'USE `<ESQUEMA>` ;'+NEWLINE+
-                ''+NEWLINE+
-                ''+NEWLINE+
-}                'SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;'+NEWLINE+
+                 'SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT ;'+NEWLINE+
                  'SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS ;'+NEWLINE+
                  'SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION ;'+NEWLINE+
                  'SET NAMES utf8 ;'+NEWLINE+
@@ -175,12 +169,20 @@ const
                  ''+NEWLINE+
                  'LOCK TABLES `<TABLA>` WRITE;'+NEWLINE+
                  'ALTER TABLE `<TABLA>` DISABLE KEYS ;'+NEWLINE+
+                 'TRUNCATE TABLE `<TABLA>` ;'+NEWLINE+
                  '<SENTENCIAS_INSERT>;'+NEWLINE+
                  'ALTER TABLE `<TABLA>` ENABLE KEYS ;'+NEWLINE+
                  'UNLOCK TABLES;'+NEWLINE;
 
       INSERT_SINGLE_LINE_TEMPLATE=
                  'REPLACE INTO `<TABLA>` (<CAMPOS>) VALUES <INSERT_VALUES>;'+NEWLINE;
+
+      TRUNCATE_TABLE_TEMPLATE=
+                 'LOCK TABLES `<TABLA>` WRITE;'+NEWLINE+
+                 'ALTER TABLE `<TABLA>` DISABLE KEYS ;'+NEWLINE+
+                 'TRUNCATE TABLE `<TABLA>` ;'+NEWLINE+
+                 'ALTER TABLE `<TABLA>` ENABLE KEYS ;'+NEWLINE+
+                 'UNLOCK TABLES;'+NEWLINE;
 
       INSERT_MULTI_TEMPLATE=
                  '-- -'+NEWLINE+
@@ -237,7 +239,7 @@ const
 
 var
   fmBackup: TfmBackup;
-  sl_tablas, sl_datos, sl_rutinas, sl_expglob: TStringList;
+  sl_vaciar, sl_tablas, sl_datos, sl_rutinas, sl_expglob: TStringList;
 
 implementation
 
@@ -457,6 +459,18 @@ begin
   HabilitarAcciones;
 end;
 
+procedure TfmBackup.edArchivoSQLChange(Sender: TObject);
+var
+  origen: string;
+begin
+  if FileExistsUTF8(edArchivoSQL.Text) then
+     origen:=ExtractFileDir(edArchivoSQL.Text)
+  else if DirectoryExistsUTF8(edArchivoSQL.Text) then
+     origen:=edArchivoSQL.Text;
+  LSSaveConfig(['origen_restauracion'],[origen]);
+  HabilitarAcciones;
+end;
+
 procedure TfmBackup.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -464,7 +478,8 @@ end;
 
 procedure TfmBackup.FormDestroy(Sender: TObject);
 begin
-   sl_tablas.Free;
+  sl_vaciar.Free;
+  sl_tablas.Free;
    sl_datos.Free;
    sl_rutinas.Free;
    sl_expglob.Free;
@@ -472,9 +487,11 @@ end;
 
 procedure TfmBackup.FormShow(Sender: TObject);
 var
-  destino:String;
+  origen, destino:String;
 begin
   destino :='';
+  if not Assigned(sl_vaciar) then
+     sl_vaciar:=TStringList.Create;
   if not Assigned(sl_tablas) then
      sl_tablas:=TStringList.Create;
   if not Assigned(sl_datos) then
@@ -484,14 +501,22 @@ begin
   if not Assigned(sl_expglob) then
      sl_expglob:=TStringList.Create;
 
-    LSLoadConfig(['destino_backup'],[destino],[@destino]);
+  LSLoadConfig(['destino_backup'],[destino],[@destino]);
   if destino='' then
   begin
      destino:=ExtractFilePath(Application.ExeName) + 'backup';
      if not DirectoryExistsUTF8(destino) then
         CreateDirUTF8(destino);
   end;
+
+  LSLoadConfig(['origen_restauracion'],[origen],[@origen]);
+  if origen='' then
+  begin
+     origen:=ExtractFilePath(Application.ExeName) + 'backup';
+  end;
+
   dedCarpetaArchivo.Directory := destino;
+  edArchivoSQL.Text := origen;
   pcBackup.ActivePage:=tsBackup;
   odRestaurar.Filter:='Archivos de copia de seguridad|'+PREFIJO_BKP+'*.zip';
   HabilitarAcciones;
@@ -511,10 +536,18 @@ var
   temp_dir: string;
   script_tablas, script_datos, script_rutinas:string;
   version_script, msg_version:string;
+  origen: string;
 begin
-  odRestaurar.InitialDir:=dedCarpetaArchivo.Directory;
+  if FileExistsUTF8(edArchivoSQL.Text) then
+     origen:=ExtractFileDir(edArchivoSQL.Text)
+  else if DirectoryExistsUTF8(edArchivoSQL.Text) then
+     origen:=edArchivoSQL.Text
+  else
+     origen:=dedCarpetaArchivo.Directory;
+  odRestaurar.InitialDir:=origen;
   if odRestaurar.Execute then
   begin
+    LSSaveConfig(['origen_restauracion'],[ExtractFileDir(odRestaurar.FileName)]);
     edArchivoSQL.Text:=odRestaurar.FileName;
     HabilitarAcciones;
 
@@ -584,7 +617,7 @@ begin
         if MessageDlg('Advertencia','El archivo seleccionado no parece ser una copia de seguridad generada por esta aplicación. Pueden generarse daños en los datos, perderse toda la información registrada, o inutilizar totalmente esta aplicación. ¿Está seguro de que desea utilizar este archivo?', mtWarning, [mbYes, mbNo],0, mbNo) = mrNo then
         begin
           meSQL.Clear;
-          edArchivoSQL.Text:='';
+          edArchivoSQL.Text:=ExtractFileDir(odRestaurar.FileName);
           sl_tablas.Clear;
           sl_datos.Clear;
           sl_rutinas.Clear;
@@ -602,7 +635,7 @@ begin
         if MessageDlg('Advertencia','El archivo de copia de seguridad seleccionado fue generado con una versión diferente de la aplicación. Es posible que falle la restauracion, que los datos se restauren incompletos, o que la aplicación no funcione correctamente. ¿Está seguro de que desea utilizar este archivo?'+msg_version, mtWarning, [mbYes, mbNo],0, mbNo) = mrNo then
         begin
           meSQL.Clear;
-          edArchivoSQL.Text:='';
+          edArchivoSQL.Text:=ExtractFileDir(odRestaurar.FileName);
           sl_tablas.Clear;
           sl_datos.Clear;
           sl_rutinas.Clear;
@@ -622,7 +655,7 @@ begin
     begin
       MessageDlg('El archivo seleccionado no parece ser una copia de seguridad realizada por esta aplicación. No se puede procesar el archivo', mtError, [mbOK],0);
       meSQL.Clear;
-      edArchivoSQL.Text:='';
+      edArchivoSQL.Text:=ExtractFileDir(odRestaurar.FileName);
       sl_tablas.Clear;
       sl_datos.Clear;
       sl_rutinas.Clear;
@@ -681,7 +714,16 @@ begin
 
          if proc_datos then
          begin
+           //Creo la sentencia "TRUNCATE TEBLE" para todas las tablas y la ejecuto antes de cargar los datos
+             sl_vaciar.Clear;
+             CrearVaciadoDB(sl_vaciar);
+
              scRestaurar.Terminator:=';';
+
+             //Ejecuto el vaciado
+             scRestaurar.Script.Text:=CheckScriptText(sl_vaciar);
+             scRestaurar.ExecuteScript;
+
              scRestaurar.Script.Text:=CheckScriptText(sl_datos);
              scRestaurar.ExecuteScript;
          end;
@@ -933,6 +975,14 @@ begin
 
 end;
 
+function TfmBackup.SentenciaTruncateTable(tabla: string): string;
+var
+  sentencia:String;
+begin
+  sentencia:=StringReplace(TRUNCATE_TABLE_TEMPLATE, '<TABLA>', tabla, [rfReplaceAll, rfIgnoreCase]);
+  result := sentencia;
+end;
+
 function TfmBackup.SentenciaCreateTable(tabla: string): string;
 var
   sentencia:String;
@@ -1156,6 +1206,41 @@ begin
      sentencia:=StringReplace(CREATE_VIEW_STRUCTURE_TEMPLATE, '<VISTA>', vista, [rfReplaceAll, rfIgnoreCase]);
      sentencia:=StringReplace(sentencia, '<VIEW_FIELDS>', str_todos, [rfReplaceAll, rfIgnoreCase]);
      result:=sentencia;
+end;
+
+procedure TfmBackup.CrearVaciadoDB(var str_sql_vaciar: TStringList;incluir_datos:Boolean=True);
+var
+   tabla: string;
+begin
+   //Obtengo las tablas de la base de datos
+   zqTablasYVistas.Close;
+   zqTablasYVistas.ParamByName('tipo').Value:='BASE TABLE';
+   zqTablasYVistas.Open;
+
+   //Agrego encabezado para setear variables
+   str_sql_vaciar.Add(SET_VAR_ENCABEZADO);
+
+   //Para cada tabla, creo la sentencia de borrado
+   with zqTablasYVistas do
+   begin
+     First;
+     while not EOF do
+     begin
+       tabla:=zqTablasYVistas.FieldByName('Tables_in_'+dmGeneral.zcDB.Database).AsString;
+       if incluir_datos then
+       begin
+            str_sql_vaciar.Add(SentenciaTruncateTable(tabla));
+       end;
+       Application.ProcessMessages;
+       Next;
+     end;
+   end;
+
+   if incluir_datos then
+     str_sql_vaciar.Add(NEWLINE);
+
+   //Agrego pie para restaurar variables
+   str_sql_vaciar.Add(SET_VAR_PIE);
 end;
 
 procedure TfmBackup.CrearTablasYDatos(var str_sql_tablas,

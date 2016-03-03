@@ -40,6 +40,11 @@ type
     zqMareaActivanro_marea_inidep: TLongintField;
     zqMareaActivaobservador: TStringField;
     zqMareaActivapuerto_registro: TStringField;
+    zqMareaActivatxt_senasa_1: TStringField;
+    zqMareaActivatxt_senasa_2: TStringField;
+    zqMareaActivatxt_senasa_3: TStringField;
+    zqMareaActivatxt_senasa_4: TStringField;
+    zqMareaActivatxt_senasa_5: TStringField;
     zqMareas: TZQuery;
     zqMareasanio_marea: TLongintField;
     zqMareasBuque: TStringField;
@@ -85,7 +90,7 @@ type
   end;
 
 const
-  APP_VERSION='1.0.2';
+  APP_VERSION='1.0.3';
 
 var
   dmGeneral: TdmGeneral;

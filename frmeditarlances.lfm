@@ -1071,7 +1071,7 @@ inherited fmEditarLances: TfmEditarLances
               object dbedCaptEr1: TDBEdit
                 Left = 206
                 Height = 23
-                Hint = 'Captura de la banda de estribor (tal como la informa el buque)'
+                Hint = 'Captura de la banda de estribor (tal como la informa el buque, puede ingresar número fraccionarios)'
                 Top = 27
                 Width = 75
                 DataField = 'captura_estribor_buque'
@@ -1089,9 +1089,9 @@ inherited fmEditarLances: TfmEditarLances
                 ParentColor = False
               end
               object dbedCaptBr1: TDBEdit
-                Left = 289
+                Left = 288
                 Height = 23
-                Hint = 'Captura de la banda de babor (tal como la informa el buque)'
+                Hint = 'Captura de la banda de babor (tal como la informa el buque, puede ingresar número fraccionarios)'
                 Top = 27
                 Width = 75
                 DataField = 'captura_babor_buque'
@@ -2730,6 +2730,7 @@ inherited fmEditarLances: TfmEditarLances
       '    grados_longitud_fin,'
       '    minutos_longitud_fin,'
       '    profundidad,'
+      '    rumbo,'
       '    cable_estribor,'
       '    cable_babor,'
       '    minutos_arrastre,'
@@ -2921,11 +2922,20 @@ inherited fmEditarLances: TfmEditarLances
       ReadOnly = False
       Required = False
     end
+    object zqAntLancerumbo: TLongintField
+      FieldKind = fkData
+      FieldName = 'rumbo'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
     object zqAntLancecable_estribor: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cable_estribor'
-      Index = 14
+      Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -2935,7 +2945,7 @@ inherited fmEditarLances: TfmEditarLances
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cable_babor'
-      Index = 15
+      Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -2945,7 +2955,7 @@ inherited fmEditarLances: TfmEditarLances
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'minutos_arrastre'
-      Index = 16
+      Index = 17
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -2958,7 +2968,7 @@ inherited fmEditarLances: TfmEditarLances
       DisplayWidth = 1024
       FieldKind = fkData
       FieldName = 'comentarios'
-      Index = 17
+      Index = 18
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -2969,7 +2979,7 @@ inherited fmEditarLances: TfmEditarLances
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'mallero_copo_mm'
-      Index = 18
+      Index = 19
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -2979,7 +2989,7 @@ inherited fmEditarLances: TfmEditarLances
       DisplayWidth = 180
       FieldKind = fkData
       FieldName = 'tipo_malla'
-      Index = 19
+      Index = 20
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -2990,7 +3000,7 @@ inherited fmEditarLances: TfmEditarLances
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'largo_relinga_inferior'
-      Index = 20
+      Index = 21
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

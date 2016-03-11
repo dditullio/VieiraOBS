@@ -221,6 +221,7 @@ type
     zqAntLanceminutos_longitud_ini: TFloatField;
     zqAntLancenro_lance: TLongintField;
     zqAntLanceprofundidad: TLongintField;
+    zqAntLancerumbo: TLongintField;
     zqAntLancetipo_malla: TStringField;
     zqEstadoMar: TZQuery;
     zqLkpEstadoMar: TZQuery;
@@ -1143,6 +1144,14 @@ begin
             dbedGradosLatIni1.TabStop := True;
             dbedGradosLongIni1.TabStop := True;
             FControlesEdicion.SetFocus('GradosLatIni');
+          end else if zqAntLance.RecordCount > 0 then
+          begin
+            dbedGradosLatIni.TabStop := False;
+            dbedGradosLongIni.TabStop := False;
+
+            dbedGradosLatIni1.TabStop := False;
+            dbedGradosLongIni1.TabStop := False;
+            FControlesEdicion.SetFocus('MinutosLatIni');
           end;
 
           if (zqAntLancegrados_latitud_fin.IsNull) or
@@ -1755,6 +1764,8 @@ begin
     if not zqAntLancecable_babor.IsNull then
       zqPrincipalcable_babor.Value := zqAntLancecable_babor.Value;
     zqPrincipalprofundidad.Value := zqAntLanceprofundidad.Value;
+    if not zqAntLancerumbo.IsNull then
+      zqPrincipalrumbo.Value := zqAntLancerumbo.Value;
     zqPrincipalminutos_arrastre.Value := zqAntLanceminutos_arrastre.Value;
     zqPrincipalmallero_copo_mm.Value := zqAntLancemallero_copo_mm.Value;
     zqPrincipaltipo_malla.Value := zqAntLancetipo_malla.Value;

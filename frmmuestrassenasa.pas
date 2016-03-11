@@ -110,6 +110,10 @@ end;
 
 procedure TfmMuestrasSenasa.FormShow(Sender: TObject);
 begin
+  dbgLista.ColumnByFieldName('lab_mdp').Title.Caption:=dmGeneral.zqMareaActivatxt_senasa_1.AsString;
+  dbgLista.ColumnByFieldName('contramuestra1').Title.Caption:=dmGeneral.zqMareaActivatxt_senasa_2.AsString;
+  dbgLista.ColumnByFieldName('contramuestra2').Title.Caption:=dmGeneral.zqMareaActivatxt_senasa_3.AsString;
+  dbgLista.ColumnByFieldName('lab_bsas').Title.Caption:=dmGeneral.zqMareaActivatxt_senasa_4.AsString;
   zcgCallos.Buscar;
   zcgCallos.HabilitarAcciones;
   zcgEntera.Buscar;

@@ -129,15 +129,7 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
       MaxLength = 0
       TabOrder = 1
     end
-    object Label6: TLabel[5]
-      Left = 8
-      Height = 15
-      Top = 126
-      Width = 28
-      Caption = 'CM 1'
-      ParentColor = False
-    end
-    object dbedCM1: TDBEdit[6]
+    object dbedCM1: TDBEdit[5]
       Left = 8
       Height = 23
       Top = 146
@@ -148,15 +140,7 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
       MaxLength = 0
       TabOrder = 4
     end
-    object Label7: TLabel[7]
-      Left = 80
-      Height = 15
-      Top = 126
-      Width = 28
-      Caption = 'CM 2'
-      ParentColor = False
-    end
-    object dbedCM2: TDBEdit[8]
+    object dbedCM2: TDBEdit[6]
       Left = 80
       Height = 23
       Top = 146
@@ -167,15 +151,7 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
       MaxLength = 0
       TabOrder = 5
     end
-    object Label8: TLabel[9]
-      Left = 152
-      Height = 15
-      Top = 126
-      Width = 51
-      Caption = 'Lab. MDP'
-      ParentColor = False
-    end
-    object dbedLabMDP: TDBEdit[10]
+    object dbedLabMDP: TDBEdit[7]
       Left = 152
       Height = 23
       Top = 146
@@ -186,15 +162,7 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
       MaxLength = 0
       TabOrder = 6
     end
-    object Label9: TLabel[11]
-      Left = 224
-      Height = 15
-      Top = 126
-      Width = 56
-      Caption = 'Lab. Bs.As.'
-      ParentColor = False
-    end
-    object dbedLabBsAs: TDBEdit[12]
+    object dbedLabBsAs: TDBEdit[8]
       Left = 224
       Height = 23
       Top = 146
@@ -205,7 +173,7 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
       MaxLength = 0
       TabOrder = 7
     end
-    object dbedLatitud: TDtDBCoordEdit[13]
+    object dbedLatitud: TDtDBCoordEdit[9]
       Left = 8
       Height = 23
       Top = 82
@@ -219,7 +187,7 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
       TabOrder = 2
       CoordKind = ckLatitude
     end
-    object dbedLongitud: TDtDBCoordEdit[14]
+    object dbedLongitud: TDtDBCoordEdit[10]
       Left = 112
       Height = 23
       Top = 82
@@ -232,6 +200,42 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
       MaxLength = 4
       TabOrder = 3
       CoordKind = ckLatitude
+    end
+    object DBText1: TDBText[11]
+      Left = 8
+      Height = 15
+      Top = 128
+      Width = 41
+      DataField = 'txt_senasa_1'
+      DataSource = dmGeneral.dsMareaActiva
+      ParentColor = False
+    end
+    object DBText2: TDBText[12]
+      Left = 80
+      Height = 15
+      Top = 128
+      Width = 41
+      DataField = 'txt_senasa_2'
+      DataSource = dmGeneral.dsMareaActiva
+      ParentColor = False
+    end
+    object DBText3: TDBText[13]
+      Left = 152
+      Height = 15
+      Top = 128
+      Width = 41
+      DataField = 'txt_senasa_3'
+      DataSource = dmGeneral.dsMareaActiva
+      ParentColor = False
+    end
+    object DBText4: TDBText[14]
+      Left = 224
+      Height = 15
+      Top = 128
+      Width = 41
+      DataField = 'txt_senasa_4'
+      DataSource = dmGeneral.dsMareaActiva
+      ParentColor = False
     end
   end
   inherited paControles: TPanel
@@ -248,8 +252,8 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
     end
   end
   inherited dsPrincipal: TDataSource
-    left = 140
-    top = 136
+    left = 148
+    top = 184
   end
   inherited zqPrincipal: TZQuery
     Connection = dmGeneral.zcDB
@@ -260,8 +264,7 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
       'FROM muestras_senasa_callos'
       'WHERE idmuestras_senasa_callos=:Id'
     )
-    left = 64
-    top = 136
+    top = 184
     object zqPrincipalidmuestras_senasa_callos: TLongintField[0]
       DisplayWidth = 10
       FieldKind = fkData
@@ -420,11 +423,11 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
   end
   inherited zcePrincipal: TZControladorEdicion
     ControlInicial = dbdtHora
-    left = 208
-    top = 136
+    left = 216
+    top = 184
   end
   inherited zdgPrincipal: TZDatasetGroup
-    left = 16
-    top = 136
+    left = 24
+    top = 184
   end
 end

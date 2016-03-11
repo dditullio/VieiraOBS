@@ -455,6 +455,18 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
               item
                 Title.Alignment = taCenter
                 Title.Orientation = toHorizontal
+                Title.Caption = 'LabMDP'
+                Width = 10
+                FieldName = 'lab_mdp'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+              end            
+              item
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
                 Title.Caption = 'CM1'
                 Width = 10
                 FieldName = 'contramuestra1'
@@ -470,18 +482,6 @@ inherited fmMuestrasSenasa: TfmMuestrasSenasa
                 Title.Caption = 'CM2'
                 Width = 10
                 FieldName = 'contramuestra2'
-                EditButtons = <>
-                Filter.DropDownRows = 0
-                Filter.EmptyValue = '(Todos)'
-                Filter.EmptyFont.Style = [fsItalic]
-                Filter.ItemIndex = -1
-              end            
-              item
-                Title.Alignment = taCenter
-                Title.Orientation = toHorizontal
-                Title.Caption = 'LabMDP'
-                Width = 10
-                FieldName = 'lab_mdp'
                 EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.EmptyValue = '(Todos)'

@@ -165,6 +165,7 @@ type
     procedure zqDatosMuestraBeforeOpen(DataSet: TDataSet);
     procedure zqDetallleTallasBeforeOpen(DataSet: TDataSet);
     procedure zqMarcasTallasBeforeOpen(DataSet: TDataSet);
+    procedure zqTallasAfterOpen(DataSet: TDataSet);
     procedure zqTallasAfterScroll(DataSet: TDataSet);
     procedure zqTallasBeforeOpen(DataSet: TDataSet);
     procedure zqTallasCompletoBeforeOpen(DataSet: TDataSet);
@@ -243,6 +244,19 @@ end;
 procedure TfmTallas.zqMarcasTallasBeforeOpen(DataSet: TDataSet);
 begin
   zqMarcasTallas.ParamByName('idmuestras_talla').Value:=zqTallasidmuestras_talla.Value;
+end;
+
+procedure TfmTallas.zqTallasAfterOpen(DataSet: TDataSet);
+begin
+  zqTallasCompleto.Close;
+  zqTallasCompleto.Open;
+  zqDetallleTallas.Close;
+  zqDetallleTallas.Open;
+  zqMarcasTallas.Close;
+  zqMarcasTallas.Open;
+  zqDatosMuestra.Close;
+  zqDatosMuestra.Open;
+  Chart1.Refresh;
 end;
 
 procedure TfmTallas.zqTallasCompletoBeforeOpen(DataSet: TDataSet);

@@ -90,8 +90,8 @@ inherited fmTallas: TfmTallas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Fecha'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Fecha'
                 Width = 80
                 FieldName = 'fecha'
                 EditButtons = <>
@@ -107,8 +107,8 @@ inherited fmTallas: TfmTallas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Hora'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Hora'
                 Width = 50
                 FieldName = 'hora'
                 EditButtons = <>
@@ -123,8 +123,8 @@ inherited fmTallas: TfmTallas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Lance'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Lance'
                 Width = 70
                 FieldName = 'lance_banda'
                 EditButtons = <>
@@ -140,8 +140,8 @@ inherited fmTallas: TfmTallas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Area'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Area'
                 Width = 65
                 FieldName = 'area'
                 EditButtons = <>
@@ -156,8 +156,8 @@ inherited fmTallas: TfmTallas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Peso'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Peso'
                 Width = 50
                 FieldName = 'peso_muestra_captura'
                 EditButtons = <>
@@ -173,8 +173,8 @@ inherited fmTallas: TfmTallas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Tipo'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Tipo'
                 Width = 100
                 FieldName = 'tipo_muestra'
                 EditButtons = <>
@@ -188,8 +188,8 @@ inherited fmTallas: TfmTallas
               item
                 PickList.Strings = (                )
                 Title.Alignment = taCenter
-                Title.Caption = 'Comentarios'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Comentarios'
                 Width = 38
                 FieldName = 'comentarios'
                 EditButtons = <>
@@ -229,6 +229,7 @@ inherited fmTallas: TfmTallas
           AxisList = <          
             item
               Grid.Visible = False
+              Arrow.Inverted = True
               Inverted = True
               Minors = <>
               Title.LabelFont.Orientation = 900
@@ -245,7 +246,6 @@ inherited fmTallas: TfmTallas
             'TAChart'
           )
           Anchors = [akTop, akLeft, akBottom]
-          ParentColor = False
           object Chart1BarSeries2: TBarSeries
             Transparency = 70
             AxisIndexX = 0
@@ -755,6 +755,7 @@ inherited fmTallas: TfmTallas
   object zqTallas: TZQuery[4]
     Connection = dmGeneral.zcDB
     BeforeOpen = zqTallasBeforeOpen
+    AfterOpen = zqTallasAfterOpen
     AfterScroll = zqTallasAfterScroll
     SQL.Strings = (
       'SELECT *'
@@ -789,7 +790,7 @@ inherited fmTallas: TfmTallas
         Name = '__FILTRO__'
         ParamType = ptUnknown
       end>
-    left = 145
+    left = 144
     top = 240
     ParamData = <    
       item

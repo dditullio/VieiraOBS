@@ -58,6 +58,7 @@ type
     sgResumen: TStringGrid;
     tsLances: TTabSheet;
     zqByCatch: TZQuery;
+    zqInfDatosPuentefecha_fmt: TStringField;
     zqInfDatosPuentelatitud_fin_inf: TLongintField;
     zqInfDatosPuentelatitud_ini_inf: TLongintField;
     zqInfDatosPuentelongitud_fin_inf: TLongintField;

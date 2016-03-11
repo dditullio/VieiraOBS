@@ -69,8 +69,8 @@ inherited fmEditarMuestrasBiologicas: TfmEditarMuestrasBiologicas
       Left = 8
       Height = 15
       Top = 114
-      Width = 108
-      Caption = 'Contenido de la caja'
+      Width = 221
+      Caption = 'Comentarios sobre el contenido de la caja'
       ParentColor = False
     end
     object dbmContenido: TDBMemo[5]

@@ -90,7 +90,7 @@ type
   end;
 
 const
-  APP_VERSION='1.0.3';
+  APP_VERSION='1.0.5';
 
 var
   dmGeneral: TdmGeneral;

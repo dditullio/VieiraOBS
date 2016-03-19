@@ -175,13 +175,14 @@ type
     zqSenasaCallosstr_max_long: TStringField;
     zqSenasaCallosstr_min_lat: TStringField;
     zqSenasaCallosstr_min_long: TStringField;
-    zqSenasaEnteracant_muestras: TLargeintField;
     zqSenasaEnteracuadrante_latitud: TStringField;
     zqSenasaEnteracuadrante_longitud: TStringField;
     zqSenasaEnterafecha: TDateField;
     zqSenasaEnterahora: TTimeField;
     zqSenasaEnteraidmarea: TLongintField;
     zqSenasaEnteraidmuestras_senasa_entera: TLongintField;
+    zqSenasaEnteralab_bsas: TLongintField;
+    zqSenasaEnteralab_mdp: TLongintField;
     zqSenasaEnteralatitud: TFloatField;
     zqSenasaEnteralongitud: TFloatField;
     zqSenasaEnteranro_muestra: TLongintField;

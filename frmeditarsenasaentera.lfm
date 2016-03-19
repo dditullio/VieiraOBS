@@ -1,8 +1,8 @@
 inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
-  Height = 258
+  Height = 334
   Width = 294
   Caption = 'SENASA'
-  ClientHeight = 258
+  ClientHeight = 334
   ClientWidth = 294
   OnCreate = FormCreate
   inherited paEncabezadoBase: TPanel
@@ -26,9 +26,9 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
     end
   end
   inherited paPrincipal: TPanel
-    Height = 188
+    Height = 264
     Width = 294
-    ClientHeight = 188
+    ClientHeight = 264
     ClientWidth = 294
     object Label4: TLabel[0]
       Left = 112
@@ -106,7 +106,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
         DataSource = dsPrincipal
         CharCase = ecNormal
         EditMask = '00:00;1;_'
-        MaxLength = 5
+        MaxLength = 0
         TabOrder = 1
       end
     end
@@ -132,7 +132,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
     object Label6: TLabel[5]
       Left = 8
       Height = 15
-      Top = 126
+      Top = 120
       Width = 66
       Caption = 'Profundidad'
       ParentColor = False
@@ -140,7 +140,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
     object dbedProfundidad: TDBEdit[6]
       Left = 8
       Height = 23
-      Top = 146
+      Top = 140
       Width = 96
       DataField = 'profundidad'
       DataSource = dsPrincipal
@@ -151,15 +151,15 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
     object Label7: TLabel[7]
       Left = 112
       Height = 15
-      Top = 126
-      Width = 74
+      Top = 120
+      Width = 73
       Caption = 'Temp. Superf.'
       ParentColor = False
     end
     object dbedTempSuperf: TDBEdit[8]
       Left = 112
       Height = 23
-      Top = 146
+      Top = 140
       Width = 96
       DataField = 'temp_superficie'
       DataSource = dsPrincipal
@@ -177,7 +177,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
       DataSource = dsPrincipal
       CharCase = ecNormal
       EditMask = '0000.00'
-      MaxLength = 7
+      MaxLength = 0
       TabOrder = 2
       CoordKind = ckLatitude
     end
@@ -191,13 +191,51 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
       DataSource = dsPrincipal
       CharCase = ecNormal
       EditMask = '0000.00'
-      MaxLength = 7
+      MaxLength = 0
       TabOrder = 3
       CoordKind = ckLatitude
     end
+    object Label8: TLabel[11]
+      Left = 8
+      Height = 15
+      Top = 176
+      Width = 50
+      Caption = 'Lab. MdP'
+      ParentColor = False
+    end
+    object dbesLabMdP: TDBEdit[12]
+      Left = 8
+      Height = 23
+      Top = 196
+      Width = 96
+      DataField = 'lab_mdp'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 6
+    end
+    object Label9: TLabel[13]
+      Left = 112
+      Height = 15
+      Top = 176
+      Width = 59
+      Caption = 'Lab. Bs. As.'
+      ParentColor = False
+    end
+    object dbedLabBsAs: TDBEdit[14]
+      Left = 112
+      Height = 23
+      Top = 196
+      Width = 96
+      DataField = 'lab_bsas'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 7
+    end
   end
   inherited paControles: TPanel
-    Top = 222
+    Top = 298
     Width = 294
     ClientWidth = 294
     inherited bbCancelar: TBitBtn
@@ -210,8 +248,8 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
     end
   end
   inherited dsPrincipal: TDataSource
-    left = 140
-    top = 184
+    left = 132
+    top = 264
   end
   inherited zqPrincipal: TZQuery
     Connection = dmGeneral.zcDB
@@ -222,8 +260,8 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
       'FROM muestras_senasa_entera'
       'WHERE idmuestras_senasa_entera=:Id'
     )
-    left = 64
-    top = 184
+    left = 56
+    top = 264
     object zqPrincipalidmuestras_senasa_entera: TLongintField[0]
       DisplayWidth = 10
       FieldKind = fkData
@@ -351,11 +389,29 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
       MinValue = 0
       Precision = 7
     end
-    object zqPrincipalEncabezado: TStringField[11]
+    object zqPrincipallab_mdp: TLongintField[11]
+      FieldKind = fkData
+      FieldName = 'lab_mdp'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipallab_bsas: TLongintField[12]
+      FieldKind = fkData
+      FieldName = 'lab_bsas'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqPrincipalEncabezado: TStringField[13]
       DisplayWidth = 50
       FieldKind = fkCalculated
       FieldName = 'Encabezado'
-      Index = 11
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -365,11 +421,11 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
   end
   inherited zcePrincipal: TZControladorEdicion
     ControlInicial = dbdtHora
-    left = 208
-    top = 184
+    left = 200
+    top = 264
   end
   inherited zdgPrincipal: TZDatasetGroup
-    left = 16
-    top = 184
+    left = 8
+    top = 264
   end
 end

@@ -20,8 +20,10 @@ type
     dbedLatitud: TDtDBCoordEdit;
     dbedLongitud: TDtDBCoordEdit;
     dbedProfundidad: TDBEdit;
+    dbesLabMdP: TDBEdit;
     dbedTempSuperf: TDBEdit;
     dbedNroMuestra: TDBEdit;
+    dbedLabBsAs: TDBEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -29,6 +31,8 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     paFechaHora: TPanel;
     zqPrincipalcuadrante_latitud: TStringField;
     zqPrincipalcuadrante_longitud: TStringField;
@@ -37,6 +41,8 @@ type
     zqPrincipalhora: TTimeField;
     zqPrincipalidmarea: TLongintField;
     zqPrincipalidmuestras_senasa_entera: TLongintField;
+    zqPrincipallab_bsas: TLongintField;
+    zqPrincipallab_mdp: TLongintField;
     zqPrincipallatitud: TFloatField;
     zqPrincipallongitud: TFloatField;
     zqPrincipalnro_muestra: TLongintField;
@@ -139,6 +145,8 @@ begin
   zqPrincipalidmuestras_senasa_entera.Value :=
     zcePrincipal.NuevoID('muestras_senasa_entera');
   zqPrincipalfecha.Value := Date;
+  zqPrincipallab_mdp.Value := 1;
+  zqPrincipallab_bsas.Value := 1;
 end;
 
 end.

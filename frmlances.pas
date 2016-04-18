@@ -14,6 +14,27 @@ uses
 
 type
 
+  { TLancesObj }
+
+  TLancesObj = class(TObject)
+  private
+    FRindePromedio: double;
+    function GetPuntoMedio: TDoublePoint;
+    procedure SetPunto1(AValue: TDoublePoint);
+    procedure SetPunto2(AValue: TDoublePoint);
+    procedure SetRindePromedio(AValue: double);
+    public
+      FPunto1: TDoublePoint;
+      FPunto2: TDoublePoint;
+      property Punto1: TDoublePoint read FPunto1 write SetPunto1;
+      property Punto2: TDoublePoint read FPunto2 write SetPunto2;
+      property RindePromedio: double read FRindePromedio write SetRindePromedio;
+      property PuntoMedio: TDoublePoint read GetPuntoMedio;
+      function GetPuntoMedioChart(Chart: TChart): TPoint;
+      function GetLongitudChart(Chart: TChart): integer;
+  end;
+
+
   { TfmLances }
 
   TfmLances = class(TfmListaBase)
@@ -21,6 +42,8 @@ type
     acMedir: TAction;
     acInfo: TAction;
     acGuardarImagen: TAction;
+    acExportarKML: TAction;
+    acMostrarRindes: TAction;
     acZoomLanceSeleccionado: TAction;
     acZoomLances: TAction;
     acZoomRect: TAction;
@@ -29,6 +52,7 @@ type
     alMapa: TActionList;
     chtLancesComentariosSeries: TLineSeries;
     chtLancesSerieOtrosLances: TLineSeries;
+    chtLancesRindesSeries: TUserDrawnSeries;
     ctDistancia2: TDataPointDistanceTool;
     ctZoomDrag2: TZoomDragTool;
     ctInfoCoordenadas: TUserDefinedTool;
@@ -72,15 +96,20 @@ type
     lcsEtiquetasUM: TListChartSource;
     lcsMuestrasEcologicas: TListChartSource;
     lcsLanceSeleccionado: TListChartSource;
+    lcsRindes: TListChartSource;
     LSExpandPanel1: TLSExpandPanel;
     Panel2: TPanel;
     sdGuardarImagen: TSaveDialog;
+    sdExportarKML: TSaveDialog;
     splDetalles: TSplitter;
     sbInfoMapa: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton10: TToolButton;
     ToolButton11: TToolButton;
+    ToolButton12: TToolButton;
+    ToolButton13: TToolButton;
+    tbMostrarRindes: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -212,10 +241,13 @@ type
     zqLancesVelocidadNecesaria: TFloatField;
     zqOtrosMapas: TZQuery;
     zqMuestrasEcologicas: TZQuery;
+    procedure acExportarKMLExecute(Sender: TObject);
     procedure acGuardarImagenExecute(Sender: TObject);
     procedure acHabilitarHerramienta(Sender: TObject);
+    procedure acMostrarRindesExecute(Sender: TObject);
     procedure acZoomLanceSeleccionadoExecute(Sender: TObject);
     procedure acZoomLancesExecute(Sender: TObject);
+    procedure chtLancesRindesSeriesDraw(ACanvas: TCanvas; const ARect: TRect);
     procedure ctInfoCoordenadasAfterMouseMove(ATool: TChartTool;
       APoint: TPoint);
     procedure chtLancesExtentChanged(ASender: TChart);
@@ -247,6 +279,9 @@ type
     procedure CargarMapa(mapa: string; var lcs: TListChartSource;clearSource: boolean=True;campoEtiqueta:string='');
     procedure InicializarMapas;
     procedure CargarMapaLances;
+    procedure ExportarKML (archivo: string);
+    procedure DrawRindes(ACanvas: TCanvas;
+      const ARect: TRect; min_rinde: double; max_rinde: double; ColorMarca: TColor);
   public
     { public declarations }
   end;
@@ -254,10 +289,56 @@ type
 var
   fmLances: TfmLances;
   FMapasCargados: Boolean=False;
+  LancesConRindes: TStringList;
 
 implementation
 
 {$R *.lfm}
+
+{ TLancesObj }
+
+function TLancesObj.GetPuntoMedio: TDoublePoint;
+var
+  p: TDoublePoint;
+begin
+  p.X:=(Punto1.X+Punto2.X)/2;
+  p.Y:=(Punto1.Y+Punto2.Y)/2;
+  Result := p;
+end;
+
+procedure TLancesObj.SetPunto1(AValue: TDoublePoint);
+begin
+  FPunto1:=AValue;
+end;
+
+procedure TLancesObj.SetPunto2(AValue: TDoublePoint);
+begin
+  FPunto2:=AValue;
+end;
+
+procedure TLancesObj.SetRindePromedio(AValue: double);
+begin
+  if FRindePromedio=AValue then Exit;
+  FRindePromedio:=AValue;
+end;
+
+function TLancesObj.GetPuntoMedioChart(Chart: TChart): TPoint;
+begin
+  Result:= Chart.GraphToImage(PuntoMedio);
+end;
+
+function TLancesObj.GetLongitudChart(Chart: TChart): integer;
+var
+  LongLance: double;
+  PChart1, PChart2: TPoint;
+begin
+  PChart1:=Chart.GraphToImage(Punto1);
+  PChart2:=Chart.GraphToImage(Punto2);
+  //Por teorema de Pitágoras, calculo la longitud del lance
+  LongLance:=sqrt(sqr(abs(PChart1.X-PChart2.X))+sqr(abs(PChart1.Y-PChart2.Y)));
+  Result:=round(LongLance);
+end;
+
 {$R cursores.res}
 
 { TfmLances }
@@ -415,12 +496,14 @@ procedure TfmLances.CargarMapaLances;
 var
   bm: TBookMark;
   prom_lat, prom_long: double;
+  lr: TLancesObj;
 begin
   //Se refrescan las muestras ecológicas por si se modificó o agregó alguna
   zqMuestrasEcologicas.Close;
   zqMuestrasEcologicas.Open;
 
   //Cargo los otros lances. Los cargo primero para mejorar el aspecto visual
+  chtLancesRindesSeries.Active:=False;
   lcsOtrosLances.Clear;
   lcsLances.Clear;
   lcsLanceSeleccionado.Clear;
@@ -468,6 +551,9 @@ begin
     begin
       DisableControls;
       bm:=GetBookmark;
+      if not Assigned(LancesConRindes) then
+         LancesConRindes:= TStringList.Create;
+      LancesConRindes.Clear;
       First;
       while not EOF do
       begin
@@ -487,9 +573,22 @@ begin
             prom_long:=(FieldByName('long_ini_gis').AsFloat+FieldByName('long_fin_gis').AsFloat)/2;
             lcsComentariosLances.Add(prom_long,prom_lat,' '+Trim(FieldByName('comentarios').AsString)+' ', clYellow);
           end;
+          //Si tiene rindes, almaceno la lista en un array
+          if (FieldByName('rinde_comercial_E').AsFloat > 0)
+             and (FieldByName('rinde_comercial_B').AsFloat > 0) then
+             begin
+               lr:= TLancesObj.Create;
+               lr.FPunto1.X:=FieldByName('long_ini_gis').AsFloat;
+               lr.FPunto1.Y:=FieldByName('lat_ini_gis').AsFloat;
+               lr.FPunto2.X:=FieldByName('long_fin_gis').AsFloat;
+               lr.FPunto2.Y:=FieldByName('lat_fin_gis').AsFloat;
+               lr.RindePromedio:=(FieldByName('rinde_comercial_E').AsFloat+FieldByName('rinde_comercial_B').AsFloat)/2;
+               LancesConRindes.AddObject(FieldByName('idlance').AsString, lr);
+             end;
         end;
         Next;
       end;
+      chtLancesRindesSeries.Active:=acMostrarRindes.Checked;
       if BookmarkValid(bm) then
          GotoBookmark(bm);
       EnableControls;
@@ -501,6 +600,54 @@ begin
      chtLances.LogicalExtent:=chtLancesSerieLances.Extent
   else if lcsOtrosLances.Count>0 then
      chtLances.LogicalExtent:=chtLancesSerieOtrosLances.Extent;
+end;
+
+procedure TfmLances.ExportarKML(archivo: string);
+var
+   sl:TStringList;
+   strEncabezado:string;
+   strPre:string;
+   strPost: string;
+   strPie:string;
+   strMarea: string;
+   bm: TBookMark;
+begin
+  if (archivo <> '') and DirectoryExistsUTF8(ExtractFileDir(archivo)) then
+  begin
+    with zqLances do
+    begin
+      bm:=zqLances.GetBookmark;
+      DisableControls;
+      First;
+      strMarea:='Marea '+dmGeneral.zqMareaActivabuque.AsString+' '+dmGeneral.zqMareaActivaanio_marea.AsString+'-'+dmGeneral.zqMareaActivanro_marea_inidep.AsString;
+      strEncabezado:='<?xml version="1.0" encoding="utf-8" ?> <kml xmlns="http://www.opengis.net/kml/2.2"> <Document><Folder><name>'+strMarea+'</name>'
+       +' <Schema name="'+strMarea+'" id="'+strMarea+'"> <SimpleField name="Name" type="string"></SimpleField> <SimpleField name="Fecha" type="string"></SimpleField> </Schema>';
+       strPre:='<Placemark> <name>0</name> <description>00/00/0000</description> <Style><LineStyle><color>ff0000ff</color></LineStyle> <PolyStyle><fill>0</fill></PolyStyle></Style> <ExtendedData>'
+       +'<SchemaData schemaUrl="#000"> <SimpleData name="Name">0</SimpleData> <SimpleData name="Description">00/00/0000</SimpleData> </SchemaData></ExtendedData> <LineString><coordinates> ';
+       strPost:='</coordinates></LineString> </Placemark> ';
+       strPie:='</Folder></Document></kml>';
+       sl:= TStringList.Create;
+       sl.Add(strEncabezado);
+       while not EOF do
+       begin
+         if (not FieldByName('long_ini_gis').IsNull) and
+            (not FieldByName('lat_ini_gis').IsNull) and
+            (not FieldByName('long_fin_gis').IsNull) and
+            (not FieldByName('lat_fin_gis').IsNull) then
+         begin
+            strPre:='<Placemark> <name>'+FieldByName('nro_lance').AsString+'</name> <description>'+FieldByName('fecha').AsString+'</description> <Style><LineStyle><color>ff0000ff</color></LineStyle> <PolyStyle><fill>0</fill></PolyStyle></Style> <ExtendedData><SchemaData schemaUrl="#'+strMarea+'"> <SimpleData name="Name">'+FieldByName('nro_lance').AsString+'</SimpleData> <SimpleData name="Description">'+FieldByName('fecha').AsString+'</SimpleData> </SchemaData></ExtendedData> <LineString><coordinates> ';
+            sl.Add(strPre+FieldByName('long_ini_gis').AsString+','+FieldByName('lat_ini_gis').AsString+' '+FieldByName('long_fin_gis').AsString+','+FieldByName('lat_fin_gis').AsString+strPost);
+         end;
+         Next;
+       end;
+       sl.Add(strPie);
+       sl.SaveToFile(archivo);
+       sl.Destroy;
+       GotoBookmark(bm);
+       EnableControls;
+       MessageDlg('Los lances seleccionados se han exportado al archivo '+archivo, mtInformation, [mbOK],0);
+    end;
+  end;
 end;
 
 procedure TfmLances.dtFechaChange(Sender: TObject);
@@ -545,6 +692,12 @@ begin
   end;
 end;
 
+procedure TfmLances.acMostrarRindesExecute(Sender: TObject);
+begin
+  acMostrarRindes.Checked:=tbMostrarRindes.Down;
+  chtLancesRindesSeries.Active:=acMostrarRindes.Checked;
+end;
+
 procedure TfmLances.acZoomLanceSeleccionadoExecute(Sender: TObject);
 var
   NewExtent: TDoubleRect;
@@ -576,10 +729,75 @@ begin
   end;
 end;
 
+procedure TfmLances.acExportarKMLExecute(Sender: TObject);
+begin
+  sdExportarKML.FileName:='M_'+dmGeneral.zqMareaActivaanio_marea.AsString+'_'+dmGeneral.zqMareaActivanro_marea_inidep.AsString+'.KML';
+  if sdExportarKML.Execute then
+  begin
+    if (not FileExistsUTF8(sdExportarKML.FileName)) or (MessageDlg('El archivo '+sdExportarKML.FileName+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+    begin
+      ExportarKML(sdExportarKML.FileName);
+    end;
+  end;
+end;
+
 procedure TfmLances.acZoomLancesExecute(Sender: TObject);
 begin
   if lcsLances.Count>0 then
      chtLances.LogicalExtent:=chtLancesSerieLances.Extent;
+end;
+
+procedure TfmLances.chtLancesRindesSeriesDraw(ACanvas: TCanvas;
+  const ARect: TRect);
+begin
+  DrawRindes(ACanvas, ARect, 0, 25, clAqua);
+  DrawRindes(ACanvas, ARect, 25, 50, clOlive);
+  DrawRindes(ACanvas, ARect, 50, 75, clYellow);
+  DrawRindes(ACanvas, ARect, 75, 100, clLime);
+end;
+
+procedure TFmLances.DrawRindes(ACanvas: TCanvas;
+  const ARect: TRect; min_rinde: double; max_rinde: double; ColorMarca: TColor);
+var
+  RadioRinde: Integer;
+  PuntoRinde: TPoint;
+  RectText: TRect;
+  i: Integer;
+  ts: TTextStyle;
+begin
+  //Cargo los lances listados
+  if Assigned(LancesConRindes) and (LancesConRindes.Count>0) then
+  begin
+    for i := 0 to LancesConRindes.Count-1 do
+    begin
+      with (LancesConRindes.Objects[i] as TLancesObj) do
+      begin
+        if (RindePromedio>min_rinde) and (RindePromedio<=max_rinde) then
+        begin
+          PuntoRinde:=GetPuntoMedioChart(chtLances);
+
+          RadioRinde:=round(GetLongitudChart(chtLances)/4);
+
+          Unused(ARect);
+          ACanvas.Pen.Mode := pmCopy;
+          ACanvas.Pen.Color := clDefault;
+          ACanvas.Pen.Style := psClear;
+          ACanvas.Brush.Style := bsSolid;
+          ACanvas.Brush.Color := ColorMarca;
+          ACanvas.EllipseC(PuntoRinde.X,PuntoRinde.Y,RadioRinde, RadioRinde);
+          RectText.Top:=PuntoRinde.Y-RadioRinde;
+          RectText.Bottom:=PuntoRinde.Y+RadioRinde;
+          RectText.Left:=PuntoRinde.X-RadioRinde;
+          RectText.Right:=PuntoRinde.X+RadioRinde;
+          ts:= ACanvas.TextStyle;
+          ts.Alignment:=taCenter;
+          ts.Layout:=tlCenter;
+          ACanvas.Font.Style:=[fsBold];
+          ACanvas.TextRect(RectText,PuntoRinde.x,PuntoRinde.y, FormatFloat('0.00', RindePromedio/100), ts);
+        end;
+      end;
+    end;
+  end;
 end;
 
 procedure TfmLances.ctInfoCoordenadasAfterMouseMove(

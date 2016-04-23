@@ -7,13 +7,14 @@ interface
 uses
   {$IFDEF MSWINDOWS}
     Windows,
+    windirs,
   {$ENDIF}
   {$IFDEF UNIX}
     Unix,
   {$ENDIF}
   Classes, SysUtils, FileUtil, LR_Class, LR_DBSet, RxIniPropStorage, Forms,
   Controls, Graphics, Dialogs, ExtCtrls, Buttons, ActnList, ComCtrls, StdCtrls,
-  EditBtn, IniPropStorage, Grids, frmbase, ZDataset, windirs, DB, datGeneral,
+  EditBtn, IniPropStorage, Grids, frmbase, ZDataset, DB, datGeneral,
   comobj, variants, frmrptdatospuente,
   funciones, LSConfig, LR_DSet, lr_e_pdf;
 

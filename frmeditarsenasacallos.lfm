@@ -422,6 +422,7 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
     end
   end
   inherited zcePrincipal: TZControladorEdicion
+    AltaContinua = True
     ControlInicial = dbdtHora
     left = 216
     top = 184
@@ -429,5 +430,158 @@ inherited fmEditarSenasaCallos: TfmEditarSenasaCallos
   inherited zdgPrincipal: TZDatasetGroup
     left = 24
     top = 184
+  end
+  object zqSenasaCallosAnt: TZQuery[8]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqSenasaCallosAntBeforeOpen
+    CachedUpdates = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM'
+      '    muestras_senasa_callos ms'
+      'WHERE'
+      '    ms.idmarea=:idmarea'
+      'order by ms.fecha desc, ms.hora desc , ms.nro_muestra desc'
+      'limit 1'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
+    left = 232
+    top = 216
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
+    object zqSenasaCallosAntidmuestras_senasa_callos: TLongintField
+      FieldKind = fkData
+      FieldName = 'idmuestras_senasa_callos'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaCallosAntidmarea: TLongintField
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaCallosAntnro_muestra: TLongintField
+      FieldKind = fkData
+      FieldName = 'nro_muestra'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaCallosAntfecha: TDateField
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaCallosAnthora: TTimeField
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaCallosAntlatitud: TFloatField
+      FieldKind = fkData
+      FieldName = 'latitud'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqSenasaCallosAntcuadrante_latitud: TStringField
+      FieldKind = fkData
+      FieldName = 'cuadrante_latitud'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 4
+    end
+    object zqSenasaCallosAntlongitud: TFloatField
+      FieldKind = fkData
+      FieldName = 'longitud'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqSenasaCallosAntcuadrante_longitud: TStringField
+      FieldKind = fkData
+      FieldName = 'cuadrante_longitud'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 4
+    end
+    object zqSenasaCallosAntcontramuestra1: TLongintField
+      FieldKind = fkData
+      FieldName = 'contramuestra1'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaCallosAntcontramuestra2: TLongintField
+      FieldKind = fkData
+      FieldName = 'contramuestra2'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaCallosAntlab_mdp: TLongintField
+      FieldKind = fkData
+      FieldName = 'lab_mdp'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaCallosAntlab_bsas: TLongintField
+      FieldKind = fkData
+      FieldName = 'lab_bsas'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
   end
 end

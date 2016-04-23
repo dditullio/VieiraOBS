@@ -34,6 +34,7 @@ type
     zqMareaActivafecha_zarpada: TDateField;
     zqMareaActivaidmarea: TLongintField;
     zqMareaActivaMarea: TBytesField;
+    zqMareaActivaMareaBuqueStr: TStringField;
     zqMareaActivaMareaStr: TStringField;
     zqMareaActivamarea_buque: TStringField;
     zqMareaActivanro_lance_inicial: TLongintField;
@@ -64,6 +65,7 @@ type
     zqMareasidbuque: TLongintField;
     zqMareasidmarea: TLongintField;
     zqMareasMarea: TBytesField;
+    zqMareasMareaBuqueStr: TStringField;
     zqMareasMareaStr: TStringField;
     zqMareasmarea_buque: TStringField;
     zqMareasnro_marea_inidep: TLongintField;
@@ -221,7 +223,10 @@ end;
 procedure TdmGeneral.zqMareaActivaCalcFields(DataSet: TDataSet);
 begin
   if not zqMareaActivaMarea.IsNull then
+  begin
      zqMareaActivaMareaStr.AsString:=zqMareaActivaMarea.AsString;
+     zqMareaActivaMareaBuqueStr.AsString:='B/P '+zqMareaActivabuque.AsString+' - Marea '+zqMareaActivamarea_buque.AsString;
+  end;
 end;
 
 procedure TdmGeneral.zqMareasAfterApplyUpdates(Sender: TObject);
@@ -238,7 +243,9 @@ end;
 procedure TdmGeneral.zqMareasCalcFields(DataSet: TDataSet);
 begin
   if not zqMareasMarea.IsNull then
-     zqMareasMareaStr.AsString:=zqMareasMarea.AsString;
+  begin
+    zqMareasMareaStr.AsString:=zqMareasMarea.AsString;
+  end;
 end;
 
 procedure TdmGeneral.acEstablecerActivaExecute(Sender: TObject);

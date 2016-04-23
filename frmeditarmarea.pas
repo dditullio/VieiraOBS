@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, DividerBevel, DBDateTimePicker, Forms, Controls,
   Graphics, Dialogs, ExtCtrls, StdCtrls, DbCtrls, Buttons, frmzedicionbase,
-  ZDataset, SQLQueryGroup, zcontroladoredicion, zdatasetgroup, db, datGeneral;
+  ZDataset, SQLQueryGroup, zcontroladoredicion, zdatasetgroup, db, datGeneral, frmimprimiretiquetas;
 
 type
 
@@ -112,7 +112,16 @@ procedure TfmEditarMarea.FormClose(Sender: TObject;
 begin
   // Si la está dando de alta, la establezco inmediatamente como activa
   if zcePrincipal.Accion=ED_AGREGAR then
-     dmGeneral.IdMareaActiva:=zqPrincipalidmarea.Value;
+     begin
+       dmGeneral.IdMareaActiva:=zqPrincipalidmarea.Value;
+       //Pregunto por la creación de las etiquetas
+       if MessageDlg('¿Desea crear ahora las etiquetas para rotular las muestras? También podrá hacerlo más tarde desde el menú "Muestras -> Etiquetas para imprimir"', mtConfirmation, mbYesNo, 0) = mrYes then
+       begin
+         if not Assigned(fmImprimirEtiquetas) then
+           fmImprimirEtiquetas:=TfmImprimirEtiquetas.Create(Self);
+         fmImprimirEtiquetas.ShowModal;
+       end;
+     end;
   dmGeneral.zqMareaActiva.Close;
   dmGeneral.zqMareaActiva.Open;
 end;

@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, DividerBevel, DBDateTimePicker, Forms, Controls,
   Graphics, Dialogs, ExtCtrls, StdCtrls, DBCtrls, Buttons, frmzedicionbase,
   ZDataset, SQLQueryGroup, zcontroladoredicion, zdatasetgroup, DtDBTimeEdit,
-  dtdbcoordedit, DB, datGeneral, funciones;
+  dtdbcoordedit, DB, datGeneral, funciones, dateutils;
 
 type
 
@@ -48,6 +48,20 @@ type
     zqPrincipallatitud: TFloatField;
     zqPrincipallongitud: TFloatField;
     zqPrincipalnro_muestra: TLongintField;
+    zqSenasaCallosAnt: TZQuery;
+    zqSenasaCallosAntcontramuestra1: TLongintField;
+    zqSenasaCallosAntcontramuestra2: TLongintField;
+    zqSenasaCallosAntcuadrante_latitud: TStringField;
+    zqSenasaCallosAntcuadrante_longitud: TStringField;
+    zqSenasaCallosAntfecha: TDateField;
+    zqSenasaCallosAnthora: TTimeField;
+    zqSenasaCallosAntidmarea: TLongintField;
+    zqSenasaCallosAntidmuestras_senasa_callos: TLongintField;
+    zqSenasaCallosAntlab_bsas: TLongintField;
+    zqSenasaCallosAntlab_mdp: TLongintField;
+    zqSenasaCallosAntlatitud: TFloatField;
+    zqSenasaCallosAntlongitud: TFloatField;
+    zqSenasaCallosAntnro_muestra: TLongintField;
     procedure dbdtFechaEnter(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure paFechaHoraExit(Sender: TObject);
@@ -55,6 +69,7 @@ type
     procedure zqPrincipalCalcFields(DataSet: TDataSet);
     procedure zqPrincipalhoraSetText(Sender: TField; const aText: string);
     procedure zqPrincipalNewRecord(DataSet: TDataSet);
+    procedure zqSenasaCallosAntBeforeOpen(DataSet: TDataSet);
   private
     { private declarations }
   public
@@ -75,11 +90,30 @@ begin
   zqPrincipalidmarea.Value := dmGeneral.IdMareaActiva;
   zqPrincipalidmuestras_senasa_callos.Value :=
     zcePrincipal.NuevoID('muestras_senasa_callos');
-  zqPrincipalfecha.Value := Date;
   zqPrincipalcontramuestra1.Value := 1;
   zqPrincipalcontramuestra2.Value := 1;
   zqPrincipallab_mdp.Value := 1;
   zqPrincipallab_bsas.Value := 1;
+
+  zqSenasaCallosAnt.Close;
+  zqSenasaCallosAnt.Open;
+  //Si se encuentra un registro anterior seteo algunos
+  //valores predeterminados
+  if zqSenasaCallosAnt.RecordCount>0 then
+  begin
+    zqPrincipalfecha.Value:=IncDay(zqSenasaCallosAntfecha.Value);
+    zqPrincipalnro_muestra.Value:=zqSenasaCallosAntnro_muestra.AsInteger+1;
+  end else
+  begin
+    //Si no hay registro anterior, comienzo por la banda de estribor
+    zqPrincipalfecha.Value := Date;
+    zqPrincipalnro_muestra.Value := 1;
+  end;
+end;
+
+procedure TfmEditarSenasaCallos.zqSenasaCallosAntBeforeOpen(DataSet: TDataSet);
+begin
+  zqSenasaCallosAnt.ParamByName('idmarea').Value:=dmGeneral.IdMareaActiva;
 end;
 
 procedure TfmEditarSenasaCallos.zqPrincipalCalcFields(DataSet: TDataSet);

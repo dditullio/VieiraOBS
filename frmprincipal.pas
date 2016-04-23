@@ -10,7 +10,7 @@ uses
   StdCtrls, Buttons, DbCtrls, frmbase, frmmareas,datGeneral, frmrindes,
   frmcoccion, frmmuestrasbiologicas, frmdanio, frmbycatch, frmtallas,
   frmlances, frminformes, frmmuestrassenasa, frmSplashScreenForm, frmmuestrasrayas,
-  frmbackup;
+  frmbackup, frmimprimiretiquetas;
 
 type
 
@@ -30,6 +30,7 @@ type
     acSenasa: TAction;
     acRayas: TAction;
     acBackup: TAction;
+    acGenerarEtiquetas: TAction;
     alPrincipal: TActionList;
     apGeneral: TApplicationProperties;
     BitBtn1: TBitBtn;
@@ -49,6 +50,8 @@ type
     MenuItem15: TMenuItem;
     MenuItem16: TMenuItem;
     MenuItem17: TMenuItem;
+    MenuItem18: TMenuItem;
+    MenuItem19: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -85,6 +88,7 @@ type
     procedure acByCatchExecute(Sender: TObject);
     procedure acCoccionExecute(Sender: TObject);
     procedure acDanioExecute(Sender: TObject);
+    procedure acGenerarEtiquetasExecute(Sender: TObject);
     procedure acInformesExecute(Sender: TObject);
     procedure acMuestrasBiologicasExecute(Sender: TObject);
     procedure acLancesExecute(Sender: TObject);
@@ -228,6 +232,13 @@ begin
   if (sender is taction) then
     imageindex:=(sender as taction).ImageIndex;
   ActivarForm(fmDanio, imageindex);
+end;
+
+procedure TfmPrincipal.acGenerarEtiquetasExecute(Sender: TObject);
+begin
+  if not Assigned(fmImprimirEtiquetas) then
+    fmImprimirEtiquetas:=TfmImprimirEtiquetas.Create(Self);
+  fmImprimirEtiquetas.ShowModal;
 end;
 
 procedure TfmPrincipal.acInformesExecute(Sender: TObject);

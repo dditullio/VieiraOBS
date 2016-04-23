@@ -267,6 +267,16 @@ object dmGeneral: TdmGeneral
       Required = False
       Size = 150
     end
+    object zqMareasMareaBuqueStr: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'MareaBuqueStr'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
   end
   object zqMareaActiva: TZQuery
     Connection = zcDB
@@ -488,6 +498,16 @@ object dmGeneral: TdmGeneral
       ReadOnly = False
       Required = False
       Size = 60
+    end
+    object zqMareaActivaMareaBuqueStr: TStringField
+      FieldKind = fkData
+      FieldName = 'MareaBuqueStr'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
     end
   end
   object dsMareaActiva: TDataSource

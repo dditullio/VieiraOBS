@@ -1090,8 +1090,8 @@ begin
       end
       else
       //Si la hora es anterior al inicio del lance anterior, sugiero
-      //cambio de fecha
-      if (zqAntLance.RecordCount > 0) and ((int(zqPrincipalfecha.AsDateTime) +
+      //cambio de fecha (Sólo en alta de registro)
+      if (zqAntLance.RecordCount > 0) and (zcePrincipal.Accion=ED_AGREGAR) and ((int(zqPrincipalfecha.AsDateTime) +
         zqPrincipalhora.AsDateTime) < (int(zqAntLancefecha.AsDateTime) +
         zqAntLancehora.AsDateTime)) then
       begin
@@ -1110,7 +1110,7 @@ begin
         end;
       end;
 
-      if (not hay_error) and (zqAntLance.RecordCount > 0) then
+      if (not hay_error) and (zqAntLance.RecordCount > 0) and (zcePrincipal.Accion=ED_AGREGAR) then
       begin
           //Calculo los minutos entre el fin del lance anterior y el inicio del actual
           minutos_entre_lances := MinutesBetween(

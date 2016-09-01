@@ -54,9 +54,9 @@ inherited fmEditarLances: TfmEditarLances
           Height = 314
           Top = 0
           Width = 729
-          ActivePage = tsAlternativo
+          ActivePage = tsPredeterminado
           Align = alClient
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           OnChange = pcFormatosChange
           OnChanging = pcFormatosChanging

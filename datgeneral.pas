@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqldb, DB, mysql50conn, mysql55conn, FileUtil, ZConnection,
   ZDataset, ZSqlMonitor, Forms, ActnList, LSConfig, Dialogs, Controls,
-  frmSplashScreenForm;
+  IniPropStorage, frmSplashScreenForm;
 
 type
 
@@ -18,6 +18,7 @@ type
     acEstablecerActiva: TAction;
     dsMareaActiva: TDataSource;
     dsMareas: TDatasource;
+    ipsConfig: TIniPropStorage;
     qMareasanio_marea: TLongintField;
     qMareascapitan: TStringField;
     qMareasidbuque: TLongintField;
@@ -80,19 +81,26 @@ type
     procedure zqMareasAfterScroll(DataSet: TDataSet);
     procedure zqMareasCalcFields(DataSet: TDataSet);
   private
+    { private declarations }
     FIdMareaActiva: integer;
     function GetDscMareaActiva: string;
     function GetFactorCalcCaptura: double;
     procedure SetIdMareaActiva(AValue: integer);
-    { private declarations }
+    procedure InicializarDB;
   public
     property IdMareaActiva: integer read FIdMareaActiva write SetIdMareaActiva;
     property DscMareaActiva: string read GetDscMareaActiva;
     property FactorCalculoCaptura: double read GetFactorCalcCaptura;
+    procedure GuardarBooleanConfig(const Clave: String; Valor: Boolean; const Seccion: String='');
+    procedure GuardarIntegerConfig(const Clave: String; Valor: LongInt; const Seccion: String='');
+    procedure GuardarStringConfig(const Clave: String; Valor: String; const Seccion: String='');
+    function LeerBooleanConfig(const Clave: String; ValorPredeterminado: Boolean; const Seccion: String=''): Boolean;
+    function LeerIntegerConfig(const Clave: String; ValorPredeterminado: LongInt; const Seccion: String=''): LongInt;
+    function LeerStringConfig(const Clave: String; ValorPredeterminado: String; const Seccion: String=''): String;
   end;
 
 const
-  APP_VERSION='1.0.6';
+  APP_VERSION='1.0.7';
 
 var
   dmGeneral: TdmGeneral;
@@ -109,6 +117,13 @@ var
   lib_standard, lib_embedded: string;
   servidor_local: string;
 begin
+
+  //Inicializo archivo de configuraciones
+  if not DirectoryExistsUTF8(GetAppConfigDir(False)) then
+     CreateDirUTF8(GetAppConfigDir(False));
+  ipsConfig.IniFileName:=GetAppConfigDir(False)+ExtractFileNameOnly(Application.ExeName)+'.conf';
+  ipsConfig.IniSection:='General';
+
   zcDB.Connected := False;
   {$IFDEF MSWINDOWS}
   lib_standard := ExtractFilePath(Application.ExeName) + 'libmysql.dll';
@@ -162,8 +177,11 @@ begin
       zcDB.Properties.Add('ServerArgument3=--character-sets-dir=' +
         servidor_local + 'share/charsets');
       zcDB.Properties.Add('ServerArgument4=--language=' + servidor_local + 'share/spanish');
-      zcDB.Properties.Add('ServerArgument5=--basedir=' + servidor_local);
-      zcDB.Properties.Add('ServerArgument6=--key_buffer_size=32M');
+      zcDB.Properties.Add('ServerArgument5=--lc-messages-dir=' + servidor_local + 'share');
+      zcDB.Properties.Add('ServerArgument6=--lc-messages=es_AR');
+      zcDB.Properties.Add('ServerArgument7=--lc-time-names=es_AR');
+      zcDB.Properties.Add('ServerArgument8=--basedir=' + servidor_local);
+      zcDB.Properties.Add('ServerArgument9=--key_buffer_size=32M');
 
       zcDB.LibraryLocation := lib_embedded;
       zcDB.Protocol := 'mysqld-5';
@@ -184,7 +202,9 @@ begin
 
   zqMareas.Close;
   zqMareas.Open;
-  LSLoadConfig(['idMareaActiva'], [tmp_MareaActiva], [@tmp_MareaActiva]);
+
+  tmp_MareaActiva:=LeerIntegerConfig('idMareaActiva', -1);
+//  LSLoadConfig(['idMareaActiva'], [tmp_MareaActiva], [@tmp_MareaActiva]);
   if tmp_MareaActiva > 0 then
   begin
     IdMareaActiva := tmp_MareaActiva;
@@ -281,10 +301,139 @@ begin
   if FIdMareaActiva = AValue then
     Exit;
   FIdMareaActiva := AValue;
-  LSSaveConfig(['idMareaActiva'], [FIdMareaActiva]);
+  GuardarIntegerConfig('idMareaActiva', FIdMareaActiva);
+  //  LSSaveConfig(['idMareaActiva'], [FIdMareaActiva]);
   if zqMareaActiva.Active then
     zqMareaActiva.Close;
   zqMareaActiva.Open;
+end;
+
+procedure TdmGeneral.InicializarDB;
+begin
+//  zcDB.ExecuteDirect('SET lc_time_names = '''es_AR'''');
+end;
+
+procedure TdmGeneral.GuardarBooleanConfig(const Clave: String; Valor: Boolean;
+  const Seccion: String);
+var
+  OldSection: string;
+begin
+  if Trim(Clave)='' then
+  begin
+    MessageDlg(
+      'No se indicó la identificación (clave) del valor a guardar', mtError, [mbClose], 0);
+  end else
+  begin
+    OldSection:=ipsConfig.IniSection;
+    if Trim(Seccion)<>'' then
+       ipsConfig.IniSection:=Seccion;
+    ipsConfig.WriteBoolean(Clave, Valor);
+    ipsConfig.IniSection:=OldSection;
+  end;
+end;
+
+procedure TdmGeneral.GuardarIntegerConfig(const Clave: String; Valor: LongInt;
+  const Seccion: String);
+var
+  OldSection: string;
+begin
+  if Trim(Clave)='' then
+  begin
+    MessageDlg(
+      'No se indicó la identificación (clave) del valor a guardar', mtError, [mbClose], 0);
+  end else
+  begin
+    OldSection:=ipsConfig.IniSection;
+    if Trim(Seccion)<>'' then
+       ipsConfig.IniSection:=Seccion;
+    ipsConfig.WriteInteger(Clave, Valor);
+    ipsConfig.IniSection:=OldSection;
+  end;
+end;
+
+procedure TdmGeneral.GuardarStringConfig(const Clave: String; Valor: String;
+  const Seccion: String);
+var
+  OldSection: string;
+begin
+  if Trim(Clave)='' then
+  begin
+    MessageDlg(
+      'No se indicó la identificación (clave) del valor a guardar', mtError, [mbClose], 0);
+  end else
+  begin
+    OldSection:=ipsConfig.IniSection;
+    if Trim(Seccion)<>'' then
+       ipsConfig.IniSection:=Seccion;
+    ipsConfig.WriteString(Clave, Valor);
+    ipsConfig.IniSection:=OldSection;
+  end;
+end;
+
+function TdmGeneral.LeerBooleanConfig(const Clave: String;
+  ValorPredeterminado: Boolean; const Seccion: String): Boolean;
+var
+  OldSection: string;
+  Resultado: Boolean;
+begin
+  Resultado:=ValorPredeterminado;
+  if Trim(Clave)='' then
+  begin
+    MessageDlg(
+      'No se indicó la identificación (clave) del valor a recuperar', mtError, [mbClose], 0);
+  end else
+  begin
+    OldSection:=ipsConfig.IniSection;
+    if Trim(Seccion)<>'' then
+       ipsConfig.IniSection:=Seccion;
+    Resultado:=ipsConfig.ReadBoolean(Clave, ValorPredeterminado);
+    ipsConfig.IniSection:=OldSection;
+    Result:=Resultado;
+  end;
+end;
+
+function TdmGeneral.LeerIntegerConfig(const Clave: String;
+  ValorPredeterminado: LongInt; const Seccion: String): LongInt;
+var
+  OldSection: string;
+  Resultado: LongInt;
+begin
+  Resultado:=ValorPredeterminado;
+  if Trim(Clave)='' then
+  begin
+    MessageDlg(
+      'No se indicó la identificación (clave) del valor a recuperar', mtError, [mbClose], 0);
+  end else
+  begin
+    OldSection:=ipsConfig.IniSection;
+    if Trim(Seccion)<>'' then
+       ipsConfig.IniSection:=Seccion;
+    Resultado:=ipsConfig.ReadInteger(Clave, ValorPredeterminado);
+    ipsConfig.IniSection:=OldSection;
+    Result:=Resultado;
+  end;
+end;
+
+function TdmGeneral.LeerStringConfig(const Clave: String;
+  ValorPredeterminado: String; const Seccion: String): String;
+var
+  OldSection: string;
+  Resultado: String;
+begin
+  Resultado:=ValorPredeterminado;
+  if Trim(Clave)='' then
+  begin
+    MessageDlg(
+      'No se indicó la identificación (clave) del valor a recuperar', mtError, [mbClose], 0);
+  end else
+  begin
+    OldSection:=ipsConfig.IniSection;
+    if Trim(Seccion)<>'' then
+       ipsConfig.IniSection:=Seccion;
+    Resultado:=ipsConfig.ReadString(Clave, ValorPredeterminado);
+    ipsConfig.IniSection:=OldSection;
+    Result:=Resultado;
+  end;
 end;
 
 end.

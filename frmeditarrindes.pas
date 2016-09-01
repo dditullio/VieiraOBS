@@ -74,7 +74,6 @@ type
     procedure dbdtFechaEnter(Sender: TObject);
     procedure dblkBandaExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure paFechaHoraExit(Sender: TObject);
     procedure zqPrincipalCalcFields(DataSet: TDataSet);
     procedure zqPrincipalhoraSetText(Sender: TField; const aText: string);
@@ -121,7 +120,8 @@ end;
 
 procedure TfmEditarRindes.ckDatosBaborClick(Sender: TObject);
 begin
-  LSSaveConfig(['RindesCompletarBabor'], [ckDatosBabor.Checked]);
+  dmGeneral.GuardarBooleanConfig('RindesCompletarBabor', ckDatosBabor.Checked);
+//  LSSaveConfig(['RindesCompletarBabor'], [ckDatosBabor.Checked]);
 end;
 
 procedure TfmEditarRindes.dblkBandaExit(Sender: TObject);
@@ -136,17 +136,12 @@ end;
 
 procedure TfmEditarRindes.FormCreate(Sender: TObject);
 var
-  str_conf: string;
+  bool_conf: Boolean;
 begin
   inherited;
-  str_conf := '';
-  LSLoadConfig(['RindesCompletarBabor'], [str_conf], [@str_conf]);
-  if str_conf <> '' then
-    ckDatosBabor.Checked := (str_conf = 'True');
-end;
-
-procedure TfmEditarRindes.FormShow(Sender: TObject);
-begin
+  bool_conf := dmGeneral.LeerBooleanConfig('RindesCompletarBabor', True);
+//  LSLoadConfig(['RindesCompletarBabor'], [bool_conf], [@bool_conf]);
+    ckDatosBabor.Checked := bool_conf;
 end;
 
 procedure TfmEditarRindes.paFechaHoraExit(Sender: TObject);

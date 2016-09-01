@@ -883,7 +883,8 @@ end;
 procedure TfmEditarLances.FormClose(Sender: TObject;
     var CloseAction: TCloseAction);
 begin
-  LSSaveConfig(['formato_planilla_puente'], [pcFormatos.TabIndex]);
+  dmGeneral.GuardarIntegerConfig('formato_planilla_puente', pcFormatos.TabIndex);
+//  LSSaveConfig(['formato_planilla_puente'], [pcFormatos.TabIndex]);
   //Vuelvo a sacar los TabStop de los grados, en caso de que se hubiesen puesto
   //por la validación de la hora
   dbedGradosLatIni.TabStop := False;
@@ -894,10 +895,10 @@ end;
 
 procedure TfmEditarLances.FormCreate(Sender: TObject);
 var
-  formato: string;
+  formato: Integer;
 begin
   FControlesEdicion := TControlsArray.Create;
-  formato:='';
+  formato:=-1;
 
   inherited;
   pcLances.ActivePage := tsGeneral;
@@ -971,15 +972,17 @@ begin
   FControlesEdicion.AddControl(1, 'TiempoDif', dbtTiempoDif1);
   FControlesEdicion.AddControl(1, 'RumboDif', dbtRumboDif1);
 
-  LSLoadConfig(['formato_planilla_puente'], [formato], [@formato]);
-  if formato = '' then
+  formato:=dmGeneral.LeerIntegerConfig('formato_planilla_puente',-1);
+//  LSLoadConfig(['formato_planilla_puente'], [formato], [@formato]);
+  if formato =-1 then
   begin
     pcFormatos.TabIndex := 0;
     zcePrincipal.ControlInicial := dbdtHora;
   end
   else
   begin
-    pcFormatos.TabIndex := StrToInt(formato);
+    if Assigned(pcFormatos.Pages[formato]) then
+       pcFormatos.TabIndex := formato;
   end;
   //FControlesEdicion.ActiveIndex := pcFormatos.TabIndex;
 
@@ -987,6 +990,7 @@ begin
   //Hay que averiguar por qué y solucionarlo
   if zcePrincipal.OnValidateForm = nil then
     zcePrincipal.OnValidateForm := @zcePrincipalValidateForm;
+
 end;
 
 procedure TfmEditarLances.FormShow(Sender: TObject);
@@ -995,7 +999,7 @@ begin
   Application.ProcessMessages;
 
   if Assigned(FControlesEdicion.GetControl('Hora')) and (FControlesEdicion.GetControl('Hora') is TWinControl) then
-     zcePrincipal.ControlInicial := (FControlesEdicion.GetControl('Hora') as TWinControl);
+    zcePrincipal.ControlInicial := (FControlesEdicion.GetControl('Hora') as TWinControl);
 
   FControlesEdicion.SetFocus('Hora');
 end;
@@ -1195,16 +1199,18 @@ end;
 
 procedure TfmEditarLances.zcePrincipalInitRecord(Sender: TObject);
 var
-  formato: string;
+  formato: Integer;
+  f1: integer;
 begin
-  formato:='';
+  formato:=-1;
   pcLances.PageIndex := 0;
-  LSLoadConfig(['formato_planilla_puente'], [formato], [@formato]);
-  if formato = '' then
+  formato:=dmGeneral.LeerIntegerConfig('formato_planilla_puente', -1);
+  //  LSLoadConfig(['formato_planilla_puente'], [formato], [@formato]);
+  if formato = -1 then
     pcFormatos.PageIndex := 0
   else
-    pcFormatos.PageIndex := StrToInt(formato);
-
+    pcFormatos.PageIndex := formato;
+  f1:=pcFormatos.PageIndex;
   FControlesEdicion.ActiveIndex := pcFormatos.PageIndex;
 end;
 
@@ -1253,7 +1259,8 @@ begin
       end;
     end;
   end;
-  LSSaveConfig(['formato_planilla_puente'], [pcFormatos.TabIndex]);
+  dmGeneral.GuardarIntegerConfig('formato_planilla_puente', pcFormatos.TabIndex);
+//  LSSaveConfig(['formato_planilla_puente'], [pcFormatos.TabIndex]);
 end;
 
 procedure TfmEditarLances.zqAntLanceBeforeOpen(DataSet: TDataSet);

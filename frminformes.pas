@@ -269,6 +269,18 @@ var
   xls, odf: olevariant;
   gen_ok:boolean;
 begin
+  // Guardo la selección de planillas a guardar
+  dmGeneral.GuardarBooleanConfig('DatosPuente', cbDatosPuente.Checked, 'PlanillasInforme');
+  dmGeneral.GuardarBooleanConfig('Coccion', cbCoccion.Checked, 'PlanillasInforme');
+  dmGeneral.GuardarBooleanConfig('Danio', cbDanio.Checked, 'PlanillasInforme');
+  dmGeneral.GuardarBooleanConfig('Raya', cbRaya.Checked, 'PlanillasInforme');
+  dmGeneral.GuardarBooleanConfig('Rinde', cbRindes.Checked, 'PlanillasInforme');
+  dmGeneral.GuardarBooleanConfig('Talla', cbTallas.Checked, 'PlanillasInforme');
+  dmGeneral.GuardarBooleanConfig('ByCatch', cbByCatch.Checked, 'PlanillasInforme');
+  dmGeneral.GuardarBooleanConfig('DatosPuentePDF', cbDatosPuentePDF.Checked, 'PlanillasInforme');
+  dmGeneral.GuardarBooleanConfig('SenasaPDF', cbSenasaPDF.Checked, 'PlanillasInforme');
+  dmGeneral.GuardarBooleanConfig('BiologicasPDF', cbMuestrasBiolPDF.Checked, 'PlanillasInforme');
+
   try
     xls := CreateOleObject('Excel.Application');
   except
@@ -370,29 +382,39 @@ end;
 procedure TfmInformes.dedCarpetaPlanillasAcceptDirectory(Sender: TObject;
   var Value: String);
 begin
-  LSSaveConfig(['destino_informes'],[dedCarpetaPlanillas.Directory]);
-//  ipsPreferencias.WriteString('carpeta_destino', dedCarpetaPlanillas.Directory);
+  dmGeneral.GuardarStringConfig('destino_informes', dedCarpetaPlanillas.Directory);
+//  LSSaveConfig(['destino_informes'],[dedCarpetaPlanillas.Directory]);
 end;
 
 procedure TfmInformes.dedCarpetaPlanillasChange(Sender: TObject);
 begin
-  LSSaveConfig(['destino_informes'],[dedCarpetaPlanillas.Directory]);
-//  ipsPreferencias.WriteString('carpeta_destino', dedCarpetaPlanillas.Directory);
+  dmGeneral.GuardarStringConfig('destino_informes', dedCarpetaPlanillas.Directory);
+//  LSSaveConfig(['destino_informes'],[dedCarpetaPlanillas.Directory]);
 end;
 
 procedure TfmInformes.dedCarpetaPlanillasExit(Sender: TObject);
 begin
-  LSSaveConfig(['destino_informes'],[dedCarpetaPlanillas.Directory]);
-//  ipsPreferencias.WriteString('carpeta_destino', dedCarpetaPlanillas.Directory);
+  dmGeneral.GuardarStringConfig('destino_informes', dedCarpetaPlanillas.Directory);
+//  LSSaveConfig(['destino_informes'],[dedCarpetaPlanillas.Directory]);
 end;
 
 procedure TfmInformes.FormShow(Sender: TObject);
 var
   destino:String;
 begin
-  destino:='';
-//  destino:= ipsPreferencias.ReadString('carpeta_destino', GetWindowsSpecialDir(CSIDL_PERSONAL));
-  LSLoadConfig(['destino_informes'],[destino],[@destino]);
+  cbDatosPuente.Checked:=dmGeneral.LeerBooleanConfig('DatosPuente', True, 'PlanillasInforme');
+  cbCoccion.Checked:=dmGeneral.LeerBooleanConfig('Coccion', False, 'PlanillasInforme');
+  cbDanio.Checked:=dmGeneral.LeerBooleanConfig('Danio', True, 'PlanillasInforme');
+  cbRaya.Checked:=dmGeneral.LeerBooleanConfig('Raya', True, 'PlanillasInforme');
+  cbRindes.Checked:=dmGeneral.LeerBooleanConfig('Rinde', True, 'PlanillasInforme');
+  cbTallas.Checked:=dmGeneral.LeerBooleanConfig('Talla', True, 'PlanillasInforme');
+  cbByCatch.Checked:=dmGeneral.LeerBooleanConfig('ByCatch', True, 'PlanillasInforme');
+  cbDatosPuentePDF.Checked:=dmGeneral.LeerBooleanConfig('DatosPuentePDF', True, 'PlanillasInforme');
+  cbSenasaPDF.Checked:=dmGeneral.LeerBooleanConfig('SenasaPDF', True, 'PlanillasInforme');
+  cbMuestrasBiolPDF.Checked:=dmGeneral.LeerBooleanConfig('BiologicasPDF', True, 'PlanillasInforme');
+
+  destino:= dmGeneral.LeerStringConfig('destino_informes', '');
+//  LSLoadConfig(['destino_informes'],[destino],[@destino]);
   {$IFDEF MSWINDOWS}
   if destino='' then
      destino:=GetWindowsSpecialDir(CSIDL_PERSONAL);
@@ -941,7 +963,7 @@ end;
 procedure TfmInformes.GenerarDanioXLS;
 var
   xls, xlp: olevariant;
-  archivo_origen, archivo_destino, plantilla, tmp, rango: WideString;
+  archivo_origen, archivo_destino, tmp, plantilla, rango: WideString;
   fila, columna: integer;
 begin
   //Primero verifico que el objeto se pueda crear
@@ -1067,8 +1089,8 @@ end;
 procedure TfmInformes.GenerarByCatchXLS;
 var
   xls, xlp: olevariant;
-  archivo_origen, archivo_destino, plantilla, tmp, rango: WideString;
-  fila, columna: integer;
+    archivo_origen, archivo_destino, plantilla, tmp, rango: WideString;
+    fila, columna: integer;
 begin
   //Primero verifico que el objeto se pueda crear
   try
@@ -1370,7 +1392,8 @@ end;
 procedure TfmInformes.GenerarRayaXLS;
 var
   xls: olevariant;
-  archivo_origen, archivo_destino, tmp: WideString;
+  archivo_origen, archivo_destino: WideString;
+  tmp: WideString;
   fila, columna: integer;
 begin
   //Primero verifico que el objeto se pueda crear

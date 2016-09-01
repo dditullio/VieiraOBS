@@ -18,40 +18,45 @@ inherited fmByCatch: TfmByCatch
       ClientWidth = 939
       inherited paLista: TPanel
         Height = 494
-        Width = 260
+        Width = 278
         Align = alLeft
         ClientHeight = 494
-        ClientWidth = 260
+        ClientWidth = 278
         inherited paBuscador: TPanel
-          Width = 260
-          ClientWidth = 260
+          Width = 278
+          ClientWidth = 278
+          inherited laBuscar: TLabel
+            Height = 15
+            Width = 35
+          end
           inherited edBuscar: TEdit
-            Width = 220
+            Height = 23
+            Width = 238
           end
           inherited bbBuscar: TBitBtn
-            Left = 226
+            Left = 244
           end
         end
         inherited paGrilla: TPanel
           Height = 440
-          Width = 250
+          Width = 268
           ClientHeight = 440
-          ClientWidth = 250
+          ClientWidth = 268
           inherited bbEliminar: TBitBtn
-            Left = -17
+            Left = 1
             Top = 409
           end
           inherited bbAgregar: TBitBtn
-            Left = 72
+            Left = 90
             Top = 409
           end
           inherited bbEditar: TBitBtn
-            Left = 161
+            Left = 179
             Top = 409
           end
           inherited dbgLista: TRxDBGrid
             Height = 409
-            Width = 250
+            Width = 268
             Columns = <            
               item
                 PickList.Strings = (                )
@@ -90,7 +95,7 @@ inherited fmByCatch: TfmByCatch
                 Title.Alignment = taCenter
                 Title.Orientation = toHorizontal
                 Title.Caption = 'Lance'
-                Width = 87
+                Width = 105
                 FieldName = 'lance_banda'
                 EditButtons = <>
                 Filter.DropDownRows = 0
@@ -122,18 +127,18 @@ inherited fmByCatch: TfmByCatch
         end
       end
       inherited paDetalles: TPanel
-        Left = 260
+        Left = 278
         Height = 494
-        Width = 677
+        Width = 659
         Align = alClient
         ClientHeight = 494
-        ClientWidth = 677
+        ClientWidth = 659
         Visible = True
         object Panel1: TPanel[0]
           Left = 0
           Height = 36
           Top = 12
-          Width = 677
+          Width = 659
           Align = alTop
           BorderSpacing.Top = 12
           Caption = 'Detalle de la muestra de ByCatch'
@@ -502,17 +507,17 @@ inherited fmByCatch: TfmByCatch
           Left = 264
           Height = 446
           Top = 48
-          Width = 413
+          Width = 395
           Align = alClient
           BevelOuter = bvNone
           ClientHeight = 446
-          ClientWidth = 413
+          ClientWidth = 395
           TabOrder = 2
           object DBMemo1: TDBMemo
             Left = 2
             Height = 58
             Top = 378
-            Width = 408
+            Width = 390
             Anchors = [akLeft, akRight, akBottom]
             DataField = 'peces'
             DataSource = dsByCatch
@@ -532,7 +537,7 @@ inherited fmByCatch: TfmByCatch
             Left = 0
             Height = 352
             Top = 0
-            Width = 413
+            Width = 395
             TitleButtons = False
             AutoSort = True
             Columns = <            
@@ -540,7 +545,7 @@ inherited fmByCatch: TfmByCatch
                 Title.Alignment = taCenter
                 Title.Orientation = toHorizontal
                 Title.Caption = 'Especie'
-                Width = 120
+                Width = 111
                 FieldName = 'Nombre'
                 EditButtons = <>
                 Filter.DropDownRows = 0
@@ -578,7 +583,7 @@ inherited fmByCatch: TfmByCatch
                 Title.Alignment = taCenter
                 Title.Orientation = toHorizontal
                 Title.Caption = 'Comentarios'
-                Width = 120
+                Width = 111
                 FieldName = 'comentarios'
                 EditButtons = <>
                 Filter.DropDownRows = 0

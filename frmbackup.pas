@@ -268,7 +268,8 @@ end;
 procedure TfmBackup.dedCarpetaArchivoAcceptDirectory(Sender: TObject;
   var Value: String);
 begin
-  LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
+  dmGeneral.GuardarStringConfig('destino_backup',dedCarpetaArchivo.Directory);
+//  LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
   HabilitarAcciones;
 end;
 
@@ -449,13 +450,15 @@ end;
 
 procedure TfmBackup.dedCarpetaArchivoChange(Sender: TObject);
 begin
-  LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
+  dmGeneral.GuardarStringConfig('destino_backup',dedCarpetaArchivo.Directory);
+//  LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
   HabilitarAcciones;
 end;
 
 procedure TfmBackup.dedCarpetaArchivoExit(Sender: TObject);
 begin
-  LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
+  dmGeneral.GuardarStringConfig('destino_backup',dedCarpetaArchivo.Directory);
+//  LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
   HabilitarAcciones;
 end;
 
@@ -467,7 +470,8 @@ begin
      origen:=ExtractFileDir(edArchivoSQL.Text)
   else if DirectoryExistsUTF8(edArchivoSQL.Text) then
      origen:=edArchivoSQL.Text;
-  LSSaveConfig(['origen_restauracion'],[origen]);
+  dmGeneral.GuardarStringConfig('origen_restauracion',origen);
+//  LSSaveConfig(['origen_restauracion'],[origen]);
   HabilitarAcciones;
 end;
 
@@ -501,7 +505,8 @@ begin
   if not Assigned(sl_expglob) then
      sl_expglob:=TStringList.Create;
 
-  LSLoadConfig(['destino_backup'],[destino],[@destino]);
+  destino:=dmGeneral.LeerStringConfig('destino_backup', '');
+//  LSLoadConfig(['destino_backup'],[destino],[@destino]);
   if destino='' then
   begin
      destino:=ExtractFilePath(Application.ExeName) + 'backup';
@@ -509,7 +514,8 @@ begin
         CreateDirUTF8(destino);
   end;
 
-  LSLoadConfig(['origen_restauracion'],[origen],[@origen]);
+  origen:=dmGeneral.LeerStringConfig('origen_restauracion', '');
+//  LSLoadConfig(['origen_restauracion'],[origen],[@origen]);
   if origen='' then
   begin
      origen:=ExtractFilePath(Application.ExeName) + 'backup';
@@ -547,7 +553,8 @@ begin
   odRestaurar.InitialDir:=origen;
   if odRestaurar.Execute then
   begin
-    LSSaveConfig(['origen_restauracion'],[ExtractFileDir(odRestaurar.FileName)]);
+    dmGeneral.GuardarStringConfig('origen_restauracion',ExtractFileDir(odRestaurar.FileName));
+//    LSSaveConfig(['origen_restauracion'],[ExtractFileDir(odRestaurar.FileName)]);
     edArchivoSQL.Text:=odRestaurar.FileName;
     HabilitarAcciones;
 

@@ -24,7 +24,10 @@ type
     zqMuestrasBiologicasidmarea: TLongintField;
     zqMuestrasBiologicasidmuestras_biologicas: TLongintField;
     zqMuestrasBiologicasLatitud: TFloatField;
+    zqMuestrasBiologicaslatitud_lance: TFloatField;
     zqMuestrasBiologicaslongitud: TFloatField;
+    zqMuestrasBiologicaslongitud_lance: TFloatField;
+    zqMuestrasBiologicasnrolance: TLongintField;
     zqMuestrasBiologicasnro_caja: TLongintField;
     zqMuestrasBiologicasstr_latitud: TStringField;
     zqMuestrasBiologicasstr_longitud: TStringField;
@@ -53,8 +56,18 @@ end;
 
 procedure TfmMuestrasBiologicas.zqMuestrasBiologicasCalcFields(DataSet: TDataSet);
 begin
-  zqMuestrasBiologicasstr_latitud.Value:=FormatFloat('00º 00.00´', zqMuestrasBiologicasLatitud.Value)+zqMuestrasBiologicascuadrante_latitud.Value;
-  zqMuestrasBiologicasstr_longitud.Value:=FormatFloat('00º 00.00´', zqMuestrasBiologicaslongitud.Value)+zqMuestrasBiologicascuadrante_longitud.Value;
+  if (not zqMuestrasBiologicasLatitud.IsNull) and (not zqMuestrasBiologicaslongitud.IsNull)then
+  begin
+     if not zqMuestrasBiologicaslatitud_lance.IsNull then
+       zqMuestrasBiologicasstr_latitud.Value:=FormatFloat('00º 00.00´', zqMuestrasBiologicaslatitud_lance.Value)+zqMuestrasBiologicascuadrante_latitud.Value
+     else
+       zqMuestrasBiologicasstr_latitud.Value:=FormatFloat('00º 00.00´', zqMuestrasBiologicasLatitud.Value)+zqMuestrasBiologicascuadrante_latitud.Value;
+
+     if not zqMuestrasBiologicaslongitud_lance.IsNull then
+       zqMuestrasBiologicasstr_longitud.Value:=FormatFloat('00º 00.00´', zqMuestrasBiologicaslongitud_lance.Value)+zqMuestrasBiologicascuadrante_longitud.Value
+     else
+       zqMuestrasBiologicasstr_longitud.Value:=FormatFloat('00º 00.00´', zqMuestrasBiologicaslongitud.Value)+zqMuestrasBiologicascuadrante_longitud.Value;
+  end;
 end;
 
 end.

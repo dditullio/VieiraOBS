@@ -127,6 +127,7 @@ inherited fmEditarMarea: TfmEditarMarea
         Height = 23
         Top = 24
         Width = 184
+        AutoComplete = True
         DataField = 'Buque'
         DataSource = dsPrincipal
         ListFieldIndex = 0

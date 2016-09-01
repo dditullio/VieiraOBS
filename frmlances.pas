@@ -868,7 +868,8 @@ begin
     paDetalles.Visible:=False;
   end;
   ckMapaLances.Checked;
-  LSSaveConfig(['ver_mapa_lances'], [ckMapaLances.Checked]);
+  dmGeneral.GuardarBooleanConfig('ver_mapa_lances', ckMapaLances.Checked);
+//  LSSaveConfig(['ver_mapa_lances'], [ckMapaLances.Checked]);
   if ckMapaLances.Checked then
   begin
     InicializarMapas;
@@ -926,15 +927,15 @@ end;
 
 procedure TfmLances.FormShow(Sender: TObject);
 var
-  str_conf: string;
+  bool_conf: Boolean;
 begin
-  str_conf:='';
   dtFecha.Date:=IncDay(Date,-1);
   chtLances.Title.Text.Text:=PChar('Marea: '+dmGeneral.DscMareaActiva);
   chtLances.Foot.Text.Text:=PChar('Mapa generado por: '+ApplicationName+' v'+APP_VERSION);
   FMapasCargados:=False;
-  LSLoadConfig(['ver_mapa_lances'], [str_conf], [@str_conf]);
-  ckMapaLances.Checked:=(not (str_conf='False'));
+  bool_conf:=dmGeneral.LeerBooleanConfig('ver_mapa_lances', True);
+//  LSLoadConfig(['ver_mapa_lances'], [bool_conf], [@bool_conf]);
+  ckMapaLances.Checked:=bool_conf;
   inherited;
 end;
 

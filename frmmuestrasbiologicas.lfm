@@ -39,8 +39,24 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Tipo'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Nº caja'
+                Width = 55
+                FieldName = 'nro_caja'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Tipo'
                 Width = 100
                 FieldName = 'tipo_muestra'
                 EditButtons = <>
@@ -56,8 +72,8 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Fecha'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Fecha'
                 Width = 80
                 FieldName = 'fecha'
                 EditButtons = <>
@@ -73,10 +89,26 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Hora'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Hora'
                 Width = 50
                 FieldName = 'hora'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Lance'
+                Width = 50
+                FieldName = 'nrolance'
                 EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )
@@ -90,8 +122,8 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Latitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Latitud'
                 Width = 100
                 FieldName = 'str_latitud'
                 EditButtons = <>
@@ -107,8 +139,8 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
                 PickList.Strings = (                )
                 SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Longitud'
                 Title.Orientation = toHorizontal
+                Title.Caption = 'Longitud'
                 Width = 100
                 FieldName = 'str_longitud'
                 EditButtons = <>
@@ -121,25 +153,9 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
               end            
               item
                 PickList.Strings = (                )
-                SizePriority = 0
                 Title.Alignment = taCenter
-                Title.Caption = 'Nº caja'
                 Title.Orientation = toHorizontal
-                Width = 55
-                FieldName = 'nro_caja'
-                EditButtons = <>
-                Filter.DropDownRows = 0
-                Filter.ValueList.Strings = (                )
-                Filter.EmptyValue = '(Todos)'
-                Filter.EmptyFont.Style = [fsItalic]
-                Filter.ItemIndex = -1
-                KeyList.Strings = (                )
-              end            
-              item
-                PickList.Strings = (                )
-                Title.Alignment = taCenter
                 Title.Caption = 'Contenido'
-                Title.Orientation = toHorizontal
                 Width = 0
                 FieldName = 'contenido'
                 EditButtons = <>
@@ -262,11 +278,20 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
       Required = True
       DisplayFormat = 'hh:mm'
     end
+    object zqMuestrasBiologicasnrolance: TLongintField
+      FieldKind = fkData
+      FieldName = 'nrolance'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
     object zqMuestrasBiologicasLatitud: TFloatField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'Latitud'
-      Index = 5
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -279,7 +304,7 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
       DisplayWidth = 4
       FieldKind = fkData
       FieldName = 'cuadrante_latitud'
-      Index = 6
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -290,7 +315,7 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'longitud'
-      Index = 7
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -303,18 +328,42 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
       DisplayWidth = 4
       FieldKind = fkData
       FieldName = 'cuadrante_longitud'
-      Index = 8
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 4
     end
+    object zqMuestrasBiologicaslatitud_lance: TFloatField
+      FieldKind = fkData
+      FieldName = 'latitud_lance'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 9
+    end
+    object zqMuestrasBiologicaslongitud_lance: TFloatField
+      FieldKind = fkData
+      FieldName = 'longitud_lance'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 9
+    end
     object zqMuestrasBiologicasnro_caja: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'nro_caja'
-      Index = 9
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -324,7 +373,7 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
       DisplayWidth = 1024
       FieldKind = fkData
       FieldName = 'contenido'
-      Index = 10
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -335,7 +384,7 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
       DisplayWidth = 30
       FieldKind = fkCalculated
       FieldName = 'str_latitud'
-      Index = 11
+      Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -346,7 +395,7 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
       DisplayWidth = 30
       FieldKind = fkCalculated
       FieldName = 'str_longitud'
-      Index = 12
+      Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

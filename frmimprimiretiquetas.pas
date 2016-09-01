@@ -107,25 +107,28 @@ end;
 procedure TfmImprimirEtiquetas.dedCarpetaPlanillasAcceptDirectory(
   Sender: TObject; var Value: String);
 begin
-  LSSaveConfig(['destino_etiquetas'],[dedCarpetaPlanillas.Directory]);
+  dmGeneral.GuardarStringConfig('destino_etiquetas',dedCarpetaPlanillas.Directory);
+//  LSSaveConfig(['destino_etiquetas'],[dedCarpetaPlanillas.Directory]);
 end;
 
 procedure TfmImprimirEtiquetas.dedCarpetaPlanillasChange(Sender: TObject);
 begin
-  LSSaveConfig(['destino_etiquetas'],[dedCarpetaPlanillas.Directory]);
+  dmGeneral.GuardarStringConfig('destino_etiquetas',dedCarpetaPlanillas.Directory);
+//  LSSaveConfig(['destino_etiquetas'],[dedCarpetaPlanillas.Directory]);
 end;
 
 procedure TfmImprimirEtiquetas.dedCarpetaPlanillasExit(Sender: TObject);
 begin
-  LSSaveConfig(['destino_etiquetas'],[dedCarpetaPlanillas.Directory]);
+  dmGeneral.GuardarStringConfig('destino_etiquetas',dedCarpetaPlanillas.Directory);
+//  LSSaveConfig(['destino_etiquetas'],[dedCarpetaPlanillas.Directory]);
 end;
 
 procedure TfmImprimirEtiquetas.FormShow(Sender: TObject);
 var
   destino:String;
 begin
-  destino:='';
-  LSLoadConfig(['destino_etiquetas'],[destino],[@destino]);
+  destino:=dmGeneral.LeerStringConfig('destino_etiquetas', '');
+//  LSLoadConfig(['destino_etiquetas'],[destino],[@destino]);
   {$IFDEF MSWINDOWS}
   if destino='' then
      destino:=GetWindowsSpecialDir(CSIDL_PERSONAL);

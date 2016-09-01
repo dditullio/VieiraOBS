@@ -5,7 +5,6 @@ inherited fmEditarRindes: TfmEditarRindes
   ClientHeight = 391
   ClientWidth = 361
   OnCreate = FormCreate
-  OnShow = FormShow
   inherited paEncabezadoBase: TPanel
     Width = 361
     ClientWidth = 361

@@ -155,7 +155,7 @@ inherited fmMuestrasBiologicas: TfmMuestrasBiologicas
                 PickList.Strings = (                )
                 Title.Alignment = taCenter
                 Title.Orientation = toHorizontal
-                Title.Caption = 'Contenido'
+                Title.Caption = 'Comentarios'
                 Width = 0
                 FieldName = 'contenido'
                 EditButtons = <>

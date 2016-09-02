@@ -97,6 +97,7 @@ type
     function LeerBooleanConfig(const Clave: String; ValorPredeterminado: Boolean; const Seccion: String=''): Boolean;
     function LeerIntegerConfig(const Clave: String; ValorPredeterminado: LongInt; const Seccion: String=''): LongInt;
     function LeerStringConfig(const Clave: String; ValorPredeterminado: String; const Seccion: String=''): String;
+    procedure AccionesPostRestauracion;
   end;
 
 const
@@ -434,6 +435,12 @@ begin
     ipsConfig.IniSection:=OldSection;
     Result:=Resultado;
   end;
+end;
+
+procedure TdmGeneral.AccionesPostRestauracion;
+begin
+  // Ejecutar acá cualquier acción a realizar luego de restaurar una copia de seguridad
+
 end;
 
 end.

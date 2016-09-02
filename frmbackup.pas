@@ -5,10 +5,11 @@ unit frmbackup;
 interface
 
 uses
-  Classes, SysUtils, LazFileUtils, UTF8Process, AbZipper, AbBrowse, Forms, Controls,
-  Graphics, Dialogs, StdCtrls, EditBtn, Buttons, ActnList, ComCtrls, LSConfig,
-  datGeneral, db, sqldb, sqldblib, mysql56conn, ZSqlMetadata,
-  ZDataset, ExSystemUtils, process, LCLIntf, ExtCtrls, AbArcTyp, AbUnzper, math;
+  Classes, SysUtils, LazFileUtils, UTF8Process, AbZipper, AbBrowse, Forms,
+  Controls, Graphics, Dialogs, StdCtrls, EditBtn, Buttons, ActnList, ComCtrls,
+  LSConfig, datGeneral, db, sqldb, sqldblib, mysql56conn, ZSqlMetadata,
+  ZDataset, ZStoredProcedure, ExSystemUtils, process, LCLIntf, ExtCtrls,
+  AbArcTyp, AbUnzper, math;
 
 type
 
@@ -269,7 +270,7 @@ procedure TfmBackup.dedCarpetaArchivoAcceptDirectory(Sender: TObject;
   var Value: String);
 begin
   dmGeneral.GuardarStringConfig('destino_backup',dedCarpetaArchivo.Directory);
-//  LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
+  //LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
   HabilitarAcciones;
 end;
 
@@ -451,14 +452,14 @@ end;
 procedure TfmBackup.dedCarpetaArchivoChange(Sender: TObject);
 begin
   dmGeneral.GuardarStringConfig('destino_backup',dedCarpetaArchivo.Directory);
-//  LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
+  //LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
   HabilitarAcciones;
 end;
 
 procedure TfmBackup.dedCarpetaArchivoExit(Sender: TObject);
 begin
   dmGeneral.GuardarStringConfig('destino_backup',dedCarpetaArchivo.Directory);
-//  LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
+  //LSSaveConfig(['destino_backup'],[dedCarpetaArchivo.Directory]);
   HabilitarAcciones;
 end;
 
@@ -471,7 +472,7 @@ begin
   else if DirectoryExistsUTF8(edArchivoSQL.Text) then
      origen:=edArchivoSQL.Text;
   dmGeneral.GuardarStringConfig('origen_restauracion',origen);
-//  LSSaveConfig(['origen_restauracion'],[origen]);
+  //LSSaveConfig(['origen_restauracion'],[origen]);
   HabilitarAcciones;
 end;
 
@@ -506,7 +507,7 @@ begin
      sl_expglob:=TStringList.Create;
 
   destino:=dmGeneral.LeerStringConfig('destino_backup', '');
-//  LSLoadConfig(['destino_backup'],[destino],[@destino]);
+  //LSLoadConfig(['destino_backup'],[destino],[@destino]);
   if destino='' then
   begin
      destino:=ExtractFilePath(Application.ExeName) + 'backup';
@@ -515,7 +516,7 @@ begin
   end;
 
   origen:=dmGeneral.LeerStringConfig('origen_restauracion', '');
-//  LSLoadConfig(['origen_restauracion'],[origen],[@origen]);
+  //LSLoadConfig(['origen_restauracion'],[origen],[@origen]);
   if origen='' then
   begin
      origen:=ExtractFilePath(Application.ExeName) + 'backup';
@@ -554,7 +555,7 @@ begin
   if odRestaurar.Execute then
   begin
     dmGeneral.GuardarStringConfig('origen_restauracion',ExtractFileDir(odRestaurar.FileName));
-//    LSSaveConfig(['origen_restauracion'],[ExtractFileDir(odRestaurar.FileName)]);
+    //LSSaveConfig(['origen_restauracion'],[ExtractFileDir(odRestaurar.FileName)]);
     edArchivoSQL.Text:=odRestaurar.FileName;
     HabilitarAcciones;
 
@@ -603,11 +604,11 @@ begin
       //Intento obtener el número de version de la aplicación
       if (sl_tablas.Count>5) and(LeftStr(sl_tablas[3],10)='-- Version') then
       begin
-        version_script:=Copy(sl_tablas[3],12,5);
+        version_script:=Copy(sl_tablas[3],12,10);
       end else
       if (sl_datos.Count>5) and(LeftStr(sl_datos[3],10)='-- Version') then
       begin
-        version_script:=Copy(sl_datos[3],12,5);
+        version_script:=Copy(sl_datos[3],12,10);
       end else
       begin
         version_script:='';
@@ -754,6 +755,8 @@ begin
          end;
 
          trRestaurar.Commit;
+
+         dmGeneral.AccionesPostRestauracion;
 
          restOK:=True;
        except

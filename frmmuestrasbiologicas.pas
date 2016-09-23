@@ -14,6 +14,7 @@ type
   { TfmMuestrasBiologicas }
 
   TfmMuestrasBiologicas = class(TfmListaBase)
+    bbExportarExcel: TBitBtn;
     dsMuestrasBiologicas: TDataSource;
     zqMuestrasBiologicas: TZQuery;
     zqMuestrasBiologicascontenido: TStringField;

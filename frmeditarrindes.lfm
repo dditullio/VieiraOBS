@@ -188,7 +188,7 @@ inherited fmEditarRindes: TfmEditarRindes
         DataField = 'hora'
         DataSource = dsPrincipal
         CharCase = ecNormal
-        EditMask = '00:00;1;_'
+        EditMask = '##:##;1;_'
         MaxLength = 5
         TabOrder = 1
       end

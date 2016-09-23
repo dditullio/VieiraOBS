@@ -50,6 +50,7 @@ type
     acZoomOut: TAction;
     acZoomIn: TAction;
     alMapa: TActionList;
+    chtCajasMuestrasEcologicasSerie: TLineSeries;
     chtLancesComentariosSeries: TLineSeries;
     chtLancesSerieOtrosLances: TLineSeries;
     chtLancesRindesSeries: TUserDrawnSeries;
@@ -88,6 +89,7 @@ type
     ilToolbar: TImageList;
     lcsLances: TListChartSource;
     lcsComentariosLances: TListChartSource;
+    lcsCajasMuestrasEcologicas: TListChartSource;
     lcsOtrosLances: TListChartSource;
     lcsMapaBase: TListChartSource;
     lcsZonasEconomicas: TListChartSource;
@@ -419,7 +421,8 @@ begin
   begin
     while not EOF do
     begin
-      lcsMuestrasEcologicas.Add(FieldByName('long_gis').AsFloat,FieldByName('lat_gis').AsFloat,'Muestra ecológica'+LineEnding+FieldByName('fecha_hora').AsString);
+      lcsMuestrasEcologicas.Add(FieldByName('long_gis_lance').AsFloat,FieldByName('lat_gis_lance').AsFloat,'Muestra ecológica'+LineEnding+FieldByName('fecha_hora').AsString);
+      lcsCajasMuestrasEcologicas.Add(FieldByName('long_gis_lance').AsFloat,FieldByName('lat_gis_lance').AsFloat,' '+FieldByName('nro_caja').AsString+' ');
       Next;
     end;
   end;

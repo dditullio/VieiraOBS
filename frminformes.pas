@@ -12,7 +12,7 @@ uses
   {$IFDEF UNIX}
     Unix,
   {$ENDIF}
-  Classes, SysUtils, FileUtil, LR_Class, LR_DBSet, RxIniPropStorage, Forms,
+  Classes, SysUtils, LazFileUtils, Fileutil, LR_Class, LR_DBSet, RxIniPropStorage, Forms,
   Controls, Graphics, Dialogs, ExtCtrls, Buttons, ActnList, ComCtrls, StdCtrls,
   EditBtn, IniPropStorage, Grids, frmbase, ZDataset, DB, datGeneral,
   comobj, variants, frmrptdatospuente,

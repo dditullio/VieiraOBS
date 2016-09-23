@@ -593,6 +593,27 @@ inherited fmLances: TfmLances
               ShowPoints = True
               Source = lcsMuestrasEcologicas
             end
+            object chtCajasMuestrasEcologicasSerie: TLineSeries
+              Legend.Format = 'Identif. cajas M.E.'
+              Active = False
+              Marks.Alignment = taCenter
+              Marks.LabelFont.Height = -11
+              Marks.LabelFont.Quality = fqCleartype
+              Marks.CalloutAngle = 200
+              Marks.Format = '%2:s'
+              Marks.Frame.Width = 0
+              Marks.LabelBrush.Color = clWhite
+              Marks.Style = smsLabel
+              ZPosition = 8
+              LineType = ltNone
+              MarkPositions = lmpInside
+              Pointer.HorizSize = 6
+              Pointer.Style = psCircle
+              Pointer.VertSize = 6
+              Pointer.Visible = False
+              ShowPoints = True
+              Source = lcsCajasMuestrasEcologicas
+            end
             object chtLancesSerieLances: TLineSeries
               Legend.Format = 'Lances listados'
               Marks.LabelFont.Height = -11
@@ -728,7 +749,7 @@ inherited fmLances: TfmLances
             TopPanel.GradientStop = clBtnFace
             TopPanel.ParentFont = False
             TopPanel.TabOrder = 0
-            OldTopPanelHeight = 217
+            OldTopPanelHeight = 234
             object clbReferencias: TChartListbox
               Left = 1
               Height = 0
@@ -837,13 +858,13 @@ inherited fmLances: TfmLances
             Action = acZoomLances
           end
           object ToolButton9: TToolButton
-            Left = 266
+            Left = 268
             Hint = 'Guardar el mapa como un archivo de imagen (JPG)'
             Top = 2
             Action = acGuardarImagen
           end
           object ToolButton10: TToolButton
-            Left = 261
+            Left = 263
             Height = 26
             Top = 2
             Width = 5
@@ -856,7 +877,7 @@ inherited fmLances: TfmLances
             Action = acZoomLanceSeleccionado
           end
           object ToolButton12: TToolButton
-            Left = 294
+            Left = 296
             Hint = 'Exportar el mapa para Google Earth (KML)'
             Top = 2
             Action = acExportarKML
@@ -3343,11 +3364,13 @@ inherited fmLances: TfmLances
     BeforeOpen = zqMuestrasEcologicasBeforeOpen
     AfterOpen = zqMuestrasEcologicasAfterOpen
     SQL.Strings = (
-      'SELECT * FROM v_muestras_biologicas'
-      'WHERE idmarea=:idmarea'
-      'AND latitud IS NOT NULL'
-      'AND longitud IS NOT NULL'
-      'ORDER BY fecha, hora'
+      'SELECT mb.*, (-1 * (FLOOR((ifnull(longitud_lance, longitud)  / 100)) + ((((ifnull(longitud_lance, longitud)  / 100) - FLOOR((ifnull(longitud_lance, longitud)  / 100))) * 100) / 60))) AS `long_gis_lance`,'
+      '        (-1 * (FLOOR((ifnull(latitud_lance, latitud)  / 100)) + ((((ifnull(latitud_lance, latitud)  / 100) - FLOOR((ifnull(latitud_lance, latitud)  / 100))) * 100) / 60))) AS `lat_gis_lance`'
+      'FROM v_muestras_biologicas mb'
+      'WHERE mb.idmarea=:idmarea'
+      'AND mb.latitud IS NOT NULL'
+      'AND mb.longitud IS NOT NULL'
+      'ORDER BY mb.fecha, mb.hora'
     )
     Params = <    
       item
@@ -3372,11 +3395,11 @@ inherited fmLances: TfmLances
     left = 154
   end
   object lcsZonasEconomicas: TListChartSource[18]
-    left = 552
-    top = 1
+    left = 585
   end
   object lcsLanceSeleccionado: TListChartSource[19]
-    left = 584
+    left = 617
+    top = 65535
   end
   object lcsComentariosLances: TListChartSource[20]
     left = 328
@@ -4100,7 +4123,8 @@ inherited fmLances: TfmLances
     end
   end
   object lcsOtrosLances: TListChartSource[22]
-    left = 620
+    left = 653
+    top = 65535
   end
   object sdExportarKML: TSaveDialog[23]
     Title = 'Guardar mapa para Google Earth'
@@ -4110,6 +4134,11 @@ inherited fmLances: TfmLances
     left = 184
   end
   object lcsRindes: TListChartSource[24]
-    left = 656
+    left = 689
+    top = 65535
+  end
+  object lcsCajasMuestrasEcologicas: TListChartSource[25]
+    left = 550
+    top = 1
   end
 end

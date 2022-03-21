@@ -1,41 +1,37 @@
 inherited fmLances: TfmLances
-  Left = 351
+  Left = 244
   Height = 494
-  Width = 893
+  Top = 143
+  Width = 946
   Caption = 'Lances'
   ClientHeight = 494
-  ClientWidth = 893
+  ClientWidth = 946
   OnCreate = FormCreate
   OnShow = FormShow
   inherited paBase: TPanel
     Height = 494
-    Width = 893
+    Width = 946
     ClientHeight = 494
-    ClientWidth = 893
+    ClientWidth = 946
     inherited paContenido: TPanel
       Height = 476
-      Width = 893
+      Width = 946
       ClientHeight = 476
-      ClientWidth = 893
+      ClientWidth = 946
       inherited paLista: TPanel
         Height = 476
-        Width = 551
+        Width = 578
         ClientHeight = 476
-        ClientWidth = 551
+        ClientWidth = 578
         inherited paBuscador: TPanel
-          Width = 551
-          ClientWidth = 551
-          inherited laBuscar: TLabel
-            Height = 15
-            Width = 35
-          end
+          Width = 578
+          ClientWidth = 578
           inherited edBuscar: TEdit
             Left = 124
-            Height = 23
-            Width = 392
+            Width = 419
           end
           inherited bbBuscar: TBitBtn
-            Left = 517
+            Left = 544
           end
           object dtFecha: TDateTimePicker[3]
             Left = 5
@@ -66,24 +62,24 @@ inherited fmLances: TfmLances
         end
         inherited paGrilla: TPanel
           Height = 422
-          Width = 541
+          Width = 568
           ClientHeight = 422
-          ClientWidth = 541
+          ClientWidth = 568
           inherited bbEliminar: TBitBtn
-            Left = 274
+            Left = 301
             Top = 391
           end
           inherited bbAgregar: TBitBtn
-            Left = 363
+            Left = 390
             Top = 391
           end
           inherited bbEditar: TBitBtn
-            Left = 452
+            Left = 479
             Top = 391
           end
           inherited dbgLista: TRxDBGrid
             Height = 391
-            Width = 541
+            Width = 568
             OnGetCellProps = dbgListaGetCellProps
             Columns = <            
               item
@@ -463,15 +459,15 @@ inherited fmLances: TfmLances
         end
       end
       inherited paDetalles: TPanel
-        Left = 556
+        Left = 585
         Height = 466
         Top = 5
-        Width = 330
+        Width = 354
         BorderSpacing.Top = 5
         BorderSpacing.Right = 7
         BorderSpacing.Bottom = 5
         ClientHeight = 466
-        ClientWidth = 330
+        ClientWidth = 354
         Constraints.MaxWidth = 720
         Constraints.MinWidth = 300
         Visible = True
@@ -479,19 +475,19 @@ inherited fmLances: TfmLances
           Left = 0
           Height = 436
           Top = 30
-          Width = 330
+          Width = 354
           Align = alClient
           BevelInner = bvLowered
           Caption = 'Panel2'
           ClientHeight = 436
-          ClientWidth = 330
+          ClientWidth = 354
           TabOrder = 0
           OnMouseLeave = Panel2MouseLeave
           object chtLances: TChart
             Left = 2
             Height = 387
             Top = 2
-            Width = 326
+            Width = 350
             AxisList = <            
               item
                 Intervals.MaxLength = 100
@@ -704,16 +700,34 @@ inherited fmLances: TfmLances
               Pointer.VertSize = 6
               Source = lcsEtiquetasUM
             end
+            object chtLancesZonasCerradasSerie: TLineSeries
+              Legend.Format = 'Zonas cerradas'
+              Marks.Shape = clsRoundRect
+              Marks.Visible = False
+              Marks.Format = '%2:s'
+              Marks.Style = smsLabel
+              LinePen.Color = clRed
+              Source = lcsZonasCerradas
+            end
+            object chtLancesZonasAbiertasSerie: TLineSeries
+              Legend.Format = 'Zonas abiertas'
+              Marks.Shape = clsRoundRect
+              Marks.Visible = False
+              Marks.Format = '%2:s'
+              Marks.Style = smsLabel
+              LinePen.Color = clLime
+              Source = lcsZonasAbiertas
+            end
           end
           object LSExpandPanel1: TLSExpandPanel
             Left = 2
             Height = 22
             Top = 412
-            Width = 326
+            Width = 350
             Align = alBottom
             Caption = 'LSExpandPanel1'
             ClientHeight = 22
-            ClientWidth = 326
+            ClientWidth = 350
             CollapsePic.Data = {
               1754506F727461626C654E6574776F726B47726170686963AA00000089504E47
               0D0A1A0A0000000D494844520000000B0000000B0806000000A9AC7726000000
@@ -739,7 +753,7 @@ inherited fmLances: TfmLances
             TopPanel.Left = 1
             TopPanel.Height = 20
             TopPanel.Top = 1
-            TopPanel.Width = 324
+            TopPanel.Width = 348
             TopPanel.BevelOuter = bvNone
             TopPanel.BorderStyle = bsSingle
             TopPanel.Caption = 'Activar o desactivar elementos del mapa'
@@ -754,7 +768,7 @@ inherited fmLances: TfmLances
               Left = 1
               Height = 0
               Top = 21
-              Width = 324
+              Width = 348
               Chart = chtLances
               OnCheckboxClick = clbReferenciasCheckboxClick
               Align = alClient
@@ -766,7 +780,7 @@ inherited fmLances: TfmLances
               Left = 1
               Height = 19
               Top = 21
-              Width = 324
+              Width = 348
               Align = alTop
               Caption = 'Ocultar automáticamente el mapa base al acercar la vista'
               Checked = True
@@ -778,7 +792,7 @@ inherited fmLances: TfmLances
             Left = 2
             Height = 23
             Top = 389
-            Width = 326
+            Width = 350
             Panels = <            
               item
                 Alignment = taCenter
@@ -791,7 +805,7 @@ inherited fmLances: TfmLances
           Left = 0
           Height = 30
           Top = 0
-          Width = 330
+          Width = 354
           ButtonHeight = 26
           ButtonWidth = 26
           Caption = 'ToolBar1'
@@ -896,22 +910,28 @@ inherited fmLances: TfmLances
             Action = acMostrarRindes
             Style = tbsCheck
           end
+          object ToolButton14: TToolButton
+            Left = 324
+            Hint = 'Exportar el mapa para GPS (GPX)'
+            Top = 2
+            Action = acExportarGPX
+          end
         end
       end
       object splDetalles: TSplitter[2]
-        Left = 551
+        Left = 578
         Height = 476
         Top = 0
-        Width = 5
+        Width = 7
         Align = alRight
         ResizeAnchor = akRight
       end
     end
     inherited paComando: TPanel
-      Width = 893
-      ClientWidth = 893
+      Width = 946
+      ClientWidth = 946
       inherited sbCerrar: TSpeedButton
-        Left = 875
+        Left = 928
         Flat = False
       end
     end
@@ -1837,8 +1857,9 @@ inherited fmLances: TfmLances
     Height = 24
     Width = 24
     left = 224
+    top = 65535
     Bitmap = {
-      4C69140000001800000018000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      4C69150000001800000018000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00999999239C9C9CB49A9A9ADF9797977D9999
@@ -3278,13 +3299,84 @@ inherited fmLances: TfmLances
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000
+      0000000000000000000000000000FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFCFCFFFFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FEE0E0FFFEA2A2FFFFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FEF8F8FFFECBCBFFFE7474FFFFF7F7FFFFFCFCFFFFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFCFCFFFEF1F1FFFFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFAFAFFFE9E9EFFFE7070FFFE4040FFFE8E8EFFFEDEDEFFFFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FEE8E8FFFE9090FFFFF5F5FFFFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FEECECFFFEC0C0FFFE6D6DFFFEE8E8FFFFF9F9FFFFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FEE4E4FFFE7474FFFEF2F2FFFFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FEF8F8FFFEE4E4FFFFFE
+      FE00FFFEFE00FFFEFE00FEDCDCFFFE9595FFFFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFCFCFFFFAAAAFFFF7777FFFE3C3CFFFE7D7DFFFFAAAAFFFFFAFAFFFFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FEE2E2FFFE8D8DFFFFFC
+      FCFFFFFEFE00FFFEFE00FFFAFAFFFEF4F4FFFFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFEEEEFFFED0D0FFFE6A6AFFFFDDDDFFFFEEEEFFFFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FEF1F1FFFEABABFFFE8A8AFFFE5151FFFE9A
+      9AFFFED2D2FFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFEEEEFFFFAAAAFFFFF7F7FFFFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFF3F3FFFEBABAFFFE9A9AFFFE5A5AFFFEAC
+      ACFFFEDADAFFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FECECEFFFEB5B5FFFFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FEE2E2FFFE8D8DFFFFFC
+      FCFFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFF9F9FFFEB3B3FFFE9090FFFFFA
+      FAFFFFFCFCFFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFF9F9FFFEE8E8FFFFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFEEEEFFFE7878FFFE4C4CFFAE7B54FF9B67
+      42FF9F6D49FFA06E4AFF9D6945FF9F6D49FFA06E4AFFA06E4AFFA06E4AFF9F6C
+      48FF99643EFF9D6D49FFBE9F88FFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFCFCFFFEE8E8FFFEA7A7FF9B6742FFB188
+      69FFB18869FFB18869FFAF8466FFB08769FFB18869FFB18869FFB18869FFB087
+      69FFAE8465FFB38D71FF9C6B48FFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFC
+      FCFFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFDDDDFFA2714EFFB38B
+      6EFFC1A28CFFC6AD9AFFC1A58FFFB38B6EFFB38B6EFFB38B6EFFC0A18BFFB38A
+      6DFFB08568FFB38D71FFA27251FFFFFEFE00FFFEFE00FFFEFE00FFF9F9FFFEAC
+      ACFFFFEEEEFFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00A3724FFFC1A2
+      8CFFEBEDECFFECEEEEFFECEEEEFFC1A28CFFB38B6EFFC0A28CFFECEEEEFFD8CC
+      C2FFB2896CFFB38D71FFA37453FFFFFEFE00FFFEFE00FEECECFFFEDCDCFFFE78
+      78FFFFCFCFFFFEEAEAFFFFFCFCFFFFFEFE00FFFEFE00FFFEFE00A3724FFFC6AD
+      9AFFECEEEEFFD2C2B5FFC1A48EFFB48C6FFFB38B6EFFB48D70FFD9CDC4FFECEE
+      EEFFD8CCC3FFB48F73FFA37453FFFFFEFE00FFFCFCFFFEA0A0FFFE7070FFFE3E
+      3EFFFE6A6AFFFE9393FFFEF4F4FFFFFEFE00FFFEFE00FFFEFE009D6945FFC4A8
+      94FFECEEEEFFC4A895FFB08668FFC2A58FFFC6AC99FFC6AD9AFFC7AC98FFDFD7
+      D1FFECEEEEFFDDD5CEFFA47656FFFFFEFE00FFFEFE00FEF6F6FFFEEAEAFFFE80
+      80FFFEDCDCFFFFF5F5FFFFFEFE00FFFEFE00FFFEFE00FFCCCCFF9A663FFFBC9D
+      86FFECEEEEFFB89780FFB38D71FFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEE
+      EEFFECEEEEFFECEEEEFFBB9D88FFFFFEFE00FFFEFE00FFFEFE00FFF9F9FFFEAC
+      ACFFFFEEEEFFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFEBEBFF925930FFB18C
+      71FFECEEEEFFAF896EFF925930FFAD876AFFB08C71FFAD866AFFAF8C72FFD8CD
+      C6FFECEEEEFFD5C9BFFF935D38FFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFA
+      FAFFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE008F552BFFAF8A
+      6EFFECEEEEFFC5AD9CFFAD876AFF90552BFF8C4F24FF8F5730FFCEBEB1FFECEE
+      EEFFCEBEB1FF945E39FF925B35FFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE008C4F25FFA374
+      53FFEBECECFFECEEEEFFECEEEEFFA47556FF915933FFA67C5EFFECEEEEFFCEBE
+      B1FF945E39FF925B35FF925B35FFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE008B4E24FF8B4E
+      24FFA37657FFAE896FFFAA8166FF935D37FF925B35FF925B35FFA77D60FF945E
+      39FF925B35FF925B35FF925B35FFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00935E37FF925B
+      35FF925B35FF925B35FF925B35FF925B35FF925B35FF925B35FF925B35FF925B
+      35FF925B35FF925B35FF935E37FFFFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFE
+      FE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00FFFEFE00BD9D87FF935E
+      37FF925B35FF925B35FF925B35FF925B35FF925B35FF925B35FF925B35FF925B
+      35FF925B35FF935E37FFBD9D87FF
     }
   end
   object alMapa: TActionList[14]
     Images = ilToolbar
     left = 264
-    top = 1
     object acInfo: TAction
       Tag = 1
       Caption = 'acInfo'
@@ -3355,6 +3447,11 @@ inherited fmLances: TfmLances
       ImageIndex = 19
       OnExecute = acMostrarRindesExecute
     end
+    object acExportarGPX: TAction
+      Caption = 'acExportarGPX'
+      ImageIndex = 20
+      OnExecute = acExportarGPXExecute
+    end
   end
   object lcsMuestrasEcologicas: TListChartSource[15]
     left = 520
@@ -3392,7 +3489,8 @@ inherited fmLances: TfmLances
     DefaultExt = '.jpg'
     FileName = 'mapa.jpg'
     Filter = 'Imagen|*.jpg'
-    left = 154
+    left = 120
+    top = 65535
   end
   object lcsZonasEconomicas: TListChartSource[18]
     left = 585
@@ -4131,7 +4229,8 @@ inherited fmLances: TfmLances
     DefaultExt = '.KML'
     FileName = 'mapa.KML'
     Filter = 'Mapa de Google Earth|*.KML'
-    left = 184
+    left = 148
+    top = 65535
   end
   object lcsRindes: TListChartSource[24]
     left = 689
@@ -4140,5 +4239,21 @@ inherited fmLances: TfmLances
   object lcsCajasMuestrasEcologicas: TListChartSource[25]
     left = 550
     top = 1
+  end
+  object lcsZonasCerradas: TListChartSource[26]
+    left = 728
+    top = 65535
+  end
+  object lcsZonasAbiertas: TListChartSource[27]
+    left = 760
+    top = 1
+  end
+  object sdExportarGPX: TSaveDialog[28]
+    Title = 'Exportar lances para GPS'
+    DefaultExt = '.GPX'
+    FileName = 'Lances.GPX'
+    Filter = 'Formato de intercambio GPS|*.GPX'
+    left = 176
+    top = 65535
   end
 end

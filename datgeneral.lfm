@@ -2,8 +2,8 @@ object dmGeneral: TdmGeneral
   OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 264
-  HorizontalOffset = 511
-  VerticalOffset = 157
+  HorizontalOffset = 733
+  VerticalOffset = 164
   Width = 405
   object dsMareas: TDataSource
     DataSet = zqMareas
@@ -248,21 +248,11 @@ object dmGeneral: TdmGeneral
       ReadOnly = False
       Required = False
     end
-    object zqMareascant_muestras_ecologicas: TLargeintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'cant_muestras_ecologicas'
-      Index = 20
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
     object zqMareasMareaStr: TStringField
       DisplayWidth = 150
       FieldKind = fkCalculated
       FieldName = 'MareaStr'
-      Index = 21
+      Index = 20
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -272,12 +262,21 @@ object dmGeneral: TdmGeneral
     object zqMareasMareaBuqueStr: TStringField
       FieldKind = fkCalculated
       FieldName = 'MareaBuqueStr'
-      Index = 22
+      Index = 21
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 100
+    end
+    object zqMareascant_muestras_biologicas: TLargeintField
+      FieldKind = fkData
+      FieldName = 'cant_muestras_biologicas'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
   object zqMareaActiva: TZQuery
@@ -502,7 +501,7 @@ object dmGeneral: TdmGeneral
       Size = 60
     end
     object zqMareaActivaMareaBuqueStr: TStringField
-      FieldKind = fkData
+      FieldKind = fkCalculated
       FieldName = 'MareaBuqueStr'
       Index = 19
       LookupCache = False

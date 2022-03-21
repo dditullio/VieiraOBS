@@ -44,6 +44,7 @@ type
     acGuardarImagen: TAction;
     acExportarKML: TAction;
     acMostrarRindes: TAction;
+    acExportarGPX: TAction;
     acZoomLanceSeleccionado: TAction;
     acZoomLances: TAction;
     acZoomRect: TAction;
@@ -52,6 +53,8 @@ type
     alMapa: TActionList;
     chtCajasMuestrasEcologicasSerie: TLineSeries;
     chtLancesComentariosSeries: TLineSeries;
+    chtLancesZonasAbiertasSerie: TLineSeries;
+    chtLancesZonasCerradasSerie: TLineSeries;
     chtLancesSerieOtrosLances: TLineSeries;
     chtLancesRindesSeries: TUserDrawnSeries;
     ctDistancia2: TDataPointDistanceTool;
@@ -90,8 +93,10 @@ type
     lcsLances: TListChartSource;
     lcsComentariosLances: TListChartSource;
     lcsCajasMuestrasEcologicas: TListChartSource;
+    lcsZonasCerradas: TListChartSource;
     lcsOtrosLances: TListChartSource;
     lcsMapaBase: TListChartSource;
+    lcsZonasAbiertas: TListChartSource;
     lcsZonasEconomicas: TListChartSource;
     lcsUMVieira: TListChartSource;
     lcsOtrasZonas: TListChartSource;
@@ -101,6 +106,7 @@ type
     lcsRindes: TListChartSource;
     LSExpandPanel1: TLSExpandPanel;
     Panel2: TPanel;
+    sdExportarGPX: TSaveDialog;
     sdGuardarImagen: TSaveDialog;
     sdExportarKML: TSaveDialog;
     splDetalles: TSplitter;
@@ -112,6 +118,7 @@ type
     ToolButton12: TToolButton;
     ToolButton13: TToolButton;
     tbMostrarRindes: TToolButton;
+    ToolButton14: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -243,6 +250,7 @@ type
     zqLancesVelocidadNecesaria: TFloatField;
     zqOtrosMapas: TZQuery;
     zqMuestrasEcologicas: TZQuery;
+    procedure acExportarGPXExecute(Sender: TObject);
     procedure acExportarKMLExecute(Sender: TObject);
     procedure acGuardarImagenExecute(Sender: TObject);
     procedure acHabilitarHerramienta(Sender: TObject);
@@ -282,6 +290,7 @@ type
     procedure InicializarMapas;
     procedure CargarMapaLances;
     procedure ExportarKML (archivo: string);
+    procedure ExportarGPX (archivo: string);
     procedure DrawRindes(ACanvas: TCanvas;
       const ARect: TRect; min_rinde: double; max_rinde: double; ColorMarca: TColor);
   public
@@ -490,6 +499,8 @@ begin
     CargarMapa('VEDA MERLUZA', lcsOtrasZonas);
     CargarMapa('VEDA MERLUZA NEGRA', lcsOtrasZonas, False);
     CargarMapa('ZONA COMUN', lcsOtrasZonas, False);
+    CargarMapa('ABIERTO 2021', lcsZonasAbiertas, True, 'Etiqueta');
+    CargarMapa('CERRADO 2021', lcsZonasCerradas, True, 'Etiqueta');
     CargarMapaLances;
     FMapasCargados:=True;
   end;
@@ -638,8 +649,63 @@ begin
             (not FieldByName('long_fin_gis').IsNull) and
             (not FieldByName('lat_fin_gis').IsNull) then
          begin
+
             strPre:='<Placemark> <name>'+FieldByName('nro_lance').AsString+'</name> <description>'+FieldByName('fecha').AsString+'</description> <Style><LineStyle><color>ff0000ff</color></LineStyle> <PolyStyle><fill>0</fill></PolyStyle></Style> <ExtendedData><SchemaData schemaUrl="#'+strMarea+'"> <SimpleData name="Name">'+FieldByName('nro_lance').AsString+'</SimpleData> <SimpleData name="Description">'+FieldByName('fecha').AsString+'</SimpleData> </SchemaData></ExtendedData> <LineString><coordinates> ';
-            sl.Add(strPre+FieldByName('long_ini_gis').AsString+','+FieldByName('lat_ini_gis').AsString+' '+FieldByName('long_fin_gis').AsString+','+FieldByName('lat_fin_gis').AsString+strPost);
+            sl.Add(strPre+StringReplace(FieldByName('long_ini_gis').AsString,',', '.', [rfReplaceAll])+','+StringReplace(FieldByName('lat_ini_gis').AsString,',', '.', [rfReplaceAll])+' '+StringReplace(FieldByName('long_fin_gis').AsString,',', '.', [rfReplaceAll])+','+StringReplace(FieldByName('lat_fin_gis').AsString,',', '.', [rfReplaceAll])+strPost);
+         end;
+         Next;
+       end;
+       sl.Add(strPie);
+       sl.SaveToFile(archivo);
+       sl.Destroy;
+       GotoBookmark(bm);
+       EnableControls;
+       MessageDlg('Los lances seleccionados se han exportado al archivo '+archivo, mtInformation, [mbOK],0);
+    end;
+  end;
+end;
+
+procedure TfmLances.ExportarGPX(archivo: string);
+var
+   sl:TStringList;
+   strEncabezado:string;
+   strPre:string;
+   strPost: string;
+   strPie:string;
+   strMarea: string;
+   bm: TBookMark;
+begin
+  if (archivo <> '') and DirectoryExistsUTF8(ExtractFileDir(archivo)) then
+  begin
+    with zqLances do
+    begin
+      bm:=zqLances.GetBookmark;
+      DisableControls;
+      First;
+      strMarea:='Marea '+dmGeneral.zqMareaActivabuque.AsString+' '+dmGeneral.zqMareaActivaanio_marea.AsString+'-'+dmGeneral.zqMareaActivanro_marea_inidep.AsString;
+
+      strEncabezado:='<?xml version="1.0"?> <gpx version="1.1" creator="GDAL 2.2.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogr="http://osgeo.org/gdal" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">';
+
+       strPost:='</trkseg> </trk>';
+       strPie:='</gpx>';
+       sl:= TStringList.Create;
+       sl.Add(strEncabezado);
+       while not EOF do
+       begin
+         if (not FieldByName('long_ini_gis').IsNull) and
+            (not FieldByName('lat_ini_gis').IsNull) and
+            (not FieldByName('long_fin_gis').IsNull) and
+            (not FieldByName('lat_fin_gis').IsNull) then
+         begin
+
+            strPre:='<trk> <name>'+FieldByName('nro_lance').AsString+'</name> <description>'+FieldByName('fecha').AsString+'</description> <trkseg>';
+//            sl.Add(strPre+StringReplace(FieldByName('long_ini_gis').AsString,',', '.', [rfReplaceAll])+','+StringReplace(FieldByName('lat_ini_gis').AsString,',', '.', [rfReplaceAll])+' '+StringReplace(FieldByName('long_fin_gis').AsString,',', '.', [rfReplaceAll])+','+StringReplace(FieldByName('lat_fin_gis').AsString,',', '.', [rfReplaceAll])+strPost);
+            sl.Add(strPre
+                 +'<trkpt lat="' + StringReplace(FieldByName('lat_ini_gis').AsString,',', '.', [rfReplaceAll]) + '"'
+                 +' lon="' + StringReplace(FieldByName('long_ini_gis').AsString,',', '.', [rfReplaceAll]) + '"> </trkpt> '
+                 +'<trkpt lat="' + StringReplace(FieldByName('lat_fin_gis').AsString,',', '.', [rfReplaceAll]) + '"'
+                 +' lon="' + StringReplace(FieldByName('long_fin_gis').AsString,',', '.', [rfReplaceAll]) + '"> </trkpt> '
+                 +strPost);
          end;
          Next;
        end;
@@ -742,6 +808,19 @@ begin
       ExportarKML(sdExportarKML.FileName);
     end;
   end;
+end;
+
+procedure TfmLances.acExportarGPXExecute(Sender: TObject);
+begin
+  sdExportarGPX.FileName:='L_'+dmGeneral.zqMareaActivaanio_marea.AsString+'_'+dmGeneral.zqMareaActivanro_marea_inidep.AsString+'.GPX';
+  if sdExportarGPX.Execute then
+  begin
+    if (not FileExistsUTF8(sdExportarGPX.FileName)) or (MessageDlg('El archivo '+sdExportarGPX.FileName+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+    begin
+      ExportarGPX(sdExportarGPX.FileName);
+    end;
+  end;
+
 end;
 
 procedure TfmLances.acZoomLancesExecute(Sender: TObject);

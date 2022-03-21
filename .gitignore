@@ -47,9 +47,12 @@ DB_Vieira*
 Bkp
 img
 lib
+backup
 Migracion
 *OLD.*
 *.bkp
 *.bak
 *.lps
+*.OLD
+*.zip
 EjemploInstalador*

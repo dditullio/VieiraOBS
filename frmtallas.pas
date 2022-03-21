@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, TAGraph, TADbSource, TASeries, TASources,
-  DateTimePicker, rxdbgrid, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Buttons, ActnList, StdCtrls, DbCtrls, ValEdit, frmlistabase, db, ZDataset,
-  zcontroladorgrilla, datGeneral, frmeditartallas;
+  TATools, TAFuncSeries, DateTimePicker, rxdbgrid, Forms, Controls, Graphics,
+  Dialogs, ExtCtrls, Buttons, ActnList, StdCtrls, DbCtrls, ValEdit,
+  frmlistabase, db, ZDataset, zcontroladorgrilla, datGeneral, frmeditartallas;
 
 type
 
@@ -18,8 +18,12 @@ type
     Chart1: TChart;
     Chart1BarSeries1: TBarSeries;
     Chart1BarSeries2: TBarSeries;
+    Chart1PieSeries1: TPieSeries;
+    Chart2: TChart;
+    dsPorcentEjemplares: TDataSource;
     DbChartSource1: TDbChartSource;
     DbChartSource2: TDbChartSource;
+    DbChartSource3: TDbChartSource;
     DBText1: TDBText;
     DBText10: TDBText;
     DBText11: TDBText;
@@ -158,6 +162,7 @@ type
     zqTallasCompleto: TZQuery;
     zqDetallleTallas: TZQuery;
     zqDatosMuestra: TZQuery;
+    zqPorcentEjemplares: TZQuery;
     procedure dtFechaChange(Sender: TObject);
     procedure dtFechaCheckBoxChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -165,6 +170,7 @@ type
     procedure zqDatosMuestraBeforeOpen(DataSet: TDataSet);
     procedure zqDetallleTallasBeforeOpen(DataSet: TDataSet);
     procedure zqMarcasTallasBeforeOpen(DataSet: TDataSet);
+    procedure zqPorcentEjemplaresBeforeOpen(DataSet: TDataSet);
     procedure zqTallasAfterOpen(DataSet: TDataSet);
     procedure zqTallasAfterScroll(DataSet: TDataSet);
     procedure zqTallasBeforeOpen(DataSet: TDataSet);
@@ -203,7 +209,11 @@ begin
   zqMarcasTallas.Open;
   zqDatosMuestra.Close;
   zqDatosMuestra.Open;
+  zqPorcentEjemplares.Close;
+  zqPorcentEjemplares.Open;
   Chart1.Refresh;
+  Chart2.Refresh;
+
 end;
 
 procedure TfmTallas.zqDetallleTallasBeforeOpen(DataSet: TDataSet);
@@ -246,6 +256,11 @@ begin
   zqMarcasTallas.ParamByName('idmuestras_talla').Value:=zqTallasidmuestras_talla.Value;
 end;
 
+procedure TfmTallas.zqPorcentEjemplaresBeforeOpen(DataSet: TDataSet);
+begin
+  zqPorcentEjemplares.ParamByName('idmuestras_talla').Value:=zqTallasidmuestras_talla.Value;
+end;
+
 procedure TfmTallas.zqTallasAfterOpen(DataSet: TDataSet);
 begin
   zqTallasCompleto.Close;
@@ -256,7 +271,10 @@ begin
   zqMarcasTallas.Open;
   zqDatosMuestra.Close;
   zqDatosMuestra.Open;
+  zqPorcentEjemplares.Close;
+  zqPorcentEjemplares.Open;
   Chart1.Refresh;
+  Chart2.Refresh;
 end;
 
 procedure TfmTallas.zqTallasCompletoBeforeOpen(DataSet: TDataSet);

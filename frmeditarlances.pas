@@ -1217,14 +1217,14 @@ end;
 procedure TfmEditarLances.zcePrincipalValidateForm(Sender: TObject;
   var ValidacionOK: boolean);
 begin
-  if (not zqPrincipalcable_babor.IsNull) and ((zqPrincipalcable_babor.AsInteger < 200) or (zqPrincipalcable_babor.AsInteger > 800)) then
+  if (not zqPrincipalcable_babor.IsNull) and ((zqPrincipalcable_babor.AsInteger < 170) or (zqPrincipalcable_babor.AsInteger > 800)) then
   begin
     MessageDlg('Ingrese los metros de cable filado', mtError, [mbOK], 0);
     ValidacionOK := False;
     FControlesEdicion.SetFocus('CableBr');
   end;
 
-  if (not zqPrincipalcable_estribor.IsNull) and ((zqPrincipalcable_estribor.AsInteger < 200) or (zqPrincipalcable_estribor.AsInteger > 800)) then
+  if (not zqPrincipalcable_estribor.IsNull) and ((zqPrincipalcable_estribor.AsInteger < 170) or (zqPrincipalcable_estribor.AsInteger > 800)) then
   begin
     MessageDlg('Ingrese los metros de cable filado', mtError, [mbOK], 0);
     ValidacionOK := False;
@@ -1278,7 +1278,7 @@ end;
 
 procedure TfmEditarLances.zqPrincipalcable_baborValidate(Sender: TField);
 begin
-  if (not Sender.IsNull) and ((Sender.AsInteger < 200) or (Sender.AsInteger > 800)) then
+  if (not Sender.IsNull) and ((Sender.AsInteger < 170) or (Sender.AsInteger > 800)) then
   begin
     MessageDlg('Ingrese los metros de cable filado', mtError, [mbOK], 0);
     FControlesEdicion.SetFocus('CableBr');
@@ -1287,7 +1287,7 @@ end;
 
 procedure TfmEditarLances.zqPrincipalcable_estriborValidate(Sender: TField);
 begin
-  if (not Sender.IsNull) and ((Sender.AsInteger < 200) or (Sender.AsInteger > 800)) then
+  if (not Sender.IsNull) and ((Sender.AsInteger < 170) or (Sender.AsInteger > 800)) then
   begin
     MessageDlg('Ingrese los metros de cable filado', mtError, [mbOK], 0);
     FControlesEdicion.SetFocus('CableEr');

@@ -105,7 +105,7 @@ begin
     zqPrincipalnro_muestra.Value:=zqSenasaCallosAntnro_muestra.AsInteger+1;
   end else
   begin
-    //Si no hay registro anterior, comienzo por la banda de estribor
+    //Si no hay registro anterior, comienzo en 1
     zqPrincipalfecha.Value := Date;
     zqPrincipalnro_muestra.Value := 1;
   end;

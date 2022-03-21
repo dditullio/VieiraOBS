@@ -106,7 +106,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
         DataSource = dsPrincipal
         CharCase = ecNormal
         EditMask = '00:00;1;_'
-        MaxLength = 0
+        MaxLength = 5
         TabOrder = 1
       end
     end
@@ -152,7 +152,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
       Left = 112
       Height = 15
       Top = 120
-      Width = 73
+      Width = 72
       Caption = 'Temp. Superf.'
       ParentColor = False
     end
@@ -177,7 +177,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
       DataSource = dsPrincipal
       CharCase = ecNormal
       EditMask = '0000.00'
-      MaxLength = 0
+      MaxLength = 7
       TabOrder = 2
       CoordKind = ckLatitude
     end
@@ -191,7 +191,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
       DataSource = dsPrincipal
       CharCase = ecNormal
       EditMask = '0000.00'
-      MaxLength = 0
+      MaxLength = 7
       TabOrder = 3
       CoordKind = ckLatitude
     end
@@ -420,6 +420,7 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
     end
   end
   inherited zcePrincipal: TZControladorEdicion
+    AltaContinua = True
     ControlInicial = dbdtHora
     left = 200
     top = 264
@@ -427,5 +428,158 @@ inherited FmEditarSenasaEntera: TFmEditarSenasaEntera
   inherited zdgPrincipal: TZDatasetGroup
     left = 8
     top = 264
+  end
+  object zqSenasaEnteraAnt: TZQuery[8]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqSenasaEnteraAntBeforeOpen
+    CachedUpdates = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM'
+      '    muestras_senasa_entera ms'
+      'WHERE'
+      '    ms.idmarea=:idmarea'
+      'order by ms.fecha desc, ms.hora desc , ms.nro_muestra desc'
+      'limit 1'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
+    left = 224
+    top = 224
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end>
+    object zqSenasaEnteraAntidmuestras_senasa_callos: TLongintField
+      FieldKind = fkData
+      FieldName = 'idmuestras_senasa_callos'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaEnteraAntidmarea: TLongintField
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaEnteraAntnro_muestra: TLongintField
+      FieldKind = fkData
+      FieldName = 'nro_muestra'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaEnteraAntfecha: TDateField
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaEnteraAnthora: TTimeField
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaEnteraAntlatitud: TFloatField
+      FieldKind = fkData
+      FieldName = 'latitud'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqSenasaEnteraAntcuadrante_latitud: TStringField
+      FieldKind = fkData
+      FieldName = 'cuadrante_latitud'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 4
+    end
+    object zqSenasaEnteraAntlongitud: TFloatField
+      FieldKind = fkData
+      FieldName = 'longitud'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 12
+    end
+    object zqSenasaEnteraAntcuadrante_longitud: TStringField
+      FieldKind = fkData
+      FieldName = 'cuadrante_longitud'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 4
+    end
+    object zqSenasaEnteraAntcontramuestra1: TLongintField
+      FieldKind = fkData
+      FieldName = 'contramuestra1'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaEnteraAntcontramuestra2: TLongintField
+      FieldKind = fkData
+      FieldName = 'contramuestra2'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaEnteraAntlab_mdp: TLongintField
+      FieldKind = fkData
+      FieldName = 'lab_mdp'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqSenasaEnteraAntlab_bsas: TLongintField
+      FieldKind = fkData
+      FieldName = 'lab_bsas'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
   end
 end

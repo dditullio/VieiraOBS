@@ -51,10 +51,10 @@ type
     zqMareasanio_marea: TLongintField;
     zqMareasBuque: TStringField;
     zqMareascant_lances: TLargeintField;
+    zqMareascant_muestras_biologicas: TLargeintField;
     zqMareascant_muestras_bycatch: TLargeintField;
     zqMareascant_muestras_coccion: TLargeintField;
     zqMareascant_muestras_danio: TLargeintField;
-    zqMareascant_muestras_ecologicas: TLargeintField;
     zqMareascant_muestras_rinde: TLargeintField;
     zqMareascant_muestras_talla: TLargeintField;
     zqMareascapitan: TStringField;
@@ -101,7 +101,7 @@ type
   end;
 
 const
-  APP_VERSION='1.0.7';
+  APP_VERSION='1.0.9';
 
 var
   dmGeneral: TdmGeneral;

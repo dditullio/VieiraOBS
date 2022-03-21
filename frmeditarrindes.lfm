@@ -13,7 +13,6 @@ inherited fmEditarRindes: TfmEditarRindes
     end
     inherited DividerBevel1: TDividerBevel
       Left = 231
-      Width = 15
     end
     inherited paEncabezado: TPanel
       Width = 230
@@ -258,6 +257,8 @@ inherited fmEditarRindes: TfmEditarRindes
       Height = 19
       Top = 221
       Width = 158
+      HelpType = htKeyword
+      HelpKeyword = 'Marque esta casilla para completar automáticamente los datos de hora y banda cuando correspondan datos de babor'
       Caption = 'Completar datos de babor'
       Checked = True
       OnClick = ckDatosBaborClick
@@ -272,11 +273,9 @@ inherited fmEditarRindes: TfmEditarRindes
     ClientWidth = 361
     inherited bbCancelar: TBitBtn
       Left = 179
-      Height = 24
     end
     inherited bbAceptar: TBitBtn
       Left = 267
-      Height = 24
     end
   end
   inherited zqPrincipal: TZQuery

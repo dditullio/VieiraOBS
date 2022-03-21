@@ -23,6 +23,7 @@ type
     acGuardarPlanillas: TAction;
     alProceso: TActionList;
     bbGuardar: TBitBtn;
+    ckEtiquetasCajas: TCheckBox;
     ckInidepCallos: TCheckBox;
     ckEcologicas: TCheckBox;
     ckSenasaCallos: TCheckBox;
@@ -31,6 +32,7 @@ type
     ckControlMuestras: TCheckBox;
     dbtMareaActiva: TDBText;
     dedCarpetaPlanillas: TDirectoryEdit;
+    frEtiquetasInidepCajas: TfrReport;
     frEtiquetasSenasaCallos: TfrReport;
     frEtiquetasInidepCallos: TfrReport;
     frEtiquetasSenasaEntera: TfrReport;
@@ -54,6 +56,7 @@ type
     { private declarations }
     procedure GenerarEtiquetasInidepCallos;
     procedure GenerarEtiquetasEcologica;
+    procedure GenerarEtiquetasCajas;
     procedure GenerarEtiquetasSenasaCallos;
     procedure GenerarEtiquetasSenasaEntera;
     procedure GenerarPlanillasSenasa;
@@ -91,6 +94,8 @@ begin
       GenerarPlanillasSenasa;
     if ckControlMuestras.Checked then
       GenerarPlanillaControlMuestras;
+    if ckEtiquetasCajas.Checked then
+      GenerarEtiquetasCajas;
     gen_ok:=True;
   end;
   if gen_ok and (MessageDlg('Los archivos PDF para imprimir han sido guarados en la carpeta indicada. ¿Desea abrir la carpeta para ver los archivos?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
@@ -159,6 +164,7 @@ procedure TfmImprimirEtiquetas.GenerarEtiquetasSenasaCallos;
 var
   archivo_destino: string;
 begin
+  //Etiquetas individuales para cada destino
   archivo_destino := dedCarpetaPlanillas.Directory +
     DirectorySeparator + 'Etiquetas SENASA Callos.pdf';
   if (not FileExistsUTF8(archivo_destino)) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
@@ -230,6 +236,19 @@ begin
   begin
     frEtiquetasEcologica.PrepareReport;
     frEtiquetasEcologica.ExportTo(TfrTNPDFExportFilter, archivo_destino);
+  end;
+end;
+
+procedure TfmImprimirEtiquetas.GenerarEtiquetasCajas;
+var
+  archivo_destino: string;
+begin
+  archivo_destino := dedCarpetaPlanillas.Directory +
+    DirectorySeparator + 'Etiquetas Cajas de Muestras.pdf';
+  if (not FileExistsUTF8(archivo_destino)) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+  begin
+    frEtiquetasInidepCajas.PrepareReport;
+    frEtiquetasInidepCajas.ExportTo(TfrTNPDFExportFilter, archivo_destino);
   end;
 end;
 

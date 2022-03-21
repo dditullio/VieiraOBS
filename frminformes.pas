@@ -12,11 +12,11 @@ uses
   {$IFDEF UNIX}
     Unix,
   {$ENDIF}
-  Classes, SysUtils, LazFileUtils, Fileutil, LR_Class, LR_DBSet, RxIniPropStorage, Forms,
-  Controls, Graphics, Dialogs, ExtCtrls, Buttons, ActnList, ComCtrls, StdCtrls,
-  EditBtn, IniPropStorage, Grids, frmbase, ZDataset, DB, datGeneral,
-  comobj, variants, frmrptdatospuente,
-  funciones, LSConfig, LR_DSet, lr_e_pdf;
+  Classes, SysUtils, LazFileUtils, Fileutil, AbZipper, DateTimePicker, LR_Class,
+  LR_DBSet, RxIniPropStorage, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  Buttons, ActnList, ComCtrls, StdCtrls, EditBtn, IniPropStorage, Grids,
+  frmbase, ZDataset, DB, datGeneral, comobj, variants, frmrptdatospuente,
+  funciones, LSConfig, LR_DSet, lr_e_pdf, dateutils;
 
 type
 
@@ -27,6 +27,7 @@ type
     acImprimirDatosPuente: TAction;
     acImprimirSenasa: TAction;
     acImprimirMuestrasBiol: TAction;
+    azPlanillas: TAbZipper;
     bbGuardar: TBitBtn;
     cbDatosPuentePDF: TCheckBox;
     cbSenasaPDF: TCheckBox;
@@ -41,6 +42,7 @@ type
     cbByCatch: TCheckBox;
     dsResumen: TDataSource;
     dedCarpetaPlanillas: TDirectoryEdit;
+    dtFecha: TDateTimePicker;
     frDBCallos: TfrDBDataSet;
     frDBMuestrasBiol: TfrDBDataSet;
     frDBDatosPuente: TfrDBDataSet;
@@ -191,6 +193,9 @@ type
     zqSenasaEnteratemp_superficie: TFloatField;
     zqTallas: TZQuery;
     zqDetTallas: TZQuery;
+    zqTallasbanda: TStringField;
+    zqTallascod_tipo_muestra: TStringField;
+    zqTallascomentarios: TStringField;
     zqTallasfecha: TDateField;
     zqTallashora: TTimeField;
     zqTallasidmarea: TLongintField;
@@ -212,6 +217,8 @@ type
       var Value: String);
     procedure dedCarpetaPlanillasChange(Sender: TObject);
     procedure dedCarpetaPlanillasExit(Sender: TObject);
+    procedure dtFechaChange(Sender: TObject);
+    procedure dtFechaCheckBoxChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure frrDatosPuenteProgress(n: Integer);
     procedure frrMuestrasBiolProgress(n: Integer);
@@ -250,12 +257,15 @@ type
     procedure GenerarSenasaPDF;
     procedure GenerarMuestrasBiolPDF;
 
+    function InicializarArchivoExcelTallas (var xls: olevariant; numero: integer; forzar_reemplazo: boolean = False): boolean;
+
   public
     { public declarations }
   end;
 
 var
   fmInformes: TfmInformes;
+  strfecha: string = '';
 
 implementation
 
@@ -268,18 +278,24 @@ procedure TfmInformes.acGuardarPlanillasExecute(Sender: TObject);
 var
   xls, odf: olevariant;
   gen_ok:boolean;
+  archivo_zip, archivo_datos_puente, archivo_rindes, archivo_coccion, archivo_tallas,
+    archivo_danio, archivo_bycatch, archivo_rayas: WideString;
 begin
   // Guardo la selección de planillas a guardar
   dmGeneral.GuardarBooleanConfig('DatosPuente', cbDatosPuente.Checked, 'PlanillasInforme');
-  dmGeneral.GuardarBooleanConfig('Coccion', cbCoccion.Checked, 'PlanillasInforme');
-  dmGeneral.GuardarBooleanConfig('Danio', cbDanio.Checked, 'PlanillasInforme');
-  dmGeneral.GuardarBooleanConfig('Raya', cbRaya.Checked, 'PlanillasInforme');
   dmGeneral.GuardarBooleanConfig('Rinde', cbRindes.Checked, 'PlanillasInforme');
   dmGeneral.GuardarBooleanConfig('Talla', cbTallas.Checked, 'PlanillasInforme');
-  dmGeneral.GuardarBooleanConfig('ByCatch', cbByCatch.Checked, 'PlanillasInforme');
-  dmGeneral.GuardarBooleanConfig('DatosPuentePDF', cbDatosPuentePDF.Checked, 'PlanillasInforme');
-  dmGeneral.GuardarBooleanConfig('SenasaPDF', cbSenasaPDF.Checked, 'PlanillasInforme');
-  dmGeneral.GuardarBooleanConfig('BiologicasPDF', cbMuestrasBiolPDF.Checked, 'PlanillasInforme');
+
+  if not dtFecha.Checked then
+  begin
+    dmGeneral.GuardarBooleanConfig('Coccion', cbCoccion.Checked, 'PlanillasInforme');
+    dmGeneral.GuardarBooleanConfig('Danio', cbDanio.Checked, 'PlanillasInforme');
+    dmGeneral.GuardarBooleanConfig('Raya', cbRaya.Checked, 'PlanillasInforme');
+    dmGeneral.GuardarBooleanConfig('ByCatch', cbByCatch.Checked, 'PlanillasInforme');
+    dmGeneral.GuardarBooleanConfig('DatosPuentePDF', cbDatosPuentePDF.Checked, 'PlanillasInforme');
+    dmGeneral.GuardarBooleanConfig('SenasaPDF', cbSenasaPDF.Checked, 'PlanillasInforme');
+    dmGeneral.GuardarBooleanConfig('BiologicasPDF', cbMuestrasBiolPDF.Checked, 'PlanillasInforme');
+  end;
 
   try
     xls := CreateOleObject('Excel.Application');
@@ -310,7 +326,7 @@ begin
       if cbByCatch.Checked then
       begin
         GenerarByCatchXLS;
-        GenerarByCatch2XLS;
+        //GenerarByCatch2XLS; //La muestra detallada no se requiere por ahora
       end;
       if cbRaya.Checked then
       begin
@@ -335,6 +351,75 @@ begin
 
     end;
 
+    //Está guardando las planillas para una fecha específica,
+    //Comprimir en ZIP
+    if dtFecha.Checked then
+    begin
+      archivo_zip:=dedCarpetaPlanillas.Directory +
+        DirectorySeparator+strfecha+'Reporte diario.zip';
+
+      archivo_datos_puente := dedCarpetaPlanillas.Directory +
+        DirectorySeparator + strfecha + 'Datos puente.xls';
+      archivo_rindes := dedCarpetaPlanillas.Directory +
+        DirectorySeparator + strfecha + 'Rindes.xls';
+      archivo_coccion := dedCarpetaPlanillas.Directory +
+        DirectorySeparator + strfecha + 'Cocción.xls';
+      archivo_tallas := dedCarpetaPlanillas.Directory +
+        DirectorySeparator + strfecha + 'Tallas.xls';
+      archivo_danio := dedCarpetaPlanillas.Directory +
+        DirectorySeparator + strfecha + 'Daño valvar.xls';
+      archivo_bycatch := dedCarpetaPlanillas.Directory +
+        DirectorySeparator + strfecha + 'Fauna acompañante.xls';
+      archivo_rayas := dedCarpetaPlanillas.Directory +
+        DirectorySeparator + strfecha + 'Rayas.xls';
+
+      if (not FileExistsUTF8(archivo_zip)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_zip+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+      begin
+         DeleteFileUTF8(archivo_zip);
+         azPlanillas.BaseDirectory:=dedCarpetaPlanillas.Directory;
+         azPlanillas.FileName:=archivo_zip;
+
+         //Agrego los archivos
+         if FileExistsUTF8(archivo_datos_puente) then
+            azPlanillas.AddFiles(UTF8Decode(archivo_datos_puente),0);
+
+         if FileExistsUTF8(archivo_rindes) then
+            azPlanillas.AddFiles(UTF8Decode(archivo_rindes),0);
+
+         if FileExistsUTF8(archivo_coccion) then
+            azPlanillas.AddFiles(UTF8Decode(archivo_coccion),0);
+
+         if FileExistsUTF8(archivo_tallas) then
+            azPlanillas.AddFiles(UTF8Decode(archivo_tallas),0);
+
+         if FileExistsUTF8(archivo_danio) then
+            azPlanillas.AddFiles(UTF8Decode(archivo_danio),0);
+
+         if FileExistsUTF8(archivo_bycatch) then
+            azPlanillas.AddFiles(UTF8Decode(archivo_bycatch),0);
+
+         if FileExistsUTF8(archivo_rayas) then
+            azPlanillas.AddFiles(UTF8Decode(archivo_rayas),0);
+      end;
+
+      //Borro los archivos porque ya no se necesitan
+      if FileExistsUTF8(archivo_datos_puente) then
+         DeleteFileUTF8(archivo_datos_puente);
+      if FileExistsUTF8(archivo_rindes) then
+         DeleteFileUTF8(archivo_rindes);
+      if FileExistsUTF8(archivo_coccion) then
+         DeleteFileUTF8(archivo_coccion);
+      if FileExistsUTF8(archivo_tallas) then
+         DeleteFileUTF8(archivo_tallas);
+      if FileExistsUTF8(archivo_danio) then
+         DeleteFileUTF8(archivo_danio);
+      if FileExistsUTF8(archivo_bycatch) then
+         DeleteFileUTF8(archivo_bycatch);
+      if FileExistsUTF8(archivo_rayas) then
+         DeleteFileUTF8(archivo_rayas);
+
+      azPlanillas.CloseArchive;
+    end;
 
     if gen_ok and (MessageDlg('Las planillas han sido guaradas en la carpeta indicada. ¿Desea abrir la carpeta para ver los archivos?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
@@ -398,6 +483,56 @@ begin
 //  LSSaveConfig(['destino_informes'],[dedCarpetaPlanillas.Directory]);
 end;
 
+procedure TfmInformes.dtFechaChange(Sender: TObject);
+begin
+      if dtFecha.Checked then
+       strfecha:=FormatDateTime('YYYY-mm-dd',dtFecha.Date)+'-'
+    else
+       strfecha:='';
+
+end;
+
+procedure TfmInformes.dtFechaCheckBoxChange(Sender: TObject);
+begin
+    if dtFecha.Checked then
+    begin
+       strfecha:=FormatDateTime('YYYY-mm-dd',dtFecha.Date)+'-';
+       cbCoccion.Checked:=false;
+       cbCoccion.Enabled:=false;
+       cbDanio.Checked:=false;
+       cbDanio.Enabled:=false;
+       cbRaya.Checked:=false;
+       cbRaya.Enabled:=false;
+       cbByCatch.Checked:=false;
+       cbByCatch.Enabled:=false;
+       cbDatosPuentePDF.Checked:=false;
+       cbDatosPuentePDF.Enabled:=false;
+       cbSenasaPDF.Checked:=false;
+       cbSenasaPDF.Enabled:=false;
+       cbMuestrasBiolPDF.Checked:=false;
+       cbMuestrasBiolPDF.Enabled:=false;
+    end
+    else
+    begin
+       strfecha:='';
+       cbCoccion.Checked:=dmGeneral.LeerBooleanConfig('Coccion', False, 'PlanillasInforme');
+       cbCoccion.Enabled:=True;
+       cbDanio.Checked:=dmGeneral.LeerBooleanConfig('Danio', True, 'PlanillasInforme');
+       cbDanio.Enabled:=True;
+       cbRaya.Checked:=dmGeneral.LeerBooleanConfig('Raya', True, 'PlanillasInforme');
+       cbRaya.Enabled:=True;
+       cbByCatch.Checked:=dmGeneral.LeerBooleanConfig('ByCatch', True, 'PlanillasInforme');
+       cbByCatch.Enabled:=True;
+       cbDatosPuentePDF.Checked:=dmGeneral.LeerBooleanConfig('DatosPuentePDF', True, 'PlanillasInforme');
+       cbDatosPuentePDF.Enabled:=True;
+       cbSenasaPDF.Checked:=dmGeneral.LeerBooleanConfig('SenasaPDF', True, 'PlanillasInforme');
+       cbSenasaPDF.Enabled:=True;
+       cbMuestrasBiolPDF.Checked:=dmGeneral.LeerBooleanConfig('BiologicasPDF', True, 'PlanillasInforme');
+       cbMuestrasBiolPDF.Enabled:=True;
+
+ end;
+end;
+
 procedure TfmInformes.FormShow(Sender: TObject);
 var
   destino:String;
@@ -412,6 +547,8 @@ begin
   cbDatosPuentePDF.Checked:=dmGeneral.LeerBooleanConfig('DatosPuentePDF', True, 'PlanillasInforme');
   cbSenasaPDF.Checked:=dmGeneral.LeerBooleanConfig('SenasaPDF', True, 'PlanillasInforme');
   cbMuestrasBiolPDF.Checked:=dmGeneral.LeerBooleanConfig('BiologicasPDF', True, 'PlanillasInforme');
+
+  dtFecha.Date:=IncDay(Date,-1);
 
   destino:= dmGeneral.LeerStringConfig('destino_informes', '');
 //  LSLoadConfig(['destino_informes'],[destino],[@destino]);
@@ -479,21 +616,43 @@ end;
 procedure TfmInformes.zqByCatchBeforeOpen(DataSet: TDataSet);
 begin
   zqByCatch.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+
+    if dtFecha.Checked then
+       zqByCatch.ParamByName('fecha').AsDateTime:=dtFecha.Date
+    else
+      zqByCatch.ParamByName('fecha').AsString:='';
+
 end;
 
 procedure TfmInformes.zqCoccionBeforeOpen(DataSet: TDataSet);
 begin
   zqCoccion.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+
+    if dtFecha.Checked then
+       zqCoccion.ParamByName('fecha').AsDateTime:=dtFecha.Date
+    else
+      zqCoccion.ParamByName('fecha').AsString:='';
 end;
 
 procedure TfmInformes.zqDanioBeforeOpen(DataSet: TDataSet);
 begin
   zqDanio.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+
+    if dtFecha.Checked then
+       zqDanio.ParamByName('fecha').AsDateTime:=dtFecha.Date
+    else
+      zqDanio.ParamByName('fecha').AsString:='';
 end;
 
 procedure TfmInformes.zqDatosPuenteBeforeOpen(DataSet: TDataSet);
 begin
   zqDatosPuente.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+
+  if dtFecha.Checked then
+     zqDatosPuente.ParamByName('fecha').AsDateTime:=dtFecha.Date
+  else
+    zqDatosPuente.ParamByName('fecha').AsString:='';
+
 end;
 
 procedure TfmInformes.zqDetByCatchBeforeOpen(DataSet: TDataSet);
@@ -531,6 +690,11 @@ end;
 procedure TfmInformes.zqRayaBeforeOpen(DataSet: TDataSet);
 begin
   zqRaya.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+
+    if dtFecha.Checked then
+       zqRaya.ParamByName('fecha').AsDateTime:=dtFecha.Date
+    else
+      zqRaya.ParamByName('fecha').AsString:='';
 end;
 
 procedure TfmInformes.zqResumenBeforeOpen(DataSet: TDataSet);
@@ -541,6 +705,11 @@ end;
 procedure TfmInformes.zqRindesBeforeOpen(DataSet: TDataSet);
 begin
   zqRindes.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+
+    if dtFecha.Checked then
+       zqRindes.ParamByName('fecha').AsDateTime:=dtFecha.Date
+    else
+      zqRindes.ParamByName('fecha').AsString:='';
 end;
 
 procedure TfmInformes.zqSenasaCallosBeforeOpen(DataSet: TDataSet);
@@ -566,13 +735,27 @@ begin
   zqDetTallas.Close;
   zqDetTallas.ParamByName('idmarea').Value := zqTallasidmarea.Value;
   zqDetTallas.ParamByName('fecha').AsDateTime := zqTallasfecha.AsDateTime;
-  zqDetTallas.ParamByName('hora').AsDateTime := zqTallashora.AsDateTime;
+  zqDetTallas.ParamByName('hora').AsString := zqTallashora.AsString;
+  if zqTallascod_tipo_muestra.AsString <> 'C' then
+  begin
+    zqDetTallas.ParamByName('cod_tipo_muestra').AsString := zqTallascod_tipo_muestra.AsString;
+    zqDetTallas.ParamByName('banda').AsString := zqTallasbanda.AsString;
+  end else
+  begin
+    zqDetTallas.ParamByName('cod_tipo_muestra').AsString := '';
+    zqDetTallas.ParamByName('banda').AsString := '';
+  end;
   zqDetTallas.Open;
 end;
 
 procedure TfmInformes.zqTallasBeforeOpen(DataSet: TDataSet);
 begin
   zqTallas.ParamByName('idmarea').Value := dmGeneral.IdMareaActiva;
+
+    if dtFecha.Checked then
+       zqTallas.ParamByName('fecha').AsDateTime:=dtFecha.Date
+    else
+      zqTallas.ParamByName('fecha').AsString:='';
 end;
 
 procedure TfmInformes.ZQuery3BeforeOpen(DataSet: TDataSet);
@@ -598,7 +781,7 @@ begin
     archivo_origen := ExtractFilePath(Application.ExeName) +
       'PlanillasExcel' + DirectorySeparator + 'Datos puente.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Datos puente.xls';
+      DirectorySeparator + strfecha + 'Datos puente.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
@@ -714,7 +897,7 @@ begin
     archivo_origen := ExtractFilePath(Application.ExeName) +
       'PlanillasExcel' + DirectorySeparator + 'Rindes.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Rindes.xls';
+      DirectorySeparator + strfecha + 'Rindes.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
@@ -786,7 +969,7 @@ begin
     archivo_origen := ExtractFilePath(Application.ExeName) +
       'PlanillasExcel' + DirectorySeparator + 'Cocción.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Cocción.xls';
+      DirectorySeparator + strfecha + 'Cocción.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
@@ -840,12 +1023,45 @@ begin
   end;
 end;
 
+function TfmInformes.InicializarArchivoExcelTallas(var xls: olevariant;
+  numero: integer; forzar_reemplazo: boolean = False): boolean;
+var
+    archivo_origen, archivo_destino, tmp: WideString;
+    subfijo: string = '';
+begin
+  if numero > 1 then
+  begin
+    subfijo := '('+IntToStr(numero)+')';
+  end;
+  archivo_origen := ExtractFilePath(Application.ExeName) +
+    'PlanillasExcel' + DirectorySeparator + 'Tallas.xls';
+  archivo_destino := dedCarpetaPlanillas.Directory +
+    DirectorySeparator + strfecha + 'Tallas'+subfijo+'.xls';
+  if (not FileExistsUTF8(archivo_destino)) or forzar_reemplazo or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+  begin
+
+    CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
+    archivo_destino:=UTF8Decode(archivo_destino);
+    //Abro el archivo para guardar los datos
+    xls.Workbooks.Open(archivo_destino);
+    //Pongo los datos de la marea
+    tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
+    xls.Cells[1, 2] := tmp;
+    tmp := UTF8Decode(dmGeneral.zqMareaActivacapitan.AsString);
+    xls.Cells[2, 2] := tmp;
+    Result := True;
+  end else
+    Result := False;
+end;
+
+
 procedure TfmInformes.GenerarTallasXLS;
 var
   xls: olevariant;
   archivo_origen, archivo_destino, tmp: WideString;
   fila, columna, inc_col: integer;
   banda_captura, banda_retenido, banda_descarte: string;
+  numero_archivo_excel: integer = 1;//Si hay demasiadas muestras hay que crear más de un archivo
 begin
   //Primero verifico que el objeto se pueda crear
   try
@@ -856,21 +1072,9 @@ begin
   end;
   //Pongo el resto dentro de un Try para si o si finalizar le Excel al terminar
   try
-    archivo_origen := ExtractFilePath(Application.ExeName) +
-      'PlanillasExcel' + DirectorySeparator + 'Tallas.xls';
-    archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Tallas.xls';
-    if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+//    if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+    if (InicializarArchivoExcelTallas (xls, numero_archivo_excel)) then
     begin
-      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
-      archivo_destino:=UTF8Decode(archivo_destino);
-      //Abro el archivo para guardar los datos
-      xls.Workbooks.Open(archivo_destino);
-      //Pongo los datos de la marea
-      tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
-      xls.Cells[1, 2] := tmp;
-      tmp := UTF8Decode(dmGeneral.zqMareaActivacapitan.AsString);
-      xls.Cells[2, 2] := tmp;
       with zqTallas do
       begin
         Close;
@@ -885,6 +1089,16 @@ begin
         columna := 2;
         while not EOF do
         begin
+          //El máximo de columnas de muestra es 241.
+          //Si supera, se crea un nuevo archivo y comienza desde la columna 2
+          if columna > 241 then
+          begin
+            xls.ActiveWorkBook.Save;//Guardo el archivo actual
+            //Creo un nuevo archivo
+            Inc(numero_archivo_excel);
+            InicializarArchivoExcelTallas (xls, numero_archivo_excel, True);
+            columna := 2;
+          end;
           //Datos de encabezado de muestra (sólo en columna de captura)
           if zqTallaspeso_muestra_captura.AsFloat > 0 then
             xls.Cells[4, columna] := zqTallaspeso_muestra_captura.AsFloat;
@@ -919,6 +1133,14 @@ begin
               inc_col := 2;
               banda_descarte := zqDetTallasbanda.AsString;
             end;
+            //Si hay algún comentario, lo coloco en la fila 3, que está vacía
+            if (zqTallascomentarios.AsString <> '')
+            and (zqDetTallascod_tipo_muestra.AsString = zqTallascod_tipo_muestra.AsString) then
+            begin
+              tmp := UTF8Decode(zqTallascomentarios.AsString);
+              xls.Cells[3, columna+inc_col] := tmp;
+            end;
+
             //En la planilla, el detalle de tallas comienza en 1 en la fila 14, es decir, talla+13
             fila := zqDetTallastalla.AsInteger + 13;
             //Salteo los valores nulos o 0 (cero)
@@ -981,7 +1203,7 @@ begin
     archivo_origen := ExtractFilePath(Application.ExeName) +
       'PlanillasExcel' + DirectorySeparator + 'Daño valvar.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Daño valvar.xls';
+      DirectorySeparator + strfecha + 'Daño valvar.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
@@ -1092,6 +1314,7 @@ var
     archivo_origen, archivo_destino, plantilla, tmp, rango: WideString;
     fila, columna: integer;
 begin
+
   //Primero verifico que el objeto se pueda crear
   try
     xls := CreateOleObject('Excel.Application');
@@ -1107,7 +1330,7 @@ begin
     archivo_origen := ExtractFilePath(Application.ExeName) +
       'PlanillasExcel' + DirectorySeparator + 'Fauna acompañante.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Fauna acompañante.xls';
+      DirectorySeparator + strfecha + 'Fauna acompañante.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
@@ -1253,7 +1476,7 @@ begin
     archivo_origen := ExtractFilePath(Application.ExeName) +
       'PlanillasExcel' + DirectorySeparator + 'Fauna acompañante detallada.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Fauna acompañante detallada.xls';
+      DirectorySeparator + strfecha + 'Fauna acompañante detallada.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
@@ -1408,7 +1631,7 @@ begin
     archivo_origen := ExtractFilePath(Application.ExeName) +
       'PlanillasExcel' + DirectorySeparator + 'Rayas.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Rayas.xls';
+      DirectorySeparator + strfecha + 'Rayas.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);

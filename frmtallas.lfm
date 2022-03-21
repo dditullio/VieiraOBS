@@ -1,37 +1,32 @@
 inherited fmTallas: TfmTallas
-  Left = 418
-  Height = 484
-  Top = 139
+  Left = 318
+  Height = 609
+  Top = 79
   Width = 872
   Caption = 'Muestras de tallas'
-  ClientHeight = 484
+  ClientHeight = 609
   ClientWidth = 872
   OnShow = FormShow
   inherited paBase: TPanel
-    Height = 484
+    Height = 609
     Width = 872
-    ClientHeight = 484
+    ClientHeight = 609
     ClientWidth = 872
     inherited paContenido: TPanel
-      Height = 466
+      Height = 591
       Width = 872
-      ClientHeight = 466
+      ClientHeight = 591
       ClientWidth = 872
       inherited paLista: TPanel
-        Height = 466
+        Height = 591
         Width = 496
-        ClientHeight = 466
+        ClientHeight = 591
         ClientWidth = 496
         inherited paBuscador: TPanel
           Width = 496
           ClientWidth = 496
-          inherited laBuscar: TLabel
-            Height = 15
-            Width = 35
-          end
           inherited edBuscar: TEdit
             Left = 124
-            Height = 23
             Width = 337
           end
           inherited bbBuscar: TBitBtn
@@ -65,24 +60,24 @@ inherited fmTallas: TfmTallas
           end
         end
         inherited paGrilla: TPanel
-          Height = 412
+          Height = 537
           Width = 486
-          ClientHeight = 412
+          ClientHeight = 537
           ClientWidth = 486
           inherited bbEliminar: TBitBtn
             Left = 219
-            Top = 381
+            Top = 506
           end
           inherited bbAgregar: TBitBtn
             Left = 308
-            Top = 381
+            Top = 506
           end
           inherited bbEditar: TBitBtn
             Left = 397
-            Top = 381
+            Top = 506
           end
           inherited dbgLista: TRxDBGrid
-            Height = 381
+            Height = 504
             Width = 486
             Columns = <            
               item
@@ -206,9 +201,9 @@ inherited fmTallas: TfmTallas
       end
       inherited paDetalles: TPanel
         Left = 496
-        Height = 466
+        Height = 591
         Width = 376
-        ClientHeight = 466
+        ClientHeight = 591
         ClientWidth = 376
         Visible = True
         object Panel1: TPanel[0]
@@ -221,60 +216,16 @@ inherited fmTallas: TfmTallas
           ParentColor = False
           TabOrder = 0
         end
-        object Chart1: TChart[1]
-          Left = 204
-          Height = 406
-          Top = 49
-          Width = 164
-          AxisList = <          
-            item
-              Grid.Visible = False
-              Arrow.Inverted = True
-              Inverted = True
-              Minors = <>
-              Title.LabelFont.Orientation = 900
-            end          
-            item
-              Alignment = calBottom
-              Minors = <>
-            end>
-          Foot.Brush.Color = clBtnFace
-          Foot.Font.Color = clBlue
-          Title.Brush.Color = clBtnFace
-          Title.Font.Color = clBlue
-          Title.Text.Strings = (
-            'TAChart'
-          )
-          Anchors = [akTop, akLeft, akBottom]
-          object Chart1BarSeries2: TBarSeries
-            Transparency = 70
-            AxisIndexX = 0
-            AxisIndexY = 1
-            BarBrush.Color = clBlue
-            BarPen.Style = psClear
-            BarWidthPercent = 2
-            BarWidthStyle = bwPercentMin
-            Source = DbChartSource2
-          end
-          object Chart1BarSeries1: TBarSeries
-            AxisIndexX = 0
-            AxisIndexY = 1
-            BarBrush.Color = 33023
-            BarWidthStyle = bwPercentMin
-            Source = DbChartSource1
-          end
-        end
-        object Panel2: TPanel[2]
+        object Panel2: TPanel[1]
           Left = 0
-          Height = 408
+          Height = 373
           Top = 49
           Width = 202
-          Anchors = [akTop, akLeft, akBottom]
           BevelOuter = bvNone
           ChildSizing.HorizontalSpacing = 5
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
-          ClientHeight = 408
+          ClientHeight = 373
           ClientWidth = 202
           Color = clBtnFace
           ParentColor = False
@@ -737,6 +688,95 @@ inherited fmTallas: TfmTallas
             ParentFont = False
           end
         end
+        object Chart2: TChart[2]
+          Left = 0
+          Height = 166
+          Top = 420
+          Width = 369
+          AxisList = <          
+            item
+              Visible = False
+              Minors = <>
+              Title.LabelFont.Orientation = 900
+            end          
+            item
+              Visible = False
+              Alignment = calBottom
+              Minors = <>
+            end>
+          Foot.Brush.Color = clBtnFace
+          Foot.Font.Color = clBlue
+          Legend.BackgroundBrush.Color = clMoneyGreen
+          Legend.GridHorizontal.Style = psDot
+          Legend.GridVertical.Style = psDot
+          Legend.GroupFont.Style = [fsBold]
+          Legend.GroupTitles.Strings = (
+            'Pie'
+          )
+          Legend.UseSidebar = False
+          Title.Brush.Color = clBtnFace
+          Title.Font.Color = clBlue
+          Title.Text.Strings = (
+            'Distribuciòn por grupos de tallas'
+          )
+          Title.Visible = True
+          Anchors = [akTop, akLeft, akBottom]
+          object Chart1PieSeries1: TPieSeries
+            Legend.Format = '%2:s %1:.2f%%'
+            Legend.GroupIndex = 0
+            Legend.Multiplicity = lmPoint
+            Marks.Attachment = maCenter
+            Marks.Shape = clsRoundRect
+            Marks.Format = '%2:s'
+            Marks.Style = smsLabel
+            Title = 'Pie'
+            Exploded = True
+            MarkPositions = pmpInside
+            Source = DbChartSource3
+          end
+        end
+        object Chart1: TChart[3]
+          Left = 192
+          Height = 373
+          Top = 49
+          Width = 176
+          AxisList = <          
+            item
+              Grid.Visible = False
+              Arrow.Inverted = True
+              Inverted = True
+              Minors = <>
+              Title.LabelFont.Orientation = 900
+            end          
+            item
+              Alignment = calBottom
+              Minors = <>
+            end>
+          Foot.Brush.Color = clBtnFace
+          Foot.Font.Color = clBlue
+          Title.Brush.Color = clBtnFace
+          Title.Font.Color = clBlue
+          Title.Text.Strings = (
+            'TAChart'
+          )
+          object Chart1BarSeries2: TBarSeries
+            Transparency = 70
+            AxisIndexX = 0
+            AxisIndexY = 1
+            BarBrush.Color = clBlue
+            BarPen.Style = psClear
+            BarWidthPercent = 2
+            BarWidthStyle = bwPercentMin
+            Source = DbChartSource2
+          end
+          object Chart1BarSeries1: TBarSeries
+            AxisIndexX = 0
+            AxisIndexY = 1
+            BarBrush.Color = 33023
+            BarWidthStyle = bwPercentMin
+            Source = DbChartSource1
+          end
+        end
       end
     end
     inherited paComando: TPanel
@@ -749,6 +789,7 @@ inherited fmTallas: TfmTallas
     end
   end
   inherited zcgLista: TZControladorGrilla
+    SeleccionarUltimo = True
     ControlEdicion = fmEditarTallas.zcePrincipal
     ZDataset = zqTallas
   end
@@ -1434,8 +1475,8 @@ inherited fmTallas: TfmTallas
         Name = 'idmuestras_talla'
         ParamType = ptUnknown
       end>
-    left = 372
-    top = 212
+    left = 374
+    top = 184
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1475,8 +1516,8 @@ inherited fmTallas: TfmTallas
   end
   object dsMarcasTallas: TDataSource[12]
     DataSet = zqMarcasTallas
-    left = 412
-    top = 212
+    left = 414
+    top = 184
   end
   object DbChartSource2: TDbChartSource[13]
     DataSource = dsMarcasTallas
@@ -1500,8 +1541,8 @@ inherited fmTallas: TfmTallas
         Name = 'idmuestras_talla'
         ParamType = ptUnknown
       end>
-    left = 278
-    top = 212
+    left = 280
+    top = 184
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1858,7 +1899,46 @@ inherited fmTallas: TfmTallas
   end
   object dsDatosMuestra: TDataSource[15]
     DataSet = zqDatosMuestra
-    left = 308
-    top = 212
+    left = 310
+    top = 184
+  end
+  object DbChartSource3: TDbChartSource[16]
+    DataSource = dsPorcentEjemplares
+    FieldColor = 'color'
+    FieldText = 'dsc_rango'
+    FieldX = 'explode'
+    FieldY = 'numero'
+    left = 412
+    top = 376
+  end
+  object zqPorcentEjemplares: TZQuery[17]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqPorcentEjemplaresBeforeOpen
+    SQL.Strings = (
+      'SELECT *,  '
+      'IF(cod_rango=1,255,IF(cod_rango=2,33023,49152)) AS color,'
+      '0 AS explode'
+      'FROM v_muestras_talla_ejemp_x_rango'
+      'WHERE idmuestras_talla=:idmuestras_talla'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmuestras_talla'
+        ParamType = ptUnknown
+      end>
+    left = 280
+    top = 304
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmuestras_talla'
+        ParamType = ptUnknown
+      end>
+  end
+  object dsPorcentEjemplares: TDataSource[18]
+    DataSet = zqPorcentEjemplares
+    left = 320
+    top = 308
   end
 end

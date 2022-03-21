@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, DividerBevel, DBDateTimePicker, Forms, Controls,
   Graphics, Dialogs, ExtCtrls, StdCtrls, DbCtrls, Buttons, frmzedicionbase,
   ZDataset, SQLQueryGroup, zcontroladoredicion, zdatasetgroup, DtDBTimeEdit,
-  dtdbcoordedit, db, datGeneral, funciones;
+  dtdbcoordedit, db, datGeneral, funciones, dateutils;
 
 type
 
@@ -48,6 +48,20 @@ type
     zqPrincipalnro_muestra: TLongintField;
     zqPrincipalprofundidad: TLongintField;
     zqPrincipaltemp_superficie: TFloatField;
+    zqSenasaEnteraAnt: TZQuery;
+    zqSenasaEnteraAntcontramuestra1: TLongintField;
+    zqSenasaEnteraAntcontramuestra2: TLongintField;
+    zqSenasaEnteraAntcuadrante_latitud: TStringField;
+    zqSenasaEnteraAntcuadrante_longitud: TStringField;
+    zqSenasaEnteraAntfecha: TDateField;
+    zqSenasaEnteraAnthora: TTimeField;
+    zqSenasaEnteraAntidmarea: TLongintField;
+    zqSenasaEnteraAntidmuestras_senasa_callos: TLongintField;
+    zqSenasaEnteraAntlab_bsas: TLongintField;
+    zqSenasaEnteraAntlab_mdp: TLongintField;
+    zqSenasaEnteraAntlatitud: TFloatField;
+    zqSenasaEnteraAntlongitud: TFloatField;
+    zqSenasaEnteraAntnro_muestra: TLongintField;
     procedure dbdtFechaEnter(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure paFechaHoraExit(Sender: TObject);
@@ -56,6 +70,7 @@ type
     procedure zqPrincipalCalcFields(DataSet: TDataSet);
     procedure zqPrincipalhoraSetText(Sender: TField; const aText: string);
     procedure zqPrincipalNewRecord(DataSet: TDataSet);
+    procedure zqSenasaEnteraAntBeforeOpen(DataSet: TDataSet);
   private
     { private declarations }
   public
@@ -147,6 +162,27 @@ begin
   zqPrincipalfecha.Value := Date;
   zqPrincipallab_mdp.Value := 1;
   zqPrincipallab_bsas.Value := 1;
+
+  zqSenasaEnteraAnt.Close;
+  zqSenasaEnteraAnt.Open;
+  //Si se encuentra un registro anterior seteo algunos
+  //valores predeterminados
+  zqPrincipalfecha.Value := Date;
+
+  if zqSenasaEnteraAnt.RecordCount>0 then
+  begin
+    zqPrincipalnro_muestra.Value:=zqSenasaEnteraAntnro_muestra.AsInteger+1;
+  end else
+  begin
+    //Si no hay registro anterior, comienzo en 1
+    zqPrincipalnro_muestra.Value := 1;
+  end;
+
+end;
+
+procedure TFmEditarSenasaEntera.zqSenasaEnteraAntBeforeOpen(DataSet: TDataSet);
+begin
+  zqSenasaEnteraAnt.ParamByName('idmarea').Value:=dmGeneral.IdMareaActiva;
 end;
 
 end.

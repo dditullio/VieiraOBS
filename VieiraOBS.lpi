@@ -360,9 +360,9 @@
         <IsPartOfProject Value="True"/>
       </Unit34>
       <Unit35>
-        <Filename Value="frmmuestrasrayas.pas"/>
+        <Filename Value="frmproduccion.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="fmMuestrasRayas"/>
+        <ComponentName Value="fmProduccion"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit35>

@@ -10,7 +10,7 @@ uses
   StdCtrls, Buttons, DbCtrls, frmbase, frmmareas,datGeneral, frmrindes,
   frmcoccion, frmmuestrasbiologicas, frmdanio, frmbycatch, frmtallas,
   frmlances, frminformes, frmmuestrassenasa, frmSplashScreenForm, frmmuestrasrayas,
-  frmbackup, frmimprimiretiquetas;
+  frmbackup, frmimprimiretiquetas, frmProduccion;
 
 type
 
@@ -93,6 +93,7 @@ type
     procedure acMuestrasBiologicasExecute(Sender: TObject);
     procedure acLancesExecute(Sender: TObject);
     procedure acMareasExecute(Sender: TObject);
+    procedure acProduccionExecute(Sender: TObject);
     procedure acRayasExecute(Sender: TObject);
     procedure acPruebaFormExecute(Sender: TObject);
     procedure acRindesExecute(Sender: TObject);
@@ -274,6 +275,18 @@ begin
     imageindex:=(sender as taction).ImageIndex;
   ActivarForm(fmMareas, imageindex);
 end;
+
+procedure TfmPrincipal.acProduccionExecute(Sender: TObject);
+var
+  imageindex: integer=-1;
+begin
+  if not Assigned(fmProduccion) then
+    fmProduccion:=TfmProduccion.Create(Self);
+  if (sender is taction) then
+    imageindex:=(sender as taction).ImageIndex;
+  ActivarForm(fmProduccion, imageindex);
+end;
+
 
 procedure TfmPrincipal.acRayasExecute(Sender: TObject);
 var

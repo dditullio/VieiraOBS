@@ -1,0 +1,185 @@
+inherited fmProduccion: TfmProduccion
+  Left = 497
+  Top = 165
+  Width = 621
+  Caption = 'Producción'
+  ClientWidth = 621
+  inherited paBase: TPanel
+    Width = 621
+    ClientWidth = 621
+    inherited paContenido: TPanel
+      Width = 621
+      ClientWidth = 621
+      inherited paLista: TPanel
+        Width = 466
+        ClientWidth = 466
+        inherited paBuscador: TPanel
+          Width = 466
+          ClientWidth = 466
+          inherited laBuscar: TLabel
+            Height = 15
+            Width = 35
+          end
+          inherited edBuscar: TEdit
+            Height = 23
+            Width = 426
+          end
+          inherited bbBuscar: TBitBtn
+            Left = 432
+          end
+        end
+        inherited paGrilla: TPanel
+          Width = 456
+          ClientWidth = 456
+          inherited bbEliminar: TBitBtn
+            Left = 189
+          end
+          inherited bbAgregar: TBitBtn
+            Left = 278
+          end
+          inherited bbEditar: TBitBtn
+            Left = 367
+          end
+          inherited dbgLista: TRxDBGrid
+            Width = 456
+            Columns = <            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Fecha'
+                Width = 80
+                FieldName = 'fecha'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Producción'
+                Width = 343
+                FieldName = 'peso_total_produccion'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end>
+            DataSource = dsMuestrasRayas
+          end
+        end
+      end
+      inherited paDetalles: TPanel
+        Left = 466
+      end
+    end
+    inherited paComando: TPanel
+      Width = 621
+      ClientWidth = 621
+      inherited sbCerrar: TSpeedButton
+        Left = 603
+        Flat = False
+      end
+    end
+  end
+  inherited zcgLista: TZControladorGrilla
+    ControlEdicion = fmEditarRayas.zcePrincipal
+    ZDataset = zqProduccion
+  end
+  object zqProduccion: TZQuery[4]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqProduccionBeforeOpen
+    SQL.Strings = (
+      'SELECT *'
+      'FROM produccion'
+      'WHERE idmarea=:idmarea'
+      ' AND ('
+      ':__FILTRO__ IS NULL OR'
+      ':__FILTRO__ = '''''
+      'OR date_format(fecha,''%d/%m/%Y'') LIKE CONCAT(''%'',:__FILTRO__,''%''))'
+      'ORDER BY fecha asc'
+      ''
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    left = 125
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    object zqProduccionidproduccion: TLongintField
+      FieldKind = fkData
+      FieldName = 'idproduccion'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqProduccionidmarea: TLongintField
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqProduccionfecha: TDateField
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqProduccionpeso_total_produccion: TFloatField
+      FieldKind = fkData
+      FieldName = 'peso_total_produccion'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+  end
+  object dsMuestrasRayas: TDataSource[5]
+    DataSet = zqProduccion
+    left = 160
+    top = 240
+  end
+end

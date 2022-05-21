@@ -677,6 +677,7 @@ inherited fmInformes: TfmInformes
       '    porcent_bolsa_captura/100 as porcent_bolsa_captura,'
       '    cod_tipo_muestra,'
       '    banda,'
+      '    peso_total_produccion,'
       '    comentarios'
       'FROM'
       '    vieira.v_muestras_talla_completa'
@@ -699,6 +700,7 @@ inherited fmInformes: TfmInformes
       '    porcent_bolsa_captura/100 as porcent_bolsa_captura,'
       '    cod_tipo_muestra,'
       '    banda,'
+      '    peso_total_produccion,'
       '    comentarios'
       'FROM'
       '    vieira.v_muestras_talla_completa VMTC'
@@ -865,10 +867,22 @@ inherited fmInformes: TfmInformes
       Required = True
       Size = 12
     end
+    object zqTallaspeso_total_produccion: TFloatField
+      FieldKind = fkData
+      FieldName = 'peso_total_produccion'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
     object zqTallascomentarios: TStringField
       FieldKind = fkData
       FieldName = 'comentarios'
-      Index = 11
+      Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1023,6 +1037,52 @@ inherited fmInformes: TfmInformes
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
+    end
+    object zqDetTallaspeso_muestra_captura: TFloatField
+      FieldKind = fkData
+      FieldName = 'peso_muestra_captura'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 38
+    end
+    object zqDetTallaspeso_muestra_captura_comercial: TFloatField
+      FieldKind = fkData
+      FieldName = 'peso_muestra_captura_comercial'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 34
+    end
+    object zqDetTallaspeso_muestra_captura_no_comercial: TFloatField
+      FieldKind = fkData
+      FieldName = 'peso_muestra_captura_no_comercial'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 34
+    end
+    object zqDetTallascomentarios: TStringField
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
     end
   end
   object zqCoccion: TZQuery[7]

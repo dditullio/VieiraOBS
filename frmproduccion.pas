@@ -7,14 +7,14 @@ interface
 uses
   Classes, SysUtils, FileUtil, DateTimePicker, rxdbgrid, Forms, Controls,
   Graphics, Dialogs, ExtCtrls, Buttons, ActnList, StdCtrls, frmlistabase, db,
-  ZDataset, zcontroladorgrilla, frmeditarrayas, datGeneral;
+  ZDataset, zcontroladorgrilla, frmeditarproduccion, datGeneral;
 
 type
 
   { TfmProduccion }
 
   TfmProduccion = class(TfmListaBase)
-    dsMuestrasRayas: TDataSource;
+    dsProduccion: TDataSource;
     zqProduccion: TZQuery;
     zqProduccionfecha: TDateField;
     zqProduccionidmarea: TLongintField;

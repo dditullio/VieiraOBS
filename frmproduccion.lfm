@@ -77,7 +77,7 @@ inherited fmProduccion: TfmProduccion
                 Filter.ItemIndex = -1
                 KeyList.Strings = (                )
               end>
-            DataSource = dsMuestrasRayas
+            DataSource = dsProduccion
           end
         end
       end
@@ -95,7 +95,7 @@ inherited fmProduccion: TfmProduccion
     end
   end
   inherited zcgLista: TZControladorGrilla
-    ControlEdicion = fmEditarRayas.zcePrincipal
+    ControlEdicion = fmEditarProduccion.zcePrincipal
     ZDataset = zqProduccion
   end
   object zqProduccion: TZQuery[4]
@@ -177,7 +177,7 @@ inherited fmProduccion: TfmProduccion
       Precision = 11
     end
   end
-  object dsMuestrasRayas: TDataSource[5]
+  object dsProduccion: TDataSource[5]
     DataSet = zqProduccion
     left = 160
     top = 240

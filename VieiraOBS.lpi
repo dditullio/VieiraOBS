@@ -335,9 +335,9 @@
         <ResourceBaseClass Value="Form"/>
       </Unit30>
       <Unit31>
-        <Filename Value="frmeditarsenasacallos.pas"/>
+        <Filename Value="frmeditarproduccion.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="fmEditarSenasaCallos"/>
+        <ComponentName Value="fmEditarProduccion"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit31>

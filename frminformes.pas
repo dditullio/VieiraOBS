@@ -61,6 +61,10 @@ type
     sgResumen: TStringGrid;
     tsLances: TTabSheet;
     zqByCatch: TZQuery;
+    zqDetTallascomentarios: TStringField;
+    zqDetTallaspeso_muestra_captura: TFloatField;
+    zqDetTallaspeso_muestra_captura_comercial: TFloatField;
+    zqDetTallaspeso_muestra_captura_no_comercial: TFloatField;
     zqInfDatosPuentefecha_fmt: TStringField;
     zqInfDatosPuentelatitud_fin_inf: TLongintField;
     zqInfDatosPuentelatitud_ini_inf: TLongintField;
@@ -204,6 +208,7 @@ type
     zqTallaspeso_muestra_captura: TFloatField;
     zqTallaspeso_muestra_captura_comercial: TFloatField;
     zqTallaspeso_muestra_captura_no_comercial: TFloatField;
+    zqTallaspeso_total_produccion: TFloatField;
     zqTallasporcent_bolsa_captura: TFloatField;
     zqSenasaCallos: TZQuery;
     zqInfMuestrasBiol: TZQuery;
@@ -1034,13 +1039,13 @@ begin
     subfijo := '('+IntToStr(numero)+')';
   end;
   archivo_origen := ExtractFilePath(Application.ExeName) +
-    'PlanillasExcel' + DirectorySeparator + 'Tallas.xls';
+    'PlanillasExcel' + DirectorySeparator + 'Tallas_2022.xls';
   archivo_destino := dedCarpetaPlanillas.Directory +
     DirectorySeparator + strfecha + 'Tallas'+subfijo+'.xls';
   if (not FileExistsUTF8(archivo_destino)) or forzar_reemplazo or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
   begin
 
-    CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
+    CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile], true);
     archivo_destino:=UTF8Decode(archivo_destino);
     //Abro el archivo para guardar los datos
     xls.Workbooks.Open(archivo_destino);
@@ -1049,6 +1054,8 @@ begin
     xls.Cells[1, 2] := tmp;
     tmp := UTF8Decode(dmGeneral.zqMareaActivacapitan.AsString);
     xls.Cells[2, 2] := tmp;
+    tmp := UTF8Decode(dmGeneral.zqMareaActivaobservador.AsString);
+    xls.Cells[3, 2] := tmp;
     Result := True;
   end else
     Result := False;
@@ -1062,7 +1069,9 @@ var
   fila, columna, inc_col: integer;
   banda_captura, banda_retenido, banda_descarte: string;
   numero_archivo_excel: integer = 1;//Si hay demasiadas muestras hay que crear más de un archivo
-begin
+  lance: Integer;
+  total, menor, mayor: double;
+  begin
   //Primero verifico que el objeto se pueda crear
   try
     xls := CreateOleObject('Excel.Application');
@@ -1085,7 +1094,7 @@ begin
         pbProceso.Position := 0;
         laProceso.Caption:='Procesando muestras de talla';
         pbProceso.Visible := True;
-        fila := 14;
+        fila := 16;
         columna := 2;
         while not EOF do
         begin
@@ -1099,18 +1108,17 @@ begin
             InicializarArchivoExcelTallas (xls, numero_archivo_excel, True);
             columna := 2;
           end;
-          //Datos de encabezado de muestra (sólo en columna de captura)
-          if zqTallaspeso_muestra_captura.AsFloat > 0 then
-            xls.Cells[4, columna] := zqTallaspeso_muestra_captura.AsFloat;
-          if zqTallaspeso_muestra_captura_comercial.AsFloat > 0 then
-            xls.Cells[5, columna] := zqTallaspeso_muestra_captura_comercial.AsFloat;
-          if zqTallaspeso_muestra_captura_no_comercial.AsFloat > 0 then
-            xls.Cells[6, columna] := zqTallaspeso_muestra_captura_no_comercial.AsFloat;
+
+          //Datos de encabezado de muestra
           if zqTallasminutos_arrastre.AsFloat > 0 then
-            xls.Cells[7, columna] := zqTallasminutos_arrastre.AsFloat;
-          if zqTallasporcent_bolsa_captura.AsFloat > 0 then
-            xls.Cells[8, columna] := zqTallasporcent_bolsa_captura.AsFloat;
+            xls.Cells[8, columna] := zqTallasminutos_arrastre.AsFloat;
+          //El dato de captura se quitó de la planilla
+          //if zqTallasporcent_bolsa_captura.AsFloat > 0 then
+          //  xls.Cells[8, columna] := zqTallasporcent_bolsa_captura.AsFloat;
           //Proceso las tallas
+          if zqTallaspeso_total_produccion.AsFloat > 0 then
+            xls.Cells[9, columna] := zqTallaspeso_total_produccion.AsFloat;
+          xls.Cells[10, columna] := zqTallasfecha.AsDateTime;
           banda_captura := '';
           banda_retenido := '';
           banda_descarte := '';
@@ -1133,16 +1141,26 @@ begin
               inc_col := 2;
               banda_descarte := zqDetTallasbanda.AsString;
             end;
-            //Si hay algún comentario, lo coloco en la fila 3, que está vacía
-            if (zqTallascomentarios.AsString <> '')
-            and (zqDetTallascod_tipo_muestra.AsString = zqTallascod_tipo_muestra.AsString) then
+            lance := zqTallasnrolance.AsInteger;
+            total := zqDetTallaspeso_muestra_captura.AsFloat;
+            mayor := zqDetTallaspeso_muestra_captura_comercial.AsFloat;
+            menor := zqDetTallaspeso_muestra_captura_no_comercial.AsFloat;
+            //Datos de encabezado de muestra
+            if zqDetTallaspeso_muestra_captura.AsFloat > 0 then
+              xls.Cells[5, columna+inc_col] := zqDetTallaspeso_muestra_captura.AsFloat;
+            if zqDetTallaspeso_muestra_captura_comercial.AsFloat > 0 then
+              xls.Cells[6, columna+inc_col] := zqDetTallaspeso_muestra_captura_comercial.AsFloat;
+            if zqDetTallaspeso_muestra_captura_no_comercial.AsFloat > 0 then
+              xls.Cells[7, columna+inc_col] := zqDetTallaspeso_muestra_captura_no_comercial.AsFloat;
+            //Si hay algún comentario, lo coloco en la fila 4, que está vacía
+            if (zqDetTallascomentarios.AsString <> '') then
             begin
-              tmp := UTF8Decode(zqTallascomentarios.AsString);
-              xls.Cells[3, columna+inc_col] := tmp;
+              tmp := UTF8Decode(zqDetTallascomentarios.AsString);
+              xls.Cells[4, columna+inc_col] := tmp;
             end;
 
             //En la planilla, el detalle de tallas comienza en 1 en la fila 14, es decir, talla+13
-            fila := zqDetTallastalla.AsInteger + 13;
+            fila := zqDetTallastalla.AsInteger + 15;
             //Salteo los valores nulos o 0 (cero)
             if zqDetTallasnro_ejemplares.AsInteger > 0 then
               xls.Cells[fila, columna + inc_col] := zqDetTallasnro_ejemplares.AsInteger;
@@ -1152,17 +1170,17 @@ begin
           if banda_captura <> '' then
           begin
             tmp := UTF8Decode(zqTallasnrolance.AsString + ' ' + banda_captura);
-            xls.Cells[10, columna] := tmp;
+            xls.Cells[12, columna] := tmp;
           end;
           if banda_retenido <> '' then
           begin
             tmp := UTF8Decode(zqTallasnrolance.AsString + ' ' + banda_retenido);
-            xls.Cells[10, columna + 1] := tmp;
+            xls.Cells[12, columna + 1] := tmp;
           end;
           if banda_descarte <> '' then
           begin
             tmp := UTF8Decode(zqTallasnrolance.AsString + ' ' + banda_descarte);
-            xls.Cells[10, columna + 2] := tmp;
+            xls.Cells[12, columna + 2] := tmp;
           end;
 
           pbProceso.Position := RecNo;

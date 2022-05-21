@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, datBase, db,
-  ZDataset, datGeneral, math, funciones;
+  ZDataset, ZStoredProcedure, datGeneral, math, funciones;
 
 type
 
@@ -38,6 +38,8 @@ type
     zqTallasidlance: TLongintField;
     zqTallasidmarea: TLongintField;
     zqTallasidmuestras_talla: TLongintField;
+    zqTallaspeso_comercial: TFloatField;
+    zqTallaspeso_no_comercial: TFloatField;
     zqTallaspeso_total: TFloatField;
     zqTiposMuestra: TZQuery;
     zqTiposMuestracod_tipo_muestra: TStringField;

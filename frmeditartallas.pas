@@ -22,6 +22,8 @@ type
     dbdtFecha: TDBDateTimePicker;
     dbdtHora: TDtDBTimeEdit;
     dbedPesoMuestra: TDBEdit;
+    dbedPesoComerciales: TDBEdit;
+    dbedPesoNoComerciales: TDBEdit;
     dbgDetalle: TRxDBGrid;
     dblkBanda: TDBLookupComboBox;
     dblkTipo: TDBLookupComboBox;
@@ -31,7 +33,9 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
     paFechaHora: TPanel;
     zcgLista: TZControladorGrilla;
     procedure dbdtFechaEnter(Sender: TObject);

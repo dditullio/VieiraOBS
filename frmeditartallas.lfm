@@ -1,10 +1,10 @@
 inherited fmEditarTallas: TfmEditarTallas
   Left = 568
-  Height = 530
-  Top = 140
+  Height = 573
+  Top = 97
   Width = 411
   Caption = 'Muestra de tallas'
-  ClientHeight = 530
+  ClientHeight = 573
   ClientWidth = 411
   OnShow = FormShow
   inherited paEncabezadoBase: TPanel
@@ -28,9 +28,9 @@ inherited fmEditarTallas: TfmEditarTallas
     end
   end
   inherited paPrincipal: TPanel
-    Height = 460
+    Height = 503
     Width = 411
-    ClientHeight = 460
+    ClientHeight = 503
     ClientWidth = 411
     object Label3: TLabel[0]
       Left = 168
@@ -56,30 +56,30 @@ inherited fmEditarTallas: TfmEditarTallas
       TabOrder = 1
     end
     object Label7: TLabel[2]
-      Left = 108
+      Left = 128
       Height = 15
-      Top = 389
+      Top = 392
       Width = 68
       Anchors = [akLeft, akBottom]
       Caption = 'Comentarios'
       ParentColor = False
     end
     object dbmComentarios: TDBMemo[3]
-      Left = 108
-      Height = 46
-      Top = 407
-      Width = 292
+      Left = 128
+      Height = 90
+      Top = 408
+      Width = 272
       Anchors = [akLeft, akBottom]
       DataField = 'comentarios'
       DataSource = dmTallas.dsTallas
       ScrollBars = ssAutoVertical
-      TabOrder = 8
+      TabOrder = 10
     end
     object bbEliminar: TBitBtn[4]
       AnchorSideRight.Control = bbAgregar
-      Left = 135
+      Left = 134
       Height = 28
-      Top = 357
+      Top = 360
       Width = 88
       Anchors = [akRight, akBottom]
       BorderSpacing.Right = 1
@@ -152,9 +152,9 @@ inherited fmEditarTallas: TfmEditarTallas
     end
     object bbAgregar: TBitBtn[5]
       AnchorSideRight.Control = bbEditar
-      Left = 224
+      Left = 223
       Height = 28
-      Top = 357
+      Top = 360
       Width = 88
       Anchors = [akRight, akBottom]
       BorderSpacing.Right = 1
@@ -226,9 +226,9 @@ inherited fmEditarTallas: TfmEditarTallas
       TabOrder = 5
     end
     object bbEditar: TBitBtn[6]
-      Left = 313
+      Left = 312
       Height = 28
-      Top = 357
+      Top = 360
       Width = 88
       Anchors = [akRight, akBottom]
       Glyph.Data = {
@@ -302,7 +302,7 @@ inherited fmEditarTallas: TfmEditarTallas
       Left = 288
       Height = 15
       Top = 6
-      Width = 24
+      Width = 23
       Caption = 'Tipo'
       ParentColor = False
     end
@@ -323,7 +323,7 @@ inherited fmEditarTallas: TfmEditarTallas
     end
     object dbgDetalle: TRxDBGrid[9]
       Left = 8
-      Height = 302
+      Height = 306
       Top = 54
       Width = 392
       TitleButtons = False
@@ -332,8 +332,8 @@ inherited fmEditarTallas: TfmEditarTallas
         item
           Alignment = taCenter
           Title.Alignment = taCenter
-          Title.Caption = 'Talla'
           Title.Orientation = toHorizontal
+          Title.Caption = 'Talla'
           Width = 179
           FieldName = 'talla'
           EditButtons = <>
@@ -348,8 +348,8 @@ inherited fmEditarTallas: TfmEditarTallas
         item
           Alignment = taCenter
           Title.Alignment = taCenter
-          Title.Caption = 'Nº ejemplares'
           Title.Orientation = toHorizontal
+          Title.Caption = 'Nº ejemplares'
           Width = 180
           FieldName = 'nro_ejemplares'
           EditButtons = <>
@@ -440,17 +440,17 @@ inherited fmEditarTallas: TfmEditarTallas
     object Label5: TLabel[10]
       Left = 8
       Height = 15
-      Top = 387
-      Width = 71
-      Caption = 'Peso muestra'
+      Top = 368
+      Width = 98
+      Caption = 'Peso total muestra'
       ParentColor = False
     end
     object dbedPesoMuestra: TDBEdit[11]
       Left = 8
       Height = 23
       Hint = 'Sólo indicarlo si no se realizó rinde'
-      Top = 410
-      Width = 92
+      Top = 388
+      Width = 109
       DataField = 'peso_total'
       DataSource = dmTallas.dsTallas
       CharCase = ecNormal
@@ -521,9 +521,49 @@ inherited fmEditarTallas: TfmEditarTallas
         TabOrder = 1
       end
     end
+    object Label6: TLabel[13]
+      Left = 8
+      Height = 15
+      Top = 413
+      Width = 91
+      Caption = 'Peso comerciales'
+      ParentColor = False
+    end
+    object dbedPesoComerciales: TDBEdit[14]
+      Left = 8
+      Height = 23
+      Hint = 'Sólo indicarlo si no se realizó rinde'
+      Top = 433
+      Width = 109
+      DataField = 'peso_comercial'
+      DataSource = dmTallas.dsTallas
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 8
+    end
+    object Label8: TLabel[15]
+      Left = 8
+      Height = 15
+      Top = 456
+      Width = 108
+      Caption = 'Peso no comerciales'
+      ParentColor = False
+    end
+    object dbedPesoNoComerciales: TDBEdit[16]
+      Left = 8
+      Height = 23
+      Hint = 'Sólo indicarlo si no se realizó rinde'
+      Top = 475
+      Width = 109
+      DataField = 'peso_no_comercial'
+      DataSource = dmTallas.dsTallas
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 9
+    end
   end
   inherited paControles: TPanel
-    Top = 494
+    Top = 537
     Width = 411
     ClientWidth = 411
     inherited bbCancelar: TBitBtn

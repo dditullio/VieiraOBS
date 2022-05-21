@@ -118,11 +118,35 @@ inherited dmTallas: TdmTallas
       MinValue = 0
       Precision = 11
     end
+    object zqTallaspeso_comercial: TFloatField
+      FieldKind = fkData
+      FieldName = 'peso_comercial'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
+    object zqTallaspeso_no_comercial: TFloatField
+      FieldKind = fkData
+      FieldName = 'peso_no_comercial'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 11
+    end
     object zqTallascomentarios: TStringField
       DisplayWidth = 1024
       FieldKind = fkData
       FieldName = 'comentarios'
-      Index = 8
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -133,7 +157,7 @@ inherited dmTallas: TdmTallas
       DisplayWidth = 50
       FieldKind = fkCalculated
       FieldName = 'Encabezado'
-      Index = 9
+      Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -144,7 +168,7 @@ inherited dmTallas: TdmTallas
       DisplayWidth = 180
       FieldKind = fkLookup
       FieldName = 'descripcion'
-      Index = 10
+      Index = 12
       KeyFields = 'banda'
       LookupCache = False
       LookupDataSet = zqBandas
@@ -159,7 +183,7 @@ inherited dmTallas: TdmTallas
       DisplayWidth = 60
       FieldKind = fkLookup
       FieldName = 'tipo_muestra'
-      Index = 11
+      Index = 13
       KeyFields = 'cod_tipo_muestra'
       LookupCache = False
       LookupDataSet = zqTiposMuestra

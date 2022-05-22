@@ -66,9 +66,11 @@ inherited fmProduccion: TfmProduccion
                 SizePriority = 0
                 Title.Alignment = taCenter
                 Title.Orientation = toHorizontal
-                Title.Caption = 'Producción'
-                Width = 343
+                Title.Caption = 'Producción (Kg)'
+                Width = 150
                 FieldName = 'peso_total_produccion'
+                DisplayFormat = '0.00'
+                Constraints.MaxWidth = 150
                 EditButtons = <>
                 Filter.DropDownRows = 0
                 Filter.ValueList.Strings = (                )

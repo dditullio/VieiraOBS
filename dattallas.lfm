@@ -114,6 +114,7 @@ inherited dmTallas: TdmTallas
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayFormat = '0.00'
       MaxValue = 0
       MinValue = 0
       Precision = 11
@@ -126,6 +127,7 @@ inherited dmTallas: TdmTallas
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayFormat = '0.00'
       MaxValue = 0
       MinValue = 0
       Precision = 11
@@ -138,6 +140,7 @@ inherited dmTallas: TdmTallas
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayFormat = '0.00'
       MaxValue = 0
       MinValue = 0
       Precision = 11

@@ -13,6 +13,7 @@ inherited fmEditarRindes: TfmEditarRindes
     end
     inherited DividerBevel1: TDividerBevel
       Left = 231
+      Width = 15
     end
     inherited paEncabezado: TPanel
       Width = 230
@@ -41,7 +42,7 @@ inherited fmEditarRindes: TfmEditarRindes
       Left = 168
       Height = 23
       Top = 26
-      Width = 183
+      Width = 104
       AutoComplete = True
       DataField = 'banda'
       DataSource = dsPrincipal
@@ -62,7 +63,7 @@ inherited fmEditarRindes: TfmEditarRindes
       DataSource = dsPrincipal
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 2
+      TabOrder = 3
     end
     object Label4: TLabel[3]
       Left = 8
@@ -89,7 +90,7 @@ inherited fmEditarRindes: TfmEditarRindes
       DataSource = dsPrincipal
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 4
+      TabOrder = 5
     end
     object Label6: TLabel[6]
       Left = 8
@@ -108,7 +109,7 @@ inherited fmEditarRindes: TfmEditarRindes
       DataSource = dsPrincipal
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 6
+      TabOrder = 7
     end
     object Label7: TLabel[8]
       Left = 8
@@ -126,7 +127,7 @@ inherited fmEditarRindes: TfmEditarRindes
       DataField = 'comentarios'
       DataSource = dsPrincipal
       ScrollBars = ssAutoVertical
-      TabOrder = 9
+      TabOrder = 10
     end
     object paFechaHora: TPanel[10]
       Left = 5
@@ -202,7 +203,7 @@ inherited fmEditarRindes: TfmEditarRindes
       DataSource = dsPrincipal
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 3
+      TabOrder = 4
     end
     object Label8: TLabel[12]
       Left = 135
@@ -230,7 +231,7 @@ inherited fmEditarRindes: TfmEditarRindes
       DataSource = dsPrincipal
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 5
+      TabOrder = 6
     end
     object Label10: TLabel[15]
       Left = 135
@@ -250,7 +251,7 @@ inherited fmEditarRindes: TfmEditarRindes
       DataSource = dsPrincipal
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 7
+      TabOrder = 8
     end
     object ckDatosBabor: TCheckBox[17]
       Left = 192
@@ -263,8 +264,28 @@ inherited fmEditarRindes: TfmEditarRindes
       Checked = True
       OnClick = ckDatosBaborClick
       State = cbChecked
-      TabOrder = 8
+      TabOrder = 9
       TabStop = False
+    end
+    object Label21: TLabel[18]
+      Left = 281
+      Height = 15
+      Top = 6
+      Width = 69
+      Caption = 'Mar Beaufort'
+      ParentColor = False
+    end
+    object dbedEstadoMar: TDBEdit[19]
+      Left = 281
+      Height = 23
+      Hint = 'Estado del mar según escala Beaufort'
+      Top = 26
+      Width = 70
+      DataField = 'cod_estado_mar'
+      DataSource = dsPrincipal
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 2
     end
   end
   inherited paControles: TPanel
@@ -273,9 +294,11 @@ inherited fmEditarRindes: TfmEditarRindes
     ClientWidth = 361
     inherited bbCancelar: TBitBtn
       Left = 179
+      Height = 24
     end
     inherited bbAceptar: TBitBtn
       Left = 267
+      Height = 24
     end
   end
   inherited zqPrincipal: TZQuery
@@ -460,6 +483,15 @@ inherited fmEditarRindes: TfmEditarRindes
       ReadOnly = False
       Required = False
       Size = 180
+    end
+    object zqPrincipalcod_estado_mar: TLongintField[14]
+      FieldKind = fkData
+      FieldName = 'cod_estado_mar'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
   inherited zcePrincipal: TZControladorEdicion
@@ -695,6 +727,15 @@ inherited fmEditarRindes: TfmEditarRindes
       MaxValue = 0
       MinValue = 0
       Precision = 11
+    end
+    object zqRindeAntcod_estado_mar: TLongintField
+      FieldKind = fkData
+      FieldName = 'cod_estado_mar'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
 end

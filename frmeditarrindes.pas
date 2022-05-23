@@ -22,6 +22,7 @@ type
     dbedBaldeComercial: TDBEdit;
     dbedBaldeNoComercial: TDBEdit;
     dbedBaldeByCatch: TDBEdit;
+    dbedEstadoMar: TDBEdit;
     dbedNoComercial: TDBEdit;
     dbedByCatch: TDBEdit;
     dblkBanda: TDBLookupComboBox;
@@ -31,6 +32,7 @@ type
     Label1: TLabel;
     Label10: TLabel;
     Label2: TLabel;
+    Label21: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -39,6 +41,7 @@ type
     Label8: TLabel;
     Label9: TLabel;
     paFechaHora: TPanel;
+    zqPrincipalcod_estado_mar: TLongintField;
     zqPrincipalpeso_balde_comercial: TFloatField;
     zqPrincipalpeso_balde_fauna_acomp: TFloatField;
     zqPrincipalpeso_balde_no_comercial: TFloatField;
@@ -58,6 +61,7 @@ type
     zqPrincipalpeso_fauna_acomp: TFloatField;
     zqPrincipalpeso_no_comercial: TFloatField;
     zqRindeAntbanda: TStringField;
+    zqRindeAntcod_estado_mar: TLongintField;
     zqRindeAntcomentarios: TStringField;
     zqRindeAntfecha: TDateField;
     zqRindeAnthora: TTimeField;
@@ -181,7 +185,11 @@ begin
     //Si no hay registro anterior, comienzo por la banda de estribor
     zqPrincipalbanda.AsString:='E';
   end;
-  //Repito los pesos de los baldes
+
+   if not zqRindeAntcod_estado_mar.IsNull then
+     zqPrincipalcod_estado_mar.Value:=zqRindeAntcod_estado_mar.Value;
+
+   //Repito los pesos de los baldes
   if not zqRindeAntpeso_balde_comercial.IsNull then
      zqPrincipalpeso_balde_comercial.Value:=zqRindeAntpeso_balde_comercial.Value;
   if not zqRindeAntpeso_balde_no_comercial.IsNull then

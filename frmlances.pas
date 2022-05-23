@@ -499,8 +499,8 @@ begin
     CargarMapa('VEDA MERLUZA', lcsOtrasZonas);
     CargarMapa('VEDA MERLUZA NEGRA', lcsOtrasZonas, False);
     CargarMapa('ZONA COMUN', lcsOtrasZonas, False);
-    CargarMapa('ABIERTO 2021', lcsZonasAbiertas, True, 'Etiqueta');
-    CargarMapa('CERRADO 2021', lcsZonasCerradas, True, 'Etiqueta');
+    //CargarMapa('ABIERTO 2021', lcsZonasAbiertas, True, 'Etiqueta');
+    //CargarMapa('CERRADO 2021', lcsZonasCerradas, True, 'Etiqueta');
     CargarMapaLances;
     FMapasCargados:=True;
   end;

@@ -26,8 +26,13 @@ inherited fmLances: TfmLances
         inherited paBuscador: TPanel
           Width = 578
           ClientWidth = 578
+          inherited laBuscar: TLabel
+            Height = 15
+            Width = 35
+          end
           inherited edBuscar: TEdit
             Left = 124
+            Height = 23
             Width = 419
           end
           inherited bbBuscar: TBitBtn

@@ -58,6 +58,9 @@ inherited fmProduccion: TfmProduccion
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
+                Footer.Alignment = taRightJustify
+                Footer.Value = 'Total:'
+                Footer.ValueType = fvtStaticText
                 KeyList.Strings = (                )
               end            
               item
@@ -77,8 +80,18 @@ inherited fmProduccion: TfmProduccion
                 Filter.EmptyValue = '(Todos)'
                 Filter.EmptyFont.Style = [fsItalic]
                 Filter.ItemIndex = -1
+                Footer.Alignment = taCenter
+                Footer.DisplayFormat = '0,000.00 Kg'
+                Footer.FieldName = 'peso_total_produccion'
+                Footer.ValueType = fvtSum
                 KeyList.Strings = (                )
               end>
+            FooterOptions.Active = True
+            FooterOptions.Color = clBtnFace
+            FooterOptions.RowCount = 1
+            OptionsRx = [rdgDblClickOptimizeColWidth, rdgFooterRows, rdgAllowQuickFilter, rdgAllowSortForm, rdgAllowToolMenu, rdgCaseInsensitiveSort]
+            FooterColor = clBtnFace
+            FooterRowCount = 1
             DataSource = dsProduccion
           end
         end
@@ -96,9 +109,16 @@ inherited fmProduccion: TfmProduccion
       end
     end
   end
+  inherited alComando: TActionList
+    top = 136
+  end
+  inherited ilComando: TImageList
+    top = 136
+  end
   inherited zcgLista: TZControladorGrilla
     ControlEdicion = fmEditarProduccion.zcePrincipal
     ZDataset = zqProduccion
+    top = 136
   end
   object zqProduccion: TZQuery[4]
     Connection = dmGeneral.zcDB
@@ -127,7 +147,7 @@ inherited fmProduccion: TfmProduccion
         ParamType = ptUnknown
       end>
     left = 125
-    top = 240
+    top = 136
     ParamData = <    
       item
         DataType = ftUnknown
@@ -182,6 +202,6 @@ inherited fmProduccion: TfmProduccion
   object dsProduccion: TDataSource[5]
     DataSet = zqProduccion
     left = 160
-    top = 240
+    top = 136
   end
 end

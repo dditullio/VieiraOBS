@@ -904,7 +904,7 @@ begin
   //Pongo el resto dentro de un Try para si o si finalizar le Excel al terminar
   try
     archivo_origen := ExtractFilePath(Application.ExeName) +
-      'PlanillasExcel' + DirectorySeparator + 'Rindes.xls';
+      'PlanillasExcel' + DirectorySeparator + 'Rindes_2022.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
       DirectorySeparator + strfecha + 'Rindes.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
@@ -913,8 +913,10 @@ begin
       archivo_destino:=UTF8Decode(archivo_destino);
       xls.Workbooks.Open(archivo_destino);
       //Pongo los datos de la marea
-      tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaobservador.AsString);
       xls.Cells[1, 2] := tmp;
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
+      xls.Cells[2, 2] := tmp;
       with zqRindes do
       begin
         Close;
@@ -925,7 +927,7 @@ begin
         pbProceso.Position := 0;
         laProceso.Caption:='Procesando muestras de rinde';
         pbProceso.Visible := True;
-        Fila := 4;//Arranco en la fila 4 porque antes están los títulos
+        Fila := 6;//Arranco en la fila 4 porque antes están los títulos
         //Columnas: 1: Fecha, 2: Lance (Nro y banda), 3: Comenrcial, 4: No comercial, 5:Acompañante, 9: Observaciones
         while not EOF do
         begin

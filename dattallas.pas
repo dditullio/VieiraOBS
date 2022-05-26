@@ -38,6 +38,9 @@ type
     zqTallasidlance: TLongintField;
     zqTallasidmarea: TLongintField;
     zqTallasidmuestras_talla: TLongintField;
+    zqTallaspeso_balde_comercial: TFloatField;
+    zqTallaspeso_balde_no_comercial: TFloatField;
+    zqTallaspeso_balde_total: TFloatField;
     zqTallaspeso_comercial: TFloatField;
     zqTallaspeso_no_comercial: TFloatField;
     zqTallaspeso_total: TFloatField;

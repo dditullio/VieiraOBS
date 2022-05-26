@@ -21,14 +21,19 @@ type
     bbEliminar: TBitBtn;
     dbdtFecha: TDBDateTimePicker;
     dbdtHora: TDtDBTimeEdit;
+    dbedPesoComerciales1: TDBEdit;
     dbedPesoMuestra: TDBEdit;
     dbedPesoComerciales: TDBEdit;
+    dbedPesoMuestra1: TDBEdit;
     dbedPesoNoComerciales: TDBEdit;
+    dbedPesoNoComerciales1: TDBEdit;
     dbgDetalle: TRxDBGrid;
     dblkBanda: TDBLookupComboBox;
     dblkTipo: TDBLookupComboBox;
     dbmComentarios: TDBMemo;
     Label1: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -36,6 +41,7 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    Label9: TLabel;
     paFechaHora: TPanel;
     zcgLista: TZControladorGrilla;
     procedure dbdtFechaEnter(Sender: TObject);

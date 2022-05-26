@@ -56,30 +56,30 @@ inherited fmEditarTallas: TfmEditarTallas
       TabOrder = 1
     end
     object Label7: TLabel[2]
-      Left = 128
+      Left = 256
       Height = 15
-      Top = 392
+      Top = 368
       Width = 68
       Anchors = [akLeft, akBottom]
       Caption = 'Comentarios'
       ParentColor = False
     end
     object dbmComentarios: TDBMemo[3]
-      Left = 128
-      Height = 90
-      Top = 408
-      Width = 272
+      Left = 256
+      Height = 110
+      Top = 388
+      Width = 144
       Anchors = [akLeft, akBottom]
       DataField = 'comentarios'
       DataSource = dmTallas.dsTallas
       ScrollBars = ssAutoVertical
-      TabOrder = 10
+      TabOrder = 13
     end
     object bbEliminar: TBitBtn[4]
       AnchorSideRight.Control = bbAgregar
       Left = 134
       Height = 28
-      Top = 360
+      Top = 336
       Width = 88
       Anchors = [akRight, akBottom]
       BorderSpacing.Right = 1
@@ -154,7 +154,7 @@ inherited fmEditarTallas: TfmEditarTallas
       AnchorSideRight.Control = bbEditar
       Left = 223
       Height = 28
-      Top = 360
+      Top = 336
       Width = 88
       Anchors = [akRight, akBottom]
       BorderSpacing.Right = 1
@@ -228,7 +228,7 @@ inherited fmEditarTallas: TfmEditarTallas
     object bbEditar: TBitBtn[6]
       Left = 312
       Height = 28
-      Top = 360
+      Top = 336
       Width = 88
       Anchors = [akRight, akBottom]
       Glyph.Data = {
@@ -323,7 +323,7 @@ inherited fmEditarTallas: TfmEditarTallas
     end
     object dbgDetalle: TRxDBGrid[9]
       Left = 8
-      Height = 306
+      Height = 282
       Top = 54
       Width = 392
       TitleButtons = False
@@ -440,7 +440,7 @@ inherited fmEditarTallas: TfmEditarTallas
     object Label5: TLabel[10]
       Left = 8
       Height = 15
-      Top = 368
+      Top = 372
       Width = 98
       Caption = 'Peso total muestra'
       ParentColor = False
@@ -448,7 +448,7 @@ inherited fmEditarTallas: TfmEditarTallas
     object dbedPesoMuestra: TDBEdit[11]
       Left = 8
       Height = 23
-      Hint = 'Sólo indicarlo si no se realizó rinde'
+      Hint = 'Indique este valor en muestras de retenido'
       Top = 388
       Width = 109
       DataField = 'peso_total'
@@ -524,7 +524,7 @@ inherited fmEditarTallas: TfmEditarTallas
     object Label6: TLabel[13]
       Left = 8
       Height = 15
-      Top = 413
+      Top = 417
       Width = 91
       Caption = 'Peso comerciales'
       ParentColor = False
@@ -532,34 +532,94 @@ inherited fmEditarTallas: TfmEditarTallas
     object dbedPesoComerciales: TDBEdit[14]
       Left = 8
       Height = 23
-      Hint = 'Sólo indicarlo si no se realizó rinde'
+      Hint = 'Indique este valor en muestras de retenido'
       Top = 433
       Width = 109
       DataField = 'peso_comercial'
       DataSource = dmTallas.dsTallas
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 8
+      TabOrder = 9
     end
     object Label8: TLabel[15]
       Left = 8
       Height = 15
-      Top = 456
+      Top = 460
       Width = 108
       Caption = 'Peso no comerciales'
       ParentColor = False
     end
     object dbedPesoNoComerciales: TDBEdit[16]
-      Left = 8
+      Left = 7
       Height = 23
-      Hint = 'Sólo indicarlo si no se realizó rinde'
+      Hint = 'Indique este valor en muestras de retenido'
       Top = 475
       Width = 109
       DataField = 'peso_no_comercial'
       DataSource = dmTallas.dsTallas
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 9
+      TabOrder = 11
+    end
+    object dbedPesoNoComerciales1: TDBEdit[17]
+      Left = 120
+      Height = 23
+      Hint = 'Peso del balde'
+      Top = 475
+      Width = 109
+      DataField = 'peso_balde_no_comercial'
+      DataSource = dmTallas.dsTallas
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 12
+    end
+    object Label9: TLabel[18]
+      Left = 120
+      Height = 15
+      Top = 460
+      Width = 104
+      Caption = 'Tara no comerciales'
+      ParentColor = False
+    end
+    object dbedPesoComerciales1: TDBEdit[19]
+      Left = 120
+      Height = 23
+      Hint = 'Peso del balde'
+      Top = 433
+      Width = 109
+      DataField = 'peso_balde_comercial'
+      DataSource = dmTallas.dsTallas
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 10
+    end
+    object Label10: TLabel[20]
+      Left = 120
+      Height = 15
+      Top = 417
+      Width = 87
+      Caption = 'Tara comerciales'
+      ParentColor = False
+    end
+    object dbedPesoMuestra1: TDBEdit[21]
+      Left = 120
+      Height = 23
+      Hint = 'Peso del balde'
+      Top = 388
+      Width = 109
+      DataField = 'peso_balde_total'
+      DataSource = dmTallas.dsTallas
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 8
+    end
+    object Label11: TLabel[22]
+      Left = 120
+      Height = 15
+      Top = 372
+      Width = 67
+      Caption = 'Tara muestra'
+      ParentColor = False
     end
   end
   inherited paControles: TPanel
@@ -575,10 +635,20 @@ inherited fmEditarTallas: TfmEditarTallas
       Height = 24
     end
   end
+  inherited dsPrincipal: TDataSource
+    left = 180
+    top = 288
+  end
+  inherited zqPrincipal: TZQuery
+    left = 104
+    top = 288
+  end
   inherited zcePrincipal: TZControladorEdicion
     AltaContinua = True
     ControlInicial = dbdtHora
     OnInitRecord = zcePrincipalInitRecord
+    left = 248
+    top = 288
   end
   inherited zdgPrincipal: TZDatasetGroup
     DatasetMaestro = dmTallas.zqTallas
@@ -593,6 +663,8 @@ inherited fmEditarTallas: TfmEditarTallas
       item
         Dataset = dmTallas.zqTiposMuestra
       end>
+    left = 56
+    top = 288
   end
   object zcgLista: TZControladorGrilla[8]
     AltoBotones = 28

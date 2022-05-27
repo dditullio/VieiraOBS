@@ -15,7 +15,7 @@ uses
   frmeditarbycatch, datBase, frmeditardetallebycatch, frmtallas, dattallas,
   frmeditartallas, frmeditardetalletallas, frmeditarlances, frmlances,
   funciones, frmInformes, frmmuestrassenasa, frmrptdatospuente,
-  frmeditarproduccion, lr_pdfexp_reg, frmeditarsenasaentera,
+  frmeditarproduccion, lr_pdfexp_reg, frmeditarsenasaentera,frmeditarsenasacallos,
   frmSplashScreenForm, frmproduccion, frmeditarrayas, frmbackup, 
 frmimprimiretiquetas;
 
@@ -45,6 +45,7 @@ begin
   Application.CreateForm(TfmEditarLances, fmEditarLances);
   Application.CreateForm(TfmEditarProduccion, fmEditarProduccion);
   Application.CreateForm(TFmEditarSenasaEntera, FmEditarSenasaEntera);
+  Application.CreateForm(TFmEditarSenasaCallos, FmEditarSenasaCallos);
   Application.CreateForm(TfmInformes, fmInformes);
   Application.CreateForm(TfmEditarRayas, fmEditarRayas);
   Application.Run;

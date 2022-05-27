@@ -209,10 +209,46 @@ inherited fmByCatch: TfmByCatch
               ParentColor = False
               ParentFont = False
             end
-            object Label5: TLabel
+            object Label6: TLabel
               Left = 0
               Height = 15
               Top = 30
+              Width = 164
+              Caption = 'Unidad de manejo:'
+              ParentColor = False
+            end
+            object DBText17: TDBText
+              Left = 169
+              Height = 15
+              Top = 30
+              Width = 56
+              Alignment = taRightJustify
+              DataField = 'unidad_manejo'
+              DataSource = dsDatosMuestra
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
+            object Label31: TLabel
+              Left = 0
+              Height = 15
+              Top = 45
+              Width = 164
+              Caption = ' '
+              ParentColor = False
+            end
+            object Label32: TLabel
+              Left = 169
+              Height = 15
+              Top = 45
+              Width = 56
+              Caption = ' '
+              ParentColor = False
+            end
+            object Label5: TLabel
+              Left = 0
+              Height = 15
+              Top = 60
               Width = 164
               Caption = 'Profundidad:'
               ParentColor = False
@@ -220,7 +256,7 @@ inherited fmByCatch: TfmByCatch
             object DBText4: TDBText
               Left = 169
               Height = 15
-              Top = 30
+              Top = 60
               Width = 56
               Alignment = taRightJustify
               DataField = 'profundidad'
@@ -229,10 +265,30 @@ inherited fmByCatch: TfmByCatch
               ParentColor = False
               ParentFont = False
             end
+            object Label17: TLabel
+              Left = 0
+              Height = 15
+              Top = 75
+              Width = 164
+              Caption = 'Tiempo de arrastre:'
+              ParentColor = False
+            end
+            object DBText16: TDBText
+              Left = 169
+              Height = 15
+              Top = 75
+              Width = 56
+              Alignment = taRightJustify
+              DataField = 'minutos_arrastre'
+              DataSource = dsDatosMuestra
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
             object Label10: TLabel
               Left = 0
               Height = 15
-              Top = 45
+              Top = 90
               Width = 164
               Caption = 'Velocidad de arrastre:'
               ParentColor = False
@@ -240,7 +296,7 @@ inherited fmByCatch: TfmByCatch
             object DBText8: TDBText
               Left = 169
               Height = 15
-              Top = 45
+              Top = 90
               Width = 56
               Alignment = taRightJustify
               DataField = 'velocidad'
@@ -252,7 +308,7 @@ inherited fmByCatch: TfmByCatch
             object Label29: TLabel
               Left = 0
               Height = 15
-              Top = 60
+              Top = 105
               Width = 164
               Caption = ' '
               ParentColor = False
@@ -260,7 +316,7 @@ inherited fmByCatch: TfmByCatch
             object Label30: TLabel
               Left = 169
               Height = 15
-              Top = 60
+              Top = 105
               Width = 56
               Caption = ' '
               ParentColor = False
@@ -268,7 +324,7 @@ inherited fmByCatch: TfmByCatch
             object Label11: TLabel
               Left = 0
               Height = 15
-              Top = 75
+              Top = 120
               Width = 164
               Caption = 'Largo relinga inferior:'
               ParentColor = False
@@ -276,7 +332,7 @@ inherited fmByCatch: TfmByCatch
             object DBText9: TDBText
               Left = 169
               Height = 15
-              Top = 75
+              Top = 120
               Width = 56
               Alignment = taRightJustify
               DataField = 'largo_relinga_inferior'
@@ -288,7 +344,7 @@ inherited fmByCatch: TfmByCatch
             object Label8: TLabel
               Left = 0
               Height = 15
-              Top = 90
+              Top = 135
               Width = 164
               Caption = 'Mallero del copo:'
               ParentColor = False
@@ -296,7 +352,7 @@ inherited fmByCatch: TfmByCatch
             object DBText5: TDBText
               Left = 169
               Height = 15
-              Top = 90
+              Top = 135
               Width = 56
               Alignment = taRightJustify
               DataField = 'mallero_copo'
@@ -308,7 +364,7 @@ inherited fmByCatch: TfmByCatch
             object Label9: TLabel
               Left = 0
               Height = 15
-              Top = 105
+              Top = 150
               Width = 164
               Caption = 'Tipo de malla:'
               ParentColor = False
@@ -316,7 +372,7 @@ inherited fmByCatch: TfmByCatch
             object DBText6: TDBText
               Left = 169
               Height = 15
-              Top = 105
+              Top = 150
               Width = 56
               Alignment = taRightJustify
               DataField = 'tipo_malla'
@@ -328,7 +384,7 @@ inherited fmByCatch: TfmByCatch
             object Label12: TLabel
               Left = 0
               Height = 15
-              Top = 120
+              Top = 165
               Width = 164
               Caption = ' '
               ParentColor = False
@@ -336,7 +392,7 @@ inherited fmByCatch: TfmByCatch
             object Label13: TLabel
               Left = 169
               Height = 15
-              Top = 120
+              Top = 165
               Width = 56
               Caption = ' '
               ParentColor = False
@@ -344,7 +400,7 @@ inherited fmByCatch: TfmByCatch
             object Label14: TLabel
               Left = 0
               Height = 15
-              Top = 135
+              Top = 180
               Width = 164
               Caption = 'Rinde de vieira:'
               ParentColor = False
@@ -352,7 +408,7 @@ inherited fmByCatch: TfmByCatch
             object DBText7: TDBText
               Left = 169
               Height = 15
-              Top = 135
+              Top = 180
               Width = 56
               Alignment = taRightJustify
               DataField = 'rinde_total'
@@ -364,7 +420,7 @@ inherited fmByCatch: TfmByCatch
             object Label15: TLabel
               Left = 0
               Height = 15
-              Top = 150
+              Top = 195
               Width = 164
               Caption = 'Captura % bolsa:'
               ParentColor = False
@@ -372,7 +428,7 @@ inherited fmByCatch: TfmByCatch
             object DBText10: TDBText
               Left = 169
               Height = 15
-              Top = 150
+              Top = 195
               Width = 56
               Alignment = taRightJustify
               DataField = 'porcent_bolsa_captura'
@@ -384,7 +440,7 @@ inherited fmByCatch: TfmByCatch
             object Label16: TLabel
               Left = 0
               Height = 15
-              Top = 165
+              Top = 210
               Width = 164
               Caption = 'Peso total muestra:'
               ParentColor = False
@@ -392,7 +448,7 @@ inherited fmByCatch: TfmByCatch
             object DBText11: TDBText
               Left = 169
               Height = 15
-              Top = 165
+              Top = 210
               Width = 56
               Alignment = taRightJustify
               DataField = 'peso_muestra_captura'
@@ -404,7 +460,7 @@ inherited fmByCatch: TfmByCatch
             object Label19: TLabel
               Left = 0
               Height = 15
-              Top = 180
+              Top = 225
               Width = 164
               Caption = 'Peso muestra vieira:'
               ParentColor = False
@@ -412,7 +468,7 @@ inherited fmByCatch: TfmByCatch
             object DBText12: TDBText
               Left = 169
               Height = 15
-              Top = 180
+              Top = 225
               Width = 56
               Alignment = taRightJustify
               DataField = 'peso_total_vieira'
@@ -424,7 +480,7 @@ inherited fmByCatch: TfmByCatch
             object Label20: TLabel
               Left = 0
               Height = 15
-              Top = 195
+              Top = 240
               Width = 164
               Caption = 'Peso muestra bycatch:'
               ParentColor = False
@@ -432,7 +488,7 @@ inherited fmByCatch: TfmByCatch
             object DBText13: TDBText
               Left = 169
               Height = 15
-              Top = 195
+              Top = 240
               Width = 56
               Alignment = taRightJustify
               DataField = 'peso_muestra_fauna_acomp'
@@ -444,7 +500,7 @@ inherited fmByCatch: TfmByCatch
             object Label21: TLabel
               Left = 0
               Height = 15
-              Top = 210
+              Top = 255
               Width = 164
               Caption = 'Peso organismos identificados:'
               ParentColor = False
@@ -452,7 +508,7 @@ inherited fmByCatch: TfmByCatch
             object DBText14: TDBText
               Left = 169
               Height = 15
-              Top = 210
+              Top = 255
               Width = 56
               Alignment = taRightJustify
               DataField = 'peso_organismos_muestra'
@@ -464,7 +520,7 @@ inherited fmByCatch: TfmByCatch
             object Label22: TLabel
               Left = 0
               Height = 15
-              Top = 225
+              Top = 270
               Width = 164
               Caption = 'Peso otros comp. bycatch:'
               ParentColor = False
@@ -472,7 +528,7 @@ inherited fmByCatch: TfmByCatch
             object DBText15: TDBText
               Left = 169
               Height = 15
-              Top = 225
+              Top = 270
               Width = 56
               Alignment = taRightJustify
               DataField = 'peso_otros'
@@ -1134,12 +1190,22 @@ inherited fmByCatch: TfmByCatch
       Required = False
       Size = 4
     end
+    object zqDatosMuestraunidad_manejo: TStringField
+      FieldKind = fkData
+      FieldName = 'unidad_manejo'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 180
+    end
     object zqDatosMuestraarea: TStringField
       Alignment = taRightJustify
       DisplayWidth = 108
       FieldKind = fkData
       FieldName = 'area'
-      Index = 12
+      Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1150,7 +1216,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'profundidad'
-      Index = 13
+      Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1161,7 +1227,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'velocidad'
-      Index = 14
+      Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1175,7 +1241,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'largo_relinga_inferior'
-      Index = 15
+      Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1186,7 +1252,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'mallero_copo'
-      Index = 16
+      Index = 17
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1198,7 +1264,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 180
       FieldKind = fkData
       FieldName = 'tipo_malla'
-      Index = 17
+      Index = 18
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1209,7 +1275,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'peso_muestra_captura'
-      Index = 18
+      Index = 19
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1223,7 +1289,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'peso_muestra_captura_comercial'
-      Index = 19
+      Index = 20
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1237,7 +1303,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'peso_muestra_captura_no_comercial'
-      Index = 20
+      Index = 21
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1251,7 +1317,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'peso_total_vieira'
-      Index = 21
+      Index = 22
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1265,7 +1331,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'peso_muestra_fauna_acomp'
-      Index = 22
+      Index = 23
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1279,7 +1345,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'rinde_comercial'
-      Index = 23
+      Index = 24
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
@@ -1293,7 +1359,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'rinde_total'
-      Index = 24
+      Index = 25
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1307,11 +1373,12 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'minutos_arrastre'
-      Index = 25
+      Index = 26
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayFormat = '# min'
       MaxValue = 0
       MinValue = 0
       Precision = 6
@@ -1320,7 +1387,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'porcent_bolsa_captura'
-      Index = 26
+      Index = 27
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1334,7 +1401,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'peso_organismos_muestra'
-      Index = 27
+      Index = 28
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1348,7 +1415,7 @@ inherited fmByCatch: TfmByCatch
       DisplayWidth = 10
       FieldKind = fkCalculated
       FieldName = 'peso_otros'
-      Index = 28
+      Index = 29
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

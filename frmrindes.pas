@@ -188,7 +188,7 @@ begin
   sdCarpetaRindes.InitialDir := destino;
   if sdCarpetaRindes.Execute then
   begin
-      archivo_destino:=IncludeTrailingPathDelimiter(sdCarpetaRindes.FileName)+'Rindes '+FormatDateTime('yyyy-mm-dd', zqResumenfecha.AsDateTime)+'.pdf';
+      archivo_destino:=IncludeTrailingPathDelimiter(sdCarpetaRindes.FileName)+'Muestreo '+FormatDateTime('yyyy-mm-dd', zqResumenfecha.AsDateTime)+'.pdf';
 
       if (not FileExistsUTF8(archivo_destino)) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
       begin
@@ -197,9 +197,12 @@ begin
           frResumenRindes.PrepareReport;
           //frResumenRindes.ShowReport;
           frResumenRindes.ExportTo(TfrTNPDFExportFilter, archivo_destino);
-          if MessageDlg('El informe ha sido guardado en la carpeta indicada. ¿Desea visualizarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
+          if MessageDlg('El informe ha sido guardado en la carpeta indicada. ¿Desea abrir dicha carpeta para visualizarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
           begin
-            OpenDocument(archivo_destino);
+            //OpenDocument(archivo_destino);
+              {$IFDEF MSWINDOWS}
+                ShellExecute(Handle, 'open', PChar(IncludeTrailingPathDelimiter(sdCarpetaRindes.FileName)), nil, nil, SW_SHOWNORMAL)
+              {$ENDIF}
           end;
       end;
   end;

@@ -23,6 +23,8 @@ type
     DBText13: TDBText;
     DBText14: TDBText;
     DBText15: TDBText;
+    DBText16: TDBText;
+    DBText17: TDBText;
     DBText2: TDBText;
     DBText3: TDBText;
     DBText4: TDBText;
@@ -42,6 +44,7 @@ type
     Label14: TLabel;
     Label15: TLabel;
     Label16: TLabel;
+    Label17: TLabel;
     Label19: TLabel;
     Label2: TLabel;
     Label20: TLabel;
@@ -50,8 +53,11 @@ type
     Label29: TLabel;
     Label3: TLabel;
     Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
     Label8: TLabel;
     Label9: TLabel;
     paDatos: TPanel;
@@ -97,6 +103,7 @@ type
     zqDatosMuestrarinde_comercial: TFloatField;
     zqDatosMuestrarinde_total: TFloatField;
     zqDatosMuestratipo_malla: TStringField;
+    zqDatosMuestraunidad_manejo: TStringField;
     zqDatosMuestravelocidad: TFloatField;
     zqDetByCatch: TZQuery;
     zqDatosMuestra: TZQuery;

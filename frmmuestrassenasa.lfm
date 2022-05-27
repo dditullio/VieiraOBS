@@ -1,7 +1,7 @@
 inherited fmMuestrasSenasa: TfmMuestrasSenasa
-  Left = 293
+  Left = 306
   Height = 369
-  Top = 234
+  Top = 198
   Width = 781
   Caption = 'Muestras para SENASA'
   ClientHeight = 369

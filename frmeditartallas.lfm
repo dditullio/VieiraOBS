@@ -56,19 +56,19 @@ inherited fmEditarTallas: TfmEditarTallas
       TabOrder = 1
     end
     object Label7: TLabel[2]
-      Left = 256
+      Left = 232
       Height = 15
-      Top = 368
+      Top = 372
       Width = 68
       Anchors = [akLeft, akBottom]
       Caption = 'Comentarios'
       ParentColor = False
     end
     object dbmComentarios: TDBMemo[3]
-      Left = 256
+      Left = 232
       Height = 110
       Top = 388
-      Width = 144
+      Width = 168
       Anchors = [akLeft, akBottom]
       DataField = 'comentarios'
       DataSource = dmTallas.dsTallas

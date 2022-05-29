@@ -582,12 +582,13 @@ inherited fmRindes: TfmRindes
             Caption = 'Resumen'
             ParentColor = False
           end
-          object bbExportarResumen: TBitBtn
+          object bbGuardarResumenPdf: TBitBtn
             Left = 96
             Height = 28
             Top = 184
             Width = 131
             Caption = 'Guardar en PDF'
+            Enabled = False
             Glyph.Data = {
               C6070000424DC607000000000000360000002800000016000000160000000100
               2000000000009007000064000000640000000000000000000000000000000000
@@ -653,7 +654,7 @@ inherited fmRindes: TfmRindes
               0057000000570303025800000057000000570000005700000057000000520000
               00190000000000000000
             }
-            OnClick = bbExportarResumenClick
+            OnClick = bbGuardarResumenPdfClick
             TabOrder = 2
           end
           object bbExportarExcel: TBitBtn

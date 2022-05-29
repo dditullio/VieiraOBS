@@ -23,7 +23,7 @@ type
 
   TfmRindes = class(TfmListaBase)
     bbExportarExcelRindes: TBitBtn;
-    bbExportarResumen: TBitBtn;
+    bbGuardarResumenPdf: TBitBtn;
     bbExportarExcel: TBitBtn;
     cbIncluirSinTallas: TCheckBox;
     cbMostrarResumen: TCheckBox;
@@ -72,7 +72,7 @@ type
     zqRindespeso_total: TFloatField;
     zqRindesrinde_comercial: TFloatField;
     zqRindesrinde_total: TFloatField;
-    procedure bbExportarResumenClick(Sender: TObject);
+    procedure bbGuardarResumenPdfClick(Sender: TObject);
     procedure cbIncluirSinTallasChange(Sender: TObject);
     procedure cbMostrarResumenChange(Sender: TObject);
     procedure dtFechaChange(Sender: TObject);
@@ -139,7 +139,7 @@ end;
 
 procedure TfmRindes.zqResumenAfterOpen(DataSet: TDataSet);
 begin
-  bbExportarResumen.Enabled:=zqResumen.RecordCount>0;
+  bbGuardarResumenPdf.Enabled:=zqResumen.RecordCount>0;
 end;
 
 procedure TfmRindes.zqResumenBeforeOpen(DataSet: TDataSet);
@@ -174,7 +174,7 @@ begin
   zcgLista.Buscar;
 end;
 
-procedure TfmRindes.bbExportarResumenClick(Sender: TObject);
+procedure TfmRindes.bbGuardarResumenPdfClick(Sender: TObject);
 var
   archivo_destino: string;
   destino:String;
@@ -220,7 +220,13 @@ procedure TfmRindes.cbMostrarResumenChange(Sender: TObject);
 begin
   zqResumen.Close;
   if cbMostrarResumen.Checked then
+  begin
     zcgResumen.Buscar;
+    bbGuardarResumenPdf.enabled := true;
+  end
+  else begin
+    bbGuardarResumenPdf.enabled := false;
+  end;
 end;
 
 end.

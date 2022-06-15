@@ -3,8 +3,7 @@ object fmPrincipal: TfmPrincipal
   Height = 544
   Top = 81
   Width = 846
-  Action = acProduccion
-  Caption = 'Producción'
+  Caption = 'Vieira OBS'
   ClientHeight = 524
   ClientWidth = 846
   Menu = mmPrincipal
@@ -12,7 +11,6 @@ object fmPrincipal: TfmPrincipal
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.5'
-  Visible = True
   WindowState = wsMaximized
   object paBarraLateral: TPanel
     Left = 5
@@ -155,6 +153,7 @@ object fmPrincipal: TfmPrincipal
           Left = 120
           Top = 55
           Action = acProduccion
+          Enabled = True
         end
       end
     end
@@ -41252,6 +41251,7 @@ object fmPrincipal: TfmPrincipal
     end
     object acProduccion: TAction
       Caption = 'Producción'
+      Enabled = False
       ImageIndex = 16
       OnExecute = acProduccionExecute
     end

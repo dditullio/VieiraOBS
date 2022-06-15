@@ -287,7 +287,6 @@ begin
   ActivarForm(fmProduccion, imageindex);
 end;
 
-
 procedure TfmPrincipal.acRayasExecute(Sender: TObject);
 var
   imageindex: integer=-1;

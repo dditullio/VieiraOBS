@@ -78,8 +78,8 @@ inherited fmEditarDetalleByCatch: TfmEditarDetalleByCatch
       Left = 193
       Height = 15
       Top = 6
-      Width = 25
-      Caption = 'Peso'
+      Width = 53
+      Caption = 'Peso (Kg.)'
       ParentColor = False
     end
     object dbedPeso: TDBEdit[5]

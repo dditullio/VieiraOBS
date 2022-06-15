@@ -28,8 +28,8 @@ begin
   Application.Initialize;
   ShowSplashScreen;
   SetSplashScreenStatus( 'Iniciando...' );
-  Application.CreateForm(TfmPrincipal, fmPrincipal);
   Application.CreateForm(TdmGeneral, dmGeneral);
+  Application.CreateForm(TfmPrincipal, fmPrincipal);
   Application.CreateForm(TfmEditarCoccion, fmEditarCoccion);
   Application.CreateForm(TfmEditarDanio, fmEditarDanio);
   Application.CreateForm(TfmEditarMarea, fmEditarMarea);

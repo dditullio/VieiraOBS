@@ -1429,20 +1429,26 @@ begin
           //   xls.Cells[fila+14, 3] := FieldByName('peso_valvas').AsFloat;
           if not FieldByName('peso_muestra_fauna_acomp').IsNull then
              xls.Cells[fila+15, 3] := FieldByName('peso_muestra_fauna_acomp').AsFloat;
-          xls.Cells[fila+17, 3] := FieldByName('peso_esponjas').AsFloat;
-          xls.Cells[fila+18, 3] := FieldByName('peso_anemonas').AsFloat;
-          xls.Cells[fila+19, 3] := FieldByName('peso_ascidias').AsFloat;
-          xls.Cells[fila+20, 3] := FieldByName('peso_ofiuras').AsFloat;
-          xls.Cells[fila+21, 3] := FieldByName('peso_estrellas').AsFloat;
+
+          //
+          // Planillas 2022
+          // El peso de las muestras se muestra en gramos, por eso
+          // se multiplica el peso registrado * 1000
+          //
+          xls.Cells[fila+17, 3] := FieldByName('peso_esponjas').AsFloat * 1000;
+          xls.Cells[fila+18, 3] := FieldByName('peso_anemonas').AsFloat * 1000;
+          xls.Cells[fila+19, 3] := FieldByName('peso_ascidias').AsFloat * 1000;
+          xls.Cells[fila+20, 3] := FieldByName('peso_ofiuras').AsFloat * 1000;
+          xls.Cells[fila+21, 3] := FieldByName('peso_estrellas').AsFloat * 1000;
           //xls.Cells[fila+21, 4] := FieldByName('nro_estrellas').AsInteger;
-          xls.Cells[fila+22, 3] := FieldByName('peso_caracoles').AsFloat;
+          xls.Cells[fila+22, 3] := FieldByName('peso_caracoles').AsFloat * 1000;
           //xls.Cells[fila+22, 4] := FieldByName('nro_caracoles').AsInteger;
-          xls.Cells[fila+23, 3] := FieldByName('peso_erizos').AsFloat;
+          xls.Cells[fila+23, 3] := FieldByName('peso_erizos').AsFloat * 1000;
           //xls.Cells[fila+23, 4] := FieldByName('nro_erizos').AsInteger;
-          xls.Cells[fila+24, 3] := FieldByName('peso_cangrejos').AsFloat;
+          xls.Cells[fila+24, 3] := FieldByName('peso_cangrejos').AsFloat * 1000;
           //xls.Cells[fila+24, 4] := FieldByName('nro_cangrejos').AsInteger;
-          xls.Cells[fila+25, 3] := FieldByName('peso_tubos_amarillentos').AsFloat;
-          xls.Cells[fila+26, 3] := FieldByName('peso_valvas').AsFloat;
+          xls.Cells[fila+25, 3] := FieldByName('peso_tubos_amarillentos').AsFloat * 1000;
+          xls.Cells[fila+26, 3] := FieldByName('peso_valvas').AsFloat * 1000;
           //Peces en captura
           tmp := UTF8Decode(FieldByName('peces1').AsString);
           xls.Cells[fila+28, 1] := tmp;

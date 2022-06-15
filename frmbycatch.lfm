@@ -961,7 +961,7 @@ inherited fmByCatch: TfmByCatch
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      DisplayFormat = '0.00'
+      DisplayFormat = '0.000'
       MaxValue = 0
       MinValue = 0
       Precision = 11

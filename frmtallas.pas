@@ -20,6 +20,7 @@ type
     Chart1BarSeries2: TBarSeries;
     Chart1PieSeries1: TPieSeries;
     Chart2: TChart;
+    ckDetalle: TCheckBox;
     dsPorcentEjemplares: TDataSource;
     DbChartSource1: TDbChartSource;
     DbChartSource2: TDbChartSource;
@@ -163,6 +164,7 @@ type
     zqDetallleTallas: TZQuery;
     zqDatosMuestra: TZQuery;
     zqPorcentEjemplares: TZQuery;
+    procedure ckDetalleChange(Sender: TObject);
     procedure dtFechaChange(Sender: TObject);
     procedure dtFechaCheckBoxChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -201,18 +203,21 @@ end;
 
 procedure TfmTallas.zqTallasAfterScroll(DataSet: TDataSet);
 begin
-  zqTallasCompleto.Close;
-  zqTallasCompleto.Open;
-  zqDetallleTallas.Close;
-  zqDetallleTallas.Open;
-  zqMarcasTallas.Close;
-  zqMarcasTallas.Open;
-  zqDatosMuestra.Close;
-  zqDatosMuestra.Open;
-  zqPorcentEjemplares.Close;
-  zqPorcentEjemplares.Open;
-  Chart1.Refresh;
-  Chart2.Refresh;
+  if ckDetalle.Checked then
+  begin
+    //zqTallasCompleto.Close;
+    //zqTallasCompleto.Open;
+    zqDetallleTallas.Close;
+    zqDetallleTallas.Open;
+    zqMarcasTallas.Close;
+    zqMarcasTallas.Open;
+    zqDatosMuestra.Close;
+    zqDatosMuestra.Open;
+    zqPorcentEjemplares.Close;
+    zqPorcentEjemplares.Open;
+    Chart1.Refresh;
+    Chart2.Refresh;
+  end;
 
 end;
 
@@ -241,14 +246,48 @@ begin
 end;
 
 procedure TfmTallas.FormShow(Sender: TObject);
+var
+  bool_conf: Boolean;
 begin
   dtFecha.Date:=Date;
+  bool_conf:=dmGeneral.LeerBooleanConfig('ver_detalle_tallas', False);
+//  LSLoadConfig(['ver_mapa_lances'], [bool_conf], [@bool_conf]);
+  ckDetalle.Checked:=bool_conf;
   inherited;
 end;
 
 procedure TfmTallas.dtFechaChange(Sender: TObject);
 begin
   zcgLista.Buscar;
+end;
+
+procedure TfmTallas.ckDetalleChange(Sender: TObject);
+begin
+  if ckDetalle.Checked then
+  begin
+    paDetalles.Visible:=True;
+  end else
+  begin
+    paDetalles.Visible:=False;
+  end;
+  dmGeneral.GuardarBooleanConfig('ver_detalle_tallas', ckDetalle.Checked);
+//  LSSaveConfig(['ver_mapa_lances'], [ckMapaLances.Checked]);
+  if ckDetalle.Checked then
+  begin
+    //zqTallasCompleto.Close;
+    //zqTallasCompleto.Open;
+    zqDetallleTallas.Close;
+    zqDetallleTallas.Open;
+    zqMarcasTallas.Close;
+    zqMarcasTallas.Open;
+    zqDatosMuestra.Close;
+    zqDatosMuestra.Open;
+    zqPorcentEjemplares.Close;
+    zqPorcentEjemplares.Open;
+    Chart1.Refresh;
+    Chart2.Refresh;
+  end;
+
 end;
 
 procedure TfmTallas.zqMarcasTallasBeforeOpen(DataSet: TDataSet);
@@ -263,18 +302,21 @@ end;
 
 procedure TfmTallas.zqTallasAfterOpen(DataSet: TDataSet);
 begin
-  zqTallasCompleto.Close;
-  zqTallasCompleto.Open;
-  zqDetallleTallas.Close;
-  zqDetallleTallas.Open;
-  zqMarcasTallas.Close;
-  zqMarcasTallas.Open;
-  zqDatosMuestra.Close;
-  zqDatosMuestra.Open;
-  zqPorcentEjemplares.Close;
-  zqPorcentEjemplares.Open;
-  Chart1.Refresh;
-  Chart2.Refresh;
+  if ckDetalle.Checked then
+  begin
+    //zqTallasCompleto.Close;
+    //zqTallasCompleto.Open;
+    zqDetallleTallas.Close;
+    zqDetallleTallas.Open;
+    zqMarcasTallas.Close;
+    zqMarcasTallas.Open;
+    zqDatosMuestra.Close;
+    zqDatosMuestra.Open;
+    zqPorcentEjemplares.Close;
+    zqPorcentEjemplares.Open;
+    Chart1.Refresh;
+    Chart2.Refresh;
+  end;
 end;
 
 procedure TfmTallas.zqTallasCompletoBeforeOpen(DataSet: TDataSet);

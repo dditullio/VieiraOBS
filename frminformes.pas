@@ -1460,16 +1460,17 @@ begin
           xls.Cells[fila+31, 1] := tmp;
           tmp := UTF8Decode(FieldByName('peces5').AsString);
           xls.Cells[fila+32, 1] := tmp;
-          //tmp := UTF8Decode(FieldByName('peces6').AsString);
-          //xls.Cells[fila+33, 2] := tmp;
-          //tmp := UTF8Decode(FieldByName('peces7').AsString);
-          //xls.Cells[fila+34, 2] := tmp;
-          //tmp := UTF8Decode(FieldByName('peces8').AsString);
-          //xls.Cells[fila+35, 2] := tmp;
-          //tmp := UTF8Decode(FieldByName('peces9').AsString);
-          //xls.Cells[fila+36, 2] := tmp;
-          //tmp := UTF8Decode(FieldByName('peces10').AsString);
-          //xls.Cells[fila+37, 2] := tmp;
+
+          tmp := UTF8Decode(FieldByName('peces6').AsString);
+          xls.Cells[fila+28, 2] := tmp;
+          tmp := UTF8Decode(FieldByName('peces7').AsString);
+          xls.Cells[fila+29, 2] := tmp;
+          tmp := UTF8Decode(FieldByName('peces8').AsString);
+          xls.Cells[fila+30, 2] := tmp;
+          tmp := UTF8Decode(FieldByName('peces9').AsString);
+          xls.Cells[fila+31, 2] := tmp;
+          tmp := UTF8Decode(FieldByName('peces10').AsString);
+          xls.Cells[fila+32, 2] := tmp;
 
           pbProceso.Position := RecNo;
           Application.ProcessMessages;

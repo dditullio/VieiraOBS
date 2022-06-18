@@ -25,8 +25,13 @@ inherited fmTallas: TfmTallas
         inherited paBuscador: TPanel
           Width = 496
           ClientWidth = 496
+          inherited laBuscar: TLabel
+            Height = 15
+            Width = 35
+          end
           inherited edBuscar: TEdit
             Left = 124
+            Height = 23
             Width = 337
           end
           inherited bbBuscar: TBitBtn
@@ -197,6 +202,16 @@ inherited fmTallas: TfmTallas
               end>
             DataSource = dsTallas
           end
+          object ckDetalle: TCheckBox[4]
+            Left = 0
+            Height = 19
+            Top = 512
+            Width = 99
+            Anchors = [akLeft, akBottom]
+            Caption = 'Mostrar detalle'
+            OnChange = ckDetalleChange
+            TabOrder = 4
+          end
         end
       end
       inherited paDetalles: TPanel
@@ -205,7 +220,6 @@ inherited fmTallas: TfmTallas
         Width = 376
         ClientHeight = 591
         ClientWidth = 376
-        Visible = True
         object Panel1: TPanel[0]
           Left = 0
           Height = 36
@@ -1000,8 +1014,8 @@ inherited fmTallas: TfmTallas
     Connection = dmGeneral.zcDB
     BeforeOpen = zqTallasCompletoBeforeOpen
     SQL.Strings = (
-      'SELECT *'
-      'FROM v_muestras_talla_completa'
+      'SELECT * '
+      'from v_muestras_talla_completa'
       'WHERE idmuestras_talla=:idmuestras_talla'
     )
     Params = <    

@@ -1033,7 +1033,8 @@ inherited fmRindes: TfmRindes
       'WHERE idmarea=:idmarea'
       'AND fecha=:fecha'
       'AND (:IncluirSinTallas = 1'
-      'OR ret_nro_ejemp_no_comerciales is not null)'
+      'OR (ret_nro_ejemp_no_comerciales is not null'
+      '  OR ret_nro_ejemp_comerciales is not null))'
       'ORDER BY fecha, hora'
     )
     Params = <    

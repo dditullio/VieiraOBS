@@ -55,6 +55,7 @@ type
     zqResumenret_porc_ejemp_no_comerciales: TFloatField;
     zqResumenrinde_comercial: TFloatField;
     zqResumenrinde_total: TFloatField;
+    zqResumentexto_moda: TStringField;
     zqRindes: TZQuery;
     zqResumen: TZQuery;
     zqRindesbanda: TStringField;
@@ -81,6 +82,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure zqResumenAfterOpen(DataSet: TDataSet);
     procedure zqResumenBeforeOpen(DataSet: TDataSet);
+    procedure zqResumenCalcFields(DataSet: TDataSet);
     procedure zqRindesAfterOpen(DataSet: TDataSet);
     procedure zqRindesAfterScroll(DataSet: TDataSet);
     procedure zqRindesBeforeOpen(DataSet: TDataSet);
@@ -151,6 +153,18 @@ begin
        zqResumen.ParamByName('IncluirSinTallas').AsInteger:=1
     else
       zqResumen.ParamByName('IncluirSinTallas').AsInteger:=0;
+end;
+
+procedure TfmRindes.zqResumenCalcFields(DataSet: TDataSet);
+begin
+  if zqResumenmoda_captura.AsString <> '' then
+  begin
+    zqResumentexto_moda.AsString:='Talla más frecuente: '+zqResumenmoda_captura.AsString+' mm';
+  end
+  else
+  begin
+    zqResumentexto_moda.AsString:='';
+  end;
 end;
 
 procedure TfmRindes.zqRindesAfterOpen(DataSet: TDataSet);

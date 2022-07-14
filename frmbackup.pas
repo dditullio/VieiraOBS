@@ -50,8 +50,10 @@ type
     prBackup: TProcessUTF8;
     pbProceso: TProgressBar;
     sbCargarArchivo: TSpeedButton;
+    scDespuesRestaurar: TSQLScript;
     scRestaurar: TSQLScript;
     dblRestaurar: TSQLDBLibraryLoader;
+    scAntesRestaurar: TSQLScript;
     trRestaurar: TSQLTransaction;
     tsRestaurar: TTabSheet;
     tsBackup: TTabSheet;
@@ -697,7 +699,9 @@ begin
    ckRestaurarDatos.Enabled:=False;
    Application.ProcessMessages;
    restOK:=False;
-   if (proc_tablas or proc_datos or proc_rutinas) then
+
+
+  if (proc_tablas or proc_datos or proc_rutinas) then
    begin
        //Se utilizan los componentes de SQLdb ya que los de ZeosDB no permiten la ejecución de un script
        //Se copian los datos de conección desde la base de datos general
@@ -712,6 +716,12 @@ begin
          conRestaurar.Connected:= True;
 
          trRestaurar.StartTransaction;
+
+         //Si se configuró un script para migrar datos, lo ejecuto
+         if Trim(scAntesRestaurar.Script.Text) <> '' then
+         begin
+             scAntesRestaurar.ExecuteScript;
+         end;
 
          if proc_tablas then
          begin
@@ -752,6 +762,12 @@ begin
              scRestaurar.Terminator:='$$';
              scRestaurar.Script.Text:=CheckScriptText(sl_rutinas);
              scRestaurar.ExecuteScript;
+         end;
+
+         //Si se configuró un script para finalizar la migración, lo ejecuto
+         if Trim(scDespuesRestaurar.Script.Text) <> '' then
+         begin
+           scDespuesRestaurar.ExecuteScript;
          end;
 
          trRestaurar.Commit;

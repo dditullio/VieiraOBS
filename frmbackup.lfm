@@ -677,4 +677,91 @@ object fmBackup: TfmBackup
     left = 30
     top = 330
   end
+  object scAntesRestaurar: TSQLScript
+    DataBase = conRestaurar
+    Transaction = trRestaurar
+    Directives.Strings = (
+      'SET TERM'
+      'COMMIT WORK'
+      'COMMIT RETAIN'
+      'COMMIT'
+      '#IFDEF'
+      '#IFNDEF'
+      '#ELSE'
+      '#ENDIF'
+      '#DEFINE'
+      '#UNDEF'
+      '#UNDEFINE'
+    )
+    Script.Strings = (
+      ''
+      '-- -'
+      '-- Creo la tabla `tmp_mapa` para que no de error la importación. Finalmente se borrará'
+      '-- -'
+      ''
+      'DROP TABLE IF EXISTS `tmp_mapa`;'
+      ''
+      'SET @saved_cs_client     = @@character_set_client ;'
+      'SET character_set_client = utf8 ;'
+      'CREATE TABLE `tmp_mapa` ('
+      '  `id` int(11) NOT NULL,'
+      '  `mapa` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,'
+      '  `orden` int(11) DEFAULT NULL,'
+      '  `longitud` decimal(17,13) DEFAULT NULL,'
+      '  `latitud` decimal(17,13) DEFAULT NULL,'
+      '  `etiqueta` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL'
+      ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;'
+      'SET character_set_client = @saved_cs_client ;'
+      ''
+      ''
+    )
+    Terminator = ';'
+    CommentsinSQL = True
+    UseSetTerm = True
+    UseCommit = True
+    UseDefines = True
+    left = 155
+    top = 272
+  end
+  object scDespuesRestaurar: TSQLScript
+    DataBase = conRestaurar
+    Transaction = trRestaurar
+    Directives.Strings = (
+      'SET TERM'
+      'COMMIT WORK'
+      'COMMIT RETAIN'
+      'COMMIT'
+      '#IFDEF'
+      '#IFNDEF'
+      '#ELSE'
+      '#ENDIF'
+      '#DEFINE'
+      '#UNDEF'
+      '#UNDEFINE'
+    )
+    Script.Strings = (
+      '-- -'
+      '-- Elimino la tabla `tmp_mapa` que no debería estar ahí'
+      '-- -'
+      ''
+      'DROP TABLE IF EXISTS `tmp_mapa`;'
+      ''
+      '-- -'
+      '-- Volcado de datos de la tabla `mapas`'
+      '-- -'
+      ''
+      'LOCK TABLES `mapas` WRITE;'
+      'ALTER TABLE `mapas` DISABLE KEYS ;'
+      'REPLACE INTO `mapas` (id,mapa,orden,longitud,latitud,etiqueta) VALUES (25088,''U.M. VIEIRA'',85,0,0,''''),(25089,''U.M. VIEIRA'',86,-55.83333206,-37.33333206,''A1''),(25090,''U.M. VIEIRA'',87,-55.33333206,-37.33333206,''A1''),(25091,''U.M. VIEIRA'',88,-56.5,-38.5,''A1''),(25092,''U.M. VIEIRA'',89,-57,-38.5,''A1''),(25093,''U.M. VIEIRA'',90,-55.83333206,-37.33333206,''A1''),(25094,''ETIQUETAS U.M. VIEIRA'',11,-56.15000153,-37.90000153,''A1'');'
+      'ALTER TABLE `mapas` ENABLE KEYS ;'
+      'UNLOCK TABLES;'
+    )
+    Terminator = ';'
+    CommentsinSQL = True
+    UseSetTerm = True
+    UseCommit = True
+    UseDefines = True
+    left = 256
+    top = 272
+  end
 end

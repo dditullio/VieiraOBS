@@ -66,58 +66,64 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="17">
+    <RequiredPackages Count="19">
       <Item1>
-        <PackageName Value="pl_solutions"/>
+        <PackageName Value="lz_sqldb"/>
       </Item1>
       <Item2>
-        <PackageName Value="lz_tachart"/>
+        <PackageName Value="bs_Utils"/>
       </Item2>
       <Item3>
-        <PackageName Value="lz_datetimectrls"/>
+        <PackageName Value="pl_solutions"/>
       </Item3>
       <Item4>
-        <PackageName Value="bs_Controls"/>
+        <PackageName Value="lz_tachart"/>
       </Item4>
       <Item5>
-        <PackageName Value="lz_reportpdfexport"/>
+        <PackageName Value="lz_datetimectrls"/>
       </Item5>
       <Item6>
-        <PackageName Value="lz_report"/>
+        <PackageName Value="bs_Controls"/>
       </Item6>
       <Item7>
-        <PackageName Value="pl_orpheus"/>
+        <PackageName Value="lz_reportpdfexport"/>
       </Item7>
       <Item8>
-        <PackageName Value="pl_exsystem"/>
+        <PackageName Value="lz_report"/>
       </Item8>
       <Item9>
-        <PackageName Value="pl_abbrevia"/>
+        <PackageName Value="pl_orpheus"/>
       </Item9>
       <Item10>
-        <PackageName Value="pl_fortesreport"/>
+        <PackageName Value="pl_exsystem"/>
       </Item10>
       <Item11>
-        <PackageName Value="pl_jujiboutils"/>
+        <PackageName Value="pl_abbrevia"/>
       </Item11>
       <Item12>
-        <PackageName Value="pl_fzcontrols"/>
+        <PackageName Value="pl_fortesreport"/>
       </Item12>
       <Item13>
-        <PackageName Value="pl_rx"/>
+        <PackageName Value="pl_jujiboutils"/>
       </Item13>
       <Item14>
-        <PackageName Value="pl_zeosdbo"/>
+        <PackageName Value="pl_fzcontrols"/>
       </Item14>
       <Item15>
-        <PackageName Value="FCL"/>
+        <PackageName Value="pl_rx"/>
       </Item15>
       <Item16>
-        <PackageName Value="mis_componentes"/>
+        <PackageName Value="pl_zeosdbo"/>
       </Item16>
       <Item17>
-        <PackageName Value="LCL"/>
+        <PackageName Value="FCL"/>
       </Item17>
+      <Item18>
+        <PackageName Value="mis_componentes"/>
+      </Item18>
+      <Item19>
+        <PackageName Value="LCL"/>
+      </Item19>
     </RequiredPackages>
     <Units Count="39">
       <Unit0>

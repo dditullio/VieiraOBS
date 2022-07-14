@@ -13,7 +13,7 @@ uses
     Unix,
   {$ENDIF}
   Classes, SysUtils, FileUtil, LR_Class, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, DbCtrls, ExtCtrls, EditBtn, Buttons, ActnList, datGeneral, lr_e_pdf, LSConfig;
+  StdCtrls, DbCtrls, ExtCtrls, EditBtn, Buttons, ActnList, datGeneral, lr_e_pdf, LSConfig, Math;
 
 type
 
@@ -32,6 +32,7 @@ type
     ckControlMuestras: TCheckBox;
     dbtMareaActiva: TDBText;
     dedCarpetaPlanillas: TDirectoryEdit;
+    edDiasMarea: TEdit;
     frEtiquetasInidepCajas: TfrReport;
     frEtiquetasSenasaCallos: TfrReport;
     frEtiquetasInidepCallos: TfrReport;
@@ -41,7 +42,9 @@ type
     frMuestrasBiol: TfrReport;
     GroupBox1: TGroupBox;
     ilComando: TImageList;
+    Label1: TLabel;
     Label2: TLabel;
+    Panel1: TPanel;
     procedure acGuardarPlanillasExecute(Sender: TObject);
     procedure dedCarpetaPlanillasAcceptDirectory(Sender: TObject;
       var Value: String);
@@ -163,10 +166,21 @@ end;
 procedure TfmImprimirEtiquetas.GenerarEtiquetasSenasaCallos;
 var
   archivo_destino: string;
+  texto_copias: string;
+  cant_copias: Integer;
 begin
+  if edDiasMarea.Text <> '' then
+  begin
+    cant_copias := Ceil(StrToInt(edDiasMarea.Text)/8);
+    texto_copias := ' ('+IntToStr(cant_copias)+' copias)';
+  end
+  else
+  begin
+    texto_copias := '';
+  end;
   //Etiquetas individuales para cada destino
   archivo_destino := dedCarpetaPlanillas.Directory +
-    DirectorySeparator + 'Etiquetas SENASA Callos.pdf';
+    DirectorySeparator + 'Etiquetas SENASA Callos'+texto_copias+'.pdf';
   if (not FileExistsUTF8(archivo_destino)) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
   begin
     frEtiquetasSenasaCallos.PrepareReport;
@@ -176,10 +190,21 @@ end;
 
 procedure TfmImprimirEtiquetas.GenerarEtiquetasSenasaEntera;
 var
-    archivo_destino: string;
+  archivo_destino: string;
+  texto_copias: string;
+  cant_copias: Integer;
 begin
+  if edDiasMarea.Text <> '' then
+  begin
+    cant_copias := Ceil(StrToInt(edDiasMarea.Text)/30);
+    texto_copias := ' ('+IntToStr(cant_copias)+' copias)';
+  end
+  else
+  begin
+    texto_copias := '';
+  end;
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + 'Etiquetas SENASA Entera.pdf';
+      DirectorySeparator + 'Etiquetas SENASA Entera'+texto_copias+'.pdf';
     if (not FileExistsUTF8(archivo_destino)) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       frEtiquetasSenasaEntera.PrepareReport;
@@ -216,9 +241,20 @@ end;
 procedure TfmImprimirEtiquetas.GenerarEtiquetasInidepCallos;
 var
   archivo_destino: string;
+  texto_copias: string;
+  cant_copias: Integer;
 begin
+  if edDiasMarea.Text <> '' then
+  begin
+    cant_copias := Ceil(StrToInt(edDiasMarea.Text)/8);
+    texto_copias := ' ('+IntToStr(cant_copias)+' copias)';
+  end
+  else
+  begin
+    texto_copias := '';
+  end;
   archivo_destino := dedCarpetaPlanillas.Directory +
-    DirectorySeparator + 'Etiquetas INIDEP Callos.pdf';
+    DirectorySeparator + 'Etiquetas INIDEP Callos'+texto_copias+'.pdf';
   if (not FileExistsUTF8(archivo_destino)) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
   begin
     frEtiquetasInidepCallos.PrepareReport;

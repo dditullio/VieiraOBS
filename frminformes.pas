@@ -829,36 +829,36 @@ begin
              xls.Cells[fila, 6] := FieldByName('rumbo').AsInteger;
           if not FieldByName('profundidad').IsNull then
              xls.Cells[fila, 7] := FieldByName('profundidad').AsInteger;
-          //if not FieldByName('cable_estribor').IsNull then
-          //   xls.Cells[fila, 8] := FieldByName('cable_estribor').AsInteger;
-          //if not FieldByName('cable_babor').IsNull then
-          //   xls.Cells[fila, 9] := FieldByName('cable_babor').AsInteger;
+          if not FieldByName('cable_estribor').IsNull then
+             xls.Cells[fila, 8] := FieldByName('cable_estribor').AsInteger;
+          if not FieldByName('cable_babor').IsNull then
+             xls.Cells[fila, 9] := FieldByName('cable_babor').AsInteger;
           if not FieldByName('minutos_arrastre').IsNull then
-             xls.Cells[fila, 8] := FieldByName('minutos_arrastre').AsFloat;
+             xls.Cells[fila, 10] := FieldByName('minutos_arrastre').AsFloat;
           if not FieldByName('latitud_fin').IsNull then
-             xls.Cells[fila, 9] := FieldByName('latitud_fin').AsFloat*100;
+             xls.Cells[fila, 11] := FieldByName('latitud_fin').AsFloat*100;
           if not FieldByName('longitud_fin').IsNull then
-             xls.Cells[fila, 10] := FieldByName('longitud_fin').AsFloat*100;
+             xls.Cells[fila, 12] := FieldByName('longitud_fin').AsFloat*100;
           if not FieldByName('captura_estribor').IsNull then
-             xls.Cells[fila, 11] := FieldByName('captura_estribor').AsFloat;
+             xls.Cells[fila, 13] := FieldByName('captura_estribor').AsFloat;
           if not FieldByName('captura_babor').IsNull then
-             xls.Cells[fila, 12] := FieldByName('captura_babor').AsFloat;
+             xls.Cells[fila, 14] := FieldByName('captura_babor').AsFloat;
           if not FieldByName('velocidad').IsNull then
-             xls.Cells[fila, 13] := FieldByName('velocidad').AsFloat;
+             xls.Cells[fila, 15] := FieldByName('velocidad').AsFloat;
           if not FieldByName('rinde_total_e').IsNull then
-             xls.Cells[fila, 14] := FieldByName('rinde_total_e').AsFloat;
+             xls.Cells[fila, 16] := FieldByName('rinde_total_e').AsFloat;
           if not FieldByName('rinde_total_b').IsNull then
-             xls.Cells[fila, 15] := FieldByName('rinde_total_b').AsFloat;
+             xls.Cells[fila, 17] := FieldByName('rinde_total_b').AsFloat;
           if not FieldByName('rinde_comercial_e').IsNull then
-             xls.Cells[fila, 16] := FieldByName('rinde_comercial_e').AsFloat;
+             xls.Cells[fila, 18] := FieldByName('rinde_comercial_e').AsFloat;
           if not FieldByName('rinde_comercial_b').IsNull then
-             xls.Cells[fila, 17] := FieldByName('rinde_comercial_b').AsFloat;
+             xls.Cells[fila, 19] := FieldByName('rinde_comercial_b').AsFloat;
           if not FieldByName('produccion').IsNull then
-             xls.Cells[fila, 18] := FieldByName('produccion').AsFloat;
+             xls.Cells[fila, 20] := FieldByName('produccion').AsFloat;
           if not FieldByName('comentarios').IsNull then
           begin
             tmp := UTF8Decode(FieldByName('comentarios').AsString);
-            xls.Cells[fila, 19] := tmp;
+            xls.Cells[fila, 21] := tmp;
           end;
           //if not FieldByName('temperatura_superficie').IsNull then
           //   xls.Cells[fila, 21] := FieldByName('temperatura_superficie').AsFloat;
@@ -867,7 +867,7 @@ begin
           //if not FieldByName('temperatura_fondo').IsNull then
           //   xls.Cells[fila, 24] := FieldByName('temperatura_fondo').AsFloat;
           if not FieldByName('cod_estado_mar').IsNull then
-             xls.Cells[fila, 20] := FieldByName('cod_estado_mar').AsInteger;
+             xls.Cells[fila, 22] := FieldByName('cod_estado_mar').AsInteger;
           //if not FieldByName('direccion_viento').IsNull then
           //   xls.Cells[fila, 26] := FieldByName('direccion_viento').AsInteger;
           //if not FieldByName('nudos_viento').IsNull then

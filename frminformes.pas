@@ -256,6 +256,7 @@ type
     procedure GenerarDanioXLS;
     procedure GenerarByCatchXLS;
     procedure GenerarByCatch2XLS;
+    procedure GenerarByCatch3XLS;
     procedure GenerarRayaXLS;
 
     procedure GenerarDatosPuentePDF;
@@ -330,8 +331,10 @@ begin
         GenerarDanioXLS;
       if cbByCatch.Checked then
       begin
-        GenerarByCatchXLS;
+        //GenerarByCatchXLS;
         //GenerarByCatch2XLS; //La muestra detallada no se requiere por ahora
+        GenerarByCatch3XLS; //Formato de planillas 2023
+
       end;
       if cbRaya.Checked then
       begin
@@ -1636,6 +1639,191 @@ begin
         end;
         //Copio una celda vacía para liberar el portapapeles
         xlp.Range('H1').Copy;
+        //Selecciono la primera celda porque si no queda seleccionado
+        //el último bloque pegado
+        xls.Cells[1,1].Select;
+        xls.ActiveWorkBook.Save;
+      end;
+    end;
+  finally
+    laProceso.Caption:='';
+    pbProceso.Visible := False;
+    xls.Quit;
+    xls := Unassigned;
+    xlp.Quit;
+    xlp := Unassigned;
+  end;
+end;
+
+// Versión de la planilla 2023
+procedure TfmInformes.GenerarByCatch3XLS;
+var
+  xls, xlp: olevariant;
+    archivo_origen, archivo_destino, plantilla, tmp, rango: WideString;
+    fila, columna: integer;
+begin
+
+  //Primero verifico que el objeto se pueda crear
+  try
+    xls := CreateOleObject('Excel.Application');
+    xlp := CreateOleObject('Excel.Application');
+  except
+    MessageDlg('No se puede abrir la aplicación Microsoft Office Excel, o la misma no está instalada', mtError, [mbClose], 0);
+    Exit;
+  end;
+  //Pongo el resto dentro de un Try para si o si finalizar el Excel al terminar
+  try
+    plantilla := ExtractFilePath(Application.ExeName) +
+      'PlanillasExcel' + DirectorySeparator + 'fa_plantilla_2023.xls';
+    archivo_origen := ExtractFilePath(Application.ExeName) +
+      'PlanillasExcel' + DirectorySeparator + 'Fauna acompañante2023.xls';
+    archivo_destino := dedCarpetaPlanillas.Directory +
+      DirectorySeparator + strfecha + 'Fauna acompañante.xls';
+    if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
+    begin
+      CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
+      archivo_destino:=UTF8Decode(archivo_destino);
+      //Abro el archivo de donde voy a copiar el formato
+      xlp.Workbooks.Open(plantilla);
+      //Abro el archivo para guardar los datos
+      xls.Workbooks.Open(archivo_destino);
+
+      //Copio la los encabezados de la plantilla
+      rango:=UTF8Decode('A1:AU8');
+      xlp.Range(rango).Copy;
+      //Pego el texto
+      xls.Range(rango).PasteSpecial(-4163);
+      //Pego formatos
+      xls.Range(rango).PasteSpecial(-4122);
+
+      //Pongo los datos de la marea
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaMareaStr.AsString);
+      xls.Cells[1, 3] := tmp;
+      tmp := UTF8Decode(dmGeneral.zqMareaActivacapitan.AsString);
+      xls.Cells[2, 3] := tmp;
+      tmp := UTF8Decode(dmGeneral.zqMareaActivaobservador.AsString);
+      xls.Cells[3, 3] := tmp;
+
+
+      with zqByCatch do
+      begin
+        Close;
+        Open;
+        First;
+
+      //Armo el dato de mallero
+      tmp := '';
+      if not FieldByName('mallero_copo').IsNull then
+         tmp := UTF8Decode(FieldByName('mallero_copo').AsString);
+      if not FieldByName('tipo_malla').IsNull then
+         tmp := tmp + 'mm ' + UTF8Decode(FieldByName('tipo_malla').AsString);
+      if tmp <> '' then
+         xls.Cells[4, 3] := tmp;
+
+      //Configuro la barra de progreso
+        pbProceso.Max := RecordCount;
+        pbProceso.Position := 0;
+        laProceso.Caption:='Procesando muestras de fauna acompañante';
+        pbProceso.Visible := True;
+        fila := 9;
+        //Copio la plantilla para pegarla en la fila actual
+        xlp.Range('A9:AU9').Copy;
+        Sleep(1000);
+        while not EOF do
+        begin
+          rango:=UTF8Decode('A'+IntToStr(fila)+':AU'+IntToStr(fila));
+          //Pego el texto
+          xls.Range(rango).PasteSpecial(-4163);
+          //Pego formatos
+          xls.Range(rango).PasteSpecial(-4122);
+          //Completo los datos
+          //Numero de muestra
+          xls.Cells[fila, 1] := fila - 8;
+
+          xls.Cells[fila, 2] := FieldByName('fecha').AsDateTime;
+          tmp := UTF8Decode(FieldByName('lance_banda').AsString);
+          xls.Cells[fila, 3] := tmp;
+          if not FieldByName('latitud').IsNull then
+             xls.Cells[fila, 4] := FieldByName('latitud').AsFloat*100;
+          if not FieldByName('longitud').IsNull then
+             xls.Cells[fila, 5] := FieldByName('longitud').AsFloat*100;
+          tmp := UTF8Decode(FieldByName('unidad_manejo').AsString);
+          xls.Cells[fila, 6] := tmp;
+
+          if not FieldByName('profundidad').IsNull then
+             xls.Cells[fila, 7] := FieldByName('profundidad').AsInteger;
+          if not FieldByName('minutos_arrastre').IsNull then
+             xls.Cells[fila, 8] := FieldByName('minutos_arrastre').AsInteger;
+          if not FieldByName('velocidad').IsNull then
+             xls.Cells[fila, 9] := FieldByName('velocidad').AsFloat;
+          if not FieldByName('largo_relinga_inferior').IsNull then
+             xls.Cells[fila, 10] := FieldByName('largo_relinga_inferior').AsInteger;
+          //if not FieldByName('mallero_copo').IsNull then
+          //   xls.Cells[fila+9, 3] := FieldByName('mallero_copo').AsInteger;
+          //if not FieldByName('tipo_malla').IsNull then
+          //begin
+          //     tmp := UTF8Decode(FieldByName('tipo_malla').AsString);
+          //     xls.Cells[fila+9, 4] := tmp;
+          //end;
+          if not FieldByName('rinde_total').IsNull then
+             xls.Cells[fila, 11] := FieldByName('rinde_total').AsFloat;
+          if not FieldByName('porcent_bolsa_captura').IsNull then
+             xls.Cells[fila, 12] := FieldByName('porcent_bolsa_captura').AsFloat;
+          if not FieldByName('peso_muestra_captura').IsNull then
+             xls.Cells[fila, 13] := FieldByName('peso_muestra_captura').AsFloat;
+          if not FieldByName('peso_total_vieira').IsNull then
+             xls.Cells[fila, 14] := FieldByName('peso_total_vieira').AsFloat;
+          if not FieldByName('peso_valvas').IsNull then
+             xls.Cells[fila, 15] := FieldByName('peso_valvas').AsFloat * 1000;  //Va en gramos
+          if not FieldByName('peso_muestra_fauna_acomp').IsNull then
+             xls.Cells[fila, 16] := FieldByName('peso_muestra_fauna_acomp').AsFloat;
+
+          //
+          // Planillas 2023
+          // El peso de las muestras se muestra en gramos, por eso
+          // se multiplica el peso registrado * 1000
+          //
+          xls.Cells[fila, 17] := FieldByName('peso_esponjas').AsFloat * 1000;
+          xls.Cells[fila, 18] := FieldByName('peso_anemonas').AsFloat * 1000;
+          xls.Cells[fila, 19] := FieldByName('peso_ascidias').AsFloat * 1000;
+          xls.Cells[fila, 20] := FieldByName('peso_corales').AsFloat * 1000;
+          xls.Cells[fila, 21] := FieldByName('peso_ofiuras').AsFloat * 1000;
+          xls.Cells[fila, 22] := FieldByName('peso_gorgonias').AsFloat * 1000;
+          xls.Cells[fila, 23] := FieldByName('nro_gorgonias').AsInteger;
+          xls.Cells[fila, 24] := FieldByName('peso_estrellas').AsFloat * 1000;
+          xls.Cells[fila, 25] := FieldByName('nro_estrellas').AsInteger;
+          xls.Cells[fila, 26] := FieldByName('peso_erizos').AsFloat * 1000;
+          xls.Cells[fila, 27] := FieldByName('nro_erizos').AsInteger;
+          xls.Cells[fila, 28] := FieldByName('peso_caracoles').AsFloat * 1000;
+          xls.Cells[fila, 29] := FieldByName('nro_caracoles').AsInteger;
+          xls.Cells[fila, 30] := FieldByName('peso_braquiopodos').AsFloat * 1000;
+          xls.Cells[fila, 31] := FieldByName('nro_braquiopodos').AsInteger;
+          xls.Cells[fila, 32] := FieldByName('peso_centollas').AsFloat * 1000;
+          xls.Cells[fila, 33] := FieldByName('nro_centollas').AsInteger;
+          xls.Cells[fila, 34] := FieldByName('peso_arania_violeta').AsFloat * 1000;
+          xls.Cells[fila, 35] := FieldByName('nro_arania_violeta').AsInteger;
+          xls.Cells[fila, 36] := FieldByName('peso_arania_comun').AsFloat * 1000;
+          xls.Cells[fila, 37] := FieldByName('nro_arania_comun').AsInteger;
+          xls.Cells[fila, 38] := FieldByName('peso_tractor').AsFloat * 1000;
+          xls.Cells[fila, 39] := FieldByName('nro_tractor').AsInteger;
+          xls.Cells[fila, 40] := FieldByName('peso_ermitanio').AsFloat * 1000;
+          xls.Cells[fila, 41] := FieldByName('nro_ermitanio').AsInteger;
+          xls.Cells[fila, 42] := FieldByName('peso_bogavantes').AsFloat * 1000;
+          xls.Cells[fila, 43] := FieldByName('nro_bogavantes').AsInteger;
+          xls.Cells[fila, 44] := FieldByName('peso_tubos_amarillentos').AsFloat * 1000;
+          xls.Cells[fila, 45] := FieldByName('peso_poliquetos').AsFloat * 1000;
+          xls.Cells[fila, 46] := FieldByName('peso_otros').AsFloat * 1000;
+          //Peces en captura
+          tmp := UTF8Decode(FieldByName('peces').AsString);
+          xls.Cells[fila, 47] := tmp;
+
+          pbProceso.Position := RecNo;
+          Application.ProcessMessages;
+          Next;
+          Inc(fila,1);
+        end;
+        //Copio una celda vacía para liberar el portapapeles
+        xlp.Range('E1').Copy;
         //Selecciono la primera celda porque si no queda seleccionado
         //el último bloque pegado
         xls.Cells[1,1].Select;

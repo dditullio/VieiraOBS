@@ -92,8 +92,9 @@ begin
       while not zqDetalleTallas.EOF do
       begin
         if (zqDetalleTallasnro_ejemplares.IsNull) or (zqDetalleTallasnro_ejemplares.AsInteger=0) then
-           zqDetalleTallas.Delete;
-        zqDetalleTallas.Next;
+           zqDetalleTallas.Delete
+        else
+            zqDetalleTallas.Next;
       end;
       zqDetalleTallas.EnableControls;
     end;

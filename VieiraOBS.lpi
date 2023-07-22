@@ -125,7 +125,7 @@
         <PackageName Value="LCL"/>
       </Item19>
     </RequiredPackages>
-    <Units Count="39">
+    <Units Count="40">
       <Unit0>
         <Filename Value="VieiraOBS.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -373,7 +373,7 @@
         <ResourceBaseClass Value="Form"/>
       </Unit35>
       <Unit36>
-        <Filename Value="frmeditarrayas.pas"/>
+        <Filename Value="frmeditarcondrictios.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmEditarRayas"/>
         <HasResources Value="True"/>
@@ -393,6 +393,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit38>
+      <Unit39>
+        <Filename Value="frmmuestrascondrictios.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fmMuestrasCondrictios"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit39>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -9,7 +9,7 @@ uses
   Dialogs, Menus, ActnList, StdActns, ExtCtrls, ComCtrls, IniPropStorage,
   StdCtrls, Buttons, DbCtrls, frmbase, frmmareas,datGeneral, frmrindes,
   frmcoccion, frmmuestrasbiologicas, frmdanio, frmbycatch, frmtallas,
-  frmlances, frminformes, frmmuestrassenasa, frmSplashScreenForm, frmmuestrasrayas,
+  frmlances, frminformes, frmmuestrassenasa, frmSplashScreenForm, frmmuestrascondrictios,
   frmbackup, frmimprimiretiquetas, frmProduccion;
 
 type
@@ -28,7 +28,7 @@ type
     acTallas: TAction;
     acInformes: TAction;
     acSenasa: TAction;
-    acRayas: TAction;
+    acCondrictios: TAction;
     acBackup: TAction;
     acGenerarEtiquetas: TAction;
     alPrincipal: TActionList;
@@ -94,7 +94,7 @@ type
     procedure acLancesExecute(Sender: TObject);
     procedure acMareasExecute(Sender: TObject);
     procedure acProduccionExecute(Sender: TObject);
-    procedure acRayasExecute(Sender: TObject);
+    procedure acCondrictiosExecute(Sender: TObject);
     procedure acPruebaFormExecute(Sender: TObject);
     procedure acRindesExecute(Sender: TObject);
     procedure acSenasaExecute(Sender: TObject);
@@ -287,15 +287,15 @@ begin
   ActivarForm(fmProduccion, imageindex);
 end;
 
-procedure TfmPrincipal.acRayasExecute(Sender: TObject);
+procedure TfmPrincipal.acCondrictiosExecute(Sender: TObject);
 var
   imageindex: integer=-1;
 begin
-  if not Assigned(fmMuestrasRayas) then
-    fmMuestrasRayas:=TfmMuestrasRayas.Create(Self);
+  if not Assigned(fmMuestrasCondrictios) then
+    fmMuestrasCondrictios:=TfmMuestrasCondrictios.Create(Self);
   if (sender is taction) then
     imageindex:=(sender as taction).ImageIndex;
-  ActivarForm(fmMuestrasRayas, imageindex);
+  ActivarForm(fmMuestrasCondrictios, imageindex);
 end;
 
 //procedure TfmPrincipal.acRayasExecute(Sender: TObject);

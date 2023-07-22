@@ -16,8 +16,8 @@ uses
   frmeditartallas, frmeditardetalletallas, frmeditarlances, frmlances,
   funciones, frmInformes, frmmuestrassenasa, frmrptdatospuente,
   frmeditarproduccion, lr_pdfexp_reg, frmeditarsenasaentera,frmeditarsenasacallos,
-  frmSplashScreenForm, frmproduccion, frmeditarrayas, frmbackup, 
-frmimprimiretiquetas;
+  frmSplashScreenForm, frmproduccion, frmeditarcondrictios, frmbackup, 
+frmimprimiretiquetas, frmmuestrascondrictios;
 
 {$R *.res}
 

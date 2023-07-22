@@ -1,0 +1,481 @@
+inherited fmMuestrasCondrictios: TfmMuestrasCondrictios
+  Left = 497
+  Top = 165
+  Width = 621
+  Caption = 'Muestras de condrictios'
+  ClientWidth = 621
+  inherited paBase: TPanel
+    Width = 621
+    ClientWidth = 621
+    inherited paContenido: TPanel
+      Width = 621
+      ClientWidth = 621
+      inherited paLista: TPanel
+        Width = 466
+        ClientWidth = 466
+        inherited paBuscador: TPanel
+          Width = 466
+          ClientWidth = 466
+          inherited laBuscar: TLabel
+            Height = 15
+            Width = 35
+          end
+          inherited edBuscar: TEdit
+            Height = 23
+            Width = 426
+          end
+          inherited bbBuscar: TBitBtn
+            Left = 432
+          end
+        end
+        inherited paGrilla: TPanel
+          Width = 456
+          ClientWidth = 456
+          inherited bbEliminar: TBitBtn
+            Left = 189
+          end
+          inherited bbAgregar: TBitBtn
+            Left = 278
+          end
+          inherited bbEditar: TBitBtn
+            Left = 367
+          end
+          inherited dbgLista: TRxDBGrid
+            Width = 456
+            Columns = <            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Fecha'
+                Width = 80
+                FieldName = 'fecha'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Hora'
+                Width = 50
+                FieldName = 'hora'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Lance'
+                Width = 50
+                FieldName = 'nrolance'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Latitud'
+                Width = 65
+                FieldName = 'latitud_fin_fmt'
+                DisplayFormat = '00º 00.00'''
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Longitud'
+                Width = 65
+                FieldName = 'longitud_fin_fmt'
+                DisplayFormat = '00º 00.00'''
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                Alignment = taCenter
+                PickList.Strings = (                )
+                SizePriority = 0
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Prof.'
+                Width = 30
+                FieldName = 'profundidad'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end            
+              item
+                PickList.Strings = (                )
+                Title.Alignment = taCenter
+                Title.Orientation = toHorizontal
+                Title.Caption = 'Comentarios'
+                Width = 83
+                FieldName = 'comentarios'
+                EditButtons = <>
+                Filter.DropDownRows = 0
+                Filter.ValueList.Strings = (                )
+                Filter.EmptyValue = '(Todos)'
+                Filter.EmptyFont.Style = [fsItalic]
+                Filter.ItemIndex = -1
+                KeyList.Strings = (                )
+              end>
+            DataSource = dsMuestrasRayas
+          end
+        end
+      end
+      inherited paDetalles: TPanel
+        Left = 466
+      end
+    end
+    inherited paComando: TPanel
+      Width = 621
+      ClientWidth = 621
+      inherited sbCerrar: TSpeedButton
+        Left = 603
+        Flat = False
+      end
+    end
+  end
+  inherited zcgLista: TZControladorGrilla
+    ControlEdicion = fmEditarRayas.zcePrincipal
+    ZDataset = zqMuestrasRayas
+  end
+  object zqMuestrasRayas: TZQuery[4]
+    Connection = dmGeneral.zcDB
+    BeforeOpen = zqMuestrasRayasBeforeOpen
+    SQL.Strings = (
+      'SELECT *'
+      'FROM v_muestras_rayas'
+      'WHERE idmarea=:idmarea'
+      ' AND ('
+      ':__FILTRO__ IS NULL OR'
+      ':__FILTRO__ = '''''
+      'OR date_format(fecha,''%d/%m/%Y'') LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR hora LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR comentarios LIKE CONCAT(''%'',:__FILTRO__,''%'')'
+      'OR nrolance LIKE CONCAT(''%'',:__FILTRO__,''%''))'
+      'ORDER BY fecha asc ,MAKETIME(HOUR(hora),MINUTE(hora),0) asc'
+      ''
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    left = 125
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idmarea'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = '__FILTRO__'
+        ParamType = ptUnknown
+      end>
+    object zqMuestrasRayasidmuestra_rayas: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmuestra_rayas'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqMuestrasRayasidmarea: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idmarea'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object zqMuestrasRayasidlance: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'idlance'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayasnrolance: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nrolance'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayasfecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object zqMuestrasRayashora: TTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'hora'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      DisplayFormat = 'hh:mm'
+    end
+    object zqMuestrasRayasnro_dipturus: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_dipturus'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayasnro_bathyraja: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_bathyraja'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayasnro_psammobatis: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_psammobatis'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayasnro_amblyraja: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nro_amblyraja'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslt_max_dipturus: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_max_dipturus'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslt_min_dipturus: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_min_dipturus'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslt_max_bathyraja: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_max_bathyraja'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslt_min_bathyraja: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_min_bathyraja'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslt_max_psammobatis: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_max_psammobatis'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslt_min_psammobatis: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_min_psammobatis'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslt_max_amblyraja: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_max_amblyraja'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslt_min_amblyraja: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_min_amblyraja'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayascomentarios: TStringField
+      DisplayWidth = 1024
+      FieldKind = fkData
+      FieldName = 'comentarios'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1024
+    end
+    object zqMuestrasRayaslatitud_fin: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'latitud_fin'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 64
+    end
+    object zqMuestrasRayaslongitud_fin: TStringField
+      DisplayWidth = 64
+      FieldKind = fkData
+      FieldName = 'longitud_fin'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 64
+    end
+    object zqMuestrasRayasprofundidad: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'profundidad'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqMuestrasRayaslatitud_fin_fmt: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'latitud_fin_fmt'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 80
+    end
+    object zqMuestrasRayaslongitud_fin_fmt: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'longitud_fin_fmt'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 80
+    end
+  end
+  object dsMuestrasRayas: TDataSource[5]
+    DataSet = zqMuestrasRayas
+    left = 160
+    top = 240
+  end
+end

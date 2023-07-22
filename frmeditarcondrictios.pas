@@ -17,23 +17,31 @@ type
   TfmEditarCondrictios = class(TZEdicionBase)
     dbdtFecha: TDBDateTimePicker;
     dbdtHora: TDtDBTimeEdit;
+    dbedLTMaxSqualus: TDBEdit;
     dbedLTMaxBathyrajas: TDBEdit;
     dbedLTMaxAmblyraja: TDBEdit;
     dbedLTMaxPsammobatis: TDBEdit;
+    dbedLTMaxSchroederichthys: TDBEdit;
+    dbedLTMinSqualus: TDBEdit;
     dbedLTMinBathyrajas: TDBEdit;
     dbedLTMinAmblyraja: TDBEdit;
     dbedLTMinPsammobatis: TDBEdit;
+    dbedLTMinSchroederichthys: TDBEdit;
     dbedNroCaptAmblyraja: TDBEdit;
+    dbedNroCaptSqualus: TDBEdit;
     dbedNroCaptDipturus: TDBEdit;
     dbedLTMaxDipturus: TDBEdit;
     dbedLTMinDipturus: TDBEdit;
     dbedNroCaptBathyrajas: TDBEdit;
     dbedNroCaptPsammobatis: TDBEdit;
+    dbedNroCaptSchroederichthys: TDBEdit;
     dbmComentarios: TDBMemo;
     gbAmblyraja: TGroupBox;
+    gbSqualus: TGroupBox;
     gbDipturus: TGroupBox;
     gbBathyrajas: TGroupBox;
     gbPsammobatis: TGroupBox;
+    gbSchroederichthys: TGroupBox;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -42,7 +50,13 @@ type
     Label14: TLabel;
     Label15: TLabel;
     Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
     Label2: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
@@ -56,23 +70,33 @@ type
     zqPrincipalhora: TTimeField;
     zqPrincipalidlance: TLongintField;
     zqPrincipalidmarea: TLongintField;
+    zqPrincipalidmuestra_condrictios: TLongintField;
     zqPrincipalidmuestra_rayas: TLongintField;
     zqPrincipallt_max_amblyraja: TLongintField;
     zqPrincipallt_max_bathyraja: TLongintField;
     zqPrincipallt_max_dipturus: TLongintField;
     zqPrincipallt_max_psammobatis: TLongintField;
+    zqPrincipallt_max_schroederichthys: TLongintField;
+    zqPrincipallt_max_squalus: TLongintField;
     zqPrincipallt_min_amblyraja: TLongintField;
     zqPrincipallt_min_bathyraja: TLongintField;
     zqPrincipallt_min_dipturus: TLongintField;
     zqPrincipallt_min_psammobatis: TLongintField;
+    zqPrincipallt_min_schroederichthys: TLongintField;
+    zqPrincipallt_min_squalus: TLongintField;
     zqPrincipalnro_amblyraja: TLongintField;
     zqPrincipalnro_bathyraja: TLongintField;
     zqPrincipalnro_dipturus: TLongintField;
     zqPrincipalnro_psammobatis: TLongintField;
+    zqPrincipalnro_schroederichthys: TLongintField;
+    zqPrincipalnro_squalus: TLongintField;
     procedure gbAmblyrajaExit(Sender: TObject);
     procedure gbBathyrajasExit(Sender: TObject);
     procedure gbDipturusExit(Sender: TObject);
     procedure gbPsammobatisExit(Sender: TObject);
+    procedure gbSchroederichthysClick(Sender: TObject);
+    procedure gbSchroederichthysExit(Sender: TObject);
+    procedure gbSqualusExit(Sender: TObject);
     procedure paFechaHoraExit(Sender: TObject);
     procedure zqPrincipalCalcFields(DataSet: TDataSet);
     procedure zqPrincipalNewRecord(DataSet: TDataSet);
@@ -128,6 +152,35 @@ begin
     MessageDlg('La talla máxima no puede ser menor a la mínima.', mtWarning, [mbOK], 0);
     if dbedLTMaxPsammobatis.CanFocus then
       dbedLTMaxPsammobatis.SetFocus;
+  end;
+end;
+
+procedure TfmEditarCondrictios.gbSchroederichthysClick(Sender: TObject);
+begin
+
+end;
+
+procedure TfmEditarCondrictios.gbSchroederichthysExit(Sender: TObject);
+begin
+  if (not zqPrincipallt_max_schroederichthys.IsNull)
+     and (not zqPrincipallt_min_schroederichthys.IsNull)
+     and (zqPrincipallt_max_schroederichthys.Value < zqPrincipallt_min_schroederichthys.Value) then
+  begin
+    MessageDlg('La talla máxima no puede ser menor a la mínima.', mtWarning, [mbOK], 0);
+    if dbedLTMaxSchroederichthys.CanFocus then
+      dbedLTMaxSchroederichthys.SetFocus;
+  end;
+end;
+
+procedure TfmEditarCondrictios.gbSqualusExit(Sender: TObject);
+begin
+  if (not zqPrincipallt_max_squalus.IsNull)
+     and (not zqPrincipallt_min_squalus.IsNull)
+     and (zqPrincipallt_max_squalus.Value < zqPrincipallt_min_squalus.Value) then
+  begin
+    MessageDlg('La talla máxima no puede ser menor a la mínima.', mtWarning, [mbOK], 0);
+    if dbedLTMaxSqualus.CanFocus then
+      dbedLTMaxSqualus.SetFocus;
   end;
 end;
 

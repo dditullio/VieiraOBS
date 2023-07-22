@@ -32,7 +32,7 @@ type
     cbDatosPuentePDF: TCheckBox;
     cbSenasaPDF: TCheckBox;
     cbMuestrasBiolPDF: TCheckBox;
-    cbRaya: TCheckBox;
+    cbCondrictios: TCheckBox;
     cbReemplazar: TCheckBox;
     cbDatosPuente: TCheckBox;
     cbRindes: TCheckBox;
@@ -136,8 +136,8 @@ type
     zqResumencant_lances: TLargeintField;
     zqResumencant_muestras_bycatch: TLargeintField;
     zqResumencant_muestras_coccion: TLargeintField;
+    zqResumencant_muestras_condrictios: TLargeintField;
     zqResumencant_muestras_danio: TLargeintField;
-    zqResumencant_muestras_raya: TLongintField;
     zqResumencant_muestras_rinde: TLargeintField;
     zqResumencant_muestras_senasa_callo: TLargeintField;
     zqResumencant_muestras_senasa_entera: TLargeintField;
@@ -296,7 +296,7 @@ begin
   begin
     dmGeneral.GuardarBooleanConfig('Coccion', cbCoccion.Checked, 'PlanillasInforme');
     dmGeneral.GuardarBooleanConfig('Danio', cbDanio.Checked, 'PlanillasInforme');
-    dmGeneral.GuardarBooleanConfig('Raya', cbRaya.Checked, 'PlanillasInforme');
+    dmGeneral.GuardarBooleanConfig('Raya', cbCondrictios.Checked, 'PlanillasInforme');
     dmGeneral.GuardarBooleanConfig('ByCatch', cbByCatch.Checked, 'PlanillasInforme');
     dmGeneral.GuardarBooleanConfig('DatosPuentePDF', cbDatosPuentePDF.Checked, 'PlanillasInforme');
     dmGeneral.GuardarBooleanConfig('SenasaPDF', cbSenasaPDF.Checked, 'PlanillasInforme');
@@ -336,7 +336,7 @@ begin
         GenerarByCatch3XLS; //Formato de planillas 2023
 
       end;
-      if cbRaya.Checked then
+      if cbCondrictios.Checked then
       begin
         GenerarRayaXLS;
       end;
@@ -468,7 +468,7 @@ procedure TfmInformes.ckPlanillasChange(Sender: TObject);
 begin
   acGuardarPlanillas.Enabled :=
     (cbDatosPuente.Checked or cbRindes.Checked or cbCoccion.Checked or
-    cbTallas.Checked or cbDanio.Checked or cbByCatch.Checked or cbRaya.Checked
+    cbTallas.Checked or cbDanio.Checked or cbByCatch.Checked or cbCondrictios.Checked
     or cbDatosPuentePDF.Checked or cbSenasaPDF.Checked or cbMuestrasBiolPDF.Checked);
 end;
 
@@ -509,8 +509,8 @@ begin
        cbCoccion.Enabled:=false;
        cbDanio.Checked:=false;
        cbDanio.Enabled:=false;
-       cbRaya.Checked:=false;
-       cbRaya.Enabled:=false;
+       cbCondrictios.Checked:=false;
+       cbCondrictios.Enabled:=false;
        cbByCatch.Checked:=false;
        cbByCatch.Enabled:=false;
        cbDatosPuentePDF.Checked:=false;
@@ -527,8 +527,8 @@ begin
        cbCoccion.Enabled:=True;
        cbDanio.Checked:=dmGeneral.LeerBooleanConfig('Danio', True, 'PlanillasInforme');
        cbDanio.Enabled:=True;
-       cbRaya.Checked:=dmGeneral.LeerBooleanConfig('Raya', True, 'PlanillasInforme');
-       cbRaya.Enabled:=True;
+       cbCondrictios.Checked:=dmGeneral.LeerBooleanConfig('Raya', True, 'PlanillasInforme');
+       cbCondrictios.Enabled:=True;
        cbByCatch.Checked:=dmGeneral.LeerBooleanConfig('ByCatch', True, 'PlanillasInforme');
        cbByCatch.Enabled:=True;
        cbDatosPuentePDF.Checked:=dmGeneral.LeerBooleanConfig('DatosPuentePDF', True, 'PlanillasInforme');
@@ -548,7 +548,7 @@ begin
   cbDatosPuente.Checked:=dmGeneral.LeerBooleanConfig('DatosPuente', True, 'PlanillasInforme');
   cbCoccion.Checked:=dmGeneral.LeerBooleanConfig('Coccion', False, 'PlanillasInforme');
   cbDanio.Checked:=dmGeneral.LeerBooleanConfig('Danio', True, 'PlanillasInforme');
-  cbRaya.Checked:=dmGeneral.LeerBooleanConfig('Raya', True, 'PlanillasInforme');
+  cbCondrictios.Checked:=dmGeneral.LeerBooleanConfig('Raya', True, 'PlanillasInforme');
   cbRindes.Checked:=dmGeneral.LeerBooleanConfig('Rinde', True, 'PlanillasInforme');
   cbTallas.Checked:=dmGeneral.LeerBooleanConfig('Talla', True, 'PlanillasInforme');
   cbByCatch.Checked:=dmGeneral.LeerBooleanConfig('ByCatch', True, 'PlanillasInforme');
@@ -589,7 +589,7 @@ begin
       //sgResumen.Cells[1,13]:=FieldByName('cant_muestras_coccion').AsString;
       sgResumen.Cells[1,13]:=FieldByName('cant_muestras_bycatch').AsString;
       sgResumen.Cells[1,14]:=FieldByName('cant_muestras_danio').AsString;
-      sgResumen.Cells[1,15]:=FieldByName('cant_muestras_raya').AsString;
+      sgResumen.Cells[1,15]:=FieldByName('cant_muestras_condrictios').AsString;
     end;
   end;
 end;

@@ -1,8 +1,10 @@
 inherited fmEditarCondrictios: TfmEditarCondrictios
-  Height = 389
+  Left = 485
+  Height = 474
+  Top = 140
   Width = 390
   Caption = 'Muestra de condrictios'
-  ClientHeight = 389
+  ClientHeight = 474
   ClientWidth = 390
   inherited paEncabezadoBase: TPanel
     Width = 390
@@ -25,9 +27,9 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
     end
   end
   inherited paPrincipal: TPanel
-    Height = 319
+    Height = 404
     Width = 390
-    ClientHeight = 319
+    ClientHeight = 404
     ClientWidth = 390
     object paFechaHora: TPanel[0]
       Left = 5
@@ -95,20 +97,20 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
     object Label7: TLabel[1]
       Left = 5
       Height = 15
-      Top = 225
+      Top = 302
       Width = 68
       Caption = 'Comentarios'
       ParentColor = False
     end
     object dbmComentarios: TDBMemo[2]
       Left = 5
-      Height = 65
-      Top = 245
+      Height = 73
+      Top = 325
       Width = 377
       DataField = 'comentarios'
       DataSource = dsPrincipal
       ScrollBars = ssAutoVertical
-      TabOrder = 5
+      TabOrder = 7
     end
     object gbDipturus: TGroupBox[3]
       Left = 5
@@ -249,7 +251,7 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
     object gbPsammobatis: TGroupBox[5]
       Left = 5
       Height = 75
-      Top = 145
+      Top = 144
       Width = 185
       Caption = 'Psammobatis'
       ClientHeight = 55
@@ -317,7 +319,7 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
     object gbAmblyraja: TGroupBox[6]
       Left = 195
       Height = 75
-      Top = 145
+      Top = 144
       Width = 185
       Caption = 'Amblyraja'
       ClientHeight = 55
@@ -382,9 +384,145 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
         TabOrder = 2
       end
     end
+    object gbSchroederichthys: TGroupBox[7]
+      Left = 5
+      Height = 75
+      Top = 224
+      Width = 185
+      Caption = 'Schroederichthys'
+      ClientHeight = 55
+      ClientWidth = 181
+      TabOrder = 5
+      OnExit = gbSchroederichthysExit
+      object Label17: TLabel
+        Left = 5
+        Height = 15
+        Top = 5
+        Width = 45
+        Caption = 'N° Capt.'
+        ParentColor = False
+      end
+      object dbedNroCaptSchroederichthys: TDBEdit
+        Left = 5
+        Height = 23
+        Top = 25
+        Width = 51
+        DataField = 'nro_schroederichthys'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object dbedLTMaxSchroederichthys: TDBEdit
+        Left = 63
+        Height = 23
+        Top = 25
+        Width = 51
+        DataField = 'lt_max_schroederichthys'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object Label18: TLabel
+        Left = 63
+        Height = 15
+        Top = 5
+        Width = 40
+        Caption = 'LT Max.'
+        ParentColor = False
+      end
+      object Label19: TLabel
+        Left = 120
+        Height = 15
+        Top = 5
+        Width = 38
+        Caption = 'LT Min.'
+        ParentColor = False
+      end
+      object dbedLTMinSchroederichthys: TDBEdit
+        Left = 120
+        Height = 23
+        Top = 25
+        Width = 51
+        DataField = 'lt_min_schroederichthys'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 2
+      end
+    end
+    object gbSqualus: TGroupBox[8]
+      Left = 195
+      Height = 75
+      Top = 224
+      Width = 185
+      Caption = 'Squalus'
+      ClientHeight = 55
+      ClientWidth = 181
+      TabOrder = 6
+      OnExit = gbSqualusExit
+      object Label20: TLabel
+        Left = 5
+        Height = 15
+        Top = 5
+        Width = 45
+        Caption = 'N° Capt.'
+        ParentColor = False
+      end
+      object dbedNroCaptSqualus: TDBEdit
+        Left = 5
+        Height = 23
+        Top = 25
+        Width = 51
+        DataField = 'nro_squalus'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object dbedLTMaxSqualus: TDBEdit
+        Left = 63
+        Height = 23
+        Top = 25
+        Width = 51
+        DataField = 'lt_max_squalus'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object Label21: TLabel
+        Left = 63
+        Height = 15
+        Top = 5
+        Width = 40
+        Caption = 'LT Max.'
+        ParentColor = False
+      end
+      object Label22: TLabel
+        Left = 120
+        Height = 15
+        Top = 5
+        Width = 38
+        Caption = 'LT Min.'
+        ParentColor = False
+      end
+      object dbedLTMinSqualus: TDBEdit
+        Left = 120
+        Height = 23
+        Top = 25
+        Width = 51
+        DataField = 'lt_min_squalus'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 2
+      end
+    end
   end
   inherited paControles: TPanel
-    Top = 353
+    Top = 438
     Width = 390
     ClientWidth = 390
     inherited bbCancelar: TBitBtn
@@ -497,102 +635,156 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
       ReadOnly = False
       Required = False
     end
-    object zqPrincipallt_max_dipturus: TLongintField[9]
-      DisplayWidth = 10
+    object zqPrincipalnro_schroederichthys: TLongintField[9]
       FieldKind = fkData
-      FieldName = 'lt_max_dipturus'
+      FieldName = 'nro_schroederichthys'
       Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqPrincipallt_min_dipturus: TLongintField[10]
-      DisplayWidth = 10
+    object zqPrincipalnro_squalus: TLongintField[10]
       FieldKind = fkData
-      FieldName = 'lt_min_dipturus'
+      FieldName = 'nro_squalus'
       Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqPrincipallt_max_bathyraja: TLongintField[11]
+    object zqPrincipallt_max_dipturus: TLongintField[11]
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'lt_max_bathyraja'
+      FieldName = 'lt_max_dipturus'
       Index = 11
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqPrincipallt_min_bathyraja: TLongintField[12]
+    object zqPrincipallt_min_dipturus: TLongintField[12]
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'lt_min_bathyraja'
+      FieldName = 'lt_min_dipturus'
       Index = 12
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqPrincipallt_max_psammobatis: TLongintField[13]
+    object zqPrincipallt_max_bathyraja: TLongintField[13]
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'lt_max_psammobatis'
+      FieldName = 'lt_max_bathyraja'
       Index = 13
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqPrincipallt_min_psammobatis: TLongintField[14]
+    object zqPrincipallt_min_bathyraja: TLongintField[14]
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'lt_min_psammobatis'
+      FieldName = 'lt_min_bathyraja'
       Index = 14
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqPrincipallt_max_amblyraja: TLongintField[15]
+    object zqPrincipallt_max_psammobatis: TLongintField[15]
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'lt_max_amblyraja'
+      FieldName = 'lt_max_psammobatis'
       Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqPrincipallt_min_amblyraja: TLongintField[16]
+    object zqPrincipallt_min_psammobatis: TLongintField[16]
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'lt_min_amblyraja'
+      FieldName = 'lt_min_psammobatis'
       Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object zqPrincipalcomentarios: TStringField[17]
+    object zqPrincipallt_max_amblyraja: TLongintField[17]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_max_amblyraja'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipallt_min_amblyraja: TLongintField[18]
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'lt_min_amblyraja'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipallt_max_schroederichthys: TLongintField[19]
+      FieldKind = fkData
+      FieldName = 'lt_max_schroederichthys'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipallt_min_schroederichthys: TLongintField[20]
+      FieldKind = fkData
+      FieldName = 'lt_min_schroederichthys'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipallt_max_squalus: TLongintField[21]
+      FieldKind = fkData
+      FieldName = 'lt_max_squalus'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipallt_min_squalus: TLongintField[22]
+      FieldKind = fkData
+      FieldName = 'lt_min_squalus'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalcomentarios: TStringField[23]
       DisplayWidth = 1024
       FieldKind = fkData
       FieldName = 'comentarios'
-      Index = 17
+      Index = 23
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 1024
     end
-    object zqPrincipalEncabezado: TStringField[18]
+    object zqPrincipalEncabezado: TStringField[24]
       DisplayWidth = 20
       FieldKind = fkCalculated
       FieldName = 'Encabezado'
-      Index = 18
+      Index = 24
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

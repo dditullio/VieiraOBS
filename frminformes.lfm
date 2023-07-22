@@ -121,12 +121,12 @@ inherited fmInformes: TfmInformes
               State = cbChecked
               TabOrder = 6
             end
-            object cbRaya: TCheckBox
+            object cbCondrictios: TCheckBox
               Left = 8
               Height = 30
               Top = 86
               Width = 202
-              Caption = 'Muestras de raya'
+              Caption = 'Muestras de condrictios'
               Checked = True
               OnChange = ckPlanillasChange
               State = cbChecked
@@ -345,7 +345,7 @@ inherited fmInformes: TfmInformes
                 'Nº de muestras de daño valvar'
                 0
                 15
-                'Nº de muestras de raya'
+                'Nº de muestras de condrictios'
               )
             end
           end
@@ -2663,16 +2663,14 @@ inherited fmInformes: TfmInformes
       ReadOnly = False
       Required = False
     end
-    object zqResumencant_muestras_raya: TLongintField
-      Alignment = taCenter
-      DisplayWidth = 10
+    object zqResumencant_muestras_condrictios: TLargeintField
       FieldKind = fkData
-      FieldName = 'cant_muestras_raya'
+      FieldName = 'cant_muestras_condrictios'
       Index = 17
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = True
+      Required = False
     end
   end
   object dsResumen: TDataSource[21]

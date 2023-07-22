@@ -1,4 +1,4 @@
-inherited fmEditarRayas: TfmEditarRayas
+inherited fmEditarCondrictios: TfmEditarCondrictios
   Height = 389
   Width = 390
   Caption = 'Muestra de condrictios'
@@ -402,13 +402,13 @@ inherited fmEditarRayas: TfmEditarRayas
     OnNewRecord = zqPrincipalNewRecord
     SQL.Strings = (
       'SELECT *'
-      'FROM muestras_rayas'
-      'WHERE idmuestra_rayas=:Id'
+      'FROM muestras_condrictios'
+      'WHERE idmuestra_condrictios=:Id'
     )
-    object zqPrincipalidmuestra_rayas: TLongintField[0]
+    object zqPrincipalidmuestra_condrictios: TLongintField[0]
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'idmuestra_rayas'
+      FieldName = 'idmuestra_condrictios'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

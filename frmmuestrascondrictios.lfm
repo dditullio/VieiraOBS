@@ -180,7 +180,7 @@ inherited fmMuestrasCondrictios: TfmMuestrasCondrictios
     end
   end
   inherited zcgLista: TZControladorGrilla
-    ControlEdicion = fmEditarRayas.zcePrincipal
+    ControlEdicion = fmEditarCondrictios.zcePrincipal
     ZDataset = zqMuestrasRayas
   end
   object zqMuestrasRayas: TZQuery[4]
@@ -188,7 +188,7 @@ inherited fmMuestrasCondrictios: TfmMuestrasCondrictios
     BeforeOpen = zqMuestrasRayasBeforeOpen
     SQL.Strings = (
       'SELECT *'
-      'FROM v_muestras_rayas'
+      'FROM v_muestras_condrictios'
       'WHERE idmarea=:idmarea'
       ' AND ('
       ':__FILTRO__ IS NULL OR'
@@ -225,10 +225,10 @@ inherited fmMuestrasCondrictios: TfmMuestrasCondrictios
         Name = '__FILTRO__'
         ParamType = ptUnknown
       end>
-    object zqMuestrasRayasidmuestra_rayas: TLongintField
+    object zqMuestrasRayasidmuestra_condrictios: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'idmuestra_rayas'
+      FieldName = 'idmuestra_condrictios'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

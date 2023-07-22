@@ -375,7 +375,7 @@
       <Unit36>
         <Filename Value="frmeditarcondrictios.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="fmEditarRayas"/>
+        <ComponentName Value="fmEditarCondrictios"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit36>

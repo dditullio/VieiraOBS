@@ -47,7 +47,7 @@ begin
   Application.CreateForm(TFmEditarSenasaEntera, FmEditarSenasaEntera);
   Application.CreateForm(TFmEditarSenasaCallos, FmEditarSenasaCallos);
   Application.CreateForm(TfmInformes, fmInformes);
-  Application.CreateForm(TfmEditarRayas, fmEditarRayas);
+  Application.CreateForm(TfmEditarCondrictios, fmEditarCondrictios);
   Application.Run;
 end.
 

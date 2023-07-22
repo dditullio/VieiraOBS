@@ -2685,7 +2685,7 @@ inherited fmInformes: TfmInformes
     BeforeOpen = zqRayaBeforeOpen
     SQL.Strings = (
       'select *'
-      'from v_muestras_rayas'
+      'from v_muestras_condrictios'
       'where idmarea=:idmarea'
       'AND (:fecha IS NULL'
       'OR :fecha = '''''

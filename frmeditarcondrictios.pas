@@ -12,9 +12,9 @@ uses
 
 type
 
-  { TfmEditarRayas }
+  { TfmEditarCondrictios }
 
-  TfmEditarRayas = class(TZEdicionBase)
+  TfmEditarCondrictios = class(TZEdicionBase)
     dbdtFecha: TDBDateTimePicker;
     dbdtHora: TDtDBTimeEdit;
     dbedLTMaxBathyrajas: TDBEdit;
@@ -83,15 +83,15 @@ type
   end;
 
 var
-  fmEditarRayas: TfmEditarRayas;
+  fmEditarCondrictios: TfmEditarCondrictios;
 
 implementation
 
 {$R *.lfm}
 
-{ TfmEditarRayas }
+{ TfmEditarCondrictios }
 
-procedure TfmEditarRayas.paFechaHoraExit(Sender: TObject);
+procedure TfmEditarCondrictios.paFechaHoraExit(Sender: TObject);
 begin
   if zqPrincipalhora.IsNull then
   begin
@@ -101,13 +101,13 @@ begin
   end;
 end;
 
-procedure TfmEditarRayas.zqPrincipalCalcFields(DataSet: TDataSet);
+procedure TfmEditarCondrictios.zqPrincipalCalcFields(DataSet: TDataSet);
 begin
   zqPrincipalEncabezado.Value:=FormatDateTime('dd/mm/yyyy',zqPrincipalfecha.Value)+
     ' '+FormatDateTime('hh:mm',zqPrincipalhora.Value);
 end;
 
-procedure TfmEditarRayas.gbDipturusExit(Sender: TObject);
+procedure TfmEditarCondrictios.gbDipturusExit(Sender: TObject);
 begin
   if (not zqPrincipallt_max_dipturus.IsNull)
      and (not zqPrincipallt_min_dipturus.IsNull)
@@ -119,7 +119,7 @@ begin
   end;
 end;
 
-procedure TfmEditarRayas.gbPsammobatisExit(Sender: TObject);
+procedure TfmEditarCondrictios.gbPsammobatisExit(Sender: TObject);
 begin
   if (not zqPrincipallt_max_psammobatis.IsNull)
      and (not zqPrincipallt_min_psammobatis.IsNull)
@@ -131,7 +131,7 @@ begin
   end;
 end;
 
-procedure TfmEditarRayas.gbBathyrajasExit(Sender: TObject);
+procedure TfmEditarCondrictios.gbBathyrajasExit(Sender: TObject);
 begin
   if (not zqPrincipallt_max_bathyraja.IsNull)
      and (not zqPrincipallt_min_bathyraja.IsNull)
@@ -143,7 +143,7 @@ begin
   end;
 end;
 
-procedure TfmEditarRayas.gbAmblyrajaExit(Sender: TObject);
+procedure TfmEditarCondrictios.gbAmblyrajaExit(Sender: TObject);
 begin
   if (not zqPrincipallt_max_amblyraja.IsNull)
      and (not zqPrincipallt_min_amblyraja.IsNull)
@@ -155,7 +155,7 @@ begin
   end;
 end;
 
-procedure TfmEditarRayas.zqPrincipalNewRecord(DataSet: TDataSet);
+procedure TfmEditarCondrictios.zqPrincipalNewRecord(DataSet: TDataSet);
 begin
   zqPrincipalidmarea.Value:=dmGeneral.IdMareaActiva;
   zqPrincipalidmuestra_rayas.Value:=zcePrincipal.NuevoID('muestras_rayas');

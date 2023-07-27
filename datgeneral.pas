@@ -75,6 +75,7 @@ type
     sqlmLog: TZSQLMonitor;
     procedure acEstablecerActivaExecute(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
+    procedure zcDBAfterConnect(Sender: TObject);
     procedure zqMareaActivaBeforeOpen(DataSet: TDataSet);
     procedure zqMareaActivaCalcFields(DataSet: TDataSet);
     procedure zqMareasAfterApplyUpdates(Sender: TObject);
@@ -234,6 +235,11 @@ begin
     IdMareaActiva := -1;
   end;
   SetSplashScreenStatus('Iniciando aplicación...');
+end;
+
+procedure TdmGeneral.zcDBAfterConnect(Sender: TObject);
+begin
+
 end;
 
 procedure TdmGeneral.zqMareaActivaBeforeOpen(DataSet: TDataSet);

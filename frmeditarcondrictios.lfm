@@ -1,10 +1,10 @@
 inherited fmEditarCondrictios: TfmEditarCondrictios
-  Left = 485
-  Height = 474
-  Top = 140
+  Left = 397
+  Height = 566
+  Top = 39
   Width = 390
   Caption = 'Muestra de condrictios'
-  ClientHeight = 474
+  ClientHeight = 566
   ClientWidth = 390
   inherited paEncabezadoBase: TPanel
     Width = 390
@@ -14,7 +14,6 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
     end
     inherited DividerBevel1: TDividerBevel
       Left = 260
-      Width = 15
     end
     inherited paEncabezado: TPanel
       Width = 259
@@ -27,9 +26,9 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
     end
   end
   inherited paPrincipal: TPanel
-    Height = 404
+    Height = 496
     Width = 390
-    ClientHeight = 404
+    ClientHeight = 496
     ClientWidth = 390
     object paFechaHora: TPanel[0]
       Left = 5
@@ -97,7 +96,7 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
     object Label7: TLabel[1]
       Left = 5
       Height = 15
-      Top = 302
+      Top = 376
       Width = 68
       Caption = 'Comentarios'
       ParentColor = False
@@ -105,12 +104,12 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
     object dbmComentarios: TDBMemo[2]
       Left = 5
       Height = 73
-      Top = 325
+      Top = 399
       Width = 377
       DataField = 'comentarios'
       DataSource = dsPrincipal
       ScrollBars = ssAutoVertical
-      TabOrder = 7
+      TabOrder = 8
     end
     object gbDipturus: TGroupBox[3]
       Left = 5
@@ -520,19 +519,70 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
         TabOrder = 2
       end
     end
+    object gbHuevos: TGroupBox[9]
+      Left = 5
+      Height = 75
+      Top = 304
+      Width = 185
+      Caption = 'Huevos'
+      ClientHeight = 55
+      ClientWidth = 181
+      TabOrder = 7
+      OnExit = gbSqualusExit
+      object Label23: TLabel
+        Left = 5
+        Height = 15
+        Top = 5
+        Width = 51
+        Caption = 'N° Llenos'
+        ParentColor = False
+      end
+      object dbedNroCaptSqualus1: TDBEdit
+        Left = 5
+        Height = 23
+        Top = 25
+        Width = 74
+        DataField = 'nro_huevos_llenos'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object dbedLTMaxSqualus1: TDBEdit
+        Left = 93
+        Height = 23
+        Top = 24
+        Width = 74
+        DataField = 'nro_huevos_vacios'
+        DataSource = dsPrincipal
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object Label24: TLabel
+        Left = 93
+        Height = 15
+        Top = 5
+        Width = 50
+        Caption = 'N° Vacíos'
+        ParentColor = False
+      end
+    end
   end
   inherited paControles: TPanel
-    Top = 438
+    Top = 530
     Width = 390
     ClientWidth = 390
     inherited bbCancelar: TBitBtn
       Left = 208
-      Height = 24
     end
     inherited bbAceptar: TBitBtn
       Left = 296
-      Height = 24
     end
+  end
+  inherited dsPrincipal: TDataSource
+    left = 212
+    top = 488
   end
   inherited zqPrincipal: TZQuery
     Connection = dmGeneral.zcDB
@@ -543,6 +593,8 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
       'FROM muestras_condrictios'
       'WHERE idmuestra_condrictios=:Id'
     )
+    left = 136
+    top = 488
     object zqPrincipalidmuestra_condrictios: TLongintField[0]
       DisplayWidth = 10
       FieldKind = fkData
@@ -790,8 +842,32 @@ inherited fmEditarCondrictios: TfmEditarCondrictios
       ReadOnly = False
       Required = False
     end
+    object zqPrincipalnro_huevos_llenos: TLongintField[25]
+      FieldKind = fkData
+      FieldName = 'nro_huevos_llenos'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object zqPrincipalnro_huevos_vacios: TLongintField[26]
+      FieldKind = fkData
+      FieldName = 'nro_huevos_vacios'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   inherited zcePrincipal: TZControladorEdicion
     ControlInicial = dbdtHora
+    left = 280
+    top = 488
+  end
+  inherited zdgPrincipal: TZDatasetGroup
+    left = 88
+    top = 488
   end
 end

@@ -22,6 +22,7 @@ type
     dbedLTMaxAmblyraja: TDBEdit;
     dbedLTMaxPsammobatis: TDBEdit;
     dbedLTMaxSchroederichthys: TDBEdit;
+    dbedLTMaxSqualus1: TDBEdit;
     dbedLTMinSqualus: TDBEdit;
     dbedLTMinBathyrajas: TDBEdit;
     dbedLTMinAmblyraja: TDBEdit;
@@ -35,6 +36,7 @@ type
     dbedNroCaptBathyrajas: TDBEdit;
     dbedNroCaptPsammobatis: TDBEdit;
     dbedNroCaptSchroederichthys: TDBEdit;
+    dbedNroCaptSqualus1: TDBEdit;
     dbmComentarios: TDBMemo;
     gbAmblyraja: TGroupBox;
     gbSqualus: TGroupBox;
@@ -42,6 +44,7 @@ type
     gbBathyrajas: TGroupBox;
     gbPsammobatis: TGroupBox;
     gbSchroederichthys: TGroupBox;
+    gbHuevos: TGroupBox;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -57,6 +60,8 @@ type
     Label20: TLabel;
     Label21: TLabel;
     Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
@@ -71,7 +76,6 @@ type
     zqPrincipalidlance: TLongintField;
     zqPrincipalidmarea: TLongintField;
     zqPrincipalidmuestra_condrictios: TLongintField;
-    zqPrincipalidmuestra_rayas: TLongintField;
     zqPrincipallt_max_amblyraja: TLongintField;
     zqPrincipallt_max_bathyraja: TLongintField;
     zqPrincipallt_max_dipturus: TLongintField;
@@ -87,6 +91,8 @@ type
     zqPrincipalnro_amblyraja: TLongintField;
     zqPrincipalnro_bathyraja: TLongintField;
     zqPrincipalnro_dipturus: TLongintField;
+    zqPrincipalnro_huevos_llenos: TLongintField;
+    zqPrincipalnro_huevos_vacios: TLongintField;
     zqPrincipalnro_psammobatis: TLongintField;
     zqPrincipalnro_schroederichthys: TLongintField;
     zqPrincipalnro_squalus: TLongintField;
@@ -211,7 +217,7 @@ end;
 procedure TfmEditarCondrictios.zqPrincipalNewRecord(DataSet: TDataSet);
 begin
   zqPrincipalidmarea.Value:=dmGeneral.IdMareaActiva;
-  zqPrincipalidmuestra_rayas.Value:=zcePrincipal.NuevoID('muestras_rayas');
+  zqPrincipalidmuestra_condrictios.Value:=zcePrincipal.NuevoID('muestras_condrictios');
   zqPrincipalfecha.Value:=Date;
 end;
 

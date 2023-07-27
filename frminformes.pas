@@ -1857,9 +1857,9 @@ begin
   //Pongo el resto dentro de un Try para si o si finalizar le Excel al terminar
   try
     archivo_origen := ExtractFilePath(Application.ExeName) +
-      'PlanillasExcel' + DirectorySeparator + 'Rayas.xls';
+      'PlanillasExcel' + DirectorySeparator + 'Condrictios.xls';
     archivo_destino := dedCarpetaPlanillas.Directory +
-      DirectorySeparator + strfecha + 'Rayas.xls';
+      DirectorySeparator + strfecha + 'Condrictios.xls';
     if (not FileExistsUTF8(archivo_destino)) or (cbReemplazar.Checked) or (MessageDlg('El archivo '+archivo_destino+' ya existe. ¿Desea reemplazarlo?', mtConfirmation, [mbYes, mbNo],0) = mrYes) then
     begin
       CopyFile(archivo_origen, archivo_destino, [cffOverwriteFile]);
@@ -1869,7 +1869,7 @@ begin
 
       //Pongo los datos de la marea
       tmp := UTF8Decode(dmGeneral.zqMareaActivabuque.AsString);
-      xls.Cells[2, 2] := tmp;
+      xls.Cells[2, 3] := tmp;
       tmp := UTF8Decode(dmGeneral.zqMareaActivaMarea.AsString);
       xls.Cells[4, 2] := tmp;
 
@@ -1884,8 +1884,8 @@ begin
         First;
 
         //Pongo datos de lances y muestras
-        xls.Cells[2, 10] := zqDatosPuente.RecordCount;
-        xls.Cells[4, 10] := zqRaya.RecordCount;
+        xls.Cells[2, 13] := zqDatosPuente.RecordCount;
+        xls.Cells[4, 13] := zqRaya.RecordCount;
 
         //Configuro la barra de progreso
         pbProceso.Max := RecordCount;
@@ -1906,32 +1906,56 @@ begin
              xls.Cells[fila, 5] := FieldByName('profundidad').AsInteger;
           if not FieldByName('nro_dipturus').IsNull then
              xls.Cells[fila, 6] := FieldByName('nro_dipturus').AsInteger;
-          if not FieldByName('nro_bathyraja').IsNull then
-             xls.Cells[fila, 7] := FieldByName('nro_bathyraja').AsInteger;
-          if not FieldByName('nro_psammobatis').IsNull then
-             xls.Cells[fila, 8] := FieldByName('nro_psammobatis').AsInteger;
-          if not FieldByName('nro_amblyraja').IsNull then
-             xls.Cells[fila, 9] := FieldByName('nro_amblyraja').AsInteger;
-
           if not FieldByName('lt_max_dipturus').IsNull then
-             xls.Cells[fila, 10] := FieldByName('lt_max_dipturus').AsInteger;
+             xls.Cells[fila, 7] := FieldByName('lt_max_dipturus').AsInteger;
           if not FieldByName('lt_min_dipturus').IsNull then
-             xls.Cells[fila, 11] := FieldByName('lt_min_dipturus').AsInteger;
+             xls.Cells[fila, 8] := FieldByName('lt_min_dipturus').AsInteger;
+
+          if not FieldByName('nro_bathyraja').IsNull then
+             xls.Cells[fila, 9] := FieldByName('nro_bathyraja').AsInteger;
           if not FieldByName('lt_max_bathyraja').IsNull then
-             xls.Cells[fila, 12] := FieldByName('lt_max_bathyraja').AsInteger;
+             xls.Cells[fila, 10] := FieldByName('lt_max_bathyraja').AsInteger;
           if not FieldByName('lt_min_bathyraja').IsNull then
-             xls.Cells[fila, 13] := FieldByName('lt_min_bathyraja').AsInteger;
+             xls.Cells[fila, 11] := FieldByName('lt_min_bathyraja').AsInteger;
+
+          if not FieldByName('nro_psammobatis').IsNull then
+             xls.Cells[fila, 12] := FieldByName('nro_psammobatis').AsInteger;
           if not FieldByName('lt_max_psammobatis').IsNull then
-             xls.Cells[fila, 14] := FieldByName('lt_max_psammobatis').AsInteger;
+             xls.Cells[fila, 13] := FieldByName('lt_max_psammobatis').AsInteger;
           if not FieldByName('lt_min_psammobatis').IsNull then
-             xls.Cells[fila, 15] := FieldByName('lt_min_psammobatis').AsInteger;
+             xls.Cells[fila, 14] := FieldByName('lt_min_psammobatis').AsInteger;
+
+          if not FieldByName('nro_amblyraja').IsNull then
+             xls.Cells[fila, 15] := FieldByName('nro_amblyraja').AsInteger;
           if not FieldByName('lt_max_amblyraja').IsNull then
              xls.Cells[fila, 16] := FieldByName('lt_max_amblyraja').AsInteger;
           if not FieldByName('lt_min_amblyraja').IsNull then
              xls.Cells[fila, 17] := FieldByName('lt_min_amblyraja').AsInteger;
 
+          if not FieldByName('nro_squalus').IsNull then
+             xls.Cells[fila, 18] := FieldByName('nro_squalus').AsInteger;
+          if not FieldByName('lt_max_squalus').IsNull then
+             xls.Cells[fila, 19] := FieldByName('lt_max_squalus').AsInteger;
+          if not FieldByName('lt_min_squalus').IsNull then
+             xls.Cells[fila, 20] := FieldByName('lt_min_squalus').AsInteger;
+
+          if not FieldByName('nro_schroederichthys').IsNull then
+             xls.Cells[fila, 21] := FieldByName('nro_schroederichthys').AsInteger;
+          if not FieldByName('lt_max_schroederichthys').IsNull then
+             xls.Cells[fila, 22] := FieldByName('lt_max_schroederichthys').AsInteger;
+          if not FieldByName('lt_min_schroederichthys').IsNull then
+             xls.Cells[fila, 23] := FieldByName('lt_min_schroederichthys').AsInteger;
+
+          if not FieldByName('nro_huevos_llenos').IsNull then
+             xls.Cells[fila, 24] := FieldByName('nro_huevos_llenos').AsInteger;
+          if not FieldByName('nro_huevos_vacios').IsNull then
+             xls.Cells[fila, 25] := FieldByName('nro_huevos_vacios').AsInteger;
+
+          tmp := UTF8Decode(FieldByName('menores_10').AsString);
+          xls.Cells[fila, 26] := tmp;
+
           tmp := UTF8Decode(FieldByName('comentarios').AsString);
-          xls.Cells[fila, 18] := tmp;
+          xls.Cells[fila, 27] := tmp;
           pbProceso.Position := RecNo;
           Application.ProcessMessages;
           Next;

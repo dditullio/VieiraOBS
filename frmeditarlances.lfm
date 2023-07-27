@@ -143,6 +143,7 @@ inherited fmEditarLances: TfmEditarLances
                 CharCase = ecNormal
                 MaxLength = 0
                 TabOrder = 7
+                TabStop = False
               end
               object Label9: TLabel
                 Left = 291
@@ -163,6 +164,7 @@ inherited fmEditarLances: TfmEditarLances
                 CharCase = ecNormal
                 MaxLength = 0
                 TabOrder = 8
+                TabStop = False
               end
               object dbedMinutosLatIni: TDBEdit
                 Left = 208
@@ -963,7 +965,7 @@ inherited fmEditarLances: TfmEditarLances
                 Left = 9
                 Height = 15
                 Top = 60
-                Width = 67
+                Width = 66
                 Caption = 'Tpo. Arrastre'
                 ParentColor = False
               end
@@ -1213,7 +1215,7 @@ inherited fmEditarLances: TfmEditarLances
               ClientWidth = 324
               TabOrder = 3
               object Label43: TLabel
-                Left = 1
+                Left = 2
                 Height = 15
                 Top = 6
                 Width = 56
@@ -1221,10 +1223,10 @@ inherited fmEditarLances: TfmEditarLances
                 ParentColor = False
               end
               object Label44: TLabel
-                Left = 58
+                Left = 60
                 Height = 15
                 Top = 6
-                Width = 97
+                Width = 96
                 Alignment = taCenter
                 Caption = 'Registrado'
                 Font.Style = [fsBold]
@@ -1232,10 +1234,10 @@ inherited fmEditarLances: TfmEditarLances
                 ParentFont = False
               end
               object Label45: TLabel
-                Left = 156
+                Left = 158
                 Height = 15
                 Top = 6
-                Width = 88
+                Width = 87
                 Alignment = taCenter
                 Caption = 'Calculado'
                 Font.Style = [fsBold]
@@ -1243,10 +1245,10 @@ inherited fmEditarLances: TfmEditarLances
                 ParentFont = False
               end
               object Label46: TLabel
-                Left = 244
+                Left = 245
                 Height = 15
                 Top = 6
-                Width = 80
+                Width = 79
                 Alignment = taCenter
                 Caption = 'Diferencia'
                 Font.Style = [fsBold]
@@ -1254,7 +1256,7 @@ inherited fmEditarLances: TfmEditarLances
                 ParentFont = False
               end
               object laDistancia1: TLabel
-                Left = 1
+                Left = 2
                 Height = 15
                 Top = 27
                 Width = 56
@@ -1264,39 +1266,39 @@ inherited fmEditarLances: TfmEditarLances
                 ParentFont = False
               end
               object dbtDistRegist1: TDBText
-                Left = 58
+                Left = 60
                 Height = 15
                 Hint = 'Distancia en millas entre posición inicial y final'
                 Top = 27
-                Width = 97
+                Width = 96
                 Alignment = taCenter
                 DataField = 'DistanciaMillas'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object dbtDistCalc1: TDBText
-                Left = 156
+                Left = 158
                 Height = 15
                 Top = 27
-                Width = 88
+                Width = 87
                 Alignment = taCenter
                 DataField = 'DistanciaCalculada'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object dbtDistDif1: TDBText
-                Left = 244
+                Left = 245
                 Height = 15
                 Hint = 'Porcentaje de diferencia entre distancia registrada y calculada'
                 Top = 27
-                Width = 80
+                Width = 79
                 Alignment = taCenter
                 DataField = 'DifDistancia'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object laVelocidad1: TLabel
-                Left = 1
+                Left = 2
                 Height = 15
                 Top = 48
                 Width = 56
@@ -1306,39 +1308,39 @@ inherited fmEditarLances: TfmEditarLances
                 ParentFont = False
               end
               object dbtVelRegist1: TDBText
-                Left = 58
+                Left = 60
                 Height = 15
                 Hint = 'Velocidad registrada en la planilla de puente'
                 Top = 48
-                Width = 97
+                Width = 96
                 Alignment = taCenter
                 DataField = 'VelocidadRegistrada'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object dbtVelCalc1: TDBText
-                Left = 156
+                Left = 158
                 Height = 15
                 Top = 48
-                Width = 88
+                Width = 87
                 Alignment = taCenter
                 DataField = 'VelocNecesaria'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object dbtVelDif1: TDBText
-                Left = 244
+                Left = 245
                 Height = 15
                 Hint = 'Porcentaje de diferencia entre velocidad registrada y calculada'
                 Top = 48
-                Width = 80
+                Width = 79
                 Alignment = taCenter
                 DataField = 'DifVelocidad'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object laTiempo1: TLabel
-                Left = 1
+                Left = 2
                 Height = 15
                 Top = 69
                 Width = 56
@@ -1348,39 +1350,39 @@ inherited fmEditarLances: TfmEditarLances
                 ParentFont = False
               end
               object dbtTiempoRegist1: TDBText
-                Left = 58
+                Left = 60
                 Height = 15
                 Hint = 'Minutos de arrastre registrados en la planilla de puente'
                 Top = 69
-                Width = 97
+                Width = 96
                 Alignment = taCenter
                 DataField = 'TiempoRegistrado'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object dbtTiempoCalc1: TDBText
-                Left = 156
+                Left = 158
                 Height = 15
                 Top = 69
-                Width = 88
+                Width = 87
                 Alignment = taCenter
                 DataField = 'TiempoNecesario'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object dbtTiempoDif1: TDBText
-                Left = 244
+                Left = 245
                 Height = 15
                 Hint = 'Porcentaje de diferencia entre tiempo registrado y calculado'
                 Top = 69
-                Width = 80
+                Width = 79
                 Alignment = taCenter
                 DataField = 'DifTiempo'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object laTiempo2: TLabel
-                Left = 1
+                Left = 2
                 Height = 15
                 Top = 90
                 Width = 56
@@ -1390,33 +1392,33 @@ inherited fmEditarLances: TfmEditarLances
                 ParentFont = False
               end
               object dbtRumboRegist1: TDBText
-                Left = 58
+                Left = 60
                 Height = 15
                 Hint = 'Rumbo registrado en la planilla de puente'
                 Top = 90
-                Width = 97
+                Width = 96
                 Alignment = taCenter
                 DataField = 'RumboRegistrado'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object dbtRumboCalc1: TDBText
-                Left = 156
+                Left = 158
                 Height = 15
                 Hint = 'Rumbo calculado según las posiciones de inicio y fin de lance'
                 Top = 90
-                Width = 88
+                Width = 87
                 Alignment = taCenter
                 DataField = 'RumboCalculado'
                 DataSource = dsPrincipal
                 ParentColor = False
               end
               object dbtRumboDif1: TDBText
-                Left = 244
+                Left = 245
                 Height = 15
                 Hint = 'Porcentaje de diferencia entre rumbo registrado y calculado'
                 Top = 90
-                Width = 80
+                Width = 79
                 Alignment = taCenter
                 DataField = 'DifRumbo'
                 DataSource = dsPrincipal

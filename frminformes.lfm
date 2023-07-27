@@ -260,17 +260,17 @@ inherited fmInformes: TfmInformes
           end
           object gbResumen: TGroupBox
             Left = 420
-            Height = 383
+            Height = 404
             Top = 12
             Width = 392
             Caption = 'Resumen de la marea'
-            ClientHeight = 363
+            ClientHeight = 384
             ClientWidth = 388
             TabOrder = 6
             OnClick = gbResumenClick
             object sgResumen: TStringGrid
               Left = 6
-              Height = 357
+              Height = 374
               Top = 10
               Width = 376
               AutoEdit = False
@@ -290,14 +290,14 @@ inherited fmInformes: TfmInformes
                 end>
               FixedCols = 0
               FixedRows = 0
-              RowCount = 16
+              RowCount = 17
               TabOrder = 0
               ColWidths = (
                 296
                 80
               )
               Cells = (
-                16
+                17
                 0
                 0
                 'Fecha de zarpada'
@@ -346,6 +346,9 @@ inherited fmInformes: TfmInformes
                 0
                 15
                 'Nº de muestras de condrictios'
+                0
+                16
+                'Producción total'
               )
             end
           end
@@ -2469,8 +2472,8 @@ inherited fmInformes: TfmInformes
         Name = 'idmarea'
         ParamType = ptUnknown
       end>
-    left = 25
-    top = 470
+    left = 24
+    top = 424
     ParamData = <    
       item
         DataType = ftUnknown
@@ -2672,11 +2675,23 @@ inherited fmInformes: TfmInformes
       ReadOnly = False
       Required = False
     end
+    object zqResumentotal_produccion: TFloatField
+      FieldKind = fkData
+      FieldName = 'total_produccion'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 33
+    end
   end
   object dsResumen: TDataSource[21]
     DataSet = zqResumen
     left = 81
-    top = 470
+    top = 432
   end
   object zqRaya: TZQuery[22]
     Connection = dmGeneral.zcDB

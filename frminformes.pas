@@ -16,7 +16,7 @@ uses
   LR_DBSet, RxIniPropStorage, Forms, Controls, Graphics, Dialogs, ExtCtrls,
   Buttons, ActnList, ComCtrls, StdCtrls, EditBtn, IniPropStorage, Grids,
   frmbase, ZDataset, DB, datGeneral, comobj, variants, frmrptdatospuente,
-  funciones, LSConfig, LR_DSet, lr_e_pdf, dateutils;
+  funciones, LSConfig, LR_DSet, lr_e_pdf, dateutils, strutils;
 
 type
 
@@ -771,11 +771,39 @@ begin
 end;
 
 procedure TfmInformes.GenerarDatosPuenteXLS;
+const
+  ////Fuente: https://www.clubdelphi.com/foros/showthread.php?t=40405
+  ////--------- Bordes de las Celdas -------------------------------------------
+  //  xlEdgeLeft         = $00000007; // ( 7) Izquierdo
+  //  xlEdgeTop          = $00000008; // ( 8) Superior
+  //  xlEdgeBottom       = $00000009; // ( 9) Inferior
+  //  xlEdgeRight        = $0000000A; // (10) Derecho
+  //  xlInsideVertical   = $0000000B; // (11) Vertical Interior
+  //  xlInsideHorizontal = $0000000C; // (12) Horizontal Interior
+  //  //--------- Tipo de línea en bordes de Celdas ------------------------------
+  //  xlContinuous = $00000001; // ( 1) Continua
+  //  xlNone       = $FFFFEFD2; // (-4142) Ningúna línea
+  //  //--------- Grosores en bordes de Celdas -----------------------------------
+  //  xlThin   = $00000002; // ( 2) Fino
+  //  xlMedium = $00000003; // ( 3) Medio
+  xlContinuous = 1;
+  xlVAlignCenter = -4108;
+  xlEdgeTop = 8;
+  xlEdgeBottom = 9;
+  xlDouble = -4119;
+  xlThin = 2;
+  xlMedium = 3;
+  xlThick = 4;
+  xl3DColumn = -4100;
+  xlColumns = 2;
+
+Const xlLocationAsObject = 2;
 var
   xls: olevariant;
   archivo_origen, archivo_destino, tmp: WideString;
-  fila, columna: integer;
+  fila, columna, i: integer;
   relinga: integer;
+  ult_fecha: TDate;
 begin
   //Primero verifico que el objeto se pueda crear
   try
@@ -802,6 +830,10 @@ begin
       xls.Cells[2, 3] := tmp;
       tmp := UTF8Decode(dmGeneral.zqMareaActivaobservador.AsString);
       xls.Cells[4, 3] := tmp;
+
+      //Inicializo la última fecha en un valor inexistente
+      ult_fecha := NullDate;
+
       with zqDatosPuente do
       begin
         Close;
@@ -856,8 +888,25 @@ begin
              xls.Cells[fila, 18] := FieldByName('rinde_comercial_e').AsFloat;
           if not FieldByName('rinde_comercial_b').IsNull then
              xls.Cells[fila, 19] := FieldByName('rinde_comercial_b').AsFloat;
-          if not FieldByName('produccion').IsNull then
-             xls.Cells[fila, 20] := FieldByName('produccion').AsFloat;
+          // Dibujo una línea de división en cada cambio de fecha
+          if ((ult_fecha = NullDate) OR (FieldByName('fecha').AsDateTime <> ult_fecha))  then
+          begin
+               for i := 1 to 22 do
+               begin
+                 xls.Cells[fila, i].Borders.Item[xlEdgeTop].Linestyle := xlContinuous;
+                 xls.Cells[fila, i].Borders.Item[xlEdgeTop].Weight := xlThin;
+               end;
+          end;
+
+          // Sólo imprimo la producción la primera vez en cada cambio de fecha
+          if ((not FieldByName('produccion').IsNull)
+             and ((ult_fecha = NullDate) OR (FieldByName('fecha').AsDateTime <> ult_fecha)))  then
+          begin
+               xls.Cells[fila, 20] := FieldByName('produccion').AsFloat;
+          end;
+
+          ult_fecha := FieldByName('fecha').AsDateTime;
+
           if not FieldByName('comentarios').IsNull then
           begin
             tmp := UTF8Decode(FieldByName('comentarios').AsString);

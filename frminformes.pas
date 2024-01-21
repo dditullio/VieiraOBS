@@ -149,7 +149,7 @@ type
     zqResumendias_pesca: TLargeintField;
     zqResumendias_pesca_bajo_50: TLargeintField;
     zqResumenidmarea: TLongintField;
-    zqResumentotal_produccion: TFloatField;
+    zqResumenproduccion_total: TFloatField;
     zqResumenzarpada: TDateField;
     zqRindes: TZQuery;
     zqCoccion: TZQuery;
@@ -592,7 +592,7 @@ begin
       sgResumen.Cells[1,14]:=FieldByName('cant_muestras_danio').AsString;
       sgResumen.Cells[1,15]:=FieldByName('cant_muestras_condrictios').AsString;
 //      sgResumen.Cells[1,16]:=FieldByName('total_produccion').AsString;
-      sgResumen.Cells[1,16]:=FormatFloat('#,##0.00 Kg',FieldByName('total_produccion').AsFloat);
+      sgResumen.Cells[1,16]:=FormatFloat('#,##0.00 Kg',FieldByName('produccion_total').AsFloat);
     end;
   end;
 end;

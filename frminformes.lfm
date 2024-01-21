@@ -2675,9 +2675,9 @@ inherited fmInformes: TfmInformes
       ReadOnly = False
       Required = False
     end
-    object zqResumentotal_produccion: TFloatField
+    object zqResumenproduccion_total: TFloatField
       FieldKind = fkData
-      FieldName = 'total_produccion'
+      FieldName = 'produccion_total'
       Index = 18
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

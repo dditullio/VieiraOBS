@@ -75,7 +75,6 @@ type
     sqlmLog: TZSQLMonitor;
     procedure acEstablecerActivaExecute(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
-    procedure zcDBAfterConnect(Sender: TObject);
     procedure zqMareaActivaBeforeOpen(DataSet: TDataSet);
     procedure zqMareaActivaCalcFields(DataSet: TDataSet);
     procedure zqMareasAfterApplyUpdates(Sender: TObject);
@@ -102,7 +101,7 @@ type
   end;
 
 const
-  APP_VERSION='1.0.12';
+  APP_VERSION='1.12.1';
 
 var
   dmGeneral: TdmGeneral;
@@ -237,10 +236,6 @@ begin
   SetSplashScreenStatus('Iniciando aplicación...');
 end;
 
-procedure TdmGeneral.zcDBAfterConnect(Sender: TObject);
-begin
-
-end;
 
 procedure TdmGeneral.zqMareaActivaBeforeOpen(DataSet: TDataSet);
 begin

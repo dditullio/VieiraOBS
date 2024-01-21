@@ -18,7 +18,6 @@ object dmGeneral: TdmGeneral
       'codepage='
       'controls_cp=CP_UTF8'
     )
-    AfterConnect = zcDBAfterConnect
     HostName = 'localhost'
     Port = 0
     Database = 'vieira'

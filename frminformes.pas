@@ -1179,7 +1179,11 @@ var
           //Proceso las tallas
           if zqTallaspeso_total_produccion.AsFloat > 0 then
             xls.Cells[9, columna] := zqTallaspeso_total_produccion.AsFloat;
-          xls.Cells[10, columna] := zqTallasfecha.AsDateTime;
+
+          //Si ya tiene número de lance, coloco la fecha
+          if zqTallasnrolance.AsInteger > 0 then
+            xls.Cells[10, columna] := zqTallasfecha.AsDateTime;
+
           banda_captura := '';
           banda_retenido := '';
           banda_descarte := '';
